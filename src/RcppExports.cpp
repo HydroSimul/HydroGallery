@@ -2888,6 +2888,285 @@ RcppExport SEXP _HydroGallery_riverlak_LinearResorvoir(SEXP Riverlak_water_m3SEX
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// get_inflow_cells
+List get_inflow_cells(IntegerVector int_Outflow);
+static SEXP _HydroGallery_get_inflow_cells_try(SEXP int_OutflowSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type int_Outflow(int_OutflowSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_inflow_cells(int_Outflow));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_inflow_cells(SEXP int_OutflowSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_inflow_cells_try(int_OutflowSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_inflow_lastcell
+NumericMatrix get_inflow_lastcell(IntegerVector int_Outflow);
+static SEXP _HydroGallery_get_inflow_lastcell_try(SEXP int_OutflowSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type int_Outflow(int_OutflowSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_inflow_lastcell(int_Outflow));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_inflow_lastcell(SEXP int_OutflowSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_inflow_lastcell_try(int_OutflowSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_routing_info
+List get_routing_info(IntegerVector int_Outflow);
+static SEXP _HydroGallery_get_routing_info_try(SEXP int_OutflowSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type int_Outflow(int_OutflowSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_routing_info(int_Outflow));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_routing_info(SEXP int_OutflowSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_routing_info_try(int_OutflowSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_cell_in_basin
+IntegerVector get_cell_in_basin(List lst_Inflow_Cell, int int_OutLet, IntegerVector int_TestCell);
+static SEXP _HydroGallery_get_cell_in_basin_try(SEXP lst_Inflow_CellSEXP, SEXP int_OutLetSEXP, SEXP int_TestCellSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< List >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
+    Rcpp::traits::input_parameter< int >::type int_OutLet(int_OutLetSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type int_TestCell(int_TestCellSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_cell_in_basin(lst_Inflow_Cell, int_OutLet, int_TestCell));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_cell_in_basin(SEXP lst_Inflow_CellSEXP, SEXP int_OutLetSEXP, SEXP int_TestCellSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_cell_in_basin_try(lst_Inflow_CellSEXP, int_OutLetSEXP, int_TestCellSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_inter_basin
+IntegerVector get_inter_basin(List lst_Inflow_Cell, int int_OutLet, IntegerVector int_UpstreamCell);
+static SEXP _HydroGallery_get_inter_basin_try(SEXP lst_Inflow_CellSEXP, SEXP int_OutLetSEXP, SEXP int_UpstreamCellSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< List >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
+    Rcpp::traits::input_parameter< int >::type int_OutLet(int_OutLetSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type int_UpstreamCell(int_UpstreamCellSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_inter_basin(lst_Inflow_Cell, int_OutLet, int_UpstreamCell));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_inter_basin(SEXP lst_Inflow_CellSEXP, SEXP int_OutLetSEXP, SEXP int_UpstreamCellSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_inter_basin_try(lst_Inflow_CellSEXP, int_OutLetSEXP, int_UpstreamCellSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_new_outflow
+IntegerVector get_new_outflow(IntegerVector int_Outflow_Ori, IntegerVector int_CellNew);
+static SEXP _HydroGallery_get_new_outflow_try(SEXP int_Outflow_OriSEXP, SEXP int_CellNewSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type int_Outflow_Ori(int_Outflow_OriSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type int_CellNew(int_CellNewSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_new_outflow(int_Outflow_Ori, int_CellNew));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_new_outflow(SEXP int_Outflow_OriSEXP, SEXP int_CellNewSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_new_outflow_try(int_Outflow_OriSEXP, int_CellNewSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_cali_step
+List get_cali_step(List lst_Inflow_Cell, IntegerVector int_CaliCell);
+static SEXP _HydroGallery_get_cali_step_try(SEXP lst_Inflow_CellSEXP, SEXP int_CaliCellSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< List >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type int_CaliCell(int_CaliCellSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_cali_step(lst_Inflow_Cell, int_CaliCell));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_cali_step(SEXP lst_Inflow_CellSEXP, SEXP int_CaliCellSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_cali_step_try(lst_Inflow_CellSEXP, int_CaliCellSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_upstream_cali_cell
+List get_upstream_cali_cell(List lst_Inflow_Cell, IntegerVector int_CaliCell);
+static SEXP _HydroGallery_get_upstream_cali_cell_try(SEXP lst_Inflow_CellSEXP, SEXP int_CaliCellSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< List >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type int_CaliCell(int_CaliCellSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_upstream_cali_cell(lst_Inflow_Cell, int_CaliCell));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_upstream_cali_cell(SEXP lst_Inflow_CellSEXP, SEXP int_CaliCellSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_upstream_cali_cell_try(lst_Inflow_CellSEXP, int_CaliCellSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // snowMelt_Kustas
 NumericVector snowMelt_Kustas(NumericVector snow_ice_mm, NumericVector atmos_temperature_Cel, NumericVector atmos_netRadiat_MJ, NumericVector param_snow_kus_fE, NumericVector param_snow_kus_fT);
 static SEXP _HydroGallery_snowMelt_Kustas_try(SEXP snow_ice_mmSEXP, SEXP atmos_temperature_CelSEXP, SEXP atmos_netRadiat_MJSEXP, SEXP param_snow_kus_fESEXP, SEXP param_snow_kus_fTSEXP) {
@@ -3046,6 +3325,14 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*percola_WaterGAP3)(NumericVector,NumericVector,LogicalVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*river_LinearResorvoir)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*riverlak_LinearResorvoir)(NumericVector,NumericVector,NumericVector,NumericVector)");
+        signatures.insert("List(*get_inflow_cells)(IntegerVector)");
+        signatures.insert("NumericMatrix(*get_inflow_lastcell)(IntegerVector)");
+        signatures.insert("List(*get_routing_info)(IntegerVector)");
+        signatures.insert("IntegerVector(*get_cell_in_basin)(List,int,IntegerVector)");
+        signatures.insert("IntegerVector(*get_inter_basin)(List,int,IntegerVector)");
+        signatures.insert("IntegerVector(*get_new_outflow)(IntegerVector,IntegerVector)");
+        signatures.insert("List(*get_cali_step)(List,IntegerVector)");
+        signatures.insert("List(*get_upstream_cali_cell)(List,IntegerVector)");
         signatures.insert("NumericVector(*snowMelt_Kustas)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*snowMelt_Factor)(NumericVector,NumericVector,NumericVector,NumericVector)");
     }
@@ -3132,6 +3419,14 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_WaterGAP3", (DL_FUNC)_HydroGallery_percola_WaterGAP3_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_river_LinearResorvoir", (DL_FUNC)_HydroGallery_river_LinearResorvoir_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_riverlak_LinearResorvoir", (DL_FUNC)_HydroGallery_riverlak_LinearResorvoir_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inflow_cells", (DL_FUNC)_HydroGallery_get_inflow_cells_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inflow_lastcell", (DL_FUNC)_HydroGallery_get_inflow_lastcell_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_routing_info", (DL_FUNC)_HydroGallery_get_routing_info_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_cell_in_basin", (DL_FUNC)_HydroGallery_get_cell_in_basin_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inter_basin", (DL_FUNC)_HydroGallery_get_inter_basin_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_new_outflow", (DL_FUNC)_HydroGallery_get_new_outflow_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_cali_step", (DL_FUNC)_HydroGallery_get_cali_step_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_upstream_cali_cell", (DL_FUNC)_HydroGallery_get_upstream_cali_cell_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_snowMelt_Kustas", (DL_FUNC)_HydroGallery_snowMelt_Kustas_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_snowMelt_Factor", (DL_FUNC)_HydroGallery_snowMelt_Factor_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_RcppExport_validate", (DL_FUNC)_HydroGallery_RcppExport_validate);
@@ -3217,6 +3512,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_percola_WaterGAP3", (DL_FUNC) &_HydroGallery_percola_WaterGAP3, 5},
     {"_HydroGallery_river_LinearResorvoir", (DL_FUNC) &_HydroGallery_river_LinearResorvoir, 4},
     {"_HydroGallery_riverlak_LinearResorvoir", (DL_FUNC) &_HydroGallery_riverlak_LinearResorvoir, 4},
+    {"_HydroGallery_get_inflow_cells", (DL_FUNC) &_HydroGallery_get_inflow_cells, 1},
+    {"_HydroGallery_get_inflow_lastcell", (DL_FUNC) &_HydroGallery_get_inflow_lastcell, 1},
+    {"_HydroGallery_get_routing_info", (DL_FUNC) &_HydroGallery_get_routing_info, 1},
+    {"_HydroGallery_get_cell_in_basin", (DL_FUNC) &_HydroGallery_get_cell_in_basin, 3},
+    {"_HydroGallery_get_inter_basin", (DL_FUNC) &_HydroGallery_get_inter_basin, 3},
+    {"_HydroGallery_get_new_outflow", (DL_FUNC) &_HydroGallery_get_new_outflow, 2},
+    {"_HydroGallery_get_cali_step", (DL_FUNC) &_HydroGallery_get_cali_step, 2},
+    {"_HydroGallery_get_upstream_cali_cell", (DL_FUNC) &_HydroGallery_get_upstream_cali_cell, 2},
     {"_HydroGallery_snowMelt_Kustas", (DL_FUNC) &_HydroGallery_snowMelt_Kustas, 5},
     {"_HydroGallery_snowMelt_Factor", (DL_FUNC) &_HydroGallery_snowMelt_Factor, 4},
     {"_HydroGallery_RcppExport_registerCCallable", (DL_FUNC) &_HydroGallery_RcppExport_registerCCallable, 0},

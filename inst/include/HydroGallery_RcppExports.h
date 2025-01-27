@@ -1660,6 +1660,174 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline List get_inflow_cells(IntegerVector int_Outflow) {
+        typedef SEXP(*Ptr_get_inflow_cells)(SEXP);
+        static Ptr_get_inflow_cells p_get_inflow_cells = NULL;
+        if (p_get_inflow_cells == NULL) {
+            validateSignature("List(*get_inflow_cells)(IntegerVector)");
+            p_get_inflow_cells = (Ptr_get_inflow_cells)R_GetCCallable("HydroGallery", "_HydroGallery_get_inflow_cells");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_inflow_cells(Shield<SEXP>(Rcpp::wrap(int_Outflow)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
+    inline NumericMatrix get_inflow_lastcell(IntegerVector int_Outflow) {
+        typedef SEXP(*Ptr_get_inflow_lastcell)(SEXP);
+        static Ptr_get_inflow_lastcell p_get_inflow_lastcell = NULL;
+        if (p_get_inflow_lastcell == NULL) {
+            validateSignature("NumericMatrix(*get_inflow_lastcell)(IntegerVector)");
+            p_get_inflow_lastcell = (Ptr_get_inflow_lastcell)R_GetCCallable("HydroGallery", "_HydroGallery_get_inflow_lastcell");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_inflow_lastcell(Shield<SEXP>(Rcpp::wrap(int_Outflow)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericMatrix >(rcpp_result_gen);
+    }
+
+    inline List get_routing_info(IntegerVector int_Outflow) {
+        typedef SEXP(*Ptr_get_routing_info)(SEXP);
+        static Ptr_get_routing_info p_get_routing_info = NULL;
+        if (p_get_routing_info == NULL) {
+            validateSignature("List(*get_routing_info)(IntegerVector)");
+            p_get_routing_info = (Ptr_get_routing_info)R_GetCCallable("HydroGallery", "_HydroGallery_get_routing_info");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_routing_info(Shield<SEXP>(Rcpp::wrap(int_Outflow)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
+    inline IntegerVector get_cell_in_basin(List lst_Inflow_Cell, int int_OutLet, IntegerVector int_TestCell) {
+        typedef SEXP(*Ptr_get_cell_in_basin)(SEXP,SEXP,SEXP);
+        static Ptr_get_cell_in_basin p_get_cell_in_basin = NULL;
+        if (p_get_cell_in_basin == NULL) {
+            validateSignature("IntegerVector(*get_cell_in_basin)(List,int,IntegerVector)");
+            p_get_cell_in_basin = (Ptr_get_cell_in_basin)R_GetCCallable("HydroGallery", "_HydroGallery_get_cell_in_basin");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_cell_in_basin(Shield<SEXP>(Rcpp::wrap(lst_Inflow_Cell)), Shield<SEXP>(Rcpp::wrap(int_OutLet)), Shield<SEXP>(Rcpp::wrap(int_TestCell)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<IntegerVector >(rcpp_result_gen);
+    }
+
+    inline IntegerVector get_inter_basin(List lst_Inflow_Cell, int int_OutLet, IntegerVector int_UpstreamCell) {
+        typedef SEXP(*Ptr_get_inter_basin)(SEXP,SEXP,SEXP);
+        static Ptr_get_inter_basin p_get_inter_basin = NULL;
+        if (p_get_inter_basin == NULL) {
+            validateSignature("IntegerVector(*get_inter_basin)(List,int,IntegerVector)");
+            p_get_inter_basin = (Ptr_get_inter_basin)R_GetCCallable("HydroGallery", "_HydroGallery_get_inter_basin");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_inter_basin(Shield<SEXP>(Rcpp::wrap(lst_Inflow_Cell)), Shield<SEXP>(Rcpp::wrap(int_OutLet)), Shield<SEXP>(Rcpp::wrap(int_UpstreamCell)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<IntegerVector >(rcpp_result_gen);
+    }
+
+    inline IntegerVector get_new_outflow(IntegerVector int_Outflow_Ori, IntegerVector int_CellNew) {
+        typedef SEXP(*Ptr_get_new_outflow)(SEXP,SEXP);
+        static Ptr_get_new_outflow p_get_new_outflow = NULL;
+        if (p_get_new_outflow == NULL) {
+            validateSignature("IntegerVector(*get_new_outflow)(IntegerVector,IntegerVector)");
+            p_get_new_outflow = (Ptr_get_new_outflow)R_GetCCallable("HydroGallery", "_HydroGallery_get_new_outflow");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_new_outflow(Shield<SEXP>(Rcpp::wrap(int_Outflow_Ori)), Shield<SEXP>(Rcpp::wrap(int_CellNew)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<IntegerVector >(rcpp_result_gen);
+    }
+
+    inline List get_cali_step(List lst_Inflow_Cell, IntegerVector int_CaliCell) {
+        typedef SEXP(*Ptr_get_cali_step)(SEXP,SEXP);
+        static Ptr_get_cali_step p_get_cali_step = NULL;
+        if (p_get_cali_step == NULL) {
+            validateSignature("List(*get_cali_step)(List,IntegerVector)");
+            p_get_cali_step = (Ptr_get_cali_step)R_GetCCallable("HydroGallery", "_HydroGallery_get_cali_step");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_cali_step(Shield<SEXP>(Rcpp::wrap(lst_Inflow_Cell)), Shield<SEXP>(Rcpp::wrap(int_CaliCell)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
+    inline List get_upstream_cali_cell(List lst_Inflow_Cell, IntegerVector int_CaliCell) {
+        typedef SEXP(*Ptr_get_upstream_cali_cell)(SEXP,SEXP);
+        static Ptr_get_upstream_cali_cell p_get_upstream_cali_cell = NULL;
+        if (p_get_upstream_cali_cell == NULL) {
+            validateSignature("List(*get_upstream_cali_cell)(List,IntegerVector)");
+            p_get_upstream_cali_cell = (Ptr_get_upstream_cali_cell)R_GetCCallable("HydroGallery", "_HydroGallery_get_upstream_cali_cell");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_upstream_cali_cell(Shield<SEXP>(Rcpp::wrap(lst_Inflow_Cell)), Shield<SEXP>(Rcpp::wrap(int_CaliCell)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
     inline NumericVector snowMelt_Kustas(NumericVector snow_ice_mm, NumericVector atmos_temperature_Cel, NumericVector atmos_netRadiat_MJ, NumericVector param_snow_kus_fE, NumericVector param_snow_kus_fT) {
         typedef SEXP(*Ptr_snowMelt_Kustas)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_snowMelt_Kustas p_snowMelt_Kustas = NULL;

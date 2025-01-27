@@ -1482,6 +1482,81 @@ riverlak_LinearResorvoir <- function(Riverlak_water_m3, Riverlak_inflow_m3, Rive
     .Call(`_HydroGallery_riverlak_LinearResorvoir`, Riverlak_water_m3, Riverlak_inflow_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
 }
 
+#' @rdname routingtopology
+#' @name get_inflow_cells
+#' @title Get Inflow Cells
+#' @description This function calculates inflow cells based on the outflow vector.
+#' @param int_Outflow (vector of int) The cell number of the next cell. The cell number must range from 1 to the length of the cells.
+#' If the cell has no outflow, the number should be set to itself.
+#' @return A list where each element is an IntegerVector containing the inflow cells for each cell.
+#' @export
+get_inflow_cells <- function(int_Outflow) {
+    .Call(`_HydroGallery_get_inflow_cells`, int_Outflow)
+}
+
+#' @rdname routingtopology
+#' @name get_inflow_lastcell
+#' @title Get Inflow Last Cell Matrix
+#' @description This function creates a matrix of inflow cells for each cell based on the outflow vector.
+#' @return A NumericMatrix where each row corresponds to a cell, and each column represents an inflow cell.
+#' @export
+get_inflow_lastcell <- function(int_Outflow) {
+    .Call(`_HydroGallery_get_inflow_lastcell`, int_Outflow)
+}
+
+#' @rdname routingtopology
+#' @title Get Step Parameters
+#' @description This function returns a list of step cells and the corresponding last cell matrices.
+#' @return A list containing the step cells and last cell matrices.
+#' @export
+get_routing_info <- function(int_Outflow) {
+    .Call(`_HydroGallery_get_routing_info`, int_Outflow)
+}
+
+#' @rdname routingtopology
+#' @param lst_Inflow_Cell A list of integer vectors, where each vector contains the cells that flow into the respective cell.
+#' @param int_OutLet An integer representing the outlet cell (1-based index).
+#' @param int_TestCell An integer vector, cells to test.
+#' @return An integer vector of cells in the intersection of the station cells and the basin.
+#' @export
+get_cell_in_basin <- function(lst_Inflow_Cell, int_OutLet, int_TestCell) {
+    .Call(`_HydroGallery_get_cell_in_basin`, lst_Inflow_Cell, int_OutLet, int_TestCell)
+}
+
+#' @rdname routingtopology
+#' @param int_UpstreamCell An integer vector containing the upstream cells to find the upstream basin.
+#' @return An integer vector representing the new upstream basin, which includes the upstream cells and the set difference of the basin cells.
+#' This function identifies the upstream basin of a given outlet cell by first finding the intersection of the upstream cells
+#' with the cells that flow into the outlet. It then computes the set difference between the upstream basin and the outlet basin.
+#' @export
+get_inter_basin <- function(lst_Inflow_Cell, int_OutLet, int_UpstreamCell) {
+    .Call(`_HydroGallery_get_inter_basin`, lst_Inflow_Cell, int_OutLet, int_UpstreamCell)
+}
+
+#' @rdname routingtopology
+#' @param int_Outflow_Ori An integer vector representing the original outflow indices (1-based).
+#' @param int_CellNew An integer vector representing the cells within the new basin.
+#' @return An integer vector of the new outflow indices adjusted for the sub-basin.
+#' @export
+get_new_outflow <- function(int_Outflow_Ori, int_CellNew) {
+    .Call(`_HydroGallery_get_new_outflow`, int_Outflow_Ori, int_CellNew)
+}
+
+#' @rdname routingtopology
+#' @param int_CaliCell An integer vector of calibration cells.
+#' @return A list of integer vectors (`lst_Step_Cali`), where each element represents calibration cells at a specific step.
+#' @export
+get_cali_step <- function(lst_Inflow_Cell, int_CaliCell) {
+    .Call(`_HydroGallery_get_cali_step`, lst_Inflow_Cell, int_CaliCell)
+}
+
+#' @rdname routingtopology
+#' @return A list of integer vectors (`lst_Step_Cali`), where each element represents calibration cells at a specific step.
+#' @export
+get_upstream_cali_cell <- function(lst_Inflow_Cell, int_CaliCell) {
+    .Call(`_HydroGallery_get_upstream_cali_cell`, lst_Inflow_Cell, int_CaliCell)
+}
+
 #' **snow**
 #' @name snowMelt
 #' @inheritParams all_vari
