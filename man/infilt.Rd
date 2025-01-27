@@ -13,77 +13,85 @@
 \alias{infilt_VIC}
 \title{**infiltration**}
 \usage{
-infilt_GR4J(land_water_mm, soil_water_mm, soil_capacity_mm)
+infilt_GR4J(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm)
 
 infilt_UBC(
-  land_water_mm,
-  land_impermeableFrac_1,
-  soil_water_mm,
-  soil_capacity_mm,
-  param_infilt_ubc_P0AGEN
+  LAND_water_mm,
+  LAND_impermeableFrac_1,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INFILT_ubc_P0AGEN
 )
 
 infilt_SupplyRatio(
-  land_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  param_infilt_sur_k
+  LAND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INFILT_sur_k
 )
 
 infilt_AcceptRatio(
-  land_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  param_infilt_acr_k
+  LAND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INFILT_acr_k
 )
 
 infilt_SupplyPow(
-  land_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  param_infilt_sup_k,
-  param_infilt_sup_gamma
+  LAND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INFILT_sup_k,
+  param_INFILT_sup_gamma
 )
 
 infilt_AcceptPow(
-  land_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  param_infilt_acp_k,
-  param_infilt_acp_gamma
+  LAND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INFILT_acp_k,
+  param_INFILT_acp_gamma
 )
 
 infilt_HBV(
-  land_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  param_infilt_hbv_beta
+  LAND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INFILT_hbv_beta
 )
 
-infilt_XAJ(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_xaj_B)
+infilt_XAJ(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_xaj_B)
 
-infilt_VIC(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_vic_B)
+infilt_VIC(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_vic_B)
 }
 \arguments{
-\item{param_infilt_ubc_P0AGEN}{<0.1, 4> coefficient parameter for [infilt_UBC()]}
+\item{LAND_water_mm}{(mm/m2) **pounded water** volume in `landLy` and there is no limit, different than `LAND_interceptWater_mm`}
 
-\item{param_infilt_sur_k}{<0.01, 1> coefficient parameter for [infilt_SupplyRatio()]}
+\item{SOIL_water_mm}{(mm/m2) water volume in `soilLy`}
 
-\item{param_infilt_acr_k}{<0.01, 1> coefficient parameter for [infilt_AcceptRatio()]}
+\item{SOIL_capacity_mm}{(mm/m2) average soil Capacity (maximal storage capacity)}
 
-\item{param_infilt_sup_k}{<0.01, 1> coefficient parameter for [infilt_SupplyPow()]}
+\item{LAND_impermeableFrac_1}{<0, 1> the maximum impermeable fraction when th soil is fully saturated}
 
-\item{param_infilt_sup_gamma}{<0, 1> parameters for [infilt_SupplyPow()]}
+\item{param_INFILT_ubc_P0AGEN}{<0.1, 4> coefficient parameter for [infilt_UBC()]}
 
-\item{param_infilt_acp_k}{<0.01, 1> coefficient parameter for [infilt_AcceptPow()]}
+\item{param_INFILT_sur_k}{<0.01, 1> coefficient parameter for [infilt_SupplyRatio()]}
 
-\item{param_infilt_acp_gamma}{<0.001, 5> parameters for [infilt_AcceptPow()]}
+\item{param_INFILT_acr_k}{<0.01, 1> coefficient parameter for [infilt_AcceptRatio()]}
 
-\item{param_infilt_hbv_beta}{<0.001, 5> parameters for [infilt_HBV()]}
+\item{param_INFILT_sup_k}{<0.01, 1> coefficient parameter for [infilt_SupplyPow()]}
 
-\item{param_infilt_xaj_B}{<0.01, 3> parameters for [infilt_XAJ()]}
+\item{param_INFILT_sup_gamma}{<0, 1> parameters for [infilt_SupplyPow()]}
 
-\item{param_infilt_vic_B}{<0.01, 3> parameters for [infilt_VIC()]}
+\item{param_INFILT_acp_k}{<0.01, 1> coefficient parameter for [infilt_AcceptPow()]}
+
+\item{param_INFILT_acp_gamma}{<0.001, 5> parameters for [infilt_AcceptPow()]}
+
+\item{param_INFILT_hbv_beta}{<0.001, 5> parameters for [infilt_HBV()]}
+
+\item{param_INFILT_xaj_B}{<0.01, 3> parameters for [infilt_XAJ()]}
+
+\item{param_INFILT_vic_B}{<0.01, 3> parameters for [infilt_VIC()]}
 }
 \value{
 flux of infiltration from land surface to soil layer
@@ -114,9 +122,9 @@ some methods will tread the infiltartion as the part of th pounded water so ther
 
 where
 - \mjseqn{F_{iflt}} is `infilt_mm`
-- \mjseqn{W_{land}} is `land_water_mm`
-- \mjseqn{W_{soil}} is `soil_water_mm`
-- \mjseqn{C_{soil}} is `soil_capacity_mm`
+- \mjseqn{W_{land}} is `LAND_water_mm`
+- \mjseqn{W_{soil}} is `SOIL_water_mm`
+- \mjseqn{C_{soil}} is `SOIL_capacity_mm`
 - \mjseqn{k^*} is estimated ratio.
 
 The output density distribution from 9 methods:
@@ -133,8 +141,8 @@ The output density distribution from 9 methods:
 estimate the ratio \mjseqn{k^*} as:
 \mjsdeqn{k^* = p_{imper} 10^{\frac{W_{soil}-C_{soil}}{p_{AGEN}}}}
 where
-  - \mjseqn{p_{imper}} is `land_impermeableFrac_1`
-  - \mjseqn{p_{AGEN}} is `param_infilt_ubc_P0AGEN`
+  - \mjseqn{p_{imper}} is `LAND_impermeableFrac_1`
+  - \mjseqn{p_{AGEN}} is `param_INFILT_ubc_P0AGEN`
 
 # **_SupplyRatio**: 
 
@@ -142,14 +150,14 @@ where
 is a very simple method, which estimate only the pounded water:
 \mjsdeqn{k^* = k}
 where
-  - \mjseqn{k} is `param_infilt_sur_k`
+  - \mjseqn{k} is `param_INFILT_sur_k`
 
 # **_AcceptRatio**: 
 
 
 \mjsdeqn{F_{iflt} = k (C_{soil} - W_{soil})}
 where
-  - \mjseqn{k} is `param_infilt_acr_k`
+  - \mjseqn{k} is `param_INFILT_acr_k`
 
 # **_SupplyPow**: 
 
@@ -157,16 +165,16 @@ where
 is a very simple method, which estimate only the pounded water:
 \mjsdeqn{F_{iflt} = kW_{land}^{\gamma}}
 where
-  - \mjseqn{k} is `param_infilt_sup_k`
-  - \mjseqn{\gamma} is `param_infilt_sup_gamma`
+  - \mjseqn{k} is `param_INFILT_sup_k`
+  - \mjseqn{\gamma} is `param_INFILT_sup_gamma`
 
 # **_AcceptPow**: 
 
 
 \mjsdeqn{F_{iflt} = k \left(\frac{C_{soil} - W_{soil}}{C_{soil}} \right)^{\gamma}}
 where
-  - \mjseqn{k} is `param_infilt_acp_k`
-  - \mjseqn{\gamma} is `param_infilt_acp_gamma`
+  - \mjseqn{k} is `param_INFILT_acp_k`
+  - \mjseqn{\gamma} is `param_INFILT_acp_gamma`
 
 # **_HBV** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
 
@@ -174,7 +182,7 @@ where
 estimate the ratio \mjseqn{k^*} as:
 \mjsdeqn{k^* = 1-\left(\frac{W_{soil}}{C_{soil}}\right)^{\beta}}
 where
-  - \mjseqn{\beta} is `param_infilt_hbv_beta`
+  - \mjseqn{\beta} is `param_INFILT_hbv_beta`
 
 # **_XAJ** \insertCite{XAJ_Zhao_1992}{HydroGallery}:
 
@@ -183,7 +191,7 @@ where
 \mjsdeqn{AU = MM - \left( \frac{(1 - W_{soil})(B+1)}{MM} \right)^{1 / B - 1}  }
 \mjsdeqn{MM = C_{soil}(B+1)  }
 where
-  - \mjseqn{B} is `param_infilt_xaj_B`
+  - \mjseqn{B} is `param_INFILT_xaj_B`
 
 ![](xaj_infilt.png)
 
@@ -193,7 +201,7 @@ where
 \mjsdeqn{F_{infilt} = \int_{i_{0}}^{i_{0}+P} A(i) {\rm d} i}
 \mjsdeqn{i = C_{soil}(B+1) \left[ 1 - (1-A)^{1/B} \right]}
 where
-  - \mjseqn{B} is `param_infilt_vic_B`
+  - \mjseqn{B} is `param_INFILT_vic_B`
 }
 \references{
 \insertAllCited{}

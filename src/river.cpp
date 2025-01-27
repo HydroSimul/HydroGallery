@@ -10,7 +10,7 @@
 //' @return outflow (m3)
 //' @export
 // [[Rcpp::export]]
-NumericVector river_LinearResorvoir(
+NumericVector riverout_LinearResorvoir(
    NumericVector RIVER_water_m3,
    NumericVector RIVER_inflow_m3,
    NumericVector RIVER_velocity_km,
@@ -28,7 +28,7 @@ NumericVector river_LinearResorvoir(
 //' @param param_Riverlak_lin_storeFactor <uknow> parameter for [riverlak_LinearResorvoir()],
 //' @export
 // [[Rcpp::export]]
-NumericVector riverlak_LinearResorvoir(
+NumericVector riverlakout_LinearResorvoir(
    NumericVector Riverlak_water_m3,
    NumericVector Riverlak_inflow_m3,
    NumericVector Riverlak_capacity_m3,

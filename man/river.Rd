@@ -2,18 +2,18 @@
 % Please edit documentation in R/RcppExports.R
 \name{river}
 \alias{river}
-\alias{river_LinearResorvoir}
-\alias{riverlak_LinearResorvoir}
+\alias{riverout_LinearResorvoir}
+\alias{riverlakout_LinearResorvoir}
 \title{**river outflow**}
 \usage{
-river_LinearResorvoir(
+riverout_LinearResorvoir(
   RIVER_water_m3,
   RIVER_inflow_m3,
   RIVER_velocity_km,
   RIVER_length_km
 )
 
-riverlak_LinearResorvoir(
+riverlakout_LinearResorvoir(
   Riverlak_water_m3,
   Riverlak_inflow_m3,
   Riverlak_capacity_m3,

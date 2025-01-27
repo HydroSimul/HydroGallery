@@ -9,46 +9,56 @@
 \title{**capilarise**}
 \usage{
 capirise_HBV(
-  ground_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_potentialCapirise_mm
+  GROUND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_potentialCapirise_mm
 )
 
 capirise_HBVfix(
-  ground_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_fieldCapacityPerc_1,
-  soil_potentialCapirise_mm
+  GROUND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_fieldCapacityPerc_1,
+  SOIL_potentialCapirise_mm
 )
 
 capirise_AcceptRatio(
-  ground_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_fieldCapacityPerc_1,
-  param_capirise_acr_k
+  GROUND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_fieldCapacityPerc_1,
+  param_CAPIRISE_acr_k
 )
 
 capirise_AcceptPow(
-  ground_water_mm,
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_fieldCapacityPerc_1,
-  param_capirise_acp_k,
-  param_capirise_acp_gamma
+  GROUND_water_mm,
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_fieldCapacityPerc_1,
+  param_CAPIRISE_acp_k,
+  param_CAPIRISE_acp_gamma
 )
 }
 \arguments{
-\item{param_capirise_acr_k}{<0.01, 1> coefficient parameter [capirise_AcceptRatio()]}
+\item{GROUND_water_mm}{(mm/m2/TS) water volume in `groundLy`}
 
-\item{param_capirise_acp_k}{<0.01, 1> coefficient parameter for [capirise_AcceptPow()]}
+\item{SOIL_water_mm}{(mm/m2) water volume in `soilLy`}
 
-\item{param_capirise_acp_gamma}{<0.01, 1> exponential parameter for [capirise_AcceptPow()]}
+\item{SOIL_capacity_mm}{(mm/m2) average soil Capacity (maximal storage capacity)}
+
+\item{SOIL_potentialCapirise_mm}{<0.01, 7> (mm/m2/TS) **potential** capillary rise}
+
+\item{SOIL_fieldCapacityPerc_1}{<0, 1> the relative ratio that the water content can drainage by gravity}
+
+\item{param_CAPIRISE_acr_k}{<0.01, 1> coefficient parameter [capirise_AcceptRatio()]}
+
+\item{param_CAPIRISE_acp_k}{<0.01, 1> coefficient parameter for [capirise_AcceptPow()]}
+
+\item{param_CAPIRISE_acp_gamma}{<0.01, 1> exponential parameter for [capirise_AcceptPow()]}
 }
 \value{
-ground_capirise_mm (mm/m2/TS) capillary rise
+GROUND_capirise_mm (mm/m2/TS) capillary rise
 }
 \description{
 \loadmathjax
@@ -74,10 +84,10 @@ to:
 
 
 where
-- \mjseqn{F_{capi}} is `ground_capirise_mm`
-- \mjseqn{W_{grnd}} is `ground_water_mm`
-- \mjseqn{W_{soil}} is `water_soil_mm`
-- \mjseqn{C_{soil}} is `capacity_soil_mm`
+- \mjseqn{F_{capi}} is `GROUND_capirise_mm`
+- \mjseqn{W_{grnd}} is `GROUND_water_mm`
+- \mjseqn{W_{soil}} is `water_SOIL_mm`
+- \mjseqn{C_{soil}} is `capacity_SOIL_mm`
 
 The output density distribution from 4 methods:
 }
@@ -87,30 +97,30 @@ The output density distribution from 4 methods:
 
 \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{C_{soil}} \right)}
 where
-  - \mjseqn{M_{capi}} is `soil_potentialCapirise_mm`
+  - \mjseqn{M_{capi}} is `SOIL_potentialCapirise_mm`
 
 # **_HBVfix** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
 
 
 \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{k_{fc}C_{soil}} \right), \quad W_{soil} < k_{fc}C_{soil}}
 where
-  - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
+  - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
 
 # **_AcceptRatio**: 
 
 
 \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right), \quad W_{soil} < k_{fc}C_{soil}}
 where
-  - \mjseqn{k} is `param_capirise_acr_k`
-  - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
+  - \mjseqn{k} is `param_CAPIRISE_acr_k`
+  - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
 
 # **_AcceptRatio**: 
 
 
 \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right)^\gamma, \quad W_{soil} < k_{fc}C_{soil}}
 where
-  - \mjseqn{k} is `param_capirise_acp_k`
-  - \mjseqn{\gamma} is `param_capirise_acp_gamma`
+  - \mjseqn{k} is `param_CAPIRISE_acp_k`
+  - \mjseqn{\gamma} is `param_CAPIRISE_acp_gamma`
 }
 \references{
 \insertAllCited{}

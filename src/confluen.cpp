@@ -31,36 +31,36 @@
 //' 
 //' where
 //' - \mjseqn{Q} is stream flow, but still in mm/TS not m3/TS or m3/S
-//' - \mjseqn{F} is flux that will into river conflen, e.g.`land_runoff_mm`, `soil_interflow_mm` or `ground_baseflow_mm`
+//' - \mjseqn{F} is flux that will into river conflen, e.g.`LAND_runoff_mm`, `SOIL_interflow_mm` or `GROUND_baseflow_mm`
 //' - \mjseqn{u} is Instant Unit Hydrograph series
 //' 
 //' @references
 //' \insertAllCited{}
-//' @inheritParams all_vari
 //' @name confluen
+//' @inheritParams all_vari
 //' @return confluenced water (mm/m2)
 //' @export
 // [[Rcpp::export]]
 NumericVector confluen_IUH(
-    NumericVector confluen_inputWater_mm, 
-    NumericVector confluen_iuh_1
+    NumericVector CONFLUEN_inputWater_mm, 
+    NumericVector CONFLUEN_iuh_1
 )
 {
   
-  int n_iuh = confluen_iuh_1.size(), n_time = confluen_inputWater_mm.size();
-  NumericVector confluen_outputWater_mm (n_time);
+  int n_iuh = CONFLUEN_iuh_1.size(), n_time = CONFLUEN_inputWater_mm.size();
+  NumericVector CONFLUEN_outputWater_mm (n_time);
   for (int i = 0; i < n_iuh; i++) {
     for (int j = 0; j <= i; j++) {
-      confluen_outputWater_mm[i] += confluen_inputWater_mm[i-j] * confluen_iuh_1[j];
+      CONFLUEN_outputWater_mm[i] += CONFLUEN_inputWater_mm[i-j] * CONFLUEN_iuh_1[j];
     }
   }
   for (int i = n_iuh; i < n_time; i++) {
     for (int j = 0; j < n_iuh; j++) {
-      confluen_outputWater_mm[i] += confluen_inputWater_mm[i-j] * confluen_iuh_1[j];
+      CONFLUEN_outputWater_mm[i] += CONFLUEN_inputWater_mm[i-j] * CONFLUEN_iuh_1[j];
     }
   }
   
-  return confluen_outputWater_mm;
+  return CONFLUEN_outputWater_mm;
   
 }
 
@@ -68,24 +68,24 @@ NumericVector confluen_IUH(
 //' @export
 // [[Rcpp::export]]
 NumericVector confluen_IUH2S(
-    NumericVector land_runoff_mm,
-    NumericVector ground_baseflow_mm, 
-    NumericVector confluen_iuhLand_1,
-    NumericVector confluen_iuhGround_1
+    NumericVector LAND_runoff_mm,
+    NumericVector GROUND_baseflow_mm, 
+    NumericVector CONFLUEN_iuhLand_1,
+    NumericVector CONFLUEN_iuhGround_1
 )
 {
-  NumericVector confluen_runoff_mm (land_runoff_mm.size()), confluen_baseflow_mm (ground_baseflow_mm.size());
-  confluen_runoff_mm = confluen_IUH(
-    land_runoff_mm, 
-    confluen_iuhLand_1
+  NumericVector CONFLUEN_runoff_mm (LAND_runoff_mm.size()), CONFLUEN_baseflow_mm (GROUND_baseflow_mm.size());
+  CONFLUEN_runoff_mm = confluen_IUH(
+    LAND_runoff_mm, 
+    CONFLUEN_iuhLand_1
   );
-  confluen_baseflow_mm = confluen_IUH(
-    ground_baseflow_mm, 
-    confluen_iuhGround_1
+  CONFLUEN_baseflow_mm = confluen_IUH(
+    GROUND_baseflow_mm, 
+    CONFLUEN_iuhGround_1
   );
   
 
-  return confluen_runoff_mm + confluen_baseflow_mm;
+  return CONFLUEN_runoff_mm + CONFLUEN_baseflow_mm;
   
 }
 
@@ -93,30 +93,30 @@ NumericVector confluen_IUH2S(
 //' @export
 // [[Rcpp::export]]
 NumericVector confluen_IUH3S(
-    NumericVector land_runoff_mm,
-    NumericVector soil_interflow_mm, 
-    NumericVector ground_baseflow_mm, 
-    NumericVector confluen_iuhLand_1,
-    NumericVector confluen_iuhSoil_1,
-    NumericVector confluen_iuhGround_1
+    NumericVector LAND_runoff_mm,
+    NumericVector SOIL_interflow_mm, 
+    NumericVector GROUND_baseflow_mm, 
+    NumericVector CONFLUEN_iuhLand_1,
+    NumericVector CONFLUEN_iuhSoil_1,
+    NumericVector CONFLUEN_iuhGround_1
 )
 {
-  NumericVector confluen_runoff_mm (land_runoff_mm.size()), confluen_interflow_mm (soil_interflow_mm.size()), confluen_baseflow_mm (ground_baseflow_mm.size());
-  confluen_runoff_mm = confluen_IUH(
-    land_runoff_mm, 
-    confluen_iuhLand_1
+  NumericVector CONFLUEN_runoff_mm (LAND_runoff_mm.size()), CONFLUEN_interflow_mm (SOIL_interflow_mm.size()), CONFLUEN_baseflow_mm (GROUND_baseflow_mm.size());
+  CONFLUEN_runoff_mm = confluen_IUH(
+    LAND_runoff_mm, 
+    CONFLUEN_iuhLand_1
   );
-  confluen_interflow_mm = confluen_IUH(
-    soil_interflow_mm, 
-    confluen_iuhSoil_1
+  CONFLUEN_interflow_mm = confluen_IUH(
+    SOIL_interflow_mm, 
+    CONFLUEN_iuhSoil_1
   );
-  confluen_baseflow_mm = confluen_IUH(
-    ground_baseflow_mm, 
-    confluen_iuhGround_1
+  CONFLUEN_baseflow_mm = confluen_IUH(
+    GROUND_baseflow_mm, 
+    CONFLUEN_iuhGround_1
   );
   
   
-  return confluen_runoff_mm + confluen_interflow_mm + confluen_baseflow_mm;
+  return CONFLUEN_runoff_mm + CONFLUEN_interflow_mm + CONFLUEN_baseflow_mm;
   
 }
 
@@ -139,7 +139,7 @@ NumericVector confluen_IUH3S(
 //' 
 //' where
 //' - \mjseqn{u} is series of portions
-//' - \mjseqn{t_r} is  `confluen_responseTime_TS`
+//' - \mjseqn{t_r} is  `CONFLUEN_responseTime_TS`
 //' 
 //' @references
 //' \insertAllCited{}
@@ -156,13 +156,13 @@ NumericVector confluen_IUH3S(
 //' @export
 // [[Rcpp::export]]
 NumericVector confluenIUH_GR4J1(
-    double confluen_responseTime_TS
+    double CONFLUEN_responseTime_TS
 )
 {
-  double t_max = ceil(confluen_responseTime_TS);
+  double t_max = ceil(CONFLUEN_responseTime_TS);
   IntegerVector seq_t = seq(1, t_max);
   NumericVector seq_t2 = as<NumericVector>(seq_t);
-  NumericVector SH_1 = pow(( seq_t2/ confluen_responseTime_TS), 2.5);
+  NumericVector SH_1 = pow(( seq_t2/ CONFLUEN_responseTime_TS), 2.5);
   SH_1(t_max - 1) = 1;
   SH_1[Range(1, t_max - 1)] = diff(SH_1);
   return SH_1;
@@ -185,18 +185,18 @@ NumericVector confluenIUH_GR4J1(
 //' @export
 // [[Rcpp::export]]
 NumericVector confluenIUH_GR4J2(
-    double confluen_responseTime_TS
+    double CONFLUEN_responseTime_TS
 )
 {
-  double t_max_1 = ceil(confluen_responseTime_TS);
-  double t_max_2 = ceil(2 * confluen_responseTime_TS);
+  double t_max_1 = ceil(CONFLUEN_responseTime_TS);
+  double t_max_2 = ceil(2 * CONFLUEN_responseTime_TS);
   IntegerVector seq_t1 = seq(1, t_max_1 - 1);
   NumericVector seq_t12 = as<NumericVector>(seq_t1);
   IntegerVector seq_t2 = seq(t_max_1, (t_max_2 - 1));
   NumericVector seq_t22 = as<NumericVector>(seq_t2);
   
-  NumericVector SH_2_1 = .5 * pow((seq_t12 / confluen_responseTime_TS),2.5);
-  NumericVector SH_2_2 = 1 - .5 * pow((2 - seq_t22 / confluen_responseTime_TS),2.5);
+  NumericVector SH_2_1 = .5 * pow((seq_t12 / CONFLUEN_responseTime_TS),2.5);
+  NumericVector SH_2_2 = 1 - .5 * pow((2 - seq_t22 / CONFLUEN_responseTime_TS),2.5);
   NumericVector SH_2(t_max_2, 1);
   SH_2[Range(0, t_max_1 - 2)] = SH_2_1;
   SH_2[Range(t_max_1 - 1, t_max_2 - 2)] = SH_2_2;
@@ -215,31 +215,31 @@ NumericVector confluenIUH_GR4J2(
 //' \mjsdeqn{u(i) = - \frac{4}{t_r^2}(i - k - t_r) + \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)}), \quad t_r / 2 < i \leq t_r }
 //' \mjsdeqn{u(i) =  \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)} +  e^{t_r/k}), \quad i > t_r }
 //' where
-//'   - \mjseqn{k} is `param_confluen_kel_k`
-//' @param param_confluen_kel_k <1, 4> parameter for[confluenIUH_Kelly()]
+//'   - \mjseqn{k} is `param_CONFLUEN_kel_k`
+//' @param param_CONFLUEN_kel_k <1, 4> parameter for[confluenIUH_Kelly()]
 //' @export
 // [[Rcpp::export]]
 NumericVector confluenIUH_Kelly(
-    double confluen_responseTime_TS,
-    double param_confluen_kel_k
+    double CONFLUEN_responseTime_TS,
+    double param_CONFLUEN_kel_k
 )
 {
-  double confluen_concentratTime_TS = confluen_responseTime_TS * param_confluen_kel_k;
-  double num_temp_tc2 = (confluen_concentratTime_TS * confluen_concentratTime_TS);
-  double num_temp_12_34 = 4 * confluen_responseTime_TS  / num_temp_tc2 * 
-    (1 - 2 * exp(confluen_concentratTime_TS / confluen_responseTime_TS * 0.5));
-  double num_temp_12_35 = 4 * confluen_responseTime_TS  / num_temp_tc2 * 
-    (1 - 2 * exp(confluen_concentratTime_TS / confluen_responseTime_TS * 0.5) + exp(confluen_concentratTime_TS / confluen_responseTime_TS));
-  double t_max = ceil(std::max(confluen_concentratTime_TS, - confluen_responseTime_TS * log(0.002 / num_temp_12_35)));
+  double CONFLUEN_concentratTime_TS = CONFLUEN_responseTime_TS * param_CONFLUEN_kel_k;
+  double num_temp_tc2 = (CONFLUEN_concentratTime_TS * CONFLUEN_concentratTime_TS);
+  double num_temp_12_34 = 4 * CONFLUEN_responseTime_TS  / num_temp_tc2 * 
+    (1 - 2 * exp(CONFLUEN_concentratTime_TS / CONFLUEN_responseTime_TS * 0.5));
+  double num_temp_12_35 = 4 * CONFLUEN_responseTime_TS  / num_temp_tc2 * 
+    (1 - 2 * exp(CONFLUEN_concentratTime_TS / CONFLUEN_responseTime_TS * 0.5) + exp(CONFLUEN_concentratTime_TS / CONFLUEN_responseTime_TS));
+  double t_max = ceil(std::max(CONFLUEN_concentratTime_TS, - CONFLUEN_responseTime_TS * log(0.002 / num_temp_12_35)));
   NumericVector iuh_1, iuh_2, iuh_3, iuh_, vct_iuh, temp_etK;
   IntegerVector seq_t = seq(1, 20 * t_max);
   NumericVector seq_t2 = as<NumericVector>(seq_t) / 20.0;
-  temp_etK = exp(- seq_t2 / confluen_responseTime_TS);
-  iuh_1 = 4 / num_temp_tc2 * (seq_t2 + confluen_responseTime_TS * (temp_etK - 1));
-  iuh_2 = num_temp_12_34 * temp_etK - 4 / num_temp_tc2 * (seq_t2 - confluen_responseTime_TS - confluen_concentratTime_TS);
+  temp_etK = exp(- seq_t2 / CONFLUEN_responseTime_TS);
+  iuh_1 = 4 / num_temp_tc2 * (seq_t2 + CONFLUEN_responseTime_TS * (temp_etK - 1));
+  iuh_2 = num_temp_12_34 * temp_etK - 4 / num_temp_tc2 * (seq_t2 - CONFLUEN_responseTime_TS - CONFLUEN_concentratTime_TS);
   iuh_3 = num_temp_12_35 * temp_etK;
-  iuh_ = ifelse(seq_t2 > confluen_concentratTime_TS * 0.5, iuh_2, iuh_1);
-  iuh_ = ifelse(seq_t2 > confluen_concentratTime_TS, iuh_3, iuh_);
+  iuh_ = ifelse(seq_t2 > CONFLUEN_concentratTime_TS * 0.5, iuh_2, iuh_1);
+  iuh_ = ifelse(seq_t2 > CONFLUEN_concentratTime_TS, iuh_3, iuh_);
   NumericMatrix mat_iuh = NumericMatrix(20, t_max, iuh_.begin());
   vct_iuh = colMeans(mat_iuh);
   return vct_iuh / sum(vct_iuh);
@@ -253,21 +253,21 @@ NumericVector confluenIUH_Kelly(
 //' 
 //' \mjsdeqn{u(i) = \frac{1}{t_r\Gamma(n)} \left(\frac{4}{t_r^2}\right)^{n -1}e^{-i/t_r}}
 //' where
-//'   - \mjseqn{n} is `param_confluen_nas_n`
-//' @param param_confluen_nas_n <1, 8> parameter for[confluenIUH_Nash()]
+//'   - \mjseqn{n} is `param_CONFLUEN_nas_n`
+//' @param param_CONFLUEN_nas_n <1, 8> parameter for[confluenIUH_Nash()]
 //' @export
 // [[Rcpp::export]]
 NumericVector confluenIUH_Nash(
-    double confluen_responseTime_TS,
-    double param_confluen_nas_n
+    double CONFLUEN_responseTime_TS,
+    double param_CONFLUEN_nas_n
 )
 {
-  double t_max = ceil(std::max(4.0, param_confluen_nas_n) * 3 * confluen_responseTime_TS);
+  double t_max = ceil(std::max(4.0, param_CONFLUEN_nas_n) * 3 * CONFLUEN_responseTime_TS);
   NumericVector iuh_, vct_iuh;
   IntegerVector seq_t = seq(1, 20 * t_max);
   NumericVector seq_t2 = as<NumericVector>(seq_t) / 20.0;
-  iuh_ = pow(seq_t2 / confluen_responseTime_TS, param_confluen_nas_n - 1) * exp(- seq_t2 / confluen_responseTime_TS) / 
-    confluen_responseTime_TS / tgamma(param_confluen_nas_n);
+  iuh_ = pow(seq_t2 / CONFLUEN_responseTime_TS, param_CONFLUEN_nas_n - 1) * exp(- seq_t2 / CONFLUEN_responseTime_TS) / 
+    CONFLUEN_responseTime_TS / tgamma(param_CONFLUEN_nas_n);
   NumericMatrix mat_iuh = NumericMatrix(20, t_max, iuh_.begin());
   vct_iuh = colMeans(mat_iuh);
   return vct_iuh / sum(vct_iuh);
@@ -280,17 +280,17 @@ NumericVector confluenIUH_Nash(
 //' 
 //' \mjsdeqn{u(i) = \frac{1}{t_r} e^{-i/t_r} }
 //' where
-//'   - \mjseqn{t_r} is `confluen_responseTime_TS`
+//'   - \mjseqn{t_r} is `CONFLUEN_responseTime_TS`
 //' @export
 // [[Rcpp::export]]
 NumericVector confluenIUH_Clark(
-    double confluen_responseTime_TS
+    double CONFLUEN_responseTime_TS
 )
 {
-  double t_max = ceil(- confluen_responseTime_TS * log(confluen_responseTime_TS * 0.005));
+  double t_max = ceil(- CONFLUEN_responseTime_TS * log(CONFLUEN_responseTime_TS * 0.005));
   IntegerVector seq_t = seq(1, 20 * t_max);
   NumericVector seq_t2 = as<NumericVector>(seq_t) / 20.0;
-  NumericVector iuh_ = 1 / confluen_responseTime_TS * exp(- seq_t2 / confluen_responseTime_TS);
+  NumericVector iuh_ = 1 / CONFLUEN_responseTime_TS * exp(- seq_t2 / CONFLUEN_responseTime_TS);
   NumericMatrix mat_iuh = NumericMatrix(20, t_max, iuh_.begin());
   NumericVector vct_iuh = colMeans(mat_iuh);
   return vct_iuh / sum(vct_iuh);
@@ -376,7 +376,7 @@ NumericVector confluen_WaterGAP3(
      CELL_inflowCellNumberStep_int[i_Step]
    );
    
-   step_RiverOutflow_m3 = river_LinearResorvoir(
+   step_RiverOutflow_m3 = riverout_LinearResorvoir(
      step_RiverWater,
      step_UpstreamInflow_m3,
      subset_get(RIVER_velocity_km, idx_Cell_Step),
@@ -444,7 +444,7 @@ NumericVector confluen_WaterGAP3_L(
    // river segment
    NumericVector step_RiverWater = subset_get(RIVER_water_m3, idx_Cell_Step);
    
-   step_RiverOutflow_m3 = river_LinearResorvoir(
+   step_RiverOutflow_m3 = riverout_LinearResorvoir(
      step_RiverWater,
      step_UpstreamInflow_m3,
      subset_get(RIVER_velocity_km, idx_Cell_Step),
@@ -461,7 +461,7 @@ NumericVector confluen_WaterGAP3_L(
        step_RiverlakeInflow = subset_get(step_UpstreamInflow_m3, idx_Step_Riverlake);
      
      
-     step_RiverlakeOutflow_m3 = riverlak_LinearResorvoir(
+     step_RiverlakeOutflow_m3 = riverlakout_LinearResorvoir(
        step_RiverlakeWater,
        step_RiverlakeInflow,
        subset_get(Riverlak_capacity_m3, idx_Riverlake_Step),

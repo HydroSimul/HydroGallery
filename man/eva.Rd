@@ -2,13 +2,13 @@
 % Please edit documentation in R/RcppExports.R
 \name{eva}
 \alias{eva}
-\alias{eva_NSE}
-\alias{eva_KGE}
+\alias{evalute_NSE}
+\alias{evalute_KGE}
 \title{Evalute matrics}
 \usage{
-eva_NSE(num_Sim, num_Obs)
+evalute_NSE(num_Sim, num_Obs)
 
-eva_KGE(num_Sim, num_Obs, factor_r = 1, factor_alpha = 1, factor_beta = 1)
+evalute_KGE(num_Sim, num_Obs, factor_r = 1, factor_alpha = 1, factor_beta = 1)
 }
 \arguments{
 \item{num_Sim}{A numeric vector of simulated values.}

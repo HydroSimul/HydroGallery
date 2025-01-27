@@ -6,10 +6,17 @@
 \title{**interception** water from land go into the soil.}
 \usage{
 intercep_Full(
-  atmos_precipitation_mm,
-  land_interceptWater_mm,
-  land_interceptCapacity_mm
+  ATMOS_precipitation_mm,
+  LAND_interceptWater_mm,
+  LAND_interceptCapacity_mm
 )
+}
+\arguments{
+\item{ATMOS_precipitation_mm}{(mm/m2/TS) precipitaion volum}
+
+\item{LAND_interceptWater_mm}{(mm/m2) initial water volume that can be **intercepted**}
+
+\item{LAND_interceptCapacity_mm}{(mm/m2) average intercept Capacity (maximal storage capacity)}
 }
 \value{
 intercept_water_mm (mm/m2) intercepted water in this timestep
@@ -33,6 +40,6 @@ consider only the radiation and temperature as the main factors.
 \mjsdeqn{F_{itcp} = C_{icpt} - W_{icpt}}
 where
   - \mjseqn{F_{icp}} is `intercept_water_mm`
-  - \mjseqn{C_{icpt}} is `land_intercepCapaciy_mm`
-  - \mjseqn{W_{icpt}} is `land_intercepWater_mm`
+  - \mjseqn{C_{icpt}} is `LAND_intercepCapaciy_mm`
+  - \mjseqn{W_{icpt}} is `LAND_intercepWater_mm`
 }

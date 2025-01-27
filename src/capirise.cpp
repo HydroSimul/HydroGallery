@@ -31,16 +31,16 @@
 //' 
 //' 
 //' where
-//' - \mjseqn{F_{capi}} is `ground_capirise_mm`
-//' - \mjseqn{W_{grnd}} is `ground_water_mm`
-//' - \mjseqn{W_{soil}} is `water_soil_mm`
-//' - \mjseqn{C_{soil}} is `capacity_soil_mm`
+//' - \mjseqn{F_{capi}} is `GROUND_capirise_mm`
+//' - \mjseqn{W_{grnd}} is `GROUND_water_mm`
+//' - \mjseqn{W_{soil}} is `water_SOIL_mm`
+//' - \mjseqn{C_{soil}} is `capacity_SOIL_mm`
 //' 
 //' The output density distribution from 4 methods:
 //'
 //' @references
 //' \insertAllCited{}
-//' @return ground_capirise_mm (mm/m2/TS) capillary rise
+//' @return GROUND_capirise_mm (mm/m2/TS) capillary rise
 //' 
 //' @details
 //' # **_HBV** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
@@ -48,23 +48,23 @@
 //' 
 //' \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{C_{soil}} \right)}
 //' where
-//'   - \mjseqn{M_{capi}} is `soil_potentialCapirise_mm`
+//'   - \mjseqn{M_{capi}} is `SOIL_potentialCapirise_mm`
 //'   
 //' @export
 // [[Rcpp::export]]
 NumericVector capirise_HBV(
-    NumericVector ground_water_mm, 
-    NumericVector soil_water_mm ,
-    NumericVector soil_capacity_mm, 
-    NumericVector soil_potentialCapirise_mm
+    NumericVector GROUND_water_mm, 
+    NumericVector SOIL_water_mm ,
+    NumericVector SOIL_capacity_mm, 
+    NumericVector SOIL_potentialCapirise_mm
 )
 {
-  NumericVector soil_diff_mm, capirise_mm, limit_mm;
-  soil_diff_mm = soil_capacity_mm  - soil_water_mm;
-  soil_diff_mm = ifelse(soil_diff_mm < 0, 0, soil_diff_mm);
-  capirise_mm = soil_potentialCapirise_mm * (soil_diff_mm / soil_capacity_mm);
+  NumericVector SOIL_diff_mm, capirise_mm, limit_mm;
+  SOIL_diff_mm = SOIL_capacity_mm  - SOIL_water_mm;
+  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
+  capirise_mm = SOIL_potentialCapirise_mm * (SOIL_diff_mm / SOIL_capacity_mm);
   
-  limit_mm = ifelse(soil_diff_mm > ground_water_mm, ground_water_mm, soil_diff_mm) ;
+  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
   return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
 }
 
@@ -77,23 +77,23 @@ NumericVector capirise_HBV(
 //' 
 //' \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{k_{fc}C_{soil}} \right), \quad W_{soil} < k_{fc}C_{soil}}
 //' where
-//'   - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
+//'   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
 //' @export
 // [[Rcpp::export]]
 NumericVector capirise_HBVfix(
-    NumericVector ground_water_mm, 
-    NumericVector soil_water_mm ,
-    NumericVector soil_capacity_mm, 
-    NumericVector soil_fieldCapacityPerc_1,
-    NumericVector soil_potentialCapirise_mm
+    NumericVector GROUND_water_mm, 
+    NumericVector SOIL_water_mm ,
+    NumericVector SOIL_capacity_mm, 
+    NumericVector SOIL_fieldCapacityPerc_1,
+    NumericVector SOIL_potentialCapirise_mm
 )
 {
-  NumericVector soil_diff_mm, capirise_mm, limit_mm;
-  soil_diff_mm = soil_capacity_mm * (1 - soil_fieldCapacityPerc_1) - soil_water_mm;
-  soil_diff_mm = ifelse(soil_diff_mm < 0, 0, soil_diff_mm);
-  capirise_mm = soil_potentialCapirise_mm * (soil_diff_mm / soil_capacity_mm);
+  NumericVector SOIL_diff_mm, capirise_mm, limit_mm;
+  SOIL_diff_mm = SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
+  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
+  capirise_mm = SOIL_potentialCapirise_mm * (SOIL_diff_mm / SOIL_capacity_mm);
   
-  limit_mm = ifelse(soil_diff_mm > ground_water_mm, ground_water_mm, soil_diff_mm) ;
+  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
   return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
 }
 
@@ -104,25 +104,25 @@ NumericVector capirise_HBVfix(
 //' 
 //' \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right), \quad W_{soil} < k_{fc}C_{soil}}
 //' where
-//'   - \mjseqn{k} is `param_capirise_acr_k`
-//'   - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
-//' @param param_capirise_acr_k <0.01, 1> coefficient parameter [capirise_AcceptRatio()]
+//'   - \mjseqn{k} is `param_CAPIRISE_acr_k`
+//'   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
+//' @param param_CAPIRISE_acr_k <0.01, 1> coefficient parameter [capirise_AcceptRatio()]
 //' @export
 // [[Rcpp::export]]
 NumericVector capirise_AcceptRatio(
-    NumericVector ground_water_mm, 
-    NumericVector soil_water_mm ,
-    NumericVector soil_capacity_mm, 
-    NumericVector soil_fieldCapacityPerc_1,
-    NumericVector param_capirise_acr_k
+    NumericVector GROUND_water_mm, 
+    NumericVector SOIL_water_mm ,
+    NumericVector SOIL_capacity_mm, 
+    NumericVector SOIL_fieldCapacityPerc_1,
+    NumericVector param_CAPIRISE_acr_k
 )
 {
-  NumericVector soil_diff_mm, capirise_mm, limit_mm;
-  soil_diff_mm = soil_capacity_mm * (1 - soil_fieldCapacityPerc_1) - soil_water_mm;
-  soil_diff_mm = ifelse(soil_diff_mm < 0, 0, soil_diff_mm);
-  capirise_mm = soil_diff_mm * param_capirise_acr_k;
+  NumericVector SOIL_diff_mm, capirise_mm, limit_mm;
+  SOIL_diff_mm = SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
+  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
+  capirise_mm = SOIL_diff_mm * param_CAPIRISE_acr_k;
   
-  limit_mm = ifelse(soil_diff_mm > ground_water_mm, ground_water_mm, soil_diff_mm) ;
+  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
   return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
 }
 
@@ -135,31 +135,31 @@ NumericVector capirise_AcceptRatio(
 //' 
 //' \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right)^\gamma, \quad W_{soil} < k_{fc}C_{soil}}
 //' where
-//'   - \mjseqn{k} is `param_capirise_acp_k`
-//'   - \mjseqn{\gamma} is `param_capirise_acp_gamma`
+//'   - \mjseqn{k} is `param_CAPIRISE_acp_k`
+//'   - \mjseqn{\gamma} is `param_CAPIRISE_acp_gamma`
 //'   
-//' @param param_capirise_acp_k <0.01, 1> coefficient parameter for [capirise_AcceptPow()]
-//' @param param_capirise_acp_gamma <0.01, 1> exponential parameter for [capirise_AcceptPow()]
+//' @param param_CAPIRISE_acp_k <0.01, 1> coefficient parameter for [capirise_AcceptPow()]
+//' @param param_CAPIRISE_acp_gamma <0.01, 1> exponential parameter for [capirise_AcceptPow()]
 //' @export
 // [[Rcpp::export]]
 NumericVector capirise_AcceptPow(
-    NumericVector ground_water_mm, 
-    NumericVector soil_water_mm,
-    NumericVector soil_capacity_mm,
-    NumericVector soil_fieldCapacityPerc_1,
-    NumericVector param_capirise_acp_k,
-    NumericVector param_capirise_acp_gamma
+    NumericVector GROUND_water_mm, 
+    NumericVector SOIL_water_mm,
+    NumericVector SOIL_capacity_mm,
+    NumericVector SOIL_fieldCapacityPerc_1,
+    NumericVector param_CAPIRISE_acp_k,
+    NumericVector param_CAPIRISE_acp_gamma
 )
 {
-  NumericVector capirise_mm, k_, soil_diff_mm, limit_mm;
-  soil_diff_mm = soil_capacity_mm * (1 - soil_fieldCapacityPerc_1) - soil_water_mm;
-  soil_diff_mm = ifelse(soil_diff_mm < 0, 0, soil_diff_mm);
+  NumericVector capirise_mm, k_, SOIL_diff_mm, limit_mm;
+  SOIL_diff_mm = SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
+  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
   
-  k_ = param_capirise_acp_k * vecpow((soil_diff_mm / (soil_capacity_mm * (1 - soil_fieldCapacityPerc_1))), param_capirise_acp_gamma);
-  capirise_mm = k_ * soil_diff_mm;
+  k_ = param_CAPIRISE_acp_k * vecpow((SOIL_diff_mm / (SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1))), param_CAPIRISE_acp_gamma);
+  capirise_mm = k_ * SOIL_diff_mm;
   capirise_mm = ifelse(capirise_mm < 0, 0, capirise_mm);
   
-  limit_mm = ifelse(soil_diff_mm > ground_water_mm, ground_water_mm, soil_diff_mm) ;
+  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
   return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
 }
 

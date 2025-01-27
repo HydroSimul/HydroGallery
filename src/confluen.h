@@ -4,13 +4,13 @@
 
 #include "00utilis.h"
 
-NumericVector river_LinearResorvoir(
+NumericVector riverout_LinearResorvoir(
     NumericVector RIVER_water_m3,
     NumericVector RIVER_inflow_m3,
     NumericVector RIVER_velocity_km,
     NumericVector RIVER_length_km
 );
-NumericVector riverlak_LinearResorvoir(
+NumericVector riverlakout_LinearResorvoir(
     NumericVector Riverlak_water_m3,
     NumericVector Riverlak_inflow_m3,
     NumericVector Riverlak_capacity_m3,

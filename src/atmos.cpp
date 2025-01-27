@@ -22,8 +22,8 @@
 //' \mjsdeqn{P_s = f_{atmosSnow}(P, T) = k^*P}
 //' \mjsdeqn{0 \leq k^* \leq 1}
 //' where
-//'   - \mjseqn{P} is `atmos_precpitation_mm`
-//'   - \mjseqn{T} is `atmos_teperature_Cel`
+//'   - \mjseqn{P} is `ATMOS_precpitation_mm`
+//'   - \mjseqn{T} is `ATMOS_teperature_Cel`
 //' - \mjseqn{k^*} is estimated portion
 //' 
 //' Then the different `atmosSnow` methods will estimate the portion \mjseqn{k^*}.
@@ -33,7 +33,7 @@
 //' 
 //' @references
 //' \insertAllCited{}
-//' @return atmos_snow_mm (mm/m2/TS) snowfall volume
+//' @return ATMOS_snow_mm (mm/m2/TS) snowfall volume
 //' @details
 //' # **_ThresholdT**: 
 //' 
@@ -41,18 +41,18 @@
 //' Only a temperature is as the threshold defined, so estimate the portion \mjseqn{k^*} as: 
 //' \mjsdeqn{k^{*}=1, \quad T \leq T_s}
 //' where
-//'   - \mjseqn{T_s} is `param_atmos_thr_Ts`
+//'   - \mjseqn{T_s} is `param_ATMOS_thr_Ts`
 //' 
-//' @param param_atmos_thr_Ts <-1, 3> (Cel) threshold air temperature that snow, parameter for [atmosSnow_ThresholdT()]
+//' @param param_ATMOS_thr_Ts <-1, 3> (Cel) threshold air temperature that snow, parameter for [atmosSnow_ThresholdT()]
 //' @export
 // [[Rcpp::export]]
 NumericVector atmosSnow_ThresholdT(
-    NumericVector atmos_precipitation_mm, 
-    NumericVector atmos_temperature_Cel, 
-    NumericVector param_atmos_thr_Ts
+    NumericVector ATMOS_precipitation_mm, 
+    NumericVector ATMOS_temperature_Cel, 
+    NumericVector param_ATMOS_thr_Ts
 )
 {
-  return ifelse(atmos_temperature_Cel > param_atmos_thr_Ts, 0, atmos_precipitation_mm);
+  return ifelse(ATMOS_temperature_Cel > param_ATMOS_thr_Ts, 0, ATMOS_precipitation_mm);
 }
 
 //' @rdname atmosSnow
@@ -64,19 +64,19 @@ NumericVector atmosSnow_ThresholdT(
 //' \mjsdeqn{k^* = 1- \frac{T}{T_0}}
 //' \mjsdeqn{k^* \geq 0}
 //' where
-//'   - \mjseqn{T_0} is `param_atmos_ubc_A0FORM`
+//'   - \mjseqn{T_0} is `param_ATMOS_ubc_A0FORM`
 //' 
-//' @param param_atmos_ubc_A0FORM <0.01, 3> (Cel) threshold air temperature that snow, it can not equal or small than 0, parameter for [atmosSnow_UBC()]
+//' @param param_ATMOS_ubc_A0FORM <0.01, 3> (Cel) threshold air temperature that snow, it can not equal or small than 0, parameter for [atmosSnow_UBC()]
 //' @export
 // [[Rcpp::export]]
 NumericVector atmosSnow_UBC(
-    NumericVector atmos_precipitation_mm, 
-    NumericVector atmos_temperature_Cel, 
-    NumericVector param_atmos_ubc_A0FORM
+    NumericVector ATMOS_precipitation_mm, 
+    NumericVector ATMOS_temperature_Cel, 
+    NumericVector param_ATMOS_ubc_A0FORM
 )
 {
-  NumericVector atmos_snow_mm;
-  atmos_snow_mm = (1 - atmos_temperature_Cel / param_atmos_ubc_A0FORM) * atmos_precipitation_mm;
-  atmos_snow_mm = ifelse(atmos_temperature_Cel <= 0, atmos_precipitation_mm, atmos_snow_mm);
-  return ifelse(atmos_temperature_Cel > param_atmos_ubc_A0FORM, 0, atmos_snow_mm);
+  NumericVector ATMOS_snow_mm;
+  ATMOS_snow_mm = (1 - ATMOS_temperature_Cel / param_ATMOS_ubc_A0FORM) * ATMOS_precipitation_mm;
+  ATMOS_snow_mm = ifelse(ATMOS_temperature_Cel <= 0, ATMOS_precipitation_mm, ATMOS_snow_mm);
+  return ifelse(ATMOS_temperature_Cel > param_ATMOS_ubc_A0FORM, 0, ATMOS_snow_mm);
 }

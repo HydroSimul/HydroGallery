@@ -19,26 +19,26 @@ landLeafAreaIndex_WaterGAP3(
 )
 
 evatransPotential_TurcWendling(
-  atmos_temperature_Cel,
-  atmos_solarRadiat_MJ,
-  param_evatrans_tur_k
+  ATMOS_temperature_Cel,
+  ATMOS_solarRadiat_MJ,
+  param_EVATRANS_tur_k
 )
 
 evatransPotential_Linacre(
-  atmos_temperature_Cel,
-  atmos_relativeHumidity_1,
-  land_latitude_Degree,
-  land_elevation_m,
-  land_albedo_1
+  ATMOS_temperature_Cel,
+  ATMOS_relativeHumidity_1,
+  LAND_latitude_Degree,
+  LAND_elevation_m,
+  LAND_albedo_1
 )
 
 evatransPotential_FAO56(
-  atmos_temperature_Cel,
-  atmos_vaporPress_hPa,
-  atmos_saturatVaporPress_hPa,
-  atmos_netRadiat_MJ,
-  atmos_windSpeed2m_m_s,
-  land_elevation_m
+  ATMOS_temperature_Cel,
+  ATMOS_vaporPress_hPa,
+  ATMOS_saturatVaporPress_hPa,
+  ATMOS_netRadiat_MJ,
+  ATMOS_windSpeed2m_m_s,
+  LAND_elevation_m
 )
 }
 \arguments{
@@ -50,7 +50,25 @@ evatransPotential_FAO56(
 
 \item{LAND_leafAreaIndexMin_, LAND_leafAreaIndexMax_}{minimal and maximal LAI}
 
-\item{param_evatrans_tur_k}{<0.6, 1> parameter for [evatransPotential_TurcWendling()], higher value when closer to the sea}
+\item{ATMOS_solarRadiat_MJ}{(MJ/m2/TS) the solar radiation that actually reaches the earths surface}
+
+\item{param_EVATRANS_tur_k}{<0.6, 1> parameter for [evatransPotential_TurcWendling()], higher value when closer to the sea}
+
+\item{ATMOS_relativeHumidity_1}{(0, 1) relative humidity}
+
+\item{LAND_latitude_Degree, CELL_latitude_deg}{(degree) average latitude}
+
+\item{LAND_elevation_m}{(m) average elevation}
+
+\item{LAND_albedo_1}{<0, 1> albedo of the region}
+
+\item{ATMOS_vaporPress_hPa}{(hPa) actual vapour pressure, can be calculated by [ATMOS_VaporPress()]}
+
+\item{ATMOS_saturatVaporPress_hPa}{(hPa) saturation vapour pressure at `ATMOS_temperature_Cel`, can be calculated by [ATMOS_SaturatVaporPress()]}
+
+\item{ATMOS_netRadiat_MJ}{(MJ/m2/TS) the balance between the energy absorbed, reflected and emitted by the earths surface or the difference between the incoming net shortwave (Rns) and the net outgoing longwave (Rnl) radiation}
+
+\item{ATMOS_windSpeed2m_m_s}{(m/s) wind speed at 2 m above ground surface}
 }
 \value{
 potential evapotranspiration (mm/m2)
@@ -72,31 +90,31 @@ In this situation, we need to provide factors to account for the differences bet
 - **_TurcWendling** \insertCite{ET_TurcWendling_1991}{HydroGallery}: consider only the radiation and temperature as the main factors. 
 \mjsdeqn{E_p = \frac{(100 R_s + 3.875 t_h k)\cdot(T + 22)}{150 (T + 123)}}
 where
-  - \mjseqn{E_p} is potential ET, `atmos_potentialEvatrans_mm`
-  - \mjseqn{R_s} is solar radiation, `atmos_solarRadiat_MJ`
+  - \mjseqn{E_p} is potential ET, `ATMOS_potentialEvatrans_mm`
+  - \mjseqn{R_s} is solar radiation, `ATMOS_solarRadiat_MJ`
   - \mjseqn{t_h} is time step in hour, `time_step_h`
-  - \mjseqn{T} is average air temperature, `atmos_temperature_Cel`
-  - \mjseqn{k} is `param_evatrans_tur_k`
+  - \mjseqn{T} is average air temperature, `ATMOS_temperature_Cel`
+  - \mjseqn{k} is `param_EVATRANS_tur_k`
 
 - **_Linacre** \insertCite{ET_Linacre_1977}{HydroGallery}: consider only the temperature as the main factors. 
 \mjsdeqn{E_p = \frac{\frac{100(0.75 - \alpha)(T + 0.006 z)}{100 - \phi} + 15(T - T_d)}{80 - T}}
 \mjsdeqn{T_d = T - 20 (1-H_R)}
 where
-  - \mjseqn{\alpha} is albedo, `land_albedo_1`
-  - \mjseqn{z} is elevation, `land_elevation_m`
+  - \mjseqn{\alpha} is albedo, `LAND_albedo_1`
+  - \mjseqn{z} is elevation, `LAND_elevation_m`
   - \mjseqn{T_d} is dewpoint temperature,
-  - \mjseqn{H_R} is relative humidity, `atmos_relativeHumidity_1`
+  - \mjseqn{H_R} is relative humidity, `ATMOS_relativeHumidity_1`
 
 - **_FAO56** \insertCite{ET_FAO56_1998}{HydroGallery}: consider not only radiation and temperature but also other variable like wind speed
 as the main factors. 
 \mjsdeqn{E_p =\frac{0.408 \Delta\left(R_n - G\right)+\gamma \frac{900}{T+273} {u}_{2}\left({e}_{{s}}-{e}_{{a}}\right)}{\Delta+\gamma\left(1+0.34 {u}_{2}\right)}}
 where
   - \mjseqn{\Delta} is slope vapour pressure curve (kPa °C-1)
-  - \mjseqn{R_n} is net radiation, `atmos_netRadiat_MJ`
+  - \mjseqn{R_n} is net radiation, `ATMOS_netRadiat_MJ`
   - \mjseqn{G} is soil heat flux density
-  - \mjseqn{u_2} is wind speed at 2 m height, `atmos_windSpeed2m_m_s`
-  - \mjseqn{e_s} is saturation vapour pressure, `atmos_saturatVaporPress_hPa`
-  - \mjseqn{e_a} is actual vapour pressure, `atmos_vaporPress_hPa`
+  - \mjseqn{u_2} is wind speed at 2 m height, `ATMOS_windSpeed2m_m_s`
+  - \mjseqn{e_s} is saturation vapour pressure, `ATMOS_saturatVaporPress_hPa`
+  - \mjseqn{e_a} is actual vapour pressure, `ATMOS_vaporPress_hPa`
   - \mjseqn{\gamma} is psychrometric constant
 }
 \references{

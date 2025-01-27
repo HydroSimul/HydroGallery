@@ -11,55 +11,61 @@
 \title{**lateral flux**}
 \usage{
 lateral_SupplyPow(
-  ground_water_mm,
-  ground_capacity_mm,
-  param_lateral_sup_k,
-  param_lateral_sup_gamma
+  GROUND_water_mm,
+  GROUND_capacity_mm,
+  param_LATERAL_sup_k,
+  param_LATERAL_sup_gamma
 )
 
-lateral_SupplyRatio(ground_water_mm, param_lateral_sur_k)
+lateral_SupplyRatio(GROUND_water_mm, param_LATERAL_sur_k)
 
-lateral_GR4J(ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm)
+lateral_GR4J(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm)
 
 lateral_GR4Jfix(
-  ground_water_mm,
-  ground_capacity_mm,
-  ground_potentialLateral_mm,
-  param_lateral_grf_gamma
+  GROUND_water_mm,
+  GROUND_capacity_mm,
+  GROUND_potentialLateral_mm,
+  param_LATERAL_grf_gamma
 )
 
 lateral_ThreshPow(
-  ground_water_mm,
-  ground_capacity_mm,
-  ground_potentialLateral_mm,
-  param_lateral_thp_thresh,
-  param_lateral_thp_gamma
+  GROUND_water_mm,
+  GROUND_capacity_mm,
+  GROUND_potentialLateral_mm,
+  param_LATERAL_thp_thresh,
+  param_LATERAL_thp_gamma
 )
 
 lateral_Arno(
-  ground_water_mm,
-  ground_capacity_mm,
-  ground_potentialLateral_mm,
-  param_lateral_arn_thresh,
-  param_lateral_arn_k
+  GROUND_water_mm,
+  GROUND_capacity_mm,
+  GROUND_potentialLateral_mm,
+  param_LATERAL_arn_thresh,
+  param_LATERAL_arn_k
 )
 }
 \arguments{
-\item{param_lateral_sup_k}{<-1, 1> coefficient parameter for [lateral_SupplyPow()]}
+\item{GROUND_water_mm}{(mm/m2/TS) water volume in `groundLy`}
 
-\item{param_lateral_sup_gamma}{<0.01, 5> parameters for [lateral_SupplyPow()]}
+\item{GROUND_capacity_mm}{(mm/m2) water storage capacity in `groundLy`}
 
-\item{param_lateral_sur_k}{<-2, 1> coefficient parameter for [lateral_SupplyRatio()]}
+\item{param_LATERAL_sup_k}{<-1, 1> coefficient parameter for [lateral_SupplyPow()]}
 
-\item{param_lateral_grf_gamma}{<0.01, 5> parameter for [lateral_GR4Jfix()]}
+\item{param_LATERAL_sup_gamma}{<0.01, 5> parameters for [lateral_SupplyPow()]}
 
-\item{param_lateral_thp_thresh}{<0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]}
+\item{param_LATERAL_sur_k}{<-2, 1> coefficient parameter for [lateral_SupplyRatio()]}
 
-\item{param_lateral_thp_gamma}{<0.1, 5> exponential parameter for [lateral_ThreshPow()]}
+\item{GROUND_potentialLateral_mm}{<-7, 7> (mm/m2/TS) **potential** lateral flow}
 
-\item{param_lateral_arn_thresh}{<0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]}
+\item{param_LATERAL_grf_gamma}{<0.01, 5> parameter for [lateral_GR4Jfix()]}
 
-\item{param_lateral_arn_k}{<0.1, 1> exponential parameter for [lateral_ThreshPow()]}
+\item{param_LATERAL_thp_thresh}{<0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]}
+
+\item{param_LATERAL_thp_gamma}{<0.1, 5> exponential parameter for [lateral_ThreshPow()]}
+
+\item{param_LATERAL_arn_thresh}{<0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]}
+
+\item{param_LATERAL_arn_k}{<0.1, 1> exponential parameter for [lateral_ThreshPow()]}
 }
 \value{
 lateral_mm (mm/m2)
@@ -85,8 +91,8 @@ to:
 
 
 where
-- \mjseqn{W_{grnd}} is `ground_water_mm`
-- \mjseqn{C_{grnd}} is `ground_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
+- \mjseqn{W_{grnd}} is `GROUND_water_mm`
+- \mjseqn{C_{grnd}} is `GROUND_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
 
 The output density distribution from 6 methods:
 }
@@ -96,22 +102,22 @@ The output density distribution from 6 methods:
 
 \mjsdeqn{F_{ltrl} = k \left( \frac{W_{grnd}}{C_{grnd}} \right)^\gamma  W_{grnd}}
 where
-  - \mjseqn{k} is `param_lateral_sup_k`
-  - \mjseqn{\gamma} is `param_lateral_sup_gamma`
+  - \mjseqn{k} is `param_LATERAL_sup_k`
+  - \mjseqn{\gamma} is `param_LATERAL_sup_gamma`
 
 # **_SupplyRatio**: 
 
 
 \mjsdeqn{F_{ltrl} = k * W_{grnd}}
 where
-  - \mjseqn{k} is `param_lateral_sur_k`
+  - \mjseqn{k} is `param_LATERAL_sur_k`
 
 # **_GR4J** \insertCite{GR4J_Perrin_2003}{HydroGallery}: 
 
 
 \mjsdeqn{F_{ltrl} = M_{ltrl} \left( \frac{W_{grnd}}{C_{grnd}} \right)^{7/2}  }
 where
-  - \mjseqn{M_{ltrl}} is `ground_potentialLateral_mm`
+  - \mjseqn{M_{ltrl}} is `GROUND_potentialLateral_mm`
 
 # **_GR4Jfix** \insertCite{GR4J_Perrin_2003}{HydroGallery} 
 
@@ -119,7 +125,7 @@ where
 based on `_GR4J` use a new parameter to replace the numer 4: 
 \mjsdeqn{F_{ltrl} = M_{ltrl} \left( \frac{W_{grnd}}{C_{grnd}} \right)^\gamma  }
 where
-  - \mjseqn{\gamma} is `param_lateral_grf_gamma`
+  - \mjseqn{\gamma} is `param_LATERAL_grf_gamma`
 
 # **_ThreshPow** 
 
@@ -128,8 +134,8 @@ based on the `_GR4Jfix` and add the one threshold \mjseqn{\phi_b}:
 \mjsdeqn{F_{ltrl} = 0, \quad \frac{W_{grnd}}{C_{grnd}} < \phi_b}
 \mjsdeqn{F_{ltrl} = M_{ltrl} \left(\frac{\frac{W_{grnd}}{C_{grnd}} - \phi_b}{1-\phi_b} \right)^\gamma, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 where
-  - \mjseqn{\phi_b} is `param_lateral_thp_thresh`
-  - \mjseqn{\gamma} is `param_lateral_thp_gamma`
+  - \mjseqn{\phi_b} is `param_LATERAL_thp_thresh`
+  - \mjseqn{\gamma} is `param_LATERAL_thp_gamma`
 
 # **_Arno** \insertCite{baseflow_Arno_1991,VIC2_Liang_1994}{HydroGallery} 
 
@@ -139,8 +145,8 @@ has also in two cases divided by a threshold water content \mjseqn{\phi_b}:
 \mjsdeqn{F_{ltrl} = k M_{ltrl} \frac{W_{grnd}}{C_{grnd}} + (1-k) M_{ltrl} \left(\frac{W_{grnd} - W_s}{C_{grnd} - W_s} \right)^2, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 \mjsdeqn{W_s = k C_{grnd}}
 where
-  - \mjseqn{\phi_b} is `param_lateral_arn_thresh`
-  - \mjseqn{k} is `param_lateral_arn_k`
+  - \mjseqn{\phi_b} is `param_LATERAL_arn_thresh`
+  - \mjseqn{k} is `param_LATERAL_arn_k`
 }
 \references{
 \insertAllCited{}

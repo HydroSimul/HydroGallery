@@ -53,8 +53,8 @@ subset_add <- function(vec_Data, int_Index, vec_DataAdd) {
 #' \mjsdeqn{P_s = f_{atmosSnow}(P, T) = k^*P}
 #' \mjsdeqn{0 \leq k^* \leq 1}
 #' where
-#'   - \mjseqn{P} is `atmos_precpitation_mm`
-#'   - \mjseqn{T} is `atmos_teperature_Cel`
+#'   - \mjseqn{P} is `ATMOS_precpitation_mm`
+#'   - \mjseqn{T} is `ATMOS_teperature_Cel`
 #' - \mjseqn{k^*} is estimated portion
 #' 
 #' Then the different `atmosSnow` methods will estimate the portion \mjseqn{k^*}.
@@ -64,7 +64,7 @@ subset_add <- function(vec_Data, int_Index, vec_DataAdd) {
 #' 
 #' @references
 #' \insertAllCited{}
-#' @return atmos_snow_mm (mm/m2/TS) snowfall volume
+#' @return ATMOS_snow_mm (mm/m2/TS) snowfall volume
 #' @details
 #' # **_ThresholdT**: 
 #' 
@@ -72,12 +72,12 @@ subset_add <- function(vec_Data, int_Index, vec_DataAdd) {
 #' Only a temperature is as the threshold defined, so estimate the portion \mjseqn{k^*} as: 
 #' \mjsdeqn{k^{*}=1, \quad T \leq T_s}
 #' where
-#'   - \mjseqn{T_s} is `param_atmos_thr_Ts`
+#'   - \mjseqn{T_s} is `param_ATMOS_thr_Ts`
 #' 
-#' @param param_atmos_thr_Ts <-1, 3> (Cel) threshold air temperature that snow, parameter for [atmosSnow_ThresholdT()]
+#' @param param_ATMOS_thr_Ts <-1, 3> (Cel) threshold air temperature that snow, parameter for [atmosSnow_ThresholdT()]
 #' @export
-atmosSnow_ThresholdT <- function(atmos_precipitation_mm, atmos_temperature_Cel, param_atmos_thr_Ts) {
-    .Call(`_HydroGallery_atmosSnow_ThresholdT`, atmos_precipitation_mm, atmos_temperature_Cel, param_atmos_thr_Ts)
+atmosSnow_ThresholdT <- function(ATMOS_precipitation_mm, ATMOS_temperature_Cel, param_ATMOS_thr_Ts) {
+    .Call(`_HydroGallery_atmosSnow_ThresholdT`, ATMOS_precipitation_mm, ATMOS_temperature_Cel, param_ATMOS_thr_Ts)
 }
 
 #' @rdname atmosSnow
@@ -89,12 +89,12 @@ atmosSnow_ThresholdT <- function(atmos_precipitation_mm, atmos_temperature_Cel, 
 #' \mjsdeqn{k^* = 1- \frac{T}{T_0}}
 #' \mjsdeqn{k^* \geq 0}
 #' where
-#'   - \mjseqn{T_0} is `param_atmos_ubc_A0FORM`
+#'   - \mjseqn{T_0} is `param_ATMOS_ubc_A0FORM`
 #' 
-#' @param param_atmos_ubc_A0FORM <0.01, 3> (Cel) threshold air temperature that snow, it can not equal or small than 0, parameter for [atmosSnow_UBC()]
+#' @param param_ATMOS_ubc_A0FORM <0.01, 3> (Cel) threshold air temperature that snow, it can not equal or small than 0, parameter for [atmosSnow_UBC()]
 #' @export
-atmosSnow_UBC <- function(atmos_precipitation_mm, atmos_temperature_Cel, param_atmos_ubc_A0FORM) {
-    .Call(`_HydroGallery_atmosSnow_UBC`, atmos_precipitation_mm, atmos_temperature_Cel, param_atmos_ubc_A0FORM)
+atmosSnow_UBC <- function(ATMOS_precipitation_mm, ATMOS_temperature_Cel, param_ATMOS_ubc_A0FORM) {
+    .Call(`_HydroGallery_atmosSnow_UBC`, ATMOS_precipitation_mm, ATMOS_temperature_Cel, param_ATMOS_ubc_A0FORM)
 }
 
 #' **baseflow**
@@ -123,16 +123,16 @@ atmosSnow_UBC <- function(atmos_precipitation_mm, atmos_temperature_Cel, param_a
 #' 
 #' 
 #' where
-#' - \mjseqn{W_{grnd}} is `ground_water_mm`
-#' - \mjseqn{M_{base}} is `ground_potentialBaseflow_mm`
-#' - \mjseqn{C_{grnd}} is `ground_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
+#' - \mjseqn{W_{grnd}} is `GROUND_water_mm`
+#' - \mjseqn{M_{base}} is `GROUND_potentialBaseflow_mm`
+#' - \mjseqn{C_{grnd}} is `GROUND_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
 #' - \mjseqn{k^*} is estimated ratio
 #' 
 #' The output density distribution from 7 methods:
 #'
 #' @references
 #' \insertAllCited{}
-#' @return ground_baseflow_mm (mm/m2/TS) 
+#' @return GROUND_baseflow_mm (mm/m2/TS) 
 #' @details
 #' # **_GR4J** \insertCite{GR4J_Perrin_2003}{HydroGallery}: 
 #'
@@ -142,8 +142,8 @@ atmosSnow_UBC <- function(atmos_precipitation_mm, atmos_temperature_Cel, param_a
 #' where
 #'   - \mjseqn{k^*} is estimated ratio
 #' @export
-baseflow_GR4J <- function(ground_water_mm, ground_capacity_mm) {
-    .Call(`_HydroGallery_baseflow_GR4J`, ground_water_mm, ground_capacity_mm)
+baseflow_GR4J <- function(GROUND_water_mm, GROUND_capacity_mm) {
+    .Call(`_HydroGallery_baseflow_GR4J`, GROUND_water_mm, GROUND_capacity_mm)
 }
 
 #' @rdname baseflow
@@ -155,11 +155,11 @@ baseflow_GR4J <- function(ground_water_mm, ground_capacity_mm) {
 #' \mjsdeqn{F_{base} = k^* W_{grnd}}
 #' \mjsdeqn{k^* = 1 - \left[ 1 + \left(\frac{W_{grnd}}{C_{grnd}} \right)^\gamma \right]^{-1/\gamma}}
 #' where
-#'   - \mjseqn{\gamma} is `param_baseflow_grf_gamma`
-#' @param param_baseflow_grf_gamma <2, 7> exponential parameter for [baseflow_GR4Jfix()]
+#'   - \mjseqn{\gamma} is `param_BASEFLOW_grf_gamma`
+#' @param param_BASEFLOW_grf_gamma <2, 7> exponential parameter for [baseflow_GR4Jfix()]
 #' @export
-baseflow_GR4Jfix <- function(ground_water_mm, ground_capacity_mm, param_baseflow_grf_gamma) {
-    .Call(`_HydroGallery_baseflow_GR4Jfix`, ground_water_mm, ground_capacity_mm, param_baseflow_grf_gamma)
+baseflow_GR4Jfix <- function(GROUND_water_mm, GROUND_capacity_mm, param_BASEFLOW_grf_gamma) {
+    .Call(`_HydroGallery_baseflow_GR4Jfix`, GROUND_water_mm, GROUND_capacity_mm, param_BASEFLOW_grf_gamma)
 }
 
 #' @rdname baseflow
@@ -169,11 +169,11 @@ baseflow_GR4Jfix <- function(ground_water_mm, ground_capacity_mm, param_baseflow
 #' 
 #' \mjsdeqn{F_{base} = k W_{grnd}}
 #' where
-#'   - \mjseqn{k} is `param_baseflow_sur_k`
-#' @param param_baseflow_sur_k <0.01, 1> coefficient parameter for [baseflow_SupplyRatio()]
+#'   - \mjseqn{k} is `param_BASEFLOW_sur_k`
+#' @param param_BASEFLOW_sur_k <0.01, 1> coefficient parameter for [baseflow_SupplyRatio()]
 #' @export
-baseflow_SupplyRatio <- function(ground_water_mm, param_baseflow_sur_k) {
-    .Call(`_HydroGallery_baseflow_SupplyRatio`, ground_water_mm, param_baseflow_sur_k)
+baseflow_SupplyRatio <- function(GROUND_water_mm, param_BASEFLOW_sur_k) {
+    .Call(`_HydroGallery_baseflow_SupplyRatio`, GROUND_water_mm, param_BASEFLOW_sur_k)
 }
 
 #' @rdname baseflow
@@ -183,13 +183,13 @@ baseflow_SupplyRatio <- function(ground_water_mm, param_baseflow_sur_k) {
 #' 
 #' \mjsdeqn{F_{base} = k(W_{grnd})^\gamma}
 #' where
-#'   - \mjseqn{k} is `param_baseflow_sup_k`
-#'   - \mjseqn{\gamma} is `param_baseflow_sup_gamma`
-#' @param param_baseflow_sup_k <0.01, 1> coefficient parameter for [baseflow_SupplyPow()]
-#' @param param_baseflow_sup_gamma <0, 1> exponential parameter for [baseflow_SupplyPow()]
+#'   - \mjseqn{k} is `param_BASEFLOW_sup_k`
+#'   - \mjseqn{\gamma} is `param_BASEFLOW_sup_gamma`
+#' @param param_BASEFLOW_sup_k <0.01, 1> coefficient parameter for [baseflow_SupplyPow()]
+#' @param param_BASEFLOW_sup_gamma <0, 1> exponential parameter for [baseflow_SupplyPow()]
 #' @export
-baseflow_SupplyPow <- function(ground_water_mm, param_baseflow_sup_k, param_baseflow_sup_gamma) {
-    .Call(`_HydroGallery_baseflow_SupplyPow`, ground_water_mm, param_baseflow_sup_k, param_baseflow_sup_gamma)
+baseflow_SupplyPow <- function(GROUND_water_mm, param_BASEFLOW_sup_k, param_BASEFLOW_sup_gamma) {
+    .Call(`_HydroGallery_baseflow_SupplyPow`, GROUND_water_mm, param_BASEFLOW_sup_k, param_BASEFLOW_sup_gamma)
 }
 
 #' @rdname baseflow
@@ -199,12 +199,12 @@ baseflow_SupplyPow <- function(ground_water_mm, param_baseflow_sup_k, param_base
 #' 
 #' \mjsdeqn{F_{base} = M_{base} \left(\frac{W_{grnd}}{C_{grnd}} \right)^\gamma}
 #' where
-#'   - \mjseqn{M_{base}} is `ground_potentialBaseflow_mm`
-#'   - \mjseqn{\gamma} is `param_baseflow_map_gamma`
-#' @param param_baseflow_map_gamma <0.1, 5> exponential parameter for [baseflow_MaxPow()]
+#'   - \mjseqn{M_{base}} is `GROUND_potentialBaseflow_mm`
+#'   - \mjseqn{\gamma} is `param_BASEFLOW_map_gamma`
+#' @param param_BASEFLOW_map_gamma <0.1, 5> exponential parameter for [baseflow_MaxPow()]
 #' @export
-baseflow_MaxPow <- function(ground_water_mm, ground_capacity_mm, ground_potentialBaseflow_mm, param_baseflow_map_gamma) {
-    .Call(`_HydroGallery_baseflow_MaxPow`, ground_water_mm, ground_capacity_mm, ground_potentialBaseflow_mm, param_baseflow_map_gamma)
+baseflow_MaxPow <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialBaseflow_mm, param_BASEFLOW_map_gamma) {
+    .Call(`_HydroGallery_baseflow_MaxPow`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialBaseflow_mm, param_BASEFLOW_map_gamma)
 }
 
 #' @rdname baseflow
@@ -216,13 +216,13 @@ baseflow_MaxPow <- function(ground_water_mm, ground_capacity_mm, ground_potentia
 #' \mjsdeqn{F_{base} = 0, \quad \frac{W_{grnd}}{C_{grnd}} < \phi_b}
 #' \mjsdeqn{F_{base} = M_{base} \left(\frac{\frac{W_{grnd}}{C_{grnd}} - \phi_b}{1-\phi_b} \right)^\gamma, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 #' where
-#'   - \mjseqn{\phi_b} is `param_baseflow_thp_thresh`
-#'   - \mjseqn{\gamma} is `param_baseflow_thp_gamma`
-#' @param param_baseflow_thp_thresh <0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]
-#' @param param_baseflow_thp_gamma <0.1, 5> exponential parameter for [baseflow_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_BASEFLOW_thp_thresh`
+#'   - \mjseqn{\gamma} is `param_BASEFLOW_thp_gamma`
+#' @param param_BASEFLOW_thp_thresh <0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]
+#' @param param_BASEFLOW_thp_gamma <0.1, 5> exponential parameter for [baseflow_ThreshPow()]
 #' @export
-baseflow_ThreshPow <- function(ground_water_mm, ground_capacity_mm, ground_potentialBaseflow_mm, param_baseflow_thp_thresh, param_baseflow_thp_gamma) {
-    .Call(`_HydroGallery_baseflow_ThreshPow`, ground_water_mm, ground_capacity_mm, ground_potentialBaseflow_mm, param_baseflow_thp_thresh, param_baseflow_thp_gamma)
+baseflow_ThreshPow <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialBaseflow_mm, param_BASEFLOW_thp_thresh, param_BASEFLOW_thp_gamma) {
+    .Call(`_HydroGallery_baseflow_ThreshPow`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialBaseflow_mm, param_BASEFLOW_thp_thresh, param_BASEFLOW_thp_gamma)
 }
 
 #' @rdname baseflow
@@ -235,13 +235,13 @@ baseflow_ThreshPow <- function(ground_water_mm, ground_capacity_mm, ground_poten
 #' \mjsdeqn{F_{base} = k M_{base} \frac{W_{grnd}}{C_{grnd}} + (1-k) M_{base} \left(\frac{W_{grnd} - W_s}{C_{grnd} - W_s} \right)^2, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 #' \mjsdeqn{W_s = k C_{grnd}}
 #' where
-#'   - \mjseqn{\phi_b} is `param_baseflow_arn_thresh`
-#'   - \mjseqn{k} is `param_baseflow_arn_k`
-#' @param param_baseflow_arn_thresh <0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]
-#' @param param_baseflow_arn_k <0.1, 1> exponential parameter for [baseflow_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_BASEFLOW_arn_thresh`
+#'   - \mjseqn{k} is `param_BASEFLOW_arn_k`
+#' @param param_BASEFLOW_arn_thresh <0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]
+#' @param param_BASEFLOW_arn_k <0.1, 1> exponential parameter for [baseflow_ThreshPow()]
 #' @export
-baseflow_Arno <- function(ground_water_mm, ground_capacity_mm, ground_potentialBaseflow_mm, param_baseflow_arn_thresh, param_baseflow_arn_k) {
-    .Call(`_HydroGallery_baseflow_Arno`, ground_water_mm, ground_capacity_mm, ground_potentialBaseflow_mm, param_baseflow_arn_thresh, param_baseflow_arn_k)
+baseflow_Arno <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialBaseflow_mm, param_BASEFLOW_arn_thresh, param_BASEFLOW_arn_k) {
+    .Call(`_HydroGallery_baseflow_Arno`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialBaseflow_mm, param_BASEFLOW_arn_thresh, param_BASEFLOW_arn_k)
 }
 
 #' This function implements a calibration algorithm based on the Direct Search method.
@@ -307,16 +307,16 @@ landLeafAreaIndex_WaterGAP3 <- function(ATMOS_temperature_Cel, ATMOS_precipitati
 #' 
 #' 
 #' where
-#' - \mjseqn{F_{capi}} is `ground_capirise_mm`
-#' - \mjseqn{W_{grnd}} is `ground_water_mm`
-#' - \mjseqn{W_{soil}} is `water_soil_mm`
-#' - \mjseqn{C_{soil}} is `capacity_soil_mm`
+#' - \mjseqn{F_{capi}} is `GROUND_capirise_mm`
+#' - \mjseqn{W_{grnd}} is `GROUND_water_mm`
+#' - \mjseqn{W_{soil}} is `water_SOIL_mm`
+#' - \mjseqn{C_{soil}} is `capacity_SOIL_mm`
 #' 
 #' The output density distribution from 4 methods:
 #'
 #' @references
 #' \insertAllCited{}
-#' @return ground_capirise_mm (mm/m2/TS) capillary rise
+#' @return GROUND_capirise_mm (mm/m2/TS) capillary rise
 #' 
 #' @details
 #' # **_HBV** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
@@ -324,11 +324,11 @@ landLeafAreaIndex_WaterGAP3 <- function(ATMOS_temperature_Cel, ATMOS_precipitati
 #' 
 #' \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{C_{soil}} \right)}
 #' where
-#'   - \mjseqn{M_{capi}} is `soil_potentialCapirise_mm`
+#'   - \mjseqn{M_{capi}} is `SOIL_potentialCapirise_mm`
 #'   
 #' @export
-capirise_HBV <- function(ground_water_mm, soil_water_mm, soil_capacity_mm, soil_potentialCapirise_mm) {
-    .Call(`_HydroGallery_capirise_HBV`, ground_water_mm, soil_water_mm, soil_capacity_mm, soil_potentialCapirise_mm)
+capirise_HBV <- function(GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialCapirise_mm) {
+    .Call(`_HydroGallery_capirise_HBV`, GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialCapirise_mm)
 }
 
 #' @rdname capirise
@@ -338,10 +338,10 @@ capirise_HBV <- function(ground_water_mm, soil_water_mm, soil_capacity_mm, soil_
 #' 
 #' \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{k_{fc}C_{soil}} \right), \quad W_{soil} < k_{fc}C_{soil}}
 #' where
-#'   - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
+#'   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
 #' @export
-capirise_HBVfix <- function(ground_water_mm, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, soil_potentialCapirise_mm) {
-    .Call(`_HydroGallery_capirise_HBVfix`, ground_water_mm, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, soil_potentialCapirise_mm)
+capirise_HBVfix <- function(GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, SOIL_potentialCapirise_mm) {
+    .Call(`_HydroGallery_capirise_HBVfix`, GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, SOIL_potentialCapirise_mm)
 }
 
 #' @rdname capirise
@@ -351,12 +351,12 @@ capirise_HBVfix <- function(ground_water_mm, soil_water_mm, soil_capacity_mm, so
 #' 
 #' \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right), \quad W_{soil} < k_{fc}C_{soil}}
 #' where
-#'   - \mjseqn{k} is `param_capirise_acr_k`
-#'   - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
-#' @param param_capirise_acr_k <0.01, 1> coefficient parameter [capirise_AcceptRatio()]
+#'   - \mjseqn{k} is `param_CAPIRISE_acr_k`
+#'   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
+#' @param param_CAPIRISE_acr_k <0.01, 1> coefficient parameter [capirise_AcceptRatio()]
 #' @export
-capirise_AcceptRatio <- function(ground_water_mm, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, param_capirise_acr_k) {
-    .Call(`_HydroGallery_capirise_AcceptRatio`, ground_water_mm, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, param_capirise_acr_k)
+capirise_AcceptRatio <- function(GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, param_CAPIRISE_acr_k) {
+    .Call(`_HydroGallery_capirise_AcceptRatio`, GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, param_CAPIRISE_acr_k)
 }
 
 #' @rdname capirise
@@ -366,14 +366,14 @@ capirise_AcceptRatio <- function(ground_water_mm, soil_water_mm, soil_capacity_m
 #' 
 #' \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right)^\gamma, \quad W_{soil} < k_{fc}C_{soil}}
 #' where
-#'   - \mjseqn{k} is `param_capirise_acp_k`
-#'   - \mjseqn{\gamma} is `param_capirise_acp_gamma`
+#'   - \mjseqn{k} is `param_CAPIRISE_acp_k`
+#'   - \mjseqn{\gamma} is `param_CAPIRISE_acp_gamma`
 #'   
-#' @param param_capirise_acp_k <0.01, 1> coefficient parameter for [capirise_AcceptPow()]
-#' @param param_capirise_acp_gamma <0.01, 1> exponential parameter for [capirise_AcceptPow()]
+#' @param param_CAPIRISE_acp_k <0.01, 1> coefficient parameter for [capirise_AcceptPow()]
+#' @param param_CAPIRISE_acp_gamma <0.01, 1> exponential parameter for [capirise_AcceptPow()]
 #' @export
-capirise_AcceptPow <- function(ground_water_mm, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, param_capirise_acp_k, param_capirise_acp_gamma) {
-    .Call(`_HydroGallery_capirise_AcceptPow`, ground_water_mm, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, param_capirise_acp_k, param_capirise_acp_gamma)
+capirise_AcceptPow <- function(GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, param_CAPIRISE_acp_k, param_CAPIRISE_acp_gamma) {
+    .Call(`_HydroGallery_capirise_AcceptPow`, GROUND_water_mm, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, param_CAPIRISE_acp_k, param_CAPIRISE_acp_gamma)
 }
 
 #' **confluence**
@@ -405,29 +405,29 @@ capirise_AcceptPow <- function(ground_water_mm, soil_water_mm, soil_capacity_mm,
 #' 
 #' where
 #' - \mjseqn{Q} is stream flow, but still in mm/TS not m3/TS or m3/S
-#' - \mjseqn{F} is flux that will into river conflen, e.g.`land_runoff_mm`, `soil_interflow_mm` or `ground_baseflow_mm`
+#' - \mjseqn{F} is flux that will into river conflen, e.g.`LAND_runoff_mm`, `SOIL_interflow_mm` or `GROUND_baseflow_mm`
 #' - \mjseqn{u} is Instant Unit Hydrograph series
 #' 
 #' @references
 #' \insertAllCited{}
-#' @inheritParams all_vari
 #' @name confluen
+#' @inheritParams all_vari
 #' @return confluenced water (mm/m2)
 #' @export
-confluen_IUH <- function(confluen_inputWater_mm, confluen_iuh_1) {
-    .Call(`_HydroGallery_confluen_IUH`, confluen_inputWater_mm, confluen_iuh_1)
+confluen_IUH <- function(CONFLUEN_inputWater_mm, CONFLUEN_iuh_1) {
+    .Call(`_HydroGallery_confluen_IUH`, CONFLUEN_inputWater_mm, CONFLUEN_iuh_1)
 }
 
 #' @rdname confluen
 #' @export
-confluen_IUH2S <- function(land_runoff_mm, ground_baseflow_mm, confluen_iuhLand_1, confluen_iuhGround_1) {
-    .Call(`_HydroGallery_confluen_IUH2S`, land_runoff_mm, ground_baseflow_mm, confluen_iuhLand_1, confluen_iuhGround_1)
+confluen_IUH2S <- function(LAND_runoff_mm, GROUND_baseflow_mm, CONFLUEN_iuhLand_1, CONFLUEN_iuhGround_1) {
+    .Call(`_HydroGallery_confluen_IUH2S`, LAND_runoff_mm, GROUND_baseflow_mm, CONFLUEN_iuhLand_1, CONFLUEN_iuhGround_1)
 }
 
 #' @rdname confluen
 #' @export
-confluen_IUH3S <- function(land_runoff_mm, soil_interflow_mm, ground_baseflow_mm, confluen_iuhLand_1, confluen_iuhSoil_1, confluen_iuhGround_1) {
-    .Call(`_HydroGallery_confluen_IUH3S`, land_runoff_mm, soil_interflow_mm, ground_baseflow_mm, confluen_iuhLand_1, confluen_iuhSoil_1, confluen_iuhGround_1)
+confluen_IUH3S <- function(LAND_runoff_mm, SOIL_interflow_mm, GROUND_baseflow_mm, CONFLUEN_iuhLand_1, CONFLUEN_iuhSoil_1, CONFLUEN_iuhGround_1) {
+    .Call(`_HydroGallery_confluen_IUH3S`, LAND_runoff_mm, SOIL_interflow_mm, GROUND_baseflow_mm, CONFLUEN_iuhLand_1, CONFLUEN_iuhSoil_1, CONFLUEN_iuhGround_1)
 }
 
 #' create **IUH** (Instant Unit Hydrograph)
@@ -448,7 +448,7 @@ confluen_IUH3S <- function(land_runoff_mm, soil_interflow_mm, ground_baseflow_mm
 #' 
 #' where
 #' - \mjseqn{u} is series of portions
-#' - \mjseqn{t_r} is  `confluen_responseTime_TS`
+#' - \mjseqn{t_r} is  `CONFLUEN_responseTime_TS`
 #' 
 #' @references
 #' \insertAllCited{}
@@ -463,8 +463,8 @@ confluen_IUH3S <- function(land_runoff_mm, soil_interflow_mm, ground_baseflow_mm
 #'   - \mjseqn{u} is IUH series
 #'   - \mjseqn{i} is index
 #' @export
-confluenIUH_GR4J1 <- function(confluen_responseTime_TS) {
-    .Call(`_HydroGallery_confluenIUH_GR4J1`, confluen_responseTime_TS)
+confluenIUH_GR4J1 <- function(CONFLUEN_responseTime_TS) {
+    .Call(`_HydroGallery_confluenIUH_GR4J1`, CONFLUEN_responseTime_TS)
 }
 
 #' @rdname confluenIUH
@@ -480,8 +480,8 @@ confluenIUH_GR4J1 <- function(confluen_responseTime_TS) {
 #'   - \mjseqn{u} is IUH series
 #'   - \mjseqn{i} is index
 #' @export
-confluenIUH_GR4J2 <- function(confluen_responseTime_TS) {
-    .Call(`_HydroGallery_confluenIUH_GR4J2`, confluen_responseTime_TS)
+confluenIUH_GR4J2 <- function(CONFLUEN_responseTime_TS) {
+    .Call(`_HydroGallery_confluenIUH_GR4J2`, CONFLUEN_responseTime_TS)
 }
 
 #' @rdname confluenIUH
@@ -493,11 +493,11 @@ confluenIUH_GR4J2 <- function(confluen_responseTime_TS) {
 #' \mjsdeqn{u(i) = - \frac{4}{t_r^2}(i - k - t_r) + \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)}), \quad t_r / 2 < i \leq t_r }
 #' \mjsdeqn{u(i) =  \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)} +  e^{t_r/k}), \quad i > t_r }
 #' where
-#'   - \mjseqn{k} is `param_confluen_kel_k`
-#' @param param_confluen_kel_k <1, 4> parameter for[confluenIUH_Kelly()]
+#'   - \mjseqn{k} is `param_CONFLUEN_kel_k`
+#' @param param_CONFLUEN_kel_k <1, 4> parameter for[confluenIUH_Kelly()]
 #' @export
-confluenIUH_Kelly <- function(confluen_responseTime_TS, param_confluen_kel_k) {
-    .Call(`_HydroGallery_confluenIUH_Kelly`, confluen_responseTime_TS, param_confluen_kel_k)
+confluenIUH_Kelly <- function(CONFLUEN_responseTime_TS, param_CONFLUEN_kel_k) {
+    .Call(`_HydroGallery_confluenIUH_Kelly`, CONFLUEN_responseTime_TS, param_CONFLUEN_kel_k)
 }
 
 #' @rdname confluenIUH
@@ -507,11 +507,11 @@ confluenIUH_Kelly <- function(confluen_responseTime_TS, param_confluen_kel_k) {
 #' 
 #' \mjsdeqn{u(i) = \frac{1}{t_r\Gamma(n)} \left(\frac{4}{t_r^2}\right)^{n -1}e^{-i/t_r}}
 #' where
-#'   - \mjseqn{n} is `param_confluen_nas_n`
-#' @param param_confluen_nas_n <1, 8> parameter for[confluenIUH_Nash()]
+#'   - \mjseqn{n} is `param_CONFLUEN_nas_n`
+#' @param param_CONFLUEN_nas_n <1, 8> parameter for[confluenIUH_Nash()]
 #' @export
-confluenIUH_Nash <- function(confluen_responseTime_TS, param_confluen_nas_n) {
-    .Call(`_HydroGallery_confluenIUH_Nash`, confluen_responseTime_TS, param_confluen_nas_n)
+confluenIUH_Nash <- function(CONFLUEN_responseTime_TS, param_CONFLUEN_nas_n) {
+    .Call(`_HydroGallery_confluenIUH_Nash`, CONFLUEN_responseTime_TS, param_CONFLUEN_nas_n)
 }
 
 #' @rdname confluenIUH
@@ -521,10 +521,10 @@ confluenIUH_Nash <- function(confluen_responseTime_TS, param_confluen_nas_n) {
 #' 
 #' \mjsdeqn{u(i) = \frac{1}{t_r} e^{-i/t_r} }
 #' where
-#'   - \mjseqn{t_r} is `confluen_responseTime_TS`
+#'   - \mjseqn{t_r} is `CONFLUEN_responseTime_TS`
 #' @export
-confluenIUH_Clark <- function(confluen_responseTime_TS) {
-    .Call(`_HydroGallery_confluenIUH_Clark`, confluen_responseTime_TS)
+confluenIUH_Clark <- function(CONFLUEN_responseTime_TS) {
+    .Call(`_HydroGallery_confluenIUH_Clark`, CONFLUEN_responseTime_TS)
 }
 
 #' @rdname confluen
@@ -545,15 +545,15 @@ confluen_WaterGAP3_L <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity
 #' @param num_Obs A numeric vector of observed values. NA values are removed along with corresponding values in num_Sim.
 #' @return A double representing the Evalute matrics.
 #' @export
-eva_NSE <- function(num_Sim, num_Obs) {
-    .Call(`_HydroGallery_eva_NSE`, num_Sim, num_Obs)
+evalute_NSE <- function(num_Sim, num_Obs) {
+    .Call(`_HydroGallery_evalute_NSE`, num_Sim, num_Obs)
 }
 
 #' @rdname eva
 #' @param factor_r,factor_alpha,factor_beta A double specifying the weight for the correlation term (r - 1), (alpha - 1) and (beta - 1). Default is 1.0.
 #' @export
-eva_KGE <- function(num_Sim, num_Obs, factor_r = 1.0, factor_alpha = 1.0, factor_beta = 1.0) {
-    .Call(`_HydroGallery_eva_KGE`, num_Sim, num_Obs, factor_r, factor_alpha, factor_beta)
+evalute_KGE <- function(num_Sim, num_Obs, factor_r = 1.0, factor_alpha = 1.0, factor_beta = 1.0) {
+    .Call(`_HydroGallery_evalute_KGE`, num_Sim, num_Obs, factor_r, factor_alpha, factor_beta)
 }
 
 #' **potential evapotranspiration**
@@ -577,16 +577,16 @@ eva_KGE <- function(num_Sim, num_Obs, factor_r = 1.0, factor_alpha = 1.0, factor
 #' - **_TurcWendling** \insertCite{ET_TurcWendling_1991}{HydroGallery}: consider only the radiation and temperature as the main factors. 
 #' \mjsdeqn{E_p = \frac{(100 R_s + 3.875 t_h k)\cdot(T + 22)}{150 (T + 123)}}
 #' where
-#'   - \mjseqn{E_p} is potential ET, `atmos_potentialEvatrans_mm`
-#'   - \mjseqn{R_s} is solar radiation, `atmos_solarRadiat_MJ`
+#'   - \mjseqn{E_p} is potential ET, `ATMOS_potentialEvatrans_mm`
+#'   - \mjseqn{R_s} is solar radiation, `ATMOS_solarRadiat_MJ`
 #'   - \mjseqn{t_h} is time step in hour, `time_step_h`
-#'   - \mjseqn{T} is average air temperature, `atmos_temperature_Cel`
-#'   - \mjseqn{k} is `param_evatrans_tur_k`
-#' @param param_evatrans_tur_k <0.6, 1> parameter for [evatransPotential_TurcWendling()], higher value when closer to the sea
+#'   - \mjseqn{T} is average air temperature, `ATMOS_temperature_Cel`
+#'   - \mjseqn{k} is `param_EVATRANS_tur_k`
+#' @param param_EVATRANS_tur_k <0.6, 1> parameter for [evatransPotential_TurcWendling()], higher value when closer to the sea
 #' @return potential evapotranspiration (mm/m2)
 #' @export
-evatransPotential_TurcWendling <- function(atmos_temperature_Cel, atmos_solarRadiat_MJ, param_evatrans_tur_k) {
-    .Call(`_HydroGallery_evatransPotential_TurcWendling`, atmos_temperature_Cel, atmos_solarRadiat_MJ, param_evatrans_tur_k)
+evatransPotential_TurcWendling <- function(ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, param_EVATRANS_tur_k) {
+    .Call(`_HydroGallery_evatransPotential_TurcWendling`, ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, param_EVATRANS_tur_k)
 }
 
 #' @rdname evatransPotential
@@ -595,13 +595,13 @@ evatransPotential_TurcWendling <- function(atmos_temperature_Cel, atmos_solarRad
 #' \mjsdeqn{E_p = \frac{\frac{100(0.75 - \alpha)(T + 0.006 z)}{100 - \phi} + 15(T - T_d)}{80 - T}}
 #' \mjsdeqn{T_d = T - 20 (1-H_R)}
 #' where
-#'   - \mjseqn{\alpha} is albedo, `land_albedo_1`
-#'   - \mjseqn{z} is elevation, `land_elevation_m`
+#'   - \mjseqn{\alpha} is albedo, `LAND_albedo_1`
+#'   - \mjseqn{z} is elevation, `LAND_elevation_m`
 #'   - \mjseqn{T_d} is dewpoint temperature,
-#'   - \mjseqn{H_R} is relative humidity, `atmos_relativeHumidity_1`
+#'   - \mjseqn{H_R} is relative humidity, `ATMOS_relativeHumidity_1`
 #' @export
-evatransPotential_Linacre <- function(atmos_temperature_Cel, atmos_relativeHumidity_1, land_latitude_Degree, land_elevation_m, land_albedo_1) {
-    .Call(`_HydroGallery_evatransPotential_Linacre`, atmos_temperature_Cel, atmos_relativeHumidity_1, land_latitude_Degree, land_elevation_m, land_albedo_1)
+evatransPotential_Linacre <- function(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, LAND_latitude_Degree, LAND_elevation_m, LAND_albedo_1) {
+    .Call(`_HydroGallery_evatransPotential_Linacre`, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, LAND_latitude_Degree, LAND_elevation_m, LAND_albedo_1)
 }
 
 #' @rdname evatransPotential
@@ -611,15 +611,15 @@ evatransPotential_Linacre <- function(atmos_temperature_Cel, atmos_relativeHumid
 #' \mjsdeqn{E_p =\frac{0.408 \Delta\left(R_n - G\right)+\gamma \frac{900}{T+273} {u}_{2}\left({e}_{{s}}-{e}_{{a}}\right)}{\Delta+\gamma\left(1+0.34 {u}_{2}\right)}}
 #' where
 #'   - \mjseqn{\Delta} is slope vapour pressure curve (kPa °C-1)
-#'   - \mjseqn{R_n} is net radiation, `atmos_netRadiat_MJ`
+#'   - \mjseqn{R_n} is net radiation, `ATMOS_netRadiat_MJ`
 #'   - \mjseqn{G} is soil heat flux density
-#'   - \mjseqn{u_2} is wind speed at 2 m height, `atmos_windSpeed2m_m_s`
-#'   - \mjseqn{e_s} is saturation vapour pressure, `atmos_saturatVaporPress_hPa`
-#'   - \mjseqn{e_a} is actual vapour pressure, `atmos_vaporPress_hPa`
+#'   - \mjseqn{u_2} is wind speed at 2 m height, `ATMOS_windSpeed2m_m_s`
+#'   - \mjseqn{e_s} is saturation vapour pressure, `ATMOS_saturatVaporPress_hPa`
+#'   - \mjseqn{e_a} is actual vapour pressure, `ATMOS_vaporPress_hPa`
 #'   - \mjseqn{\gamma} is psychrometric constant
 #' @export
-evatransPotential_FAO56 <- function(atmos_temperature_Cel, atmos_vaporPress_hPa, atmos_saturatVaporPress_hPa, atmos_netRadiat_MJ, atmos_windSpeed2m_m_s, land_elevation_m) {
-    .Call(`_HydroGallery_evatransPotential_FAO56`, atmos_temperature_Cel, atmos_vaporPress_hPa, atmos_saturatVaporPress_hPa, atmos_netRadiat_MJ, atmos_windSpeed2m_m_s, land_elevation_m)
+evatransPotential_FAO56 <- function(ATMOS_temperature_Cel, ATMOS_vaporPress_hPa, ATMOS_saturatVaporPress_hPa, ATMOS_netRadiat_MJ, ATMOS_windSpeed2m_m_s, LAND_elevation_m) {
+    .Call(`_HydroGallery_evatransPotential_FAO56`, ATMOS_temperature_Cel, ATMOS_vaporPress_hPa, ATMOS_saturatVaporPress_hPa, ATMOS_netRadiat_MJ, ATMOS_windSpeed2m_m_s, LAND_elevation_m)
 }
 
 #' **actuall evapotranspiration**
@@ -642,8 +642,8 @@ evatransPotential_FAO56 <- function(atmos_temperature_Cel, atmos_vaporPress_hPa,
 #' \mjsdeqn{E_a = f_{evatransActual}(E_p, W_{lssg}, ...) = k^* E_p}
 #' 
 #' where
-#' - \mjseqn{E_a} is `land_evatrans_mm` or `soil_evatrans_mm`
-#' - \mjseqn{E_p} is `atmos_potentialEvatrans_mm`
+#' - \mjseqn{E_a} is `LAND_evatrans_mm` or `soil_evatrans_mm`
+#' - \mjseqn{E_p} is `ATMOS_potentialEvatrans_mm`
 #' - \mjseqn{k^*} is estimated ratio.
 #' 
 #' Then the different `evatransActual` methods will estimate the ratio \mjseqn{k^*}.
@@ -653,7 +653,7 @@ evatransPotential_FAO56 <- function(atmos_temperature_Cel, atmos_vaporPress_hPa,
 #' @references
 #' \insertAllCited{}
 #' @return actually ET in (mm/m2/TS)
-#' - evaporation in interception (landLy), `land_evatrans_mm`
+#' - evaporation in interception (landLy), `LAND_evatrans_mm`
 #' - transpiration in root
 #' - evaporation in soil (soilLy), `soil_evatrans_mm`
 #' @details
@@ -664,13 +664,13 @@ evatransPotential_FAO56 <- function(atmos_temperature_Cel, atmos_vaporPress_hPa,
 #' is considered as th main factors for the ratio \mjseqn{k^*}.
 #' \mjsdeqn{k^* = k  \frac{W}{C}}
 #' where
-#'   - \mjseqn{W} is water volume in (mm/m2/TS), `water_mm`, `land_interceptWater_mm`, `soil_water_mm`
-#'   - \mjseqn{C} is water capacity in (mm/m2), `capacity_mm`, `land_interceptCapacity_mm`, `soil_capacity_mm`
-#'   - \mjseqn{k} is `param_evatrans_sur_k`
-#' @param param_evatrans_sur_k <0.1, 1> parameter for [evatransActual_SupplyRatio()], ratio of potential ET, that is estimated as actually ET  
+#'   - \mjseqn{W} is water volume in (mm/m2/TS), `water_mm`, `LAND_interceptWater_mm`, `soil_water_mm`
+#'   - \mjseqn{C} is water capacity in (mm/m2), `capacity_mm`, `LAND_interceptCapacity_mm`, `soil_capacity_mm`
+#'   - \mjseqn{k} is `param_EVATRANS_sur_k`
+#' @param param_EVATRANS_sur_k <0.1, 1> parameter for [evatransActual_SupplyRatio()], ratio of potential ET, that is estimated as actually ET  
 #' @export
-evatransActual_SupplyRatio <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_sur_k) {
-    .Call(`_HydroGallery_evatransActual_SupplyRatio`, atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_sur_k)
+evatransActual_SupplyRatio <- function(ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_sur_k) {
+    .Call(`_HydroGallery_evatransActual_SupplyRatio`, ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_sur_k)
 }
 
 #' @rdname evatransActual
@@ -682,13 +682,13 @@ evatransActual_SupplyRatio <- function(atmos_potentialEvatrans_mm, water_mm, cap
 #' is considered as th main factors for the ratio \mjseqn{k^*}.
 #' \mjsdeqn{k^* = k  \left(\frac{W}{C}\right)^\gamma}
 #' where
-#'   - \mjseqn{k} is `param_evatrans_sup_k`
-#'   - \mjseqn{\gamma} is `param_evatrans_sup_gamma`
-#' @param param_evatrans_sup_k <0.1, 1> parameter for [evatransActual_SupplyPow()], ratio of this method
-#' @param param_evatrans_sup_gamma <1, 5> parameter for [evatransActual_SupplyPow()], exponent of this method
+#'   - \mjseqn{k} is `param_EVATRANS_sup_k`
+#'   - \mjseqn{\gamma} is `param_EVATRANS_sup_gamma`
+#' @param param_EVATRANS_sup_k <0.1, 1> parameter for [evatransActual_SupplyPow()], ratio of this method
+#' @param param_EVATRANS_sup_gamma <1, 5> parameter for [evatransActual_SupplyPow()], exponent of this method
 #' @export
-evatransActual_SupplyPow <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_sup_k, param_evatrans_sup_gamma) {
-    .Call(`_HydroGallery_evatransActual_SupplyPow`, atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_sup_k, param_evatrans_sup_gamma)
+evatransActual_SupplyPow <- function(ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_sup_k, param_EVATRANS_sup_gamma) {
+    .Call(`_HydroGallery_evatransActual_SupplyPow`, ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_sup_k, param_EVATRANS_sup_gamma)
 }
 
 #' @rdname evatransActual
@@ -699,11 +699,11 @@ evatransActual_SupplyPow <- function(atmos_potentialEvatrans_mm, water_mm, capac
 #' This method is similar with [evatransActual_SupplyPow()], estimate the water content in the storage.
 #' \mjsdeqn{k^* = 1-\left(1-\frac{W}{C}\right)^{\gamma}}
 #' where
-#'   - \mjseqn{\gamma} is `param_evatrans_vic_gamma`
-#' @param param_evatrans_vic_gamma <0.2, 5> parameter for [evatransActual_VIC()]
+#'   - \mjseqn{\gamma} is `param_EVATRANS_vic_gamma`
+#' @param param_EVATRANS_vic_gamma <0.2, 5> parameter for [evatransActual_VIC()]
 #' @export
-evatransActual_VIC <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_vic_gamma) {
-    .Call(`_HydroGallery_evatransActual_VIC`, atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_vic_gamma)
+evatransActual_VIC <- function(ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_vic_gamma) {
+    .Call(`_HydroGallery_evatransActual_VIC`, ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_vic_gamma)
 }
 
 #' @rdname evatransActual
@@ -716,8 +716,8 @@ evatransActual_VIC <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm
 #' And it need **no parameter**.
 #' \mjsdeqn{E_a = \frac{W\left(2-\frac{W}{C}\right)\tanh \left(\frac{E_p}{C}\right)}{1 + \left(1-\frac{W}{C}\right)\tanh \left(\frac{E_p}{C}\right)}}
 #' @export
-evatransActual_GR4J <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm) {
-    .Call(`_HydroGallery_evatransActual_GR4J`, atmos_potentialEvatrans_mm, water_mm, capacity_mm)
+evatransActual_GR4J <- function(ATMOS_potentialEvatrans_mm, water_mm, capacity_mm) {
+    .Call(`_HydroGallery_evatransActual_GR4J`, ATMOS_potentialEvatrans_mm, water_mm, capacity_mm)
 }
 
 #' @rdname evatransActual
@@ -729,11 +729,11 @@ evatransActual_GR4J <- function(atmos_potentialEvatrans_mm, water_mm, capacity_m
 #' (This is a little different than original, the parameter `P0AGEN` is replaced by \mjseqn{\frac{C}{\gamma}}.)
 #' \mjsdeqn{k^* = 10^{\gamma \frac{W-C}{C}}}
 #' where
-#'   - \mjseqn{\gamma} is `param_evatrans_ubc_gamma`
-#' @param param_evatrans_ubc_gamma <0.5, 2> parameter for [evatransActual_UBC()]
+#'   - \mjseqn{\gamma} is `param_EVATRANS_ubc_gamma`
+#' @param param_EVATRANS_ubc_gamma <0.5, 2> parameter for [evatransActual_UBC()]
 #' @export
-evatransActual_UBC <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_ubc_gamma) {
-    .Call(`_HydroGallery_evatransActual_UBC`, atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_ubc_gamma)
+evatransActual_UBC <- function(ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_ubc_gamma) {
+    .Call(`_HydroGallery_evatransActual_UBC`, ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_ubc_gamma)
 }
 
 #' @rdname evatransActual
@@ -748,12 +748,12 @@ evatransActual_UBC <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm
 #' \mjsdeqn{E_a = \min \left(1, \frac{W}{E_a^*}\right) E_a^*}
 #' where
 #'   - \mjseqn{E_l^*} is the first estimated actuall ET
-#'   - \mjseqn{E_l} is actuall ET from land, `land_evatrans_mm`
-#'   - \mjseqn{\gamma} is `param_evatrans_lia_gamma`
-#' @param param_evatrans_lia_gamma <0.4, 1> parameter for [evatransActual_LiangLand()]
+#'   - \mjseqn{E_l} is actuall ET from land, `LAND_evatrans_mm`
+#'   - \mjseqn{\gamma} is `param_EVATRANS_lia_gamma`
+#' @param param_EVATRANS_lia_gamma <0.4, 1> parameter for [evatransActual_LiangLand()]
 #' @export
-evatransActual_LiangLand <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_lia_gamma) {
-    .Call(`_HydroGallery_evatransActual_LiangLand`, atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_lia_gamma)
+evatransActual_LiangLand <- function(ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_lia_gamma) {
+    .Call(`_HydroGallery_evatransActual_LiangLand`, ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_lia_gamma)
 }
 
 #' @rdname evatransActual
@@ -765,14 +765,14 @@ evatransActual_LiangLand <- function(atmos_potentialEvatrans_mm, water_mm, capac
 #' (This is a little different than original, the parameter `P0AGEN` is replaced by \mjseqn{\frac{C}{\gamma}}.)
 #' \mjsdeqn{k^* = \int_{0}^{A_{s}} {\rm d} A + \int_{A_{s}}^{1} \frac{i_{0}}{i_{m} [1-(1-A)^{1 / B} ]} {\rm d} A }
 #' where
-#'   - \mjseqn{B} is `param_evatrans_lia_B`
+#'   - \mjseqn{B} is `param_EVATRANS_lia_B`
 #'   - \mjseqn{A} is fraction of area
 #' 
 #' ![](liang_evatransSoil.png)
-#' @param param_evatrans_lia_B <0.01, 3> parameter for [evatransActual_LiangSoil()]
+#' @param param_EVATRANS_lia_B <0.01, 3> parameter for [evatransActual_LiangSoil()]
 #' @export
-evatransActual_LiangSoil <- function(atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_lia_B) {
-    .Call(`_HydroGallery_evatransActual_LiangSoil`, atmos_potentialEvatrans_mm, water_mm, capacity_mm, param_evatrans_lia_B)
+evatransActual_LiangSoil <- function(ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_lia_B) {
+    .Call(`_HydroGallery_evatransActual_LiangSoil`, ATMOS_potentialEvatrans_mm, water_mm, capacity_mm, param_EVATRANS_lia_B)
 }
 
 #' @rdname evatransActual
@@ -809,9 +809,9 @@ evatransActual_WaterGAP3 <- function(ATMOS_potentialEvatrans_mm, water_mm, capac
 #' 
 #' where
 #' - \mjseqn{F_{iflt}} is `infilt_mm`
-#' - \mjseqn{W_{land}} is `land_water_mm`
-#' - \mjseqn{W_{soil}} is `soil_water_mm`
-#' - \mjseqn{C_{soil}} is `soil_capacity_mm`
+#' - \mjseqn{W_{land}} is `LAND_water_mm`
+#' - \mjseqn{W_{soil}} is `SOIL_water_mm`
+#' - \mjseqn{C_{soil}} is `SOIL_capacity_mm`
 #' - \mjseqn{k^*} is estimated ratio.
 #' 
 #' The output density distribution from 9 methods:
@@ -826,12 +826,12 @@ evatransActual_WaterGAP3 <- function(ATMOS_potentialEvatrans_mm, water_mm, capac
 #' 
 #' \mjsdeqn{F_{iflt}=\frac{C_{soil}\left(1-\left(\frac{W_{soil}}{C_{soil}}\right)^{2}\right) \tanh \left(\frac{W_{land}}{C_{soil}}\right)}{1+\frac{W_{soil}}{C_{soil}} \tanh \left(\frac{W_{land}}{C_{soil}}\right)}}
 #' @export
-infilt_GR4J <- function(land_water_mm, soil_water_mm, soil_capacity_mm) {
-    .Call(`_HydroGallery_infilt_GR4J`, land_water_mm, soil_water_mm, soil_capacity_mm)
+infilt_GR4J <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm) {
+    .Call(`_HydroGallery_infilt_GR4J`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm)
 }
 
 #' @rdname infilt
-#' @param param_infilt_ubc_P0AGEN <0.1, 4> coefficient parameter for [infilt_UBC()]
+#' @param param_INFILT_ubc_P0AGEN <0.1, 4> coefficient parameter for [infilt_UBC()]
 #' @details
 #' # **_UBC** \insertCite{UBC_Quick_1977}{HydroGallery}: 
 #'
@@ -839,11 +839,11 @@ infilt_GR4J <- function(land_water_mm, soil_water_mm, soil_capacity_mm) {
 #' estimate the ratio \mjseqn{k^*} as:
 #' \mjsdeqn{k^* = p_{imper} 10^{\frac{W_{soil}-C_{soil}}{p_{AGEN}}}}
 #' where
-#'   - \mjseqn{p_{imper}} is `land_impermeableFrac_1`
-#'   - \mjseqn{p_{AGEN}} is `param_infilt_ubc_P0AGEN`
+#'   - \mjseqn{p_{imper}} is `LAND_impermeableFrac_1`
+#'   - \mjseqn{p_{AGEN}} is `param_INFILT_ubc_P0AGEN`
 #' @export
-infilt_UBC <- function(land_water_mm, land_impermeableFrac_1, soil_water_mm, soil_capacity_mm, param_infilt_ubc_P0AGEN) {
-    .Call(`_HydroGallery_infilt_UBC`, land_water_mm, land_impermeableFrac_1, soil_water_mm, soil_capacity_mm, param_infilt_ubc_P0AGEN)
+infilt_UBC <- function(LAND_water_mm, LAND_impermeableFrac_1, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_ubc_P0AGEN) {
+    .Call(`_HydroGallery_infilt_UBC`, LAND_water_mm, LAND_impermeableFrac_1, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_ubc_P0AGEN)
 }
 
 #' @rdname infilt
@@ -854,12 +854,12 @@ infilt_UBC <- function(land_water_mm, land_impermeableFrac_1, soil_water_mm, soi
 #' is a very simple method, which estimate only the pounded water:
 #' \mjsdeqn{k^* = k}
 #' where
-#'   - \mjseqn{k} is `param_infilt_sur_k`
-#' @param param_infilt_sur_k <0.01, 1> coefficient parameter for [infilt_SupplyRatio()]
+#'   - \mjseqn{k} is `param_INFILT_sur_k`
+#' @param param_INFILT_sur_k <0.01, 1> coefficient parameter for [infilt_SupplyRatio()]
 #' @return infilt_mm (mm/m2) 
 #' @export
-infilt_SupplyRatio <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_sur_k) {
-    .Call(`_HydroGallery_infilt_SupplyRatio`, land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_sur_k)
+infilt_SupplyRatio <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_sur_k) {
+    .Call(`_HydroGallery_infilt_SupplyRatio`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_sur_k)
 }
 
 #' @rdname infilt
@@ -869,11 +869,11 @@ infilt_SupplyRatio <- function(land_water_mm, soil_water_mm, soil_capacity_mm, p
 #' 
 #' \mjsdeqn{F_{iflt} = k (C_{soil} - W_{soil})}
 #' where
-#'   - \mjseqn{k} is `param_infilt_acr_k`
-#' @param param_infilt_acr_k <0.01, 1> coefficient parameter for [infilt_AcceptRatio()]
+#'   - \mjseqn{k} is `param_INFILT_acr_k`
+#' @param param_INFILT_acr_k <0.01, 1> coefficient parameter for [infilt_AcceptRatio()]
 #' @export
-infilt_AcceptRatio <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_acr_k) {
-    .Call(`_HydroGallery_infilt_AcceptRatio`, land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_acr_k)
+infilt_AcceptRatio <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_acr_k) {
+    .Call(`_HydroGallery_infilt_AcceptRatio`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_acr_k)
 }
 
 #' @rdname infilt
@@ -884,13 +884,13 @@ infilt_AcceptRatio <- function(land_water_mm, soil_water_mm, soil_capacity_mm, p
 #' is a very simple method, which estimate only the pounded water:
 #' \mjsdeqn{F_{iflt} = kW_{land}^{\gamma}}
 #' where
-#'   - \mjseqn{k} is `param_infilt_sup_k`
-#'   - \mjseqn{\gamma} is `param_infilt_sup_gamma`
-#' @param param_infilt_sup_k <0.01, 1> coefficient parameter for [infilt_SupplyPow()]
-#' @param param_infilt_sup_gamma <0, 1> parameters for [infilt_SupplyPow()]
+#'   - \mjseqn{k} is `param_INFILT_sup_k`
+#'   - \mjseqn{\gamma} is `param_INFILT_sup_gamma`
+#' @param param_INFILT_sup_k <0.01, 1> coefficient parameter for [infilt_SupplyPow()]
+#' @param param_INFILT_sup_gamma <0, 1> parameters for [infilt_SupplyPow()]
 #' @export
-infilt_SupplyPow <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_sup_k, param_infilt_sup_gamma) {
-    .Call(`_HydroGallery_infilt_SupplyPow`, land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_sup_k, param_infilt_sup_gamma)
+infilt_SupplyPow <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_sup_k, param_INFILT_sup_gamma) {
+    .Call(`_HydroGallery_infilt_SupplyPow`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_sup_k, param_INFILT_sup_gamma)
 }
 
 #' @rdname infilt
@@ -900,13 +900,13 @@ infilt_SupplyPow <- function(land_water_mm, soil_water_mm, soil_capacity_mm, par
 #' 
 #' \mjsdeqn{F_{iflt} = k \left(\frac{C_{soil} - W_{soil}}{C_{soil}} \right)^{\gamma}}
 #' where
-#'   - \mjseqn{k} is `param_infilt_acp_k`
-#'   - \mjseqn{\gamma} is `param_infilt_acp_gamma`
-#' @param param_infilt_acp_k <0.01, 1> coefficient parameter for [infilt_AcceptPow()]
-#' @param param_infilt_acp_gamma <0.001, 5> parameters for [infilt_AcceptPow()]
+#'   - \mjseqn{k} is `param_INFILT_acp_k`
+#'   - \mjseqn{\gamma} is `param_INFILT_acp_gamma`
+#' @param param_INFILT_acp_k <0.01, 1> coefficient parameter for [infilt_AcceptPow()]
+#' @param param_INFILT_acp_gamma <0.001, 5> parameters for [infilt_AcceptPow()]
 #' @export
-infilt_AcceptPow <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_acp_k, param_infilt_acp_gamma) {
-    .Call(`_HydroGallery_infilt_AcceptPow`, land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_acp_k, param_infilt_acp_gamma)
+infilt_AcceptPow <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_acp_k, param_INFILT_acp_gamma) {
+    .Call(`_HydroGallery_infilt_AcceptPow`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_acp_k, param_INFILT_acp_gamma)
 }
 
 #' @rdname infilt
@@ -917,11 +917,11 @@ infilt_AcceptPow <- function(land_water_mm, soil_water_mm, soil_capacity_mm, par
 #' estimate the ratio \mjseqn{k^*} as:
 #' \mjsdeqn{k^* = 1-\left(\frac{W_{soil}}{C_{soil}}\right)^{\beta}}
 #' where
-#'   - \mjseqn{\beta} is `param_infilt_hbv_beta`
-#' @param param_infilt_hbv_beta <0.001, 5> parameters for [infilt_HBV()]
+#'   - \mjseqn{\beta} is `param_INFILT_hbv_beta`
+#' @param param_INFILT_hbv_beta <0.001, 5> parameters for [infilt_HBV()]
 #' @export
-infilt_HBV <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_hbv_beta) {
-    .Call(`_HydroGallery_infilt_HBV`, land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_hbv_beta)
+infilt_HBV <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_hbv_beta) {
+    .Call(`_HydroGallery_infilt_HBV`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_hbv_beta)
 }
 
 #' @rdname infilt
@@ -933,14 +933,14 @@ infilt_HBV <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_inf
 #' \mjsdeqn{AU = MM - \left( \frac{(1 - W_{soil})(B+1)}{MM} \right)^{1 / B - 1}  }
 #' \mjsdeqn{MM = C_{soil}(B+1)  }
 #' where
-#'   - \mjseqn{B} is `param_infilt_xaj_B`
+#'   - \mjseqn{B} is `param_INFILT_xaj_B`
 #' 
 #' ![](xaj_infilt.png)
 #' 
-#' @param param_infilt_xaj_B <0.01, 3> parameters for [infilt_XAJ()]
+#' @param param_INFILT_xaj_B <0.01, 3> parameters for [infilt_XAJ()]
 #' @export
-infilt_XAJ <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_xaj_B) {
-    .Call(`_HydroGallery_infilt_XAJ`, land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_xaj_B)
+infilt_XAJ <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_xaj_B) {
+    .Call(`_HydroGallery_infilt_XAJ`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_xaj_B)
 }
 
 #' @rdname infilt
@@ -951,11 +951,11 @@ infilt_XAJ <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_inf
 #' \mjsdeqn{F_{infilt} = \int_{i_{0}}^{i_{0}+P} A(i) {\rm d} i}
 #' \mjsdeqn{i = C_{soil}(B+1) \left[ 1 - (1-A)^{1/B} \right]}
 #' where
-#'   - \mjseqn{B} is `param_infilt_vic_B`
-#' @param param_infilt_vic_B <0.01, 3> parameters for [infilt_VIC()]
+#'   - \mjseqn{B} is `param_INFILT_vic_B`
+#' @param param_INFILT_vic_B <0.01, 3> parameters for [infilt_VIC()]
 #' @export
-infilt_VIC <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_vic_B) {
-    .Call(`_HydroGallery_infilt_VIC`, land_water_mm, soil_water_mm, soil_capacity_mm, param_infilt_vic_B)
+infilt_VIC <- function(LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_vic_B) {
+    .Call(`_HydroGallery_infilt_VIC`, LAND_water_mm, SOIL_water_mm, SOIL_capacity_mm, param_INFILT_vic_B)
 }
 
 #' **interflow**
@@ -982,9 +982,9 @@ infilt_VIC <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_inf
 #' 
 #' 
 #' where
-#' - \mjseqn{F_{itfl}} is `soil_inteflow_mm`
-#' - \mjseqn{W_{soil}} is `water_soil_mm`
-#' - \mjseqn{C_{soil}} is `capacity_soil_mm`
+#' - \mjseqn{F_{itfl}} is `SOIL_inteflow_mm`
+#' - \mjseqn{W_{soil}} is `water_SOIL_mm`
+#' - \mjseqn{C_{soil}} is `capacity_SOIL_mm`
 #' - \mjseqn{k^*} is estimated ratio
 #' 
 #' The output density distribution from 8 methods:
@@ -998,13 +998,13 @@ infilt_VIC <- function(land_water_mm, soil_water_mm, soil_capacity_mm, param_inf
 #' 
 #' \mjsdeqn{k^* = 1 - \left[ 1 + \left(k \frac{W_{soil}}{C_{soil}} \right)^\gamma \right]^{-1/\gamma}}
 #' where
-#'   - \mjseqn{k} is `param_inteflow_grf_k`
+#'   - \mjseqn{k} is `param_INTEFLOW_grf_k`
 #'   - \mjseqn{\gamma} is `param_baseflow_grf_gamma`
-#' @param param_inteflow_grf_k <0.01, 1> coefficient parameter for [inteflow_GR4Jfix()]
-#' @param param_inteflow_grf_gamma <2, 7> exponential parameter for [baseflow_GR4Jfix()]
+#' @param param_INTEFLOW_grf_k <0.01, 1> coefficient parameter for [inteflow_GR4Jfix()]
+#' @param param_INTEFLOW_grf_gamma <2, 7> exponential parameter for [baseflow_GR4Jfix()]
 #' @export
-inteflow_GR4Jfix <- function(soil_water_mm, soil_capacity_mm, param_inteflow_grf_k, param_inteflow_grf_gamma) {
-    .Call(`_HydroGallery_inteflow_GR4Jfix`, soil_water_mm, soil_capacity_mm, param_inteflow_grf_k, param_inteflow_grf_gamma)
+inteflow_GR4Jfix <- function(SOIL_water_mm, SOIL_capacity_mm, param_INTEFLOW_grf_k, param_INTEFLOW_grf_gamma) {
+    .Call(`_HydroGallery_inteflow_GR4Jfix`, SOIL_water_mm, SOIL_capacity_mm, param_INTEFLOW_grf_k, param_INTEFLOW_grf_gamma)
 }
 
 #' @rdname inteflow
@@ -1014,12 +1014,12 @@ inteflow_GR4Jfix <- function(soil_water_mm, soil_capacity_mm, param_inteflow_grf
 #' 
 #' \mjsdeqn{F_{itfl} = M_{itfl} \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 #' where
-#'   - \mjseqn{M_{itfl}} is `soil_potentialInteflow_mm`
-#'   - \mjseqn{\gamma} is `param_inteflow_map_gamma`
-#' @param param_inteflow_map_gamma <0.1, 5> exponential parameter for [inteflow_MaxPow()]
+#'   - \mjseqn{M_{itfl}} is `SOIL_potentialInteflow_mm`
+#'   - \mjseqn{\gamma} is `param_INTEFLOW_map_gamma`
+#' @param param_INTEFLOW_map_gamma <0.1, 5> exponential parameter for [inteflow_MaxPow()]
 #' @export
-inteflow_MaxPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialInteflow_mm, param_inteflow_map_gamma) {
-    .Call(`_HydroGallery_inteflow_MaxPow`, soil_water_mm, soil_capacity_mm, soil_potentialInteflow_mm, param_inteflow_map_gamma)
+inteflow_MaxPow <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialInteflow_mm, param_INTEFLOW_map_gamma) {
+    .Call(`_HydroGallery_inteflow_MaxPow`, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialInteflow_mm, param_INTEFLOW_map_gamma)
 }
 
 #' @rdname inteflow
@@ -1031,13 +1031,13 @@ inteflow_MaxPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialIntef
 #' \mjsdeqn{F_{itfl} = 0, \quad \frac{W_{soil}}{C_{soil}} < \phi_b}
 #' \mjsdeqn{F_{itfl} = M_{itfl} \left(\frac{\frac{W_{soil}}{C_{soil}} - \phi_b}{1-\phi_b} \right)^\gamma, \quad \frac{W_{soil}}{C_{soil}} \geq \phi_b}
 #' where
-#'   - \mjseqn{\phi_b} is `param_inteflow_thp_thresh`
-#'   - \mjseqn{\gamma} is `param_inteflow_thp_gamma`
-#' @param param_inteflow_thp_thresh <0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]
-#' @param param_inteflow_thp_gamma <0.1, 5> exponential parameter for [inteflow_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_INTEFLOW_thp_thresh`
+#'   - \mjseqn{\gamma} is `param_INTEFLOW_thp_gamma`
+#' @param param_INTEFLOW_thp_thresh <0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]
+#' @param param_INTEFLOW_thp_gamma <0.1, 5> exponential parameter for [inteflow_ThreshPow()]
 #' @export
-inteflow_ThreshPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialInteflow_mm, param_inteflow_thp_thresh, param_inteflow_thp_gamma) {
-    .Call(`_HydroGallery_inteflow_ThreshPow`, soil_water_mm, soil_capacity_mm, soil_potentialInteflow_mm, param_inteflow_thp_thresh, param_inteflow_thp_gamma)
+inteflow_ThreshPow <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialInteflow_mm, param_INTEFLOW_thp_thresh, param_INTEFLOW_thp_gamma) {
+    .Call(`_HydroGallery_inteflow_ThreshPow`, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialInteflow_mm, param_INTEFLOW_thp_thresh, param_INTEFLOW_thp_gamma)
 }
 
 #' @rdname inteflow
@@ -1051,13 +1051,13 @@ inteflow_ThreshPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialIn
 #' \mjsdeqn{F_{itfl} = k M_{itfl} \frac{W_{soil}}{C_{soil}} + (1-k) M_{itfl} \left(\frac{W_{soil} - W_s}{C_{soil} - W_s} \right)^2, \quad \frac{W_{soil}}{C_{soil}} \geq \phi_b}
 #' \mjsdeqn{W_s = k C_{soil}}
 #' where
-#'   - \mjseqn{\phi_b} is `param_inteflow_arn_thresh`
-#'   - \mjseqn{k} is `param_inteflow_arn_k`
-#' @param param_inteflow_arn_thresh <0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]
-#' @param param_inteflow_arn_k <0.1, 1> exponential parameter for [inteflow_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_INTEFLOW_arn_thresh`
+#'   - \mjseqn{k} is `param_INTEFLOW_arn_k`
+#' @param param_INTEFLOW_arn_thresh <0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]
+#' @param param_INTEFLOW_arn_k <0.1, 1> exponential parameter for [inteflow_ThreshPow()]
 #' @export
-inteflow_Arno <- function(soil_water_mm, soil_capacity_mm, soil_potentialInteflow_mm, param_inteflow_arn_thresh, param_inteflow_arn_k) {
-    .Call(`_HydroGallery_inteflow_Arno`, soil_water_mm, soil_capacity_mm, soil_potentialInteflow_mm, param_inteflow_arn_thresh, param_inteflow_arn_k)
+inteflow_Arno <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialInteflow_mm, param_INTEFLOW_arn_thresh, param_INTEFLOW_arn_k) {
+    .Call(`_HydroGallery_inteflow_Arno`, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialInteflow_mm, param_INTEFLOW_arn_thresh, param_INTEFLOW_arn_k)
 }
 
 #' @rdname inteflow
@@ -1068,11 +1068,11 @@ inteflow_Arno <- function(soil_water_mm, soil_capacity_mm, soil_potentialInteflo
 #' \mjsdeqn{k =  \frac{W_{soil}}{C_{soil} - W_{soil}} \quad {\rm and} \quad k \leq 1}
 #' \mjsdeqn{F_{itfl} = k M_{itfl}}
 #' where
-#'   - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
-#'   - \mjseqn{\gamma} is `param_inteflow_sup_gamma`
+#'   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
+#'   - \mjseqn{\gamma} is `param_INTEFLOW_sup_gamma`
 #' @export
-inteflow_BevenWood <- function(soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, soil_potentialInteflow_mm) {
-    .Call(`_HydroGallery_inteflow_BevenWood`, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, soil_potentialInteflow_mm)
+inteflow_BevenWood <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, SOIL_potentialInteflow_mm) {
+    .Call(`_HydroGallery_inteflow_BevenWood`, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, SOIL_potentialInteflow_mm)
 }
 
 #' @rdname inteflow
@@ -1082,13 +1082,13 @@ inteflow_BevenWood <- function(soil_water_mm, soil_capacity_mm, soil_fieldCapaci
 #' 
 #' \mjsdeqn{F_{base} = k(W_{grnd})^\gamma}
 #' where
-#'   - \mjseqn{k} is `param_inteflow_sup_k`
-#'   - \mjseqn{\gamma} is `param_inteflow_sup_gamma`
-#' @param param_inteflow_sp0_k <0.01, 1> coefficient parameter for [inteflow_SupplyPow0()]
-#' @param param_inteflow_sp0_gamma <0, 1> exponential parameter for [inteflow_SupplyPow0()]
+#'   - \mjseqn{k} is `param_INTEFLOW_sup_k`
+#'   - \mjseqn{\gamma} is `param_INTEFLOW_sup_gamma`
+#' @param param_INTEFLOW_sp0_k <0.01, 1> coefficient parameter for [inteflow_SupplyPow0()]
+#' @param param_INTEFLOW_sp0_gamma <0, 1> exponential parameter for [inteflow_SupplyPow0()]
 #' @export
-inteflow_SupplyPow0 <- function(soil_water_mm, param_inteflow_sp0_k, param_inteflow_sp0_gamma) {
-    .Call(`_HydroGallery_inteflow_SupplyPow0`, soil_water_mm, param_inteflow_sp0_k, param_inteflow_sp0_gamma)
+inteflow_SupplyPow0 <- function(SOIL_water_mm, param_INTEFLOW_sp0_k, param_INTEFLOW_sp0_gamma) {
+    .Call(`_HydroGallery_inteflow_SupplyPow0`, SOIL_water_mm, param_INTEFLOW_sp0_k, param_INTEFLOW_sp0_gamma)
 }
 
 #' @rdname inteflow
@@ -1098,13 +1098,13 @@ inteflow_SupplyPow0 <- function(soil_water_mm, param_inteflow_sp0_k, param_intef
 #' 
 #' \mjsdeqn{k^* = k \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 #' where
-#'   - \mjseqn{k} is `param_inteflow_sup_k`
-#'   - \mjseqn{\gamma} is `param_inteflow_sup_gamma`
-#' @param param_inteflow_sup_k <0.01, 1> coefficient parameter for [inteflow_SupplyPow()]
-#' @param param_inteflow_sup_gamma <0, 7> parameter for [inteflow_SupplyPow()]
+#'   - \mjseqn{k} is `param_INTEFLOW_sup_k`
+#'   - \mjseqn{\gamma} is `param_INTEFLOW_sup_gamma`
+#' @param param_INTEFLOW_sup_k <0.01, 1> coefficient parameter for [inteflow_SupplyPow()]
+#' @param param_INTEFLOW_sup_gamma <0, 7> parameter for [inteflow_SupplyPow()]
 #' @export
-inteflow_SupplyPow <- function(soil_water_mm, soil_capacity_mm, param_inteflow_sup_k, param_inteflow_sup_gamma) {
-    .Call(`_HydroGallery_inteflow_SupplyPow`, soil_water_mm, soil_capacity_mm, param_inteflow_sup_k, param_inteflow_sup_gamma)
+inteflow_SupplyPow <- function(SOIL_water_mm, SOIL_capacity_mm, param_INTEFLOW_sup_k, param_INTEFLOW_sup_gamma) {
+    .Call(`_HydroGallery_inteflow_SupplyPow`, SOIL_water_mm, SOIL_capacity_mm, param_INTEFLOW_sup_k, param_INTEFLOW_sup_gamma)
 }
 
 #' @rdname inteflow
@@ -1114,11 +1114,11 @@ inteflow_SupplyPow <- function(soil_water_mm, soil_capacity_mm, param_inteflow_s
 #' 
 #' \mjsdeqn{k^* = k}
 #' where
-#'   - \mjseqn{k} is `param_inteflow_sur_k`
-#' @param param_inteflow_sur_k <0.01, 1> coefficient parameter for [inteflow_SupplyRatio()]
+#'   - \mjseqn{k} is `param_INTEFLOW_sur_k`
+#' @param param_INTEFLOW_sur_k <0.01, 1> coefficient parameter for [inteflow_SupplyRatio()]
 #' @export
-inteflow_SupplyRatio <- function(soil_water_mm, param_inteflow_sur_k) {
-    .Call(`_HydroGallery_inteflow_SupplyRatio`, soil_water_mm, param_inteflow_sur_k)
+inteflow_SupplyRatio <- function(SOIL_water_mm, param_INTEFLOW_sur_k) {
+    .Call(`_HydroGallery_inteflow_SupplyRatio`, SOIL_water_mm, param_INTEFLOW_sur_k)
 }
 
 #' **interception** water from land go into the soil.
@@ -1143,26 +1143,26 @@ inteflow_SupplyRatio <- function(soil_water_mm, param_inteflow_sur_k) {
 #' \mjsdeqn{F_{itcp} = C_{icpt} - W_{icpt}}
 #' where
 #'   - \mjseqn{F_{icp}} is `intercept_water_mm`
-#'   - \mjseqn{C_{icpt}} is `land_intercepCapaciy_mm`
-#'   - \mjseqn{W_{icpt}} is `land_intercepWater_mm`
+#'   - \mjseqn{C_{icpt}} is `LAND_intercepCapaciy_mm`
+#'   - \mjseqn{W_{icpt}} is `LAND_intercepWater_mm`
 #' @return intercept_water_mm (mm/m2) intercepted water in this timestep
 #' @export
-intercep_Full <- function(atmos_precipitation_mm, land_interceptWater_mm, land_interceptCapacity_mm) {
-    .Call(`_HydroGallery_intercep_Full`, atmos_precipitation_mm, land_interceptWater_mm, land_interceptCapacity_mm)
+intercep_Full <- function(ATMOS_precipitation_mm, LAND_interceptWater_mm, LAND_interceptCapacity_mm) {
+    .Call(`_HydroGallery_intercep_Full`, ATMOS_precipitation_mm, LAND_interceptWater_mm, LAND_interceptCapacity_mm)
 }
 
 #' **lake outflow**
-#' @name lake
+#' @name lakeout
 #' @description
 #'
 #' The concept of lake estimates the waterbody outflow for waternet concentation
 #' @inheritParams all_vari
-#' @param param_Lake_acp_storeFactor <uknow> parameter for [lake_AcceptPow()],
-#' @param param_Lake_acp_gamma <uknow> parameter for [lake_AcceptPow()],
+#' @param param_Lakeout_acp_storeFactor <uknow> parameter for [lake_AcceptPow()],
+#' @param param_Lakeout_acp_gamma <uknow> parameter for [lake_AcceptPow()],
 #' @return outflow (m3)
 #' @export
-lake_AcceptPow <- function(Lake_water_m3, Lake_capacity_m3, param_Lake_acp_storeFactor, param_Lake_acp_gamma) {
-    .Call(`_HydroGallery_lake_AcceptPow`, Lake_water_m3, Lake_capacity_m3, param_Lake_acp_storeFactor, param_Lake_acp_gamma)
+lakeout_AcceptPow <- function(Lake_water_m3, Lake_capacity_m3, param_Lakeout_acp_storeFactor, param_Lakeout_acp_gamma) {
+    .Call(`_HydroGallery_lakeout_AcceptPow`, Lake_water_m3, Lake_capacity_m3, param_Lakeout_acp_storeFactor, param_Lakeout_acp_gamma)
 }
 
 #' **lateral flux**
@@ -1189,8 +1189,8 @@ lake_AcceptPow <- function(Lake_water_m3, Lake_capacity_m3, param_Lake_acp_store
 #' 
 #' 
 #' where
-#' - \mjseqn{W_{grnd}} is `ground_water_mm`
-#' - \mjseqn{C_{grnd}} is `ground_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
+#' - \mjseqn{W_{grnd}} is `GROUND_water_mm`
+#' - \mjseqn{C_{grnd}} is `GROUND_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
 #' 
 #' The output density distribution from 6 methods:
 #'
@@ -1206,13 +1206,13 @@ lake_AcceptPow <- function(Lake_water_m3, Lake_capacity_m3, param_Lake_acp_store
 #' 
 #' \mjsdeqn{F_{ltrl} = k \left( \frac{W_{grnd}}{C_{grnd}} \right)^\gamma  W_{grnd}}
 #' where
-#'   - \mjseqn{k} is `param_lateral_sup_k`
-#'   - \mjseqn{\gamma} is `param_lateral_sup_gamma`
-#' @param param_lateral_sup_k <-1, 1> coefficient parameter for [lateral_SupplyPow()]
-#' @param param_lateral_sup_gamma <0.01, 5> parameters for [lateral_SupplyPow()]
+#'   - \mjseqn{k} is `param_LATERAL_sup_k`
+#'   - \mjseqn{\gamma} is `param_LATERAL_sup_gamma`
+#' @param param_LATERAL_sup_k <-1, 1> coefficient parameter for [lateral_SupplyPow()]
+#' @param param_LATERAL_sup_gamma <0.01, 5> parameters for [lateral_SupplyPow()]
 #' @export
-lateral_SupplyPow <- function(ground_water_mm, ground_capacity_mm, param_lateral_sup_k, param_lateral_sup_gamma) {
-    .Call(`_HydroGallery_lateral_SupplyPow`, ground_water_mm, ground_capacity_mm, param_lateral_sup_k, param_lateral_sup_gamma)
+lateral_SupplyPow <- function(GROUND_water_mm, GROUND_capacity_mm, param_LATERAL_sup_k, param_LATERAL_sup_gamma) {
+    .Call(`_HydroGallery_lateral_SupplyPow`, GROUND_water_mm, GROUND_capacity_mm, param_LATERAL_sup_k, param_LATERAL_sup_gamma)
 }
 
 #' @rdname lateral
@@ -1222,11 +1222,11 @@ lateral_SupplyPow <- function(ground_water_mm, ground_capacity_mm, param_lateral
 #' 
 #' \mjsdeqn{F_{ltrl} = k * W_{grnd}}
 #' where
-#'   - \mjseqn{k} is `param_lateral_sur_k`
-#' @param param_lateral_sur_k <-2, 1> coefficient parameter for [lateral_SupplyRatio()]
+#'   - \mjseqn{k} is `param_LATERAL_sur_k`
+#' @param param_LATERAL_sur_k <-2, 1> coefficient parameter for [lateral_SupplyRatio()]
 #' @export
-lateral_SupplyRatio <- function(ground_water_mm, param_lateral_sur_k) {
-    .Call(`_HydroGallery_lateral_SupplyRatio`, ground_water_mm, param_lateral_sur_k)
+lateral_SupplyRatio <- function(GROUND_water_mm, param_LATERAL_sur_k) {
+    .Call(`_HydroGallery_lateral_SupplyRatio`, GROUND_water_mm, param_LATERAL_sur_k)
 }
 
 #' @rdname lateral
@@ -1236,10 +1236,10 @@ lateral_SupplyRatio <- function(ground_water_mm, param_lateral_sur_k) {
 #' 
 #' \mjsdeqn{F_{ltrl} = M_{ltrl} \left( \frac{W_{grnd}}{C_{grnd}} \right)^{7/2}  }
 #' where
-#'   - \mjseqn{M_{ltrl}} is `ground_potentialLateral_mm`
+#'   - \mjseqn{M_{ltrl}} is `GROUND_potentialLateral_mm`
 #' @export
-lateral_GR4J <- function(ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm) {
-    .Call(`_HydroGallery_lateral_GR4J`, ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm)
+lateral_GR4J <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm) {
+    .Call(`_HydroGallery_lateral_GR4J`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm)
 }
 
 #' @rdname lateral
@@ -1250,11 +1250,11 @@ lateral_GR4J <- function(ground_water_mm, ground_capacity_mm, ground_potentialLa
 #' based on `_GR4J` use a new parameter to replace the numer 4: 
 #' \mjsdeqn{F_{ltrl} = M_{ltrl} \left( \frac{W_{grnd}}{C_{grnd}} \right)^\gamma  }
 #' where
-#'   - \mjseqn{\gamma} is `param_lateral_grf_gamma`
-#' @param param_lateral_grf_gamma <0.01, 5> parameter for [lateral_GR4Jfix()]
+#'   - \mjseqn{\gamma} is `param_LATERAL_grf_gamma`
+#' @param param_LATERAL_grf_gamma <0.01, 5> parameter for [lateral_GR4Jfix()]
 #' @export
-lateral_GR4Jfix <- function(ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm, param_lateral_grf_gamma) {
-    .Call(`_HydroGallery_lateral_GR4Jfix`, ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm, param_lateral_grf_gamma)
+lateral_GR4Jfix <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm, param_LATERAL_grf_gamma) {
+    .Call(`_HydroGallery_lateral_GR4Jfix`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm, param_LATERAL_grf_gamma)
 }
 
 #' @rdname lateral
@@ -1266,13 +1266,13 @@ lateral_GR4Jfix <- function(ground_water_mm, ground_capacity_mm, ground_potentia
 #' \mjsdeqn{F_{ltrl} = 0, \quad \frac{W_{grnd}}{C_{grnd}} < \phi_b}
 #' \mjsdeqn{F_{ltrl} = M_{ltrl} \left(\frac{\frac{W_{grnd}}{C_{grnd}} - \phi_b}{1-\phi_b} \right)^\gamma, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 #' where
-#'   - \mjseqn{\phi_b} is `param_lateral_thp_thresh`
-#'   - \mjseqn{\gamma} is `param_lateral_thp_gamma`
-#' @param param_lateral_thp_thresh <0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]
-#' @param param_lateral_thp_gamma <0.1, 5> exponential parameter for [lateral_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_LATERAL_thp_thresh`
+#'   - \mjseqn{\gamma} is `param_LATERAL_thp_gamma`
+#' @param param_LATERAL_thp_thresh <0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]
+#' @param param_LATERAL_thp_gamma <0.1, 5> exponential parameter for [lateral_ThreshPow()]
 #' @export
-lateral_ThreshPow <- function(ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm, param_lateral_thp_thresh, param_lateral_thp_gamma) {
-    .Call(`_HydroGallery_lateral_ThreshPow`, ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm, param_lateral_thp_thresh, param_lateral_thp_gamma)
+lateral_ThreshPow <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm, param_LATERAL_thp_thresh, param_LATERAL_thp_gamma) {
+    .Call(`_HydroGallery_lateral_ThreshPow`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm, param_LATERAL_thp_thresh, param_LATERAL_thp_gamma)
 }
 
 #' @rdname lateral
@@ -1285,13 +1285,13 @@ lateral_ThreshPow <- function(ground_water_mm, ground_capacity_mm, ground_potent
 #' \mjsdeqn{F_{ltrl} = k M_{ltrl} \frac{W_{grnd}}{C_{grnd}} + (1-k) M_{ltrl} \left(\frac{W_{grnd} - W_s}{C_{grnd} - W_s} \right)^2, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 #' \mjsdeqn{W_s = k C_{grnd}}
 #' where
-#'   - \mjseqn{\phi_b} is `param_lateral_arn_thresh`
-#'   - \mjseqn{k} is `param_lateral_arn_k`
-#' @param param_lateral_arn_thresh <0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]
-#' @param param_lateral_arn_k <0.1, 1> exponential parameter for [lateral_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_LATERAL_arn_thresh`
+#'   - \mjseqn{k} is `param_LATERAL_arn_k`
+#' @param param_LATERAL_arn_thresh <0.1, 0.9> coefficient parameter for [lateral_ThreshPow()]
+#' @param param_LATERAL_arn_k <0.1, 1> exponential parameter for [lateral_ThreshPow()]
 #' @export
-lateral_Arno <- function(ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm, param_lateral_arn_thresh, param_lateral_arn_k) {
-    .Call(`_HydroGallery_lateral_Arno`, ground_water_mm, ground_capacity_mm, ground_potentialLateral_mm, param_lateral_arn_thresh, param_lateral_arn_k)
+lateral_Arno <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm, param_LATERAL_arn_thresh, param_LATERAL_arn_k) {
+    .Call(`_HydroGallery_lateral_Arno`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm, param_LATERAL_arn_thresh, param_LATERAL_arn_k)
 }
 
 #' **percolation**
@@ -1318,9 +1318,9 @@ lateral_Arno <- function(ground_water_mm, ground_capacity_mm, ground_potentialLa
 #' 
 #' 
 #' where
-#' - \mjseqn{F_{prcl}} is `soil_percola_mm`
-#' - \mjseqn{W_{soil}} is `water_soil_mm`
-#' - \mjseqn{C_{soil}} is `capacity_soil_mm`
+#' - \mjseqn{F_{prcl}} is `SOIL_percola_mm`
+#' - \mjseqn{W_{soil}} is `water_SOIL_mm`
+#' - \mjseqn{C_{soil}} is `capacity_SOIL_mm`
 #' - \mjseqn{W_{grnd}} is `ground_water_mm`
 #' - \mjseqn{C_{grnd}} is `capacity_water_mm`
 #' - \mjseqn{k^*} is estimated ratio
@@ -1338,8 +1338,8 @@ lateral_Arno <- function(ground_water_mm, ground_capacity_mm, ground_potentialLa
 #' where
 #'   - \mjseqn{k^*} is estimated ratio
 #' @export
-percola_GR4J <- function(soil_water_mm, soil_capacity_mm) {
-    .Call(`_HydroGallery_percola_GR4J`, soil_water_mm, soil_capacity_mm)
+percola_GR4J <- function(SOIL_water_mm, SOIL_capacity_mm) {
+    .Call(`_HydroGallery_percola_GR4J`, SOIL_water_mm, SOIL_capacity_mm)
 }
 
 #' @rdname percola
@@ -1349,11 +1349,11 @@ percola_GR4J <- function(soil_water_mm, soil_capacity_mm) {
 #' 
 #' \mjsdeqn{k^* = 1 - \left[ 1 + \left(k \frac{W_{soil}}{C_{soil}} \right)^4 \right]^{-1/4}}
 #' where
-#'   - \mjseqn{k} is `param_percola_grf_k`
-#' @param param_percola_grf_k <0.01, 1> coefficient parameter for [percola_GR4Jfix()]
+#'   - \mjseqn{k} is `param_PERCOLA_grf_k`
+#' @param param_PERCOLA_grf_k <0.01, 1> coefficient parameter for [percola_GR4Jfix()]
 #' @export
-percola_GR4Jfix <- function(soil_water_mm, soil_capacity_mm, param_percola_grf_k) {
-    .Call(`_HydroGallery_percola_GR4Jfix`, soil_water_mm, soil_capacity_mm, param_percola_grf_k)
+percola_GR4Jfix <- function(SOIL_water_mm, SOIL_capacity_mm, param_PERCOLA_grf_k) {
+    .Call(`_HydroGallery_percola_GR4Jfix`, SOIL_water_mm, SOIL_capacity_mm, param_PERCOLA_grf_k)
 }
 
 #' @rdname percola
@@ -1363,12 +1363,12 @@ percola_GR4Jfix <- function(soil_water_mm, soil_capacity_mm, param_percola_grf_k
 #' 
 #' \mjsdeqn{F_{prcl} = M_{prcl} \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 #' where
-#'   - \mjseqn{M_{prcl}} is `soil_potentialPercola_mm`
+#'   - \mjseqn{M_{prcl}} is `SOIL_potentialPercola_mm`
 #'   - \mjseqn{\gamma} is `param_baseflow_map_gamma`
-#' @param param_percola_map_gamma <0.1, 5> exponential parameter for [percola_MaxPow()]
+#' @param param_PERCOLA_map_gamma <0.1, 5> exponential parameter for [percola_MaxPow()]
 #' @export
-percola_MaxPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialPercola_mm, param_percola_map_gamma) {
-    .Call(`_HydroGallery_percola_MaxPow`, soil_water_mm, soil_capacity_mm, soil_potentialPercola_mm, param_percola_map_gamma)
+percola_MaxPow <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialPercola_mm, param_PERCOLA_map_gamma) {
+    .Call(`_HydroGallery_percola_MaxPow`, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialPercola_mm, param_PERCOLA_map_gamma)
 }
 
 #' @rdname percola
@@ -1380,13 +1380,13 @@ percola_MaxPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialPercol
 #' \mjsdeqn{F_{prcl} = 0, \quad \frac{W_{soil}}{C_{soil}} < \phi_b}
 #' \mjsdeqn{F_{prcl} = M_{prcl} \left(\frac{\frac{W_{soil}}{C_{soil}} - \phi_b}{1-\phi_b} \right)^\gamma, \quad \frac{W_{soil}}{C_{soil}} \geq \phi_b}
 #' where
-#'   - \mjseqn{\phi_b} is `param_percola_thp_thresh`
-#'   - \mjseqn{\gamma} is `param_percola_thp_gamma`
-#' @param param_percola_thp_thresh <0.1, 0.9> coefficient parameter for [percola_ThreshPow()]
-#' @param param_percola_thp_gamma <0.1, 5> exponential parameter for [percola_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_PERCOLA_thp_thresh`
+#'   - \mjseqn{\gamma} is `param_PERCOLA_thp_gamma`
+#' @param param_PERCOLA_thp_thresh <0.1, 0.9> coefficient parameter for [percola_ThreshPow()]
+#' @param param_PERCOLA_thp_gamma <0.1, 5> exponential parameter for [percola_ThreshPow()]
 #' @export
-percola_ThreshPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialPercola_mm, param_percola_thp_thresh, param_percola_thp_gamma) {
-    .Call(`_HydroGallery_percola_ThreshPow`, soil_water_mm, soil_capacity_mm, soil_potentialPercola_mm, param_percola_thp_thresh, param_percola_thp_gamma)
+percola_ThreshPow <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialPercola_mm, param_PERCOLA_thp_thresh, param_PERCOLA_thp_gamma) {
+    .Call(`_HydroGallery_percola_ThreshPow`, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialPercola_mm, param_PERCOLA_thp_thresh, param_PERCOLA_thp_gamma)
 }
 
 #' @rdname percola
@@ -1400,13 +1400,13 @@ percola_ThreshPow <- function(soil_water_mm, soil_capacity_mm, soil_potentialPer
 #' \mjsdeqn{F_{prcl} = k M_{prcl} \frac{W_{soil}}{C_{soil}} + (1-k) M_{prcl} \left(\frac{W_{soil} - W_s}{C_{soil} - W_s} \right)^2, \quad \frac{W_{soil}}{C_{soil}} \geq \phi_b}
 #' \mjsdeqn{W_s = k C_{soil}}
 #' where
-#'   - \mjseqn{\phi_b} is `param_percola_arn_thresh`
-#'   - \mjseqn{k} is `param_percola_arn_k`
-#' @param param_percola_arn_thresh <0.1, 0.9> coefficient parameter for [percola_ThreshPow()]
-#' @param param_percola_arn_k <0.1, 1> exponential parameter for [percola_ThreshPow()]
+#'   - \mjseqn{\phi_b} is `param_PERCOLA_arn_thresh`
+#'   - \mjseqn{k} is `param_PERCOLA_arn_k`
+#' @param param_PERCOLA_arn_thresh <0.1, 0.9> coefficient parameter for [percola_ThreshPow()]
+#' @param param_PERCOLA_arn_k <0.1, 1> exponential parameter for [percola_ThreshPow()]
 #' @export
-percola_Arno <- function(soil_water_mm, soil_capacity_mm, soil_potentialPercola_mm, param_percola_arn_thresh, param_percola_arn_k) {
-    .Call(`_HydroGallery_percola_Arno`, soil_water_mm, soil_capacity_mm, soil_potentialPercola_mm, param_percola_arn_thresh, param_percola_arn_k)
+percola_Arno <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialPercola_mm, param_PERCOLA_arn_thresh, param_PERCOLA_arn_k) {
+    .Call(`_HydroGallery_percola_Arno`, SOIL_water_mm, SOIL_capacity_mm, SOIL_potentialPercola_mm, param_PERCOLA_arn_thresh, param_PERCOLA_arn_k)
 }
 
 #' @rdname percola
@@ -1417,11 +1417,11 @@ percola_Arno <- function(soil_water_mm, soil_capacity_mm, soil_potentialPercola_
 #' \mjsdeqn{k =  \frac{W_{soil}}{C_{soil} - W_{soil}} \quad {\rm and} \quad k \leq 1}
 #' \mjsdeqn{F_{prcl} = k M_{prcl}}
 #' where
-#'   - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
-#'   - \mjseqn{\gamma} is `param_percola_sup_gamma`
+#'   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
+#'   - \mjseqn{\gamma} is `param_PERCOLA_sup_gamma`
 #' @export
-percola_BevenWood <- function(soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, soil_potentialPercola_mm) {
-    .Call(`_HydroGallery_percola_BevenWood`, soil_water_mm, soil_capacity_mm, soil_fieldCapacityPerc_1, soil_potentialPercola_mm)
+percola_BevenWood <- function(SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, SOIL_potentialPercola_mm) {
+    .Call(`_HydroGallery_percola_BevenWood`, SOIL_water_mm, SOIL_capacity_mm, SOIL_fieldCapacityPerc_1, SOIL_potentialPercola_mm)
 }
 
 #' @rdname percola
@@ -1431,13 +1431,13 @@ percola_BevenWood <- function(soil_water_mm, soil_capacity_mm, soil_fieldCapacit
 #' 
 #' \mjsdeqn{k^* = k \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 #' where
-#'   - \mjseqn{k} is `param_percola_sup_k`
-#'   - \mjseqn{\gamma} is `param_percola_sup_gamma`
-#' @param param_percola_sup_k <0.01, 1> coefficient parameter for [percola_SupplyPow()]
-#' @param param_percola_sup_gamma <0, 7> parameter for [percola_SupplyPow()]
+#'   - \mjseqn{k} is `param_PERCOLA_sup_k`
+#'   - \mjseqn{\gamma} is `param_PERCOLA_sup_gamma`
+#' @param param_PERCOLA_sup_k <0.01, 1> coefficient parameter for [percola_SupplyPow()]
+#' @param param_PERCOLA_sup_gamma <0, 7> parameter for [percola_SupplyPow()]
 #' @export
-percola_SupplyPow <- function(soil_water_mm, soil_capacity_mm, param_percola_sup_k, param_percola_sup_gamma) {
-    .Call(`_HydroGallery_percola_SupplyPow`, soil_water_mm, soil_capacity_mm, param_percola_sup_k, param_percola_sup_gamma)
+percola_SupplyPow <- function(SOIL_water_mm, SOIL_capacity_mm, param_PERCOLA_sup_k, param_PERCOLA_sup_gamma) {
+    .Call(`_HydroGallery_percola_SupplyPow`, SOIL_water_mm, SOIL_capacity_mm, param_PERCOLA_sup_k, param_PERCOLA_sup_gamma)
 }
 
 #' @rdname percola
@@ -1447,11 +1447,11 @@ percola_SupplyPow <- function(soil_water_mm, soil_capacity_mm, param_percola_sup
 #' 
 #' \mjsdeqn{k^* = k}
 #' where
-#'   - \mjseqn{k} is `param_percola_sur_k`
-#' @param param_percola_sur_k <0.01, 1> coefficient parameter for [percola_SupplyRatio()]
+#'   - \mjseqn{k} is `param_PERCOLA_sur_k`
+#' @param param_PERCOLA_sur_k <0.01, 1> coefficient parameter for [percola_SupplyRatio()]
 #' @export
-percola_SupplyRatio <- function(soil_water_mm, param_percola_sur_k) {
-    .Call(`_HydroGallery_percola_SupplyRatio`, soil_water_mm, param_percola_sur_k)
+percola_SupplyRatio <- function(SOIL_water_mm, param_PERCOLA_sur_k) {
+    .Call(`_HydroGallery_percola_SupplyRatio`, SOIL_water_mm, param_PERCOLA_sur_k)
 }
 
 #' @rdname percola
@@ -1459,8 +1459,8 @@ percola_SupplyRatio <- function(soil_water_mm, param_percola_sur_k) {
 #' @param param_PERCOLA_wat_thresh <10, 15> coefficient parameter for [percola_WaterGAP3()]
 #' @param param_PERCOLA_wat_k <0.1, 1> exponential parameter for [percola_WaterGAP3()]
 #' @export
-percola_WaterGAP3 <- function(Land_water_mm, SOIL_potentialPercola_mm, param_PERCOLA_wat_01, param_PERCOLA_wat_thresh, param_PERCOLA_wat_k) {
-    .Call(`_HydroGallery_percola_WaterGAP3`, Land_water_mm, SOIL_potentialPercola_mm, param_PERCOLA_wat_01, param_PERCOLA_wat_thresh, param_PERCOLA_wat_k)
+percola_WaterGAP3 <- function(LAND_water_mm, SOIL_potentialPercola_mm, param_PERCOLA_wat_01, param_PERCOLA_wat_thresh, param_PERCOLA_wat_k) {
+    .Call(`_HydroGallery_percola_WaterGAP3`, LAND_water_mm, SOIL_potentialPercola_mm, param_PERCOLA_wat_01, param_PERCOLA_wat_thresh, param_PERCOLA_wat_k)
 }
 
 #' **river outflow**
@@ -1471,15 +1471,15 @@ percola_WaterGAP3 <- function(Land_water_mm, SOIL_potentialPercola_mm, param_PER
 #' The concept of river estimates the waterbody outflow for waternet concentation
 #' @return outflow (m3)
 #' @export
-river_LinearResorvoir <- function(RIVER_water_m3, RIVER_inflow_m3, RIVER_velocity_km, RIVER_length_km) {
-    .Call(`_HydroGallery_river_LinearResorvoir`, RIVER_water_m3, RIVER_inflow_m3, RIVER_velocity_km, RIVER_length_km)
+riverout_LinearResorvoir <- function(RIVER_water_m3, RIVER_inflow_m3, RIVER_velocity_km, RIVER_length_km) {
+    .Call(`_HydroGallery_riverout_LinearResorvoir`, RIVER_water_m3, RIVER_inflow_m3, RIVER_velocity_km, RIVER_length_km)
 }
 
 #' @rdname river
 #' @param param_Riverlak_lin_storeFactor <uknow> parameter for [riverlak_LinearResorvoir()],
 #' @export
-riverlak_LinearResorvoir <- function(Riverlak_water_m3, Riverlak_inflow_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor) {
-    .Call(`_HydroGallery_riverlak_LinearResorvoir`, Riverlak_water_m3, Riverlak_inflow_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
+riverlakout_LinearResorvoir <- function(Riverlak_water_m3, Riverlak_inflow_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor) {
+    .Call(`_HydroGallery_riverlakout_LinearResorvoir`, Riverlak_water_m3, Riverlak_inflow_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
 }
 
 #' @rdname routingtopology
@@ -1580,8 +1580,8 @@ get_upstream_cali_cell <- function(lst_Inflow_Cell, int_CaliCell) {
 #' \mjsdeqn{F_{melt} \leq W_{snow} }
 #' 
 #' where
-#'   - \mjseqn{F_{melt}} is `snow_melt_mm`
-#'   - \mjseqn{W_{snow}} is `snow_ice_mm`
+#'   - \mjseqn{F_{melt}} is `SNOW_melt_mm`
+#'   - \mjseqn{W_{snow}} is `SNOW_ice_mm`
 #'   - \mjseqn{T} is average temperature
 #' 
 #' Then the different `snowMelt` methods will estimate the maximal snow melt \mjseqn{M_{max}}.
@@ -1590,10 +1590,10 @@ get_upstream_cali_cell <- function(lst_Inflow_Cell, int_CaliCell) {
 #'
 #' @references
 #' \insertAllCited{}
-#' @return snow_melt_mm (mm/m2) melted snow
+#' @return SNOW_melt_mm (mm/m2) melted snow
 #' 
 #' @details
-#' # **_Kustas** \insertCite{snow_kustas_1994}{HydroGallery}: 
+#' # **_Kustas** \insertCite{SNOW_kustas_1994}{HydroGallery}: 
 #' 
 #'
 #' 
@@ -1602,15 +1602,15 @@ get_upstream_cali_cell <- function(lst_Inflow_Cell, int_CaliCell) {
 #' in order to adjust to subday scale we need to add a new time interval \mjseqn{t_h} from 1 to 24 hour
 #' \mjsdeqn{F_{melt}  = m_T T t_h + m_E R_n}
 #' where
-#'   - \mjseqn{m_T} is `param_snow_kus_fT`
-#'   - \mjseqn{m_E} is `param_snow_kus_fE`
+#'   - \mjseqn{m_T} is `param_SNOWMELT_kus_fT`
+#'   - \mjseqn{m_E} is `param_SNOWMELT_kus_fE`
 #'   - \mjseqn{R_n} is daily net radiation
 #' 
-#' @param param_snow_kus_fE <0.0005, 0.003> (mm/m2/MJ) snow melt temperature parameter for [snowMelt_Factor()]
-#' @param param_snow_kus_fT <0.05, 1> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
+#' @param param_SNOWMELT_kus_fE <0.0005, 0.003> (mm/m2/MJ) snow melt temperature parameter for [snowMelt_Factor()]
+#' @param param_SNOWMELT_kus_fT <0.05, 1> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
 #' @export
-snowMelt_Kustas <- function(snow_ice_mm, atmos_temperature_Cel, atmos_netRadiat_MJ, param_snow_kus_fE, param_snow_kus_fT) {
-    .Call(`_HydroGallery_snowMelt_Kustas`, snow_ice_mm, atmos_temperature_Cel, atmos_netRadiat_MJ, param_snow_kus_fE, param_snow_kus_fT)
+snowMelt_Kustas <- function(SNOW_ice_mm, ATMOS_temperature_Cel, ATMOS_netRadiat_MJ, param_SNOWMELT_kus_fE, param_SNOWMELT_kus_fT) {
+    .Call(`_HydroGallery_snowMelt_Kustas`, SNOW_ice_mm, ATMOS_temperature_Cel, ATMOS_netRadiat_MJ, param_SNOWMELT_kus_fE, param_SNOWMELT_kus_fT)
 }
 
 #' @rdname snowMelt
@@ -1620,14 +1620,14 @@ snowMelt_Kustas <- function(snow_ice_mm, atmos_temperature_Cel, atmos_netRadiat_
 #' 
 #' \mjsdeqn{F_{melt}  = m_T (T-T_b), \quad T > T_b}
 #' where
-#'   - \mjseqn{m_T} is `param_snow_fac_f`
-#'   - \mjseqn{T_b} is `param_snow_fac_Tmelt`
+#'   - \mjseqn{m_T} is `param_SNOWMELT_fac_f`
+#'   - \mjseqn{T_b} is `param_SNOWMELT_fac_Tmelt`
 #' 
-#' @param param_snow_fac_Tmelt <0, 3> (Cel) snow melt temperature parameter for [snowMelt_Factor()]
-#' @param param_snow_fac_f <0.05, 2> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
+#' @param param_SNOWMELT_fac_Tmelt <0, 3> (Cel) snow melt temperature parameter for [snowMelt_Factor()]
+#' @param param_SNOWMELT_fac_f <0.05, 2> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
 #' @export
-snowMelt_Factor <- function(snow_ice_mm, atmos_temperature_Cel, param_snow_fac_f, param_snow_fac_Tmelt) {
-    .Call(`_HydroGallery_snowMelt_Factor`, snow_ice_mm, atmos_temperature_Cel, param_snow_fac_f, param_snow_fac_Tmelt)
+snowMelt_Factor <- function(SNOW_ice_mm, ATMOS_temperature_Cel, param_SNOWMELT_fac_f, param_SNOWMELT_fac_Tmelt) {
+    .Call(`_HydroGallery_snowMelt_Factor`, SNOW_ice_mm, ATMOS_temperature_Cel, param_SNOWMELT_fac_f, param_SNOWMELT_fac_Tmelt)
 }
 
 # Register entry points for exported C++ functions

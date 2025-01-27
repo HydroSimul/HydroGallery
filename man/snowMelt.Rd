@@ -7,31 +7,37 @@
 \title{**snow**}
 \usage{
 snowMelt_Kustas(
-  snow_ice_mm,
-  atmos_temperature_Cel,
-  atmos_netRadiat_MJ,
-  param_snow_kus_fE,
-  param_snow_kus_fT
+  SNOW_ice_mm,
+  ATMOS_temperature_Cel,
+  ATMOS_netRadiat_MJ,
+  param_SNOWMELT_kus_fE,
+  param_SNOWMELT_kus_fT
 )
 
 snowMelt_Factor(
-  snow_ice_mm,
-  atmos_temperature_Cel,
-  param_snow_fac_f,
-  param_snow_fac_Tmelt
+  SNOW_ice_mm,
+  ATMOS_temperature_Cel,
+  param_SNOWMELT_fac_f,
+  param_SNOWMELT_fac_Tmelt
 )
 }
 \arguments{
-\item{param_snow_kus_fE}{<0.0005, 0.003> (mm/m2/MJ) snow melt temperature parameter for [snowMelt_Factor()]}
+\item{SNOW_ice_mm}{(mm/m2) water equivalent of **ice** in snowpack}
 
-\item{param_snow_kus_fT}{<0.05, 1> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]}
+\item{ATMOS_temperature_Cel}{(Cel) the average air temperature in the time phase}
 
-\item{param_snow_fac_f}{<0.05, 2> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]}
+\item{ATMOS_netRadiat_MJ}{(MJ/m2/TS) the balance between the energy absorbed, reflected and emitted by the earths surface or the difference between the incoming net shortwave (Rns) and the net outgoing longwave (Rnl) radiation}
 
-\item{param_snow_fac_Tmelt}{<0, 3> (Cel) snow melt temperature parameter for [snowMelt_Factor()]}
+\item{param_SNOWMELT_kus_fE}{<0.0005, 0.003> (mm/m2/MJ) snow melt temperature parameter for [snowMelt_Factor()]}
+
+\item{param_SNOWMELT_kus_fT}{<0.05, 1> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]}
+
+\item{param_SNOWMELT_fac_f}{<0.05, 2> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]}
+
+\item{param_SNOWMELT_fac_Tmelt}{<0, 3> (Cel) snow melt temperature parameter for [snowMelt_Factor()]}
 }
 \value{
-snow_melt_mm (mm/m2) melted snow
+SNOW_melt_mm (mm/m2) melted snow
 }
 \description{
 \loadmathjax
@@ -53,8 +59,8 @@ to:
 \mjsdeqn{F_{melt} \leq W_{snow} }
 
 where
-  - \mjseqn{F_{melt}} is `snow_melt_mm`
-  - \mjseqn{W_{snow}} is `snow_ice_mm`
+  - \mjseqn{F_{melt}} is `SNOW_melt_mm`
+  - \mjseqn{W_{snow}} is `SNOW_ice_mm`
   - \mjseqn{T} is average temperature
 
 Then the different `snowMelt` methods will estimate the maximal snow melt \mjseqn{M_{max}}.
@@ -62,7 +68,7 @@ Then the different `snowMelt` methods will estimate the maximal snow melt \mjseq
 The output density distribution from 2 methods:
 }
 \details{
-# **_Kustas** \insertCite{snow_kustas_1994}{HydroGallery}: 
+# **_Kustas** \insertCite{SNOW_kustas_1994}{HydroGallery}: 
 
 
 
@@ -71,8 +77,8 @@ but due to the temperature is one energy-state-variable,
 in order to adjust to subday scale we need to add a new time interval \mjseqn{t_h} from 1 to 24 hour
 \mjsdeqn{F_{melt}  = m_T T t_h + m_E R_n}
 where
-  - \mjseqn{m_T} is `param_snow_kus_fT`
-  - \mjseqn{m_E} is `param_snow_kus_fE`
+  - \mjseqn{m_T} is `param_SNOWMELT_kus_fT`
+  - \mjseqn{m_E} is `param_SNOWMELT_kus_fE`
   - \mjseqn{R_n} is daily net radiation
 
 # **_Factor** \insertCite{phyHydro_dingman_2014}{HydroGallery}: 
@@ -80,8 +86,8 @@ where
 
 \mjsdeqn{F_{melt}  = m_T (T-T_b), \quad T > T_b}
 where
-  - \mjseqn{m_T} is `param_snow_fac_f`
-  - \mjseqn{T_b} is `param_snow_fac_Tmelt`
+  - \mjseqn{m_T} is `param_SNOWMELT_fac_f`
+  - \mjseqn{T_b} is `param_SNOWMELT_fac_Tmelt`
 }
 \references{
 \insertAllCited{}

@@ -9,7 +9,7 @@ using namespace Rcpp;
 //' @return A double representing the Evalute matrics.
 //' @export
 // [[Rcpp::export]]
-double eva_NSE(NumericVector num_Sim, NumericVector num_Obs) {
+double evalute_NSE(NumericVector num_Sim, NumericVector num_Obs) {
   // Ensure both vectors have the same length
   if (num_Sim.size() != num_Obs.size()) {
     stop("Simulated and observed vectors must have the same length.");
@@ -47,7 +47,7 @@ double eva_NSE(NumericVector num_Sim, NumericVector num_Obs) {
 //' @param factor_r,factor_alpha,factor_beta A double specifying the weight for the correlation term (r - 1), (alpha - 1) and (beta - 1). Default is 1.0.
 //' @export
 // [[Rcpp::export]]
-double eva_KGE(NumericVector num_Sim, NumericVector num_Obs,
+double evalute_KGE(NumericVector num_Sim, NumericVector num_Obs,
                double factor_r = 1.0, double factor_alpha = 1.0, double factor_beta = 1.0) {
   // Ensure both vectors have the same length
   if (num_Sim.size() != num_Obs.size()) {

@@ -7,24 +7,28 @@
 \title{caculate **snowfall**}
 \usage{
 atmosSnow_ThresholdT(
-  atmos_precipitation_mm,
-  atmos_temperature_Cel,
-  param_atmos_thr_Ts
+  ATMOS_precipitation_mm,
+  ATMOS_temperature_Cel,
+  param_ATMOS_thr_Ts
 )
 
 atmosSnow_UBC(
-  atmos_precipitation_mm,
-  atmos_temperature_Cel,
-  param_atmos_ubc_A0FORM
+  ATMOS_precipitation_mm,
+  ATMOS_temperature_Cel,
+  param_ATMOS_ubc_A0FORM
 )
 }
 \arguments{
-\item{param_atmos_thr_Ts}{<-1, 3> (Cel) threshold air temperature that snow, parameter for [atmosSnow_ThresholdT()]}
+\item{ATMOS_precipitation_mm}{(mm/m2/TS) precipitaion volum}
 
-\item{param_atmos_ubc_A0FORM}{<0.01, 3> (Cel) threshold air temperature that snow, it can not equal or small than 0, parameter for [atmosSnow_UBC()]}
+\item{ATMOS_temperature_Cel}{(Cel) the average air temperature in the time phase}
+
+\item{param_ATMOS_thr_Ts}{<-1, 3> (Cel) threshold air temperature that snow, parameter for [atmosSnow_ThresholdT()]}
+
+\item{param_ATMOS_ubc_A0FORM}{<0.01, 3> (Cel) threshold air temperature that snow, it can not equal or small than 0, parameter for [atmosSnow_UBC()]}
 }
 \value{
-atmos_snow_mm (mm/m2/TS) snowfall volume
+ATMOS_snow_mm (mm/m2/TS) snowfall volume
 }
 \description{
 \loadmathjax
@@ -43,8 +47,8 @@ to:
 \mjsdeqn{P_s = f_{atmosSnow}(P, T) = k^*P}
 \mjsdeqn{0 \leq k^* \leq 1}
 where
-  - \mjseqn{P} is `atmos_precpitation_mm`
-  - \mjseqn{T} is `atmos_teperature_Cel`
+  - \mjseqn{P} is `ATMOS_precpitation_mm`
+  - \mjseqn{T} is `ATMOS_teperature_Cel`
 - \mjseqn{k^*} is estimated portion
 
 Then the different `atmosSnow` methods will estimate the portion \mjseqn{k^*}.
@@ -59,7 +63,7 @@ The output density distribution from 2 methods:
 Only a temperature is as the threshold defined, so estimate the portion \mjseqn{k^*} as: 
 \mjsdeqn{k^{*}=1, \quad T \leq T_s}
 where
-  - \mjseqn{T_s} is `param_atmos_thr_Ts`
+  - \mjseqn{T_s} is `param_ATMOS_thr_Ts`
 
 # **_UBC** \insertCite{UBC_Quick_1977}{HydroGallery}: 
 
@@ -68,7 +72,7 @@ estimate the portion \mjseqn{k^*}{} as:
 \mjsdeqn{k^* = 1- \frac{T}{T_0}}
 \mjsdeqn{k^* \geq 0}
 where
-  - \mjseqn{T_0} is `param_atmos_ubc_A0FORM`
+  - \mjseqn{T_0} is `param_ATMOS_ubc_A0FORM`
 }
 \references{
 \insertAllCited{}

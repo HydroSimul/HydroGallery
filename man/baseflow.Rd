@@ -11,62 +11,68 @@
 \alias{baseflow_Arno}
 \title{**baseflow**}
 \usage{
-baseflow_GR4J(ground_water_mm, ground_capacity_mm)
+baseflow_GR4J(GROUND_water_mm, GROUND_capacity_mm)
 
-baseflow_GR4Jfix(ground_water_mm, ground_capacity_mm, param_baseflow_grf_gamma)
+baseflow_GR4Jfix(GROUND_water_mm, GROUND_capacity_mm, param_BASEFLOW_grf_gamma)
 
-baseflow_SupplyRatio(ground_water_mm, param_baseflow_sur_k)
+baseflow_SupplyRatio(GROUND_water_mm, param_BASEFLOW_sur_k)
 
 baseflow_SupplyPow(
-  ground_water_mm,
-  param_baseflow_sup_k,
-  param_baseflow_sup_gamma
+  GROUND_water_mm,
+  param_BASEFLOW_sup_k,
+  param_BASEFLOW_sup_gamma
 )
 
 baseflow_MaxPow(
-  ground_water_mm,
-  ground_capacity_mm,
-  ground_potentialBaseflow_mm,
-  param_baseflow_map_gamma
+  GROUND_water_mm,
+  GROUND_capacity_mm,
+  GROUND_potentialBaseflow_mm,
+  param_BASEFLOW_map_gamma
 )
 
 baseflow_ThreshPow(
-  ground_water_mm,
-  ground_capacity_mm,
-  ground_potentialBaseflow_mm,
-  param_baseflow_thp_thresh,
-  param_baseflow_thp_gamma
+  GROUND_water_mm,
+  GROUND_capacity_mm,
+  GROUND_potentialBaseflow_mm,
+  param_BASEFLOW_thp_thresh,
+  param_BASEFLOW_thp_gamma
 )
 
 baseflow_Arno(
-  ground_water_mm,
-  ground_capacity_mm,
-  ground_potentialBaseflow_mm,
-  param_baseflow_arn_thresh,
-  param_baseflow_arn_k
+  GROUND_water_mm,
+  GROUND_capacity_mm,
+  GROUND_potentialBaseflow_mm,
+  param_BASEFLOW_arn_thresh,
+  param_BASEFLOW_arn_k
 )
 }
 \arguments{
-\item{param_baseflow_grf_gamma}{<2, 7> exponential parameter for [baseflow_GR4Jfix()]}
+\item{GROUND_water_mm}{(mm/m2/TS) water volume in `groundLy`}
 
-\item{param_baseflow_sur_k}{<0.01, 1> coefficient parameter for [baseflow_SupplyRatio()]}
+\item{GROUND_capacity_mm}{(mm/m2) water storage capacity in `groundLy`}
 
-\item{param_baseflow_sup_k}{<0.01, 1> coefficient parameter for [baseflow_SupplyPow()]}
+\item{param_BASEFLOW_grf_gamma}{<2, 7> exponential parameter for [baseflow_GR4Jfix()]}
 
-\item{param_baseflow_sup_gamma}{<0, 1> exponential parameter for [baseflow_SupplyPow()]}
+\item{param_BASEFLOW_sur_k}{<0.01, 1> coefficient parameter for [baseflow_SupplyRatio()]}
 
-\item{param_baseflow_map_gamma}{<0.1, 5> exponential parameter for [baseflow_MaxPow()]}
+\item{param_BASEFLOW_sup_k}{<0.01, 1> coefficient parameter for [baseflow_SupplyPow()]}
 
-\item{param_baseflow_thp_thresh}{<0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]}
+\item{param_BASEFLOW_sup_gamma}{<0, 1> exponential parameter for [baseflow_SupplyPow()]}
 
-\item{param_baseflow_thp_gamma}{<0.1, 5> exponential parameter for [baseflow_ThreshPow()]}
+\item{GROUND_potentialBaseflow_mm}{<0.01, 7> (mm/m2/TS) **potential** baseflow}
 
-\item{param_baseflow_arn_thresh}{<0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]}
+\item{param_BASEFLOW_map_gamma}{<0.1, 5> exponential parameter for [baseflow_MaxPow()]}
 
-\item{param_baseflow_arn_k}{<0.1, 1> exponential parameter for [baseflow_ThreshPow()]}
+\item{param_BASEFLOW_thp_thresh}{<0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]}
+
+\item{param_BASEFLOW_thp_gamma}{<0.1, 5> exponential parameter for [baseflow_ThreshPow()]}
+
+\item{param_BASEFLOW_arn_thresh}{<0.1, 0.9> coefficient parameter for [baseflow_ThreshPow()]}
+
+\item{param_BASEFLOW_arn_k}{<0.1, 1> exponential parameter for [baseflow_ThreshPow()]}
 }
 \value{
-ground_baseflow_mm (mm/m2/TS)
+GROUND_baseflow_mm (mm/m2/TS)
 }
 \description{
 \loadmathjax
@@ -91,9 +97,9 @@ to:
 
 
 where
-- \mjseqn{W_{grnd}} is `ground_water_mm`
-- \mjseqn{M_{base}} is `ground_potentialBaseflow_mm`
-- \mjseqn{C_{grnd}} is `ground_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
+- \mjseqn{W_{grnd}} is `GROUND_water_mm`
+- \mjseqn{M_{base}} is `GROUND_potentialBaseflow_mm`
+- \mjseqn{C_{grnd}} is `GROUND_capacity_mm`, but not all the methods need the \mjseqn{C_{grnd}}
 - \mjseqn{k^*} is estimated ratio
 
 The output density distribution from 7 methods:
@@ -114,30 +120,30 @@ This method based on `_GR4J` use a new parameter to replace the numer 4:
 \mjsdeqn{F_{base} = k^* W_{grnd}}
 \mjsdeqn{k^* = 1 - \left[ 1 + \left(\frac{W_{grnd}}{C_{grnd}} \right)^\gamma \right]^{-1/\gamma}}
 where
-  - \mjseqn{\gamma} is `param_baseflow_grf_gamma`
+  - \mjseqn{\gamma} is `param_BASEFLOW_grf_gamma`
 
 # **_SupplyRatio**: 
 
 
 \mjsdeqn{F_{base} = k W_{grnd}}
 where
-  - \mjseqn{k} is `param_baseflow_sur_k`
+  - \mjseqn{k} is `param_BASEFLOW_sur_k`
 
 # **_SupplyPow**: 
 
 
 \mjsdeqn{F_{base} = k(W_{grnd})^\gamma}
 where
-  - \mjseqn{k} is `param_baseflow_sup_k`
-  - \mjseqn{\gamma} is `param_baseflow_sup_gamma`
+  - \mjseqn{k} is `param_BASEFLOW_sup_k`
+  - \mjseqn{\gamma} is `param_BASEFLOW_sup_gamma`
 
 # **_MaxPow**: 
 
 
 \mjsdeqn{F_{base} = M_{base} \left(\frac{W_{grnd}}{C_{grnd}} \right)^\gamma}
 where
-  - \mjseqn{M_{base}} is `ground_potentialBaseflow_mm`
-  - \mjseqn{\gamma} is `param_baseflow_map_gamma`
+  - \mjseqn{M_{base}} is `GROUND_potentialBaseflow_mm`
+  - \mjseqn{\gamma} is `param_BASEFLOW_map_gamma`
 
 # **_ThreshPow** 
 
@@ -146,8 +152,8 @@ This method based on the `_MaxPow` and add the one threshold \mjseqn{\phi_b}:
 \mjsdeqn{F_{base} = 0, \quad \frac{W_{grnd}}{C_{grnd}} < \phi_b}
 \mjsdeqn{F_{base} = M_{base} \left(\frac{\frac{W_{grnd}}{C_{grnd}} - \phi_b}{1-\phi_b} \right)^\gamma, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 where
-  - \mjseqn{\phi_b} is `param_baseflow_thp_thresh`
-  - \mjseqn{\gamma} is `param_baseflow_thp_gamma`
+  - \mjseqn{\phi_b} is `param_BASEFLOW_thp_thresh`
+  - \mjseqn{\gamma} is `param_BASEFLOW_thp_gamma`
 
 # **_Arno** \insertCite{baseflow_Arno_1991,VIC2_Liang_1994}{HydroGallery}:
 
@@ -157,8 +163,8 @@ This method has also in two cases divided by a threshold water content \mjseqn{\
 \mjsdeqn{F_{base} = k M_{base} \frac{W_{grnd}}{C_{grnd}} + (1-k) M_{base} \left(\frac{W_{grnd} - W_s}{C_{grnd} - W_s} \right)^2, \quad \frac{W_{grnd}}{C_{grnd}} \geq \phi_b}
 \mjsdeqn{W_s = k C_{grnd}}
 where
-  - \mjseqn{\phi_b} is `param_baseflow_arn_thresh`
-  - \mjseqn{k} is `param_baseflow_arn_k`
+  - \mjseqn{\phi_b} is `param_BASEFLOW_arn_thresh`
+  - \mjseqn{k} is `param_BASEFLOW_arn_k`
 }
 \references{
 \insertAllCited{}

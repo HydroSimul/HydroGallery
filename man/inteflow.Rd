@@ -13,81 +13,89 @@
 \title{**interflow**}
 \usage{
 inteflow_GR4Jfix(
-  soil_water_mm,
-  soil_capacity_mm,
-  param_inteflow_grf_k,
-  param_inteflow_grf_gamma
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INTEFLOW_grf_k,
+  param_INTEFLOW_grf_gamma
 )
 
 inteflow_MaxPow(
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_potentialInteflow_mm,
-  param_inteflow_map_gamma
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_potentialInteflow_mm,
+  param_INTEFLOW_map_gamma
 )
 
 inteflow_ThreshPow(
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_potentialInteflow_mm,
-  param_inteflow_thp_thresh,
-  param_inteflow_thp_gamma
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_potentialInteflow_mm,
+  param_INTEFLOW_thp_thresh,
+  param_INTEFLOW_thp_gamma
 )
 
 inteflow_Arno(
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_potentialInteflow_mm,
-  param_inteflow_arn_thresh,
-  param_inteflow_arn_k
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_potentialInteflow_mm,
+  param_INTEFLOW_arn_thresh,
+  param_INTEFLOW_arn_k
 )
 
 inteflow_BevenWood(
-  soil_water_mm,
-  soil_capacity_mm,
-  soil_fieldCapacityPerc_1,
-  soil_potentialInteflow_mm
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  SOIL_fieldCapacityPerc_1,
+  SOIL_potentialInteflow_mm
 )
 
 inteflow_SupplyPow0(
-  soil_water_mm,
-  param_inteflow_sp0_k,
-  param_inteflow_sp0_gamma
+  SOIL_water_mm,
+  param_INTEFLOW_sp0_k,
+  param_INTEFLOW_sp0_gamma
 )
 
 inteflow_SupplyPow(
-  soil_water_mm,
-  soil_capacity_mm,
-  param_inteflow_sup_k,
-  param_inteflow_sup_gamma
+  SOIL_water_mm,
+  SOIL_capacity_mm,
+  param_INTEFLOW_sup_k,
+  param_INTEFLOW_sup_gamma
 )
 
-inteflow_SupplyRatio(soil_water_mm, param_inteflow_sur_k)
+inteflow_SupplyRatio(SOIL_water_mm, param_INTEFLOW_sur_k)
 }
 \arguments{
-\item{param_inteflow_grf_k}{<0.01, 1> coefficient parameter for [inteflow_GR4Jfix()]}
+\item{SOIL_water_mm}{(mm/m2) water volume in `soilLy`}
 
-\item{param_inteflow_grf_gamma}{<2, 7> exponential parameter for [baseflow_GR4Jfix()]}
+\item{SOIL_capacity_mm}{(mm/m2) average soil Capacity (maximal storage capacity)}
 
-\item{param_inteflow_map_gamma}{<0.1, 5> exponential parameter for [inteflow_MaxPow()]}
+\item{param_INTEFLOW_grf_k}{<0.01, 1> coefficient parameter for [inteflow_GR4Jfix()]}
 
-\item{param_inteflow_thp_thresh}{<0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]}
+\item{param_INTEFLOW_grf_gamma}{<2, 7> exponential parameter for [baseflow_GR4Jfix()]}
 
-\item{param_inteflow_thp_gamma}{<0.1, 5> exponential parameter for [inteflow_ThreshPow()]}
+\item{SOIL_potentialInteflow_mm}{<0.01, 7> (mm/m2/TS) **potential** interflow}
 
-\item{param_inteflow_arn_thresh}{<0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]}
+\item{param_INTEFLOW_map_gamma}{<0.1, 5> exponential parameter for [inteflow_MaxPow()]}
 
-\item{param_inteflow_arn_k}{<0.1, 1> exponential parameter for [inteflow_ThreshPow()]}
+\item{param_INTEFLOW_thp_thresh}{<0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]}
 
-\item{param_inteflow_sp0_k}{<0.01, 1> coefficient parameter for [inteflow_SupplyPow0()]}
+\item{param_INTEFLOW_thp_gamma}{<0.1, 5> exponential parameter for [inteflow_ThreshPow()]}
 
-\item{param_inteflow_sp0_gamma}{<0, 1> exponential parameter for [inteflow_SupplyPow0()]}
+\item{param_INTEFLOW_arn_thresh}{<0.1, 0.9> coefficient parameter for [inteflow_ThreshPow()]}
 
-\item{param_inteflow_sup_k}{<0.01, 1> coefficient parameter for [inteflow_SupplyPow()]}
+\item{param_INTEFLOW_arn_k}{<0.1, 1> exponential parameter for [inteflow_ThreshPow()]}
 
-\item{param_inteflow_sup_gamma}{<0, 7> parameter for [inteflow_SupplyPow()]}
+\item{SOIL_fieldCapacityPerc_1}{<0, 1> the relative ratio that the water content can drainage by gravity}
 
-\item{param_inteflow_sur_k}{<0.01, 1> coefficient parameter for [inteflow_SupplyRatio()]}
+\item{param_INTEFLOW_sp0_k}{<0.01, 1> coefficient parameter for [inteflow_SupplyPow0()]}
+
+\item{param_INTEFLOW_sp0_gamma}{<0, 1> exponential parameter for [inteflow_SupplyPow0()]}
+
+\item{param_INTEFLOW_sup_k}{<0.01, 1> coefficient parameter for [inteflow_SupplyPow()]}
+
+\item{param_INTEFLOW_sup_gamma}{<0, 7> parameter for [inteflow_SupplyPow()]}
+
+\item{param_INTEFLOW_sur_k}{<0.01, 1> coefficient parameter for [inteflow_SupplyRatio()]}
 }
 \value{
 inteflow_mm (mm/m2)
@@ -113,9 +121,9 @@ to:
 
 
 where
-- \mjseqn{F_{itfl}} is `soil_inteflow_mm`
-- \mjseqn{W_{soil}} is `water_soil_mm`
-- \mjseqn{C_{soil}} is `capacity_soil_mm`
+- \mjseqn{F_{itfl}} is `SOIL_inteflow_mm`
+- \mjseqn{W_{soil}} is `water_SOIL_mm`
+- \mjseqn{C_{soil}} is `capacity_SOIL_mm`
 - \mjseqn{k^*} is estimated ratio
 
 The output density distribution from 8 methods:
@@ -126,7 +134,7 @@ The output density distribution from 8 methods:
 
 \mjsdeqn{k^* = 1 - \left[ 1 + \left(k \frac{W_{soil}}{C_{soil}} \right)^\gamma \right]^{-1/\gamma}}
 where
-  - \mjseqn{k} is `param_inteflow_grf_k`
+  - \mjseqn{k} is `param_INTEFLOW_grf_k`
   - \mjseqn{\gamma} is `param_baseflow_grf_gamma`
 
 # **_MaxPow**: 
@@ -134,8 +142,8 @@ where
 
 \mjsdeqn{F_{itfl} = M_{itfl} \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 where
-  - \mjseqn{M_{itfl}} is `soil_potentialInteflow_mm`
-  - \mjseqn{\gamma} is `param_inteflow_map_gamma`
+  - \mjseqn{M_{itfl}} is `SOIL_potentialInteflow_mm`
+  - \mjseqn{\gamma} is `param_INTEFLOW_map_gamma`
 
 # **_ThreshPow** 
 
@@ -144,8 +152,8 @@ based on the `_MaxPow` and add the one threshold \mjseqn{\phi_b}:
 \mjsdeqn{F_{itfl} = 0, \quad \frac{W_{soil}}{C_{soil}} < \phi_b}
 \mjsdeqn{F_{itfl} = M_{itfl} \left(\frac{\frac{W_{soil}}{C_{soil}} - \phi_b}{1-\phi_b} \right)^\gamma, \quad \frac{W_{soil}}{C_{soil}} \geq \phi_b}
 where
-  - \mjseqn{\phi_b} is `param_inteflow_thp_thresh`
-  - \mjseqn{\gamma} is `param_inteflow_thp_gamma`
+  - \mjseqn{\phi_b} is `param_INTEFLOW_thp_thresh`
+  - \mjseqn{\gamma} is `param_INTEFLOW_thp_gamma`
 
 # **_Arno** \insertCite{baseflow_Arno_1991,VIC2_Liang_1994}{HydroGallery} 
 
@@ -156,8 +164,8 @@ has also in two cases divided by a threshold water content \mjseqn{\phi_b}:
 \mjsdeqn{F_{itfl} = k M_{itfl} \frac{W_{soil}}{C_{soil}} + (1-k) M_{itfl} \left(\frac{W_{soil} - W_s}{C_{soil} - W_s} \right)^2, \quad \frac{W_{soil}}{C_{soil}} \geq \phi_b}
 \mjsdeqn{W_s = k C_{soil}}
 where
-  - \mjseqn{\phi_b} is `param_inteflow_arn_thresh`
-  - \mjseqn{k} is `param_inteflow_arn_k`
+  - \mjseqn{\phi_b} is `param_INTEFLOW_arn_thresh`
+  - \mjseqn{k} is `param_INTEFLOW_arn_k`
 
 # **_BevenWood** \insertCite{percola_BevenWood_1983,TOPMODEL_Beven_1995}{HydroGallery}: 
 
@@ -165,31 +173,31 @@ where
 \mjsdeqn{k =  \frac{W_{soil}}{C_{soil} - W_{soil}} \quad {\rm and} \quad k \leq 1}
 \mjsdeqn{F_{itfl} = k M_{itfl}}
 where
-  - \mjseqn{k_{fc}} is `soil_fieldCapacityPerc_1`
-  - \mjseqn{\gamma} is `param_inteflow_sup_gamma`
+  - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
+  - \mjseqn{\gamma} is `param_INTEFLOW_sup_gamma`
 
 # **_SupplyPow0**: 
 
 
 \mjsdeqn{F_{base} = k(W_{grnd})^\gamma}
 where
-  - \mjseqn{k} is `param_inteflow_sup_k`
-  - \mjseqn{\gamma} is `param_inteflow_sup_gamma`
+  - \mjseqn{k} is `param_INTEFLOW_sup_k`
+  - \mjseqn{\gamma} is `param_INTEFLOW_sup_gamma`
 
 # **_SupplyPow**: 
 
 
 \mjsdeqn{k^* = k \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 where
-  - \mjseqn{k} is `param_inteflow_sup_k`
-  - \mjseqn{\gamma} is `param_inteflow_sup_gamma`
+  - \mjseqn{k} is `param_INTEFLOW_sup_k`
+  - \mjseqn{\gamma} is `param_INTEFLOW_sup_gamma`
 
 # **_SupplyRatio**: 
 
 
 \mjsdeqn{k^* = k}
 where
-  - \mjseqn{k} is `param_inteflow_sur_k`
+  - \mjseqn{k} is `param_INTEFLOW_sur_k`
 }
 \references{
 \insertAllCited{}

@@ -9,22 +9,22 @@
 \alias{confluen_WaterGAP3_L}
 \title{**confluence**}
 \usage{
-confluen_IUH(confluen_inputWater_mm, confluen_iuh_1)
+confluen_IUH(CONFLUEN_inputWater_mm, CONFLUEN_iuh_1)
 
 confluen_IUH2S(
-  land_runoff_mm,
-  ground_baseflow_mm,
-  confluen_iuhLand_1,
-  confluen_iuhGround_1
+  LAND_runoff_mm,
+  GROUND_baseflow_mm,
+  CONFLUEN_iuhLand_1,
+  CONFLUEN_iuhGround_1
 )
 
 confluen_IUH3S(
-  land_runoff_mm,
-  soil_interflow_mm,
-  ground_baseflow_mm,
-  confluen_iuhLand_1,
-  confluen_iuhSoil_1,
-  confluen_iuhGround_1
+  LAND_runoff_mm,
+  SOIL_interflow_mm,
+  GROUND_baseflow_mm,
+  CONFLUEN_iuhLand_1,
+  CONFLUEN_iuhSoil_1,
+  CONFLUEN_iuhGround_1
 )
 
 confluen_WaterGAP3(
@@ -50,6 +50,12 @@ confluen_WaterGAP3_L(
 )
 }
 \arguments{
+\item{CONFLUEN_inputWater_mm, LAND_runoff_mm, GROUND_baseflow_mm}{(mm/m2) input water volum in every routeline}
+
+\item{CONFLUEN_iuh_1, CONFLUEN_iuhLand_1, CONFLUEN_iuhSoil_1, CONFLUEN_iuhGround_1}{(vector of num, sume() = 1) the ratio in every timestep, can be calculated by [confluenIUH_GR4J1()], [confluenIUH_GR4J2()]}
+
+\item{SOIL_interflow_mm}{(mm/m2/TS) subsurface flow directly to the river}
+
 \item{RIVER_water_m3}{(m3) river water volume}
 
 \item{RIVER_length_km}{(km) river length}
@@ -99,7 +105,7 @@ So we can give the function:
 
 where
 - \mjseqn{Q} is stream flow, but still in mm/TS not m3/TS or m3/S
-- \mjseqn{F} is flux that will into river conflen, e.g.`land_runoff_mm`, `soil_interflow_mm` or `ground_baseflow_mm`
+- \mjseqn{F} is flux that will into river conflen, e.g.`LAND_runoff_mm`, `SOIL_interflow_mm` or `GROUND_baseflow_mm`
 - \mjseqn{u} is Instant Unit Hydrograph series
 }
 \references{

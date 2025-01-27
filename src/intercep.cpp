@@ -24,17 +24,17 @@
 //' \mjsdeqn{F_{itcp} = C_{icpt} - W_{icpt}}
 //' where
 //'   - \mjseqn{F_{icp}} is `intercept_water_mm`
-//'   - \mjseqn{C_{icpt}} is `land_intercepCapaciy_mm`
-//'   - \mjseqn{W_{icpt}} is `land_intercepWater_mm`
+//'   - \mjseqn{C_{icpt}} is `LAND_intercepCapaciy_mm`
+//'   - \mjseqn{W_{icpt}} is `LAND_intercepWater_mm`
 //' @return intercept_water_mm (mm/m2) intercepted water in this timestep
 //' @export
 // [[Rcpp::export]]
 NumericVector intercep_Full(
-    NumericVector atmos_precipitation_mm,
-    NumericVector land_interceptWater_mm,
-    NumericVector land_interceptCapacity_mm
+    NumericVector ATMOS_precipitation_mm,
+    NumericVector LAND_interceptWater_mm,
+    NumericVector LAND_interceptCapacity_mm
 )
 {
-  NumericVector water_diff_mm = land_interceptCapacity_mm - land_interceptWater_mm;
-  return ifelse(water_diff_mm > atmos_precipitation_mm, atmos_precipitation_mm, water_diff_mm) ;
+  NumericVector water_diff_mm = LAND_interceptCapacity_mm - LAND_interceptWater_mm;
+  return ifelse(water_diff_mm > ATMOS_precipitation_mm, ATMOS_precipitation_mm, water_diff_mm) ;
 }

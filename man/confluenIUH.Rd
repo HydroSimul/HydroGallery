@@ -9,20 +9,22 @@
 \alias{confluenIUH_Clark}
 \title{create **IUH** (Instant Unit Hydrograph)}
 \usage{
-confluenIUH_GR4J1(confluen_responseTime_TS)
+confluenIUH_GR4J1(CONFLUEN_responseTime_TS)
 
-confluenIUH_GR4J2(confluen_responseTime_TS)
+confluenIUH_GR4J2(CONFLUEN_responseTime_TS)
 
-confluenIUH_Kelly(confluen_responseTime_TS, param_confluen_kel_k)
+confluenIUH_Kelly(CONFLUEN_responseTime_TS, param_CONFLUEN_kel_k)
 
-confluenIUH_Nash(confluen_responseTime_TS, param_confluen_nas_n)
+confluenIUH_Nash(CONFLUEN_responseTime_TS, param_CONFLUEN_nas_n)
 
-confluenIUH_Clark(confluen_responseTime_TS)
+confluenIUH_Clark(CONFLUEN_responseTime_TS)
 }
 \arguments{
-\item{param_confluen_kel_k}{<1, 4> parameter for[confluenIUH_Kelly()]}
+\item{CONFLUEN_responseTime_TS}{(TS) response or concentration time in every routeline}
 
-\item{param_confluen_nas_n}{<1, 8> parameter for[confluenIUH_Nash()]}
+\item{param_CONFLUEN_kel_k}{<1, 4> parameter for[confluenIUH_Kelly()]}
+
+\item{param_CONFLUEN_nas_n}{<1, 8> parameter for[confluenIUH_Nash()]}
 }
 \value{
 IUH (list of num vector)
@@ -42,7 +44,7 @@ So we can give the function:
 
 where
 - \mjseqn{u} is series of portions
-- \mjseqn{t_r} is  `confluen_responseTime_TS`
+- \mjseqn{t_r} is  `CONFLUEN_responseTime_TS`
 }
 \details{
 # **_GR4J1** \insertCite{GR4J_Perrin_2003}{HydroGallery}: 
@@ -72,21 +74,21 @@ where
 \mjsdeqn{u(i) = - \frac{4}{t_r^2}(i - k - t_r) + \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)}), \quad t_r / 2 < i \leq t_r }
 \mjsdeqn{u(i) =  \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)} +  e^{t_r/k}), \quad i > t_r }
 where
-  - \mjseqn{k} is `param_confluen_kel_k`
+  - \mjseqn{k} is `param_CONFLUEN_kel_k`
 
 # **_Nash** \insertCite{iuh_Nash_1957}{HydroGallery}: 
 
 
 \mjsdeqn{u(i) = \frac{1}{t_r\Gamma(n)} \left(\frac{4}{t_r^2}\right)^{n -1}e^{-i/t_r}}
 where
-  - \mjseqn{n} is `param_confluen_nas_n`
+  - \mjseqn{n} is `param_CONFLUEN_nas_n`
 
 # **_Clark** \insertCite{iuh_Clark_1945}{HydroGallery}: 
 
 
 \mjsdeqn{u(i) = \frac{1}{t_r} e^{-i/t_r} }
 where
-  - \mjseqn{t_r} is `confluen_responseTime_TS`
+  - \mjseqn{t_r} is `CONFLUEN_responseTime_TS`
 }
 \references{
 \insertAllCited{}
