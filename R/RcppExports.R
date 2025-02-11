@@ -1294,6 +1294,58 @@ lateral_Arno <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLa
     .Call(`_HydroGallery_lateral_Arno`, GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLateral_mm, param_LATERAL_arn_thresh, param_LATERAL_arn_k)
 }
 
+#' **meteological variables**
+#' some functions to calculate the meteological variables
+#' @name meteo
+#' @inheritParams all_vari
+#' @return meteological variables
+#' @export
+meteo_nettoRadiat <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_temperatureMax_Cel, ATMOS_temperatureMin_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_nettoRadiat`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_temperatureMax_Cel, ATMOS_temperatureMin_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_nettoRadiatSimplify <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_nettoRadiatSimplify`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_saturatVaporPress <- function(ATMOS_temperature_Cel) {
+    .Call(`_HydroGallery_meteo_saturatVaporPress`, ATMOS_temperature_Cel)
+}
+
+#' @rdname meteo
+#' @export
+meteo_vaporPress <- function(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1) {
+    .Call(`_HydroGallery_meteo_vaporPress`, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1)
+}
+
+#' @rdname meteo
+#' @export
+meteo_windSpeed2m <- function(ATMOS_windSpeed_m_s, ATMOS_windMeasureHeight_m) {
+    .Call(`_HydroGallery_meteo_windSpeed2m`, ATMOS_windSpeed_m_s, ATMOS_windMeasureHeight_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_airDensity <- function(ATMOS_temperature_Cel, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_airDensity`, ATMOS_temperature_Cel, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_cloudFactor <- function(ATMOS_solarRadiat_MJ, Time_dayOfYear, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_cloudFactor`, ATMOS_solarRadiat_MJ, Time_dayOfYear, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_saturatDelta <- function(ATMOS_temperature_Cel) {
+    .Call(`_HydroGallery_meteo_saturatDelta`, ATMOS_temperature_Cel)
+}
+
 #' **percolation**
 #' @name percola
 #' @inheritParams all_vari
