@@ -2,18 +2,31 @@
 % Please edit documentation in R/RcppExports.R
 \name{meteo}
 \alias{meteo}
-\alias{meteo_nettoRadiat}
-\alias{meteo_nettoRadiatSimplify}
+\alias{meteo_solarRadiatClearSky_FAO56}
 \alias{meteo_saturatVaporPress}
 \alias{meteo_vaporPress}
+\alias{meteo_nettoRadiat_FAO56}
+\alias{meteo_atmosEmissivity_FAO56}
+\alias{meteo_cloudFactor_UNKNOW}
+\alias{meteo_atmosEmissivity_UNKNOW}
+\alias{meteo_nettoRadiat_FAO56Simplify}
 \alias{meteo_windSpeed2m}
 \alias{meteo_airDensity}
-\alias{meteo_cloudFactor}
 \alias{meteo_saturatDelta}
 \title{**meteological variables**
 some functions to calculate the meteological variables}
 \usage{
-meteo_nettoRadiat(
+meteo_solarRadiatClearSky_FAO56(
+  Time_dayOfYear_,
+  LAND_latitude_Degree,
+  LAND_elevation_m
+)
+
+meteo_saturatVaporPress(ATMOS_temperature_Cel)
+
+meteo_vaporPress(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1)
+
+meteo_nettoRadiat_FAO56(
   Time_dayOfYear_,
   ATMOS_temperature_Cel,
   ATMOS_temperatureMax_Cel,
@@ -24,7 +37,7 @@ meteo_nettoRadiat(
   LAND_elevation_m
 )
 
-meteo_nettoRadiatSimplify(
+meteo_atmosEmissivity_FAO56(
   Time_dayOfYear_,
   ATMOS_temperature_Cel,
   ATMOS_relativeHumidity_1,
@@ -33,35 +46,49 @@ meteo_nettoRadiatSimplify(
   LAND_elevation_m
 )
 
-meteo_saturatVaporPress(ATMOS_temperature_Cel)
+meteo_cloudFactor_UNKNOW(
+  ATMOS_solarRadiat_MJ,
+  Time_dayOfYear_,
+  LAND_latitude_Degree,
+  LAND_elevation_m
+)
 
-meteo_vaporPress(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1)
+meteo_atmosEmissivity_UNKNOW(
+  Time_dayOfYear_,
+  ATMOS_temperature_Cel,
+  ATMOS_vaporPress_kPa,
+  ATMOS_solarRadiat_MJ,
+  LAND_latitude_Degree,
+  LAND_elevation_m
+)
+
+meteo_nettoRadiat_FAO56Simplify(
+  Time_dayOfYear_,
+  ATMOS_temperature_Cel,
+  ATMOS_relativeHumidity_1,
+  ATMOS_solarRadiat_MJ,
+  LAND_latitude_Degree,
+  LAND_elevation_m
+)
 
 meteo_windSpeed2m(ATMOS_windSpeed_m_s, ATMOS_windMeasureHeight_m)
 
 meteo_airDensity(ATMOS_temperature_Cel, LAND_elevation_m)
 
-meteo_cloudFactor(
-  ATMOS_solarRadiat_MJ,
-  Time_dayOfYear,
-  LAND_latitude_Degree,
-  LAND_elevation_m
-)
-
 meteo_saturatDelta(ATMOS_temperature_Cel)
 }
 \arguments{
+\item{LAND_elevation_m}{(m) average elevation}
+
 \item{ATMOS_temperature_Cel}{(Cel) the average air temperature in the time phase}
+
+\item{ATMOS_relativeHumidity_1}{(0, 1) relative humidity}
 
 \item{ATMOS_temperatureMax_Cel}{(Cel) the maximal air temperature in the time phase}
 
 \item{ATMOS_temperatureMin_Cel}{(Cel) the minimal air temperature in the time phase}
 
-\item{ATMOS_relativeHumidity_1}{(0, 1) relative humidity}
-
 \item{ATMOS_solarRadiat_MJ}{(MJ/m2/TS) the solar radiation that actually reaches the earths surface}
-
-\item{LAND_elevation_m}{(m) average elevation}
 
 \item{ATMOS_windSpeed_m_s}{(m/s) measured wind speed at z m above ground surface}
 

@@ -1300,14 +1300,8 @@ lateral_Arno <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLa
 #' @inheritParams all_vari
 #' @return meteological variables
 #' @export
-meteo_nettoRadiat <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_temperatureMax_Cel, ATMOS_temperatureMin_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
-    .Call(`_HydroGallery_meteo_nettoRadiat`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_temperatureMax_Cel, ATMOS_temperatureMin_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
-}
-
-#' @rdname meteo
-#' @export
-meteo_nettoRadiatSimplify <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
-    .Call(`_HydroGallery_meteo_nettoRadiatSimplify`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
+meteo_solarRadiatClearSky_FAO56 <- function(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_solarRadiatClearSky_FAO56`, Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m)
 }
 
 #' @rdname meteo
@@ -1324,6 +1318,36 @@ meteo_vaporPress <- function(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1) {
 
 #' @rdname meteo
 #' @export
+meteo_nettoRadiat_FAO56 <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_temperatureMax_Cel, ATMOS_temperatureMin_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_nettoRadiat_FAO56`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_temperatureMax_Cel, ATMOS_temperatureMin_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_atmosEmissivity_FAO56 <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_atmosEmissivity_FAO56`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_cloudFactor_UNKNOW <- function(ATMOS_solarRadiat_MJ, Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_cloudFactor_UNKNOW`, ATMOS_solarRadiat_MJ, Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_atmosEmissivity_UNKNOW <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_atmosEmissivity_UNKNOW`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
+meteo_nettoRadiat_FAO56Simplify <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_nettoRadiat_FAO56Simplify`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
 meteo_windSpeed2m <- function(ATMOS_windSpeed_m_s, ATMOS_windMeasureHeight_m) {
     .Call(`_HydroGallery_meteo_windSpeed2m`, ATMOS_windSpeed_m_s, ATMOS_windMeasureHeight_m)
 }
@@ -1336,14 +1360,12 @@ meteo_airDensity <- function(ATMOS_temperature_Cel, LAND_elevation_m) {
 
 #' @rdname meteo
 #' @export
-meteo_cloudFactor <- function(ATMOS_solarRadiat_MJ, Time_dayOfYear, LAND_latitude_Degree, LAND_elevation_m) {
-    .Call(`_HydroGallery_meteo_cloudFactor`, ATMOS_solarRadiat_MJ, Time_dayOfYear, LAND_latitude_Degree, LAND_elevation_m)
-}
-
-#' @rdname meteo
-#' @export
 meteo_saturatDelta <- function(ATMOS_temperature_Cel) {
     .Call(`_HydroGallery_meteo_saturatDelta`, ATMOS_temperature_Cel)
+}
+
+meteo_wetBulbTemperature <- function(ATMOS_vaporPress_kPa, ATMOS_temperature_Cel) {
+    .Call(`_HydroGallery_meteo_wetBulbTemperature`, ATMOS_vaporPress_kPa, ATMOS_temperature_Cel)
 }
 
 #' **percolation**
