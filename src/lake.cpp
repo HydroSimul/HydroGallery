@@ -120,8 +120,8 @@ NumericVector lakeevap_Zhao(NumericVector ATMOS_solarRadiat_MJ,
   NumericVector num_HeatChange_Lake = const_waterDensity * const_waterHeatCapacity *
     Lake_depth_m * (Lake_newTemperature_Cel - Lake_temperature_Cel); //30//
   
-  Lake_temperature_Cel = Lake_newTemperature_Cel;
-  
+  // Lake_temperature_Cel = Lake_newTemperature_Cel;
+  std::copy(Lake_newTemperature_Cel.begin(), Lake_newTemperature_Cel.end(), Lake_temperature_Cel.begin());
   // Latent heat flux and evaporation
   NumericVector num_Latent_Heat = (num_Delta_Tair * (num_Net_Radiat - num_HeatChange_Lake) + num_Gamma * num_Factor_Wind * (num_SaturatVaporPress - ATMOS_vaporPress_kPa_mod)) /
     (num_Delta_Tair + num_Gamma);
