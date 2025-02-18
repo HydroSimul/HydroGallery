@@ -6,6 +6,7 @@
 using namespace Rcpp;
 
 NumericVector vecpow(NumericVector base, NumericVector exp);
+NumericVector vec_const_pow(NumericVector base, double exp);
 NumericVector vecpow10(NumericVector exp);
 double sum_product(NumericVector lhs, NumericVector rhs);
 void resetVector(Rcpp::NumericVector& x);

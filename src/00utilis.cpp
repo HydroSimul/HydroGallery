@@ -11,6 +11,16 @@ NumericVector vecpow(NumericVector base, NumericVector exp) {
   return (out);
 }
 
+#include <Rcpp.h>
+using namespace Rcpp;
+
+NumericVector vec_const_pow(NumericVector base, double exp) {
+  NumericVector out(base.size());
+  std::transform(base.begin(), base.end(), out.begin(), 
+                 [exp](double b) { return std::pow(b, exp); });
+  return out;
+}
+
 
 NumericVector vecpow10(NumericVector exp) {
 

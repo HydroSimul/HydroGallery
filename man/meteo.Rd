@@ -4,6 +4,7 @@
 \alias{meteo}
 \alias{meteo_solarRadiatClearSky_FAO56}
 \alias{meteo_saturatVaporPress}
+\alias{meteo_saturatVaporPress_kPa}
 \alias{meteo_vaporPress}
 \alias{meteo_nettoRadiat_FAO56}
 \alias{meteo_atmosEmissivity_FAO56}
@@ -23,6 +24,8 @@ meteo_solarRadiatClearSky_FAO56(
 )
 
 meteo_saturatVaporPress(ATMOS_temperature_Cel)
+
+meteo_saturatVaporPress_kPa(ATMOS_temperature_Cel)
 
 meteo_vaporPress(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1)
 

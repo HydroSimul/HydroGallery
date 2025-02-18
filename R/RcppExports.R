@@ -1165,6 +1165,18 @@ lakeout_AcceptPow <- function(Lake_water_m3, Lake_capacity_m3, param_Lakeout_acp
     .Call(`_HydroGallery_lakeout_AcceptPow`, Lake_water_m3, Lake_capacity_m3, param_Lakeout_acp_storeFactor, param_Lakeout_acp_gamma)
 }
 
+#' **lake evaporation**
+#' @name lakevap
+#' @description
+#'
+#' The concept of lake estimates the waterbody outflow for waternet concentation
+#' @inheritParams all_vari
+#' @return evaporation o flake area (mm / day)
+#' @export
+lakeevap_Zhao <- function(ATMOS_solarRadiat_MJ, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_windSpeed2m_m_s, LAND_latitude_Degree, LAND_elevation_m, Lake_temperature_Cel, Lake_depth_m, Lake_area_km2, Lake_fetchLength_m, Time_dayOfYear) {
+    .Call(`_HydroGallery_lakeevap_Zhao`, ATMOS_solarRadiat_MJ, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_windSpeed2m_m_s, LAND_latitude_Degree, LAND_elevation_m, Lake_temperature_Cel, Lake_depth_m, Lake_area_km2, Lake_fetchLength_m, Time_dayOfYear)
+}
+
 #' **lateral flux**
 #' @name lateral
 #' @inheritParams all_vari
@@ -1308,6 +1320,12 @@ meteo_solarRadiatClearSky_FAO56 <- function(Time_dayOfYear_, LAND_latitude_Degre
 #' @export
 meteo_saturatVaporPress <- function(ATMOS_temperature_Cel) {
     .Call(`_HydroGallery_meteo_saturatVaporPress`, ATMOS_temperature_Cel)
+}
+
+#' @rdname meteo
+#' @export
+meteo_saturatVaporPress_kPa <- function(ATMOS_temperature_Cel) {
+    .Call(`_HydroGallery_meteo_saturatVaporPress_kPa`, ATMOS_temperature_Cel)
 }
 
 #' @rdname meteo

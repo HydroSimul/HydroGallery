@@ -1303,6 +1303,27 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline NumericVector lakeevap_Zhao(NumericVector ATMOS_solarRadiat_MJ, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_vaporPress_kPa, NumericVector ATMOS_windSpeed2m_m_s, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m, NumericVector& Lake_temperature_Cel, NumericVector Lake_depth_m, NumericVector Lake_area_km2, NumericVector Lake_fetchLength_m, NumericVector Time_dayOfYear) {
+        typedef SEXP(*Ptr_lakeevap_Zhao)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_lakeevap_Zhao p_lakeevap_Zhao = NULL;
+        if (p_lakeevap_Zhao == NULL) {
+            validateSignature("NumericVector(*lakeevap_Zhao)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector&,NumericVector,NumericVector,NumericVector,NumericVector)");
+            p_lakeevap_Zhao = (Ptr_lakeevap_Zhao)R_GetCCallable("HydroGallery", "_HydroGallery_lakeevap_Zhao");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_lakeevap_Zhao(Shield<SEXP>(Rcpp::wrap(ATMOS_solarRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_vaporPress_kPa)), Shield<SEXP>(Rcpp::wrap(ATMOS_windSpeed2m_m_s)), Shield<SEXP>(Rcpp::wrap(LAND_latitude_Degree)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)), Shield<SEXP>(Rcpp::wrap(Lake_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(Lake_depth_m)), Shield<SEXP>(Rcpp::wrap(Lake_area_km2)), Shield<SEXP>(Rcpp::wrap(Lake_fetchLength_m)), Shield<SEXP>(Rcpp::wrap(Time_dayOfYear)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
     inline NumericVector lateral_SupplyPow(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector param_LATERAL_sup_k, NumericVector param_LATERAL_sup_gamma) {
         typedef SEXP(*Ptr_lateral_SupplyPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_lateral_SupplyPow p_lateral_SupplyPow = NULL;
@@ -1461,6 +1482,27 @@ namespace HydroGallery {
         {
             RNGScope RCPP_rngScope_gen;
             rcpp_result_gen = p_meteo_saturatVaporPress(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
+    inline NumericVector meteo_saturatVaporPress_kPa(NumericVector ATMOS_temperature_Cel) {
+        typedef SEXP(*Ptr_meteo_saturatVaporPress_kPa)(SEXP);
+        static Ptr_meteo_saturatVaporPress_kPa p_meteo_saturatVaporPress_kPa = NULL;
+        if (p_meteo_saturatVaporPress_kPa == NULL) {
+            validateSignature("NumericVector(*meteo_saturatVaporPress_kPa)(NumericVector)");
+            p_meteo_saturatVaporPress_kPa = (Ptr_meteo_saturatVaporPress_kPa)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_saturatVaporPress_kPa");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_meteo_saturatVaporPress_kPa(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

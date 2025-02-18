@@ -34,6 +34,13 @@ NumericVector meteo_saturatVaporPress(NumericVector ATMOS_temperature_Cel) {
 //' @rdname meteo
 //' @export
 // [[Rcpp::export]]
+NumericVector meteo_saturatVaporPress_kPa(NumericVector ATMOS_temperature_Cel) {
+ return .61078 * exp(17.27 * ATMOS_temperature_Cel / (ATMOS_temperature_Cel + 237.3));
+}
+
+//' @rdname meteo
+//' @export
+// [[Rcpp::export]]
 NumericVector meteo_vaporPress(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_relativeHumidity_1) {
  return 6.1078 * exp(17.27 * ATMOS_temperature_Cel / (ATMOS_temperature_Cel + 237.3)) * ATMOS_relativeHumidity_1;
 }
@@ -129,13 +136,12 @@ NumericVector meteo_atmosEmissivity_UNKNOW(
    NumericVector LAND_latitude_Degree,
    NumericVector LAND_elevation_m) {
  
- NumericVector R_so = meteo_solarRadiatClearSky_FAO56(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m);
  NumericVector num_CloudFactor = meteo_cloudFactor_UNKNOW(ATMOS_solarRadiat_MJ, Time_dayOfYear_,
                                                    LAND_latitude_Degree, LAND_elevation_m);
  
  NumericVector epsilon_a = 1.08 * (1.0 - exp(-vecpow(ATMOS_vaporPress_kPa * 10.0,
                                                 (ATMOS_temperature_Cel + 273.15) / 2016.0))) *
-                                                  (1.0 + 0.22 * vecpow(num_CloudFactor, 2.75));
+                                                  (1.0 + 0.22 * vec_const_pow(num_CloudFactor, 2.75));
  
  return pmax(pmin(epsilon_a, 1.0), 0.0);
 }
@@ -158,7 +164,7 @@ NumericVector meteo_nettoRadiat_FAO56Simplify(
  NumericVector e_a = meteo_vaporPress(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1);
  NumericVector R_so = meteo_solarRadiatClearSky_FAO56(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m);
  NumericVector R_ns = (1 - alpha_) * ATMOS_solarRadiat_MJ;
- NumericVector R_nl = sigma_ * vecpow(ATMOS_temperature_Cel + 273.16, 4.0) *
+ NumericVector R_nl = sigma_ * vec_const_pow(ATMOS_temperature_Cel + 273.16, 4.0) *
    (0.34 - 0.14 * sqrt(e_a)) * (1.35 * ATMOS_solarRadiat_MJ / R_so - 0.35); // eq39
  
  return R_ns - R_nl;
