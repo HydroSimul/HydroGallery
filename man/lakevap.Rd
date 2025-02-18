@@ -3,9 +3,24 @@
 \name{lakevap}
 \alias{lakevap}
 \alias{lakeevap_Zhao}
+\alias{lakeevap_ZhaoTest}
 \title{**lake evaporation**}
 \usage{
 lakeevap_Zhao(
+  ATMOS_solarRadiat_MJ,
+  ATMOS_temperature_Cel,
+  ATMOS_vaporPress_kPa,
+  ATMOS_windSpeed2m_m_s,
+  LAND_latitude_Degree,
+  LAND_elevation_m,
+  Lake_temperature_Cel,
+  Lake_depth_m,
+  Lake_area_km2,
+  Lake_fetchLength_m,
+  Time_dayOfYear
+)
+
+lakeevap_ZhaoTest(
   ATMOS_solarRadiat_MJ,
   ATMOS_temperature_Cel,
   ATMOS_vaporPress_kPa,

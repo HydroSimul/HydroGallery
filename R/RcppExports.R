@@ -1177,6 +1177,12 @@ lakeevap_Zhao <- function(ATMOS_solarRadiat_MJ, ATMOS_temperature_Cel, ATMOS_vap
     .Call(`_HydroGallery_lakeevap_Zhao`, ATMOS_solarRadiat_MJ, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_windSpeed2m_m_s, LAND_latitude_Degree, LAND_elevation_m, Lake_temperature_Cel, Lake_depth_m, Lake_area_km2, Lake_fetchLength_m, Time_dayOfYear)
 }
 
+#' @rdname lakevap
+#' @export
+lakeevap_ZhaoTest <- function(ATMOS_solarRadiat_MJ, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_windSpeed2m_m_s, LAND_latitude_Degree, LAND_elevation_m, Lake_temperature_Cel, Lake_depth_m, Lake_area_km2, Lake_fetchLength_m, Time_dayOfYear) {
+    .Call(`_HydroGallery_lakeevap_ZhaoTest`, ATMOS_solarRadiat_MJ, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_windSpeed2m_m_s, LAND_latitude_Degree, LAND_elevation_m, Lake_temperature_Cel, Lake_depth_m, Lake_area_km2, Lake_fetchLength_m, Time_dayOfYear)
+}
+
 #' **lateral flux**
 #' @name lateral
 #' @inheritParams all_vari

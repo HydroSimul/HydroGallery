@@ -2306,6 +2306,50 @@ RcppExport SEXP _HydroGallery_lakeevap_Zhao(SEXP ATMOS_solarRadiat_MJSEXP, SEXP 
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// lakeevap_ZhaoTest
+NumericVector lakeevap_ZhaoTest(NumericVector ATMOS_solarRadiat_MJ, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_vaporPress_kPa, NumericVector ATMOS_windSpeed2m_m_s, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m, NumericVector& Lake_temperature_Cel, NumericVector Lake_depth_m, NumericVector Lake_area_km2, NumericVector Lake_fetchLength_m, NumericVector Time_dayOfYear);
+static SEXP _HydroGallery_lakeevap_ZhaoTest_try(SEXP ATMOS_solarRadiat_MJSEXP, SEXP ATMOS_temperature_CelSEXP, SEXP ATMOS_vaporPress_kPaSEXP, SEXP ATMOS_windSpeed2m_m_sSEXP, SEXP LAND_latitude_DegreeSEXP, SEXP LAND_elevation_mSEXP, SEXP Lake_temperature_CelSEXP, SEXP Lake_depth_mSEXP, SEXP Lake_area_km2SEXP, SEXP Lake_fetchLength_mSEXP, SEXP Time_dayOfYearSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type ATMOS_solarRadiat_MJ(ATMOS_solarRadiat_MJSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type ATMOS_temperature_Cel(ATMOS_temperature_CelSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type ATMOS_vaporPress_kPa(ATMOS_vaporPress_kPaSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type ATMOS_windSpeed2m_m_s(ATMOS_windSpeed2m_m_sSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type LAND_latitude_Degree(LAND_latitude_DegreeSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type LAND_elevation_m(LAND_elevation_mSEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type Lake_temperature_Cel(Lake_temperature_CelSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Lake_depth_m(Lake_depth_mSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Lake_area_km2(Lake_area_km2SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Lake_fetchLength_m(Lake_fetchLength_mSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Time_dayOfYear(Time_dayOfYearSEXP);
+    rcpp_result_gen = Rcpp::wrap(lakeevap_ZhaoTest(ATMOS_solarRadiat_MJ, ATMOS_temperature_Cel, ATMOS_vaporPress_kPa, ATMOS_windSpeed2m_m_s, LAND_latitude_Degree, LAND_elevation_m, Lake_temperature_Cel, Lake_depth_m, Lake_area_km2, Lake_fetchLength_m, Time_dayOfYear));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_lakeevap_ZhaoTest(SEXP ATMOS_solarRadiat_MJSEXP, SEXP ATMOS_temperature_CelSEXP, SEXP ATMOS_vaporPress_kPaSEXP, SEXP ATMOS_windSpeed2m_m_sSEXP, SEXP LAND_latitude_DegreeSEXP, SEXP LAND_elevation_mSEXP, SEXP Lake_temperature_CelSEXP, SEXP Lake_depth_mSEXP, SEXP Lake_area_km2SEXP, SEXP Lake_fetchLength_mSEXP, SEXP Time_dayOfYearSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_lakeevap_ZhaoTest_try(ATMOS_solarRadiat_MJSEXP, ATMOS_temperature_CelSEXP, ATMOS_vaporPress_kPaSEXP, ATMOS_windSpeed2m_m_sSEXP, LAND_latitude_DegreeSEXP, LAND_elevation_mSEXP, Lake_temperature_CelSEXP, Lake_depth_mSEXP, Lake_area_km2SEXP, Lake_fetchLength_mSEXP, Time_dayOfYearSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // lateral_SupplyPow
 NumericVector lateral_SupplyPow(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector param_LATERAL_sup_k, NumericVector param_LATERAL_sup_gamma);
 static SEXP _HydroGallery_lateral_SupplyPow_try(SEXP GROUND_water_mmSEXP, SEXP GROUND_capacity_mmSEXP, SEXP param_LATERAL_sup_kSEXP, SEXP param_LATERAL_sup_gammaSEXP) {
@@ -3826,6 +3870,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*intercep_Full)(NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lakeout_AcceptPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lakeevap_Zhao)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector&,NumericVector,NumericVector,NumericVector,NumericVector)");
+        signatures.insert("NumericVector(*lakeevap_ZhaoTest)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector&,NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lateral_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lateral_SupplyRatio)(NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lateral_GR4J)(NumericVector,NumericVector,NumericVector)");
@@ -3934,6 +3979,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_intercep_Full", (DL_FUNC)_HydroGallery_intercep_Full_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lakeout_AcceptPow", (DL_FUNC)_HydroGallery_lakeout_AcceptPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lakeevap_Zhao", (DL_FUNC)_HydroGallery_lakeevap_Zhao_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_lakeevap_ZhaoTest", (DL_FUNC)_HydroGallery_lakeevap_ZhaoTest_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lateral_SupplyPow", (DL_FUNC)_HydroGallery_lateral_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lateral_SupplyRatio", (DL_FUNC)_HydroGallery_lateral_SupplyRatio_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lateral_GR4J", (DL_FUNC)_HydroGallery_lateral_GR4J_try);
@@ -4041,6 +4087,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_intercep_Full", (DL_FUNC) &_HydroGallery_intercep_Full, 3},
     {"_HydroGallery_lakeout_AcceptPow", (DL_FUNC) &_HydroGallery_lakeout_AcceptPow, 4},
     {"_HydroGallery_lakeevap_Zhao", (DL_FUNC) &_HydroGallery_lakeevap_Zhao, 11},
+    {"_HydroGallery_lakeevap_ZhaoTest", (DL_FUNC) &_HydroGallery_lakeevap_ZhaoTest, 11},
     {"_HydroGallery_lateral_SupplyPow", (DL_FUNC) &_HydroGallery_lateral_SupplyPow, 4},
     {"_HydroGallery_lateral_SupplyRatio", (DL_FUNC) &_HydroGallery_lateral_SupplyRatio, 2},
     {"_HydroGallery_lateral_GR4J", (DL_FUNC) &_HydroGallery_lateral_GR4J, 3},
