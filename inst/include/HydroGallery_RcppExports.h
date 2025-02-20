@@ -106,6 +106,27 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
+    inline NumericVector linear_interpolate_vec2(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0) {
+        typedef SEXP(*Ptr_linear_interpolate_vec2)(SEXP,SEXP,SEXP);
+        static Ptr_linear_interpolate_vec2 p_linear_interpolate_vec2 = NULL;
+        if (p_linear_interpolate_vec2 == NULL) {
+            validateSignature("NumericVector(*linear_interpolate_vec2)(const NumericMatrix&,const NumericMatrix&,const NumericVector&)");
+            p_linear_interpolate_vec2 = (Ptr_linear_interpolate_vec2)R_GetCCallable("HydroGallery", "_HydroGallery_linear_interpolate_vec2");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_linear_interpolate_vec2(Shield<SEXP>(Rcpp::wrap(mat_X)), Shield<SEXP>(Rcpp::wrap(mat_Y)), Shield<SEXP>(Rcpp::wrap(num_X0)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
     inline NumericVector atmosSnow_ThresholdT(NumericVector ATMOS_precipitation_mm, NumericVector ATMOS_temperature_Cel, NumericVector param_ATMOS_thr_Ts) {
         typedef SEXP(*Ptr_atmosSnow_ThresholdT)(SEXP,SEXP,SEXP);
         static Ptr_atmosSnow_ThresholdT p_atmosSnow_ThresholdT = NULL;
@@ -1282,17 +1303,17 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericVector lakeout_AcceptPow(NumericVector Lake_water_m3, NumericVector Lake_capacity_m3, NumericVector param_Lakeout_acp_storeFactor, NumericVector param_Lakeout_acp_gamma) {
-        typedef SEXP(*Ptr_lakeout_AcceptPow)(SEXP,SEXP,SEXP,SEXP);
-        static Ptr_lakeout_AcceptPow p_lakeout_AcceptPow = NULL;
-        if (p_lakeout_AcceptPow == NULL) {
-            validateSignature("NumericVector(*lakeout_AcceptPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
-            p_lakeout_AcceptPow = (Ptr_lakeout_AcceptPow)R_GetCCallable("HydroGallery", "_HydroGallery_lakeout_AcceptPow");
+    inline NumericVector lakeout_SupplyPow(NumericVector Lake_water_m3, NumericVector Lake_capacity_m3, NumericVector param_Lakeout_sup_storeFactor, NumericVector param_Lakeout_sup_gamma) {
+        typedef SEXP(*Ptr_lakeout_SupplyPow)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_lakeout_SupplyPow p_lakeout_SupplyPow = NULL;
+        if (p_lakeout_SupplyPow == NULL) {
+            validateSignature("NumericVector(*lakeout_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            p_lakeout_SupplyPow = (Ptr_lakeout_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_lakeout_SupplyPow");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_lakeout_AcceptPow(Shield<SEXP>(Rcpp::wrap(Lake_water_m3)), Shield<SEXP>(Rcpp::wrap(Lake_capacity_m3)), Shield<SEXP>(Rcpp::wrap(param_Lakeout_acp_storeFactor)), Shield<SEXP>(Rcpp::wrap(param_Lakeout_acp_gamma)));
+            rcpp_result_gen = p_lakeout_SupplyPow(Shield<SEXP>(Rcpp::wrap(Lake_water_m3)), Shield<SEXP>(Rcpp::wrap(Lake_capacity_m3)), Shield<SEXP>(Rcpp::wrap(param_Lakeout_sup_storeFactor)), Shield<SEXP>(Rcpp::wrap(param_Lakeout_sup_gamma)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

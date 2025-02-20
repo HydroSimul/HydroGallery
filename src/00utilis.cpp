@@ -11,8 +11,6 @@ NumericVector vecpow(NumericVector base, NumericVector exp) {
   return (out);
 }
 
-#include <Rcpp.h>
-using namespace Rcpp;
 
 NumericVector vec_const_pow(NumericVector base, double exp) {
   NumericVector out(base.size());
@@ -137,4 +135,40 @@ IntegerVector find_locations(IntegerVector x, int x0) {
   }
 
   return wrap(locations);
+}
+
+
+//' @rdname utilis
+//' @param mat_X,mat_Y (matrix of num / int) data
+//' @param num_X0 (vector of num) data
+//' @export
+// [[Rcpp::export]]
+NumericVector linear_interpolate_vec2(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0) {
+  int n_Vec = mat_X.ncol();  // Now vectors are along columns
+  int n_Interpolat = mat_X.nrow(); // Interpolation points along rows
+  NumericVector num_Y0(n_Vec);
+  
+  for (int i = 0; i < n_Vec; ++i) {
+    double x0 = num_X0[i];
+    std::vector<double> X(n_Interpolat);
+    std::vector<double> Y(n_Interpolat);
+    
+    for (int j = 0; j < n_Interpolat; ++j) {
+      X[j] = mat_X(j, i);  // Access column-wise
+      Y[j] = mat_Y(j, i);  // Access column-wise
+    }
+    
+    int idx = std::lower_bound(X.begin(), X.end(), x0) - X.begin();
+    if (idx == 0) {
+      num_Y0[i] = Y[0];
+    } else if (idx == n_Interpolat) {
+      num_Y0[i] = Y[n_Interpolat - 1];
+    } else {
+      double x1 = X[idx - 1], x2 = X[idx];
+      double y1 = Y[idx - 1], y2 = Y[idx];
+      num_Y0[i] = y1 + (x0 - x1) * (y2 - y1) / (x2 - x1);
+    }
+  }
+  
+  return num_Y0;
 }

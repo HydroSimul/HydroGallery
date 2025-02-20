@@ -33,6 +33,14 @@ subset_add <- function(vec_Data, int_Index, vec_DataAdd) {
     invisible(.Call(`_HydroGallery_subset_add`, vec_Data, int_Index, vec_DataAdd))
 }
 
+#' @rdname utilis
+#' @param mat_X,mat_Y (matrix of num / int) data
+#' @param num_X0 (vector of num) data
+#' @export
+linear_interpolate_vec2 <- function(mat_X, mat_Y, num_X0) {
+    .Call(`_HydroGallery_linear_interpolate_vec2`, mat_X, mat_Y, num_X0)
+}
+
 #' caculate **snowfall**
 #' @name atmosSnow
 #' @inheritParams all_vari
@@ -1157,12 +1165,12 @@ intercep_Full <- function(ATMOS_precipitation_mm, LAND_interceptWater_mm, LAND_i
 #'
 #' The concept of lake estimates the waterbody outflow for waternet concentation
 #' @inheritParams all_vari
-#' @param param_Lakeout_acp_storeFactor <uknow> parameter for [lake_AcceptPow()],
-#' @param param_Lakeout_acp_gamma <uknow> parameter for [lake_AcceptPow()],
+#' @param param_Lakeout_sup_storeFactor <uknow> parameter for [lakeout_SupplyPow()],
+#' @param param_Lakeout_sup_gamma <uknow> parameter for [lakeout_SupplyPow()],
 #' @return outflow (m3)
 #' @export
-lakeout_AcceptPow <- function(Lake_water_m3, Lake_capacity_m3, param_Lakeout_acp_storeFactor, param_Lakeout_acp_gamma) {
-    .Call(`_HydroGallery_lakeout_AcceptPow`, Lake_water_m3, Lake_capacity_m3, param_Lakeout_acp_storeFactor, param_Lakeout_acp_gamma)
+lakeout_SupplyPow <- function(Lake_water_m3, Lake_capacity_m3, param_Lakeout_sup_storeFactor, param_Lakeout_sup_gamma) {
+    .Call(`_HydroGallery_lakeout_SupplyPow`, Lake_water_m3, Lake_capacity_m3, param_Lakeout_sup_storeFactor, param_Lakeout_sup_gamma)
 }
 
 #' **lake evaporation**

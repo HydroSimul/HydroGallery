@@ -2,14 +2,14 @@
 % Please edit documentation in R/RcppExports.R
 \name{lakeout}
 \alias{lakeout}
-\alias{lakeout_AcceptPow}
+\alias{lakeout_SupplyPow}
 \title{**lake outflow**}
 \usage{
-lakeout_AcceptPow(
+lakeout_SupplyPow(
   Lake_water_m3,
   Lake_capacity_m3,
-  param_Lakeout_acp_storeFactor,
-  param_Lakeout_acp_gamma
+  param_Lakeout_sup_storeFactor,
+  param_Lakeout_sup_gamma
 )
 }
 \arguments{
@@ -17,9 +17,9 @@ lakeout_AcceptPow(
 
 \item{Lake_capacity_m3}{(m3) capacity of the lake}
 
-\item{param_Lakeout_acp_storeFactor}{<uknow> parameter for [lake_AcceptPow()],}
+\item{param_Lakeout_sup_storeFactor}{<uknow> parameter for [lakeout_SupplyPow()],}
 
-\item{param_Lakeout_acp_gamma}{<uknow> parameter for [lake_AcceptPow()],}
+\item{param_Lakeout_sup_gamma}{<uknow> parameter for [lakeout_SupplyPow()],}
 }
 \value{
 outflow (m3)

@@ -153,6 +153,42 @@ RcppExport SEXP _HydroGallery_subset_add(SEXP vec_DataSEXP, SEXP int_IndexSEXP, 
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// linear_interpolate_vec2
+NumericVector linear_interpolate_vec2(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0);
+static SEXP _HydroGallery_linear_interpolate_vec2_try(SEXP mat_XSEXP, SEXP mat_YSEXP, SEXP num_X0SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type mat_X(mat_XSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type mat_Y(mat_YSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type num_X0(num_X0SEXP);
+    rcpp_result_gen = Rcpp::wrap(linear_interpolate_vec2(mat_X, mat_Y, num_X0));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_linear_interpolate_vec2(SEXP mat_XSEXP, SEXP mat_YSEXP, SEXP num_X0SEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_linear_interpolate_vec2_try(mat_XSEXP, mat_YSEXP, num_X0SEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // atmosSnow_ThresholdT
 NumericVector atmosSnow_ThresholdT(NumericVector ATMOS_precipitation_mm, NumericVector ATMOS_temperature_Cel, NumericVector param_ATMOS_thr_Ts);
 static SEXP _HydroGallery_atmosSnow_ThresholdT_try(SEXP ATMOS_precipitation_mmSEXP, SEXP ATMOS_temperature_CelSEXP, SEXP param_ATMOS_thr_TsSEXP) {
@@ -2225,24 +2261,24 @@ RcppExport SEXP _HydroGallery_intercep_Full(SEXP ATMOS_precipitation_mmSEXP, SEX
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// lakeout_AcceptPow
-NumericVector lakeout_AcceptPow(NumericVector Lake_water_m3, NumericVector Lake_capacity_m3, NumericVector param_Lakeout_acp_storeFactor, NumericVector param_Lakeout_acp_gamma);
-static SEXP _HydroGallery_lakeout_AcceptPow_try(SEXP Lake_water_m3SEXP, SEXP Lake_capacity_m3SEXP, SEXP param_Lakeout_acp_storeFactorSEXP, SEXP param_Lakeout_acp_gammaSEXP) {
+// lakeout_SupplyPow
+NumericVector lakeout_SupplyPow(NumericVector Lake_water_m3, NumericVector Lake_capacity_m3, NumericVector param_Lakeout_sup_storeFactor, NumericVector param_Lakeout_sup_gamma);
+static SEXP _HydroGallery_lakeout_SupplyPow_try(SEXP Lake_water_m3SEXP, SEXP Lake_capacity_m3SEXP, SEXP param_Lakeout_sup_storeFactorSEXP, SEXP param_Lakeout_sup_gammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< NumericVector >::type Lake_water_m3(Lake_water_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector >::type Lake_capacity_m3(Lake_capacity_m3SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type param_Lakeout_acp_storeFactor(param_Lakeout_acp_storeFactorSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type param_Lakeout_acp_gamma(param_Lakeout_acp_gammaSEXP);
-    rcpp_result_gen = Rcpp::wrap(lakeout_AcceptPow(Lake_water_m3, Lake_capacity_m3, param_Lakeout_acp_storeFactor, param_Lakeout_acp_gamma));
+    Rcpp::traits::input_parameter< NumericVector >::type param_Lakeout_sup_storeFactor(param_Lakeout_sup_storeFactorSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type param_Lakeout_sup_gamma(param_Lakeout_sup_gammaSEXP);
+    rcpp_result_gen = Rcpp::wrap(lakeout_SupplyPow(Lake_water_m3, Lake_capacity_m3, param_Lakeout_sup_storeFactor, param_Lakeout_sup_gamma));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _HydroGallery_lakeout_AcceptPow(SEXP Lake_water_m3SEXP, SEXP Lake_capacity_m3SEXP, SEXP param_Lakeout_acp_storeFactorSEXP, SEXP param_Lakeout_acp_gammaSEXP) {
+RcppExport SEXP _HydroGallery_lakeout_SupplyPow(SEXP Lake_water_m3SEXP, SEXP Lake_capacity_m3SEXP, SEXP param_Lakeout_sup_storeFactorSEXP, SEXP param_Lakeout_sup_gammaSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_lakeout_AcceptPow_try(Lake_water_m3SEXP, Lake_capacity_m3SEXP, param_Lakeout_acp_storeFactorSEXP, param_Lakeout_acp_gammaSEXP));
+        rcpp_result_gen = PROTECT(_HydroGallery_lakeout_SupplyPow_try(Lake_water_m3SEXP, Lake_capacity_m3SEXP, param_Lakeout_sup_storeFactorSEXP, param_Lakeout_sup_gammaSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -3768,6 +3804,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("LogicalVector(*subset_get_logical)(LogicalVector,IntegerVector)");
         signatures.insert("void(*subset_put)(NumericVector&,IntegerVector,NumericVector)");
         signatures.insert("void(*subset_add)(NumericVector&,IntegerVector,NumericVector)");
+        signatures.insert("NumericVector(*linear_interpolate_vec2)(const NumericMatrix&,const NumericMatrix&,const NumericVector&)");
         signatures.insert("NumericVector(*atmosSnow_ThresholdT)(NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*atmosSnow_UBC)(NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*baseflow_GR4J)(NumericVector,NumericVector)");
@@ -3824,7 +3861,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*inteflow_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*inteflow_SupplyRatio)(NumericVector,NumericVector)");
         signatures.insert("NumericVector(*intercep_Full)(NumericVector,NumericVector,NumericVector)");
-        signatures.insert("NumericVector(*lakeout_AcceptPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+        signatures.insert("NumericVector(*lakeout_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lakeevap_Zhao)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector&,NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lateral_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*lateral_SupplyRatio)(NumericVector,NumericVector)");
@@ -3876,6 +3913,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_subset_get_logical", (DL_FUNC)_HydroGallery_subset_get_logical_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_subset_put", (DL_FUNC)_HydroGallery_subset_put_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_subset_add", (DL_FUNC)_HydroGallery_subset_add_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_linear_interpolate_vec2", (DL_FUNC)_HydroGallery_linear_interpolate_vec2_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_atmosSnow_ThresholdT", (DL_FUNC)_HydroGallery_atmosSnow_ThresholdT_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_atmosSnow_UBC", (DL_FUNC)_HydroGallery_atmosSnow_UBC_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_baseflow_GR4J", (DL_FUNC)_HydroGallery_baseflow_GR4J_try);
@@ -3932,7 +3970,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_inteflow_SupplyPow", (DL_FUNC)_HydroGallery_inteflow_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_inteflow_SupplyRatio", (DL_FUNC)_HydroGallery_inteflow_SupplyRatio_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_intercep_Full", (DL_FUNC)_HydroGallery_intercep_Full_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_lakeout_AcceptPow", (DL_FUNC)_HydroGallery_lakeout_AcceptPow_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_lakeout_SupplyPow", (DL_FUNC)_HydroGallery_lakeout_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lakeevap_Zhao", (DL_FUNC)_HydroGallery_lakeevap_Zhao_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lateral_SupplyPow", (DL_FUNC)_HydroGallery_lateral_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_lateral_SupplyRatio", (DL_FUNC)_HydroGallery_lateral_SupplyRatio_try);
@@ -3983,6 +4021,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_subset_get_logical", (DL_FUNC) &_HydroGallery_subset_get_logical, 2},
     {"_HydroGallery_subset_put", (DL_FUNC) &_HydroGallery_subset_put, 3},
     {"_HydroGallery_subset_add", (DL_FUNC) &_HydroGallery_subset_add, 3},
+    {"_HydroGallery_linear_interpolate_vec2", (DL_FUNC) &_HydroGallery_linear_interpolate_vec2, 3},
     {"_HydroGallery_atmosSnow_ThresholdT", (DL_FUNC) &_HydroGallery_atmosSnow_ThresholdT, 3},
     {"_HydroGallery_atmosSnow_UBC", (DL_FUNC) &_HydroGallery_atmosSnow_UBC, 3},
     {"_HydroGallery_baseflow_GR4J", (DL_FUNC) &_HydroGallery_baseflow_GR4J, 2},
@@ -4039,7 +4078,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_inteflow_SupplyPow", (DL_FUNC) &_HydroGallery_inteflow_SupplyPow, 4},
     {"_HydroGallery_inteflow_SupplyRatio", (DL_FUNC) &_HydroGallery_inteflow_SupplyRatio, 2},
     {"_HydroGallery_intercep_Full", (DL_FUNC) &_HydroGallery_intercep_Full, 3},
-    {"_HydroGallery_lakeout_AcceptPow", (DL_FUNC) &_HydroGallery_lakeout_AcceptPow, 4},
+    {"_HydroGallery_lakeout_SupplyPow", (DL_FUNC) &_HydroGallery_lakeout_SupplyPow, 4},
     {"_HydroGallery_lakeevap_Zhao", (DL_FUNC) &_HydroGallery_lakeevap_Zhao, 11},
     {"_HydroGallery_lateral_SupplyPow", (DL_FUNC) &_HydroGallery_lateral_SupplyPow, 4},
     {"_HydroGallery_lateral_SupplyRatio", (DL_FUNC) &_HydroGallery_lateral_SupplyRatio, 2},
