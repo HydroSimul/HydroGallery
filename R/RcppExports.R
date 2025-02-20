@@ -37,8 +37,8 @@ subset_add <- function(vec_Data, int_Index, vec_DataAdd) {
 #' @param mat_X,mat_Y (matrix of num / int) data
 #' @param num_X0 (vector of num) data
 #' @export
-linear_interpolate_vec2 <- function(mat_X, mat_Y, num_X0) {
-    .Call(`_HydroGallery_linear_interpolate_vec2`, mat_X, mat_Y, num_X0)
+linear_interpolate_vec <- function(mat_X, mat_Y, num_X0) {
+    .Call(`_HydroGallery_linear_interpolate_vec`, mat_X, mat_Y, num_X0)
 }
 
 #' caculate **snowfall**

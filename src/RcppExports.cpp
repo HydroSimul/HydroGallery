@@ -153,23 +153,23 @@ RcppExport SEXP _HydroGallery_subset_add(SEXP vec_DataSEXP, SEXP int_IndexSEXP, 
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// linear_interpolate_vec2
-NumericVector linear_interpolate_vec2(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0);
-static SEXP _HydroGallery_linear_interpolate_vec2_try(SEXP mat_XSEXP, SEXP mat_YSEXP, SEXP num_X0SEXP) {
+// linear_interpolate_vec
+NumericVector linear_interpolate_vec(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0);
+static SEXP _HydroGallery_linear_interpolate_vec_try(SEXP mat_XSEXP, SEXP mat_YSEXP, SEXP num_X0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const NumericMatrix& >::type mat_X(mat_XSEXP);
     Rcpp::traits::input_parameter< const NumericMatrix& >::type mat_Y(mat_YSEXP);
     Rcpp::traits::input_parameter< const NumericVector& >::type num_X0(num_X0SEXP);
-    rcpp_result_gen = Rcpp::wrap(linear_interpolate_vec2(mat_X, mat_Y, num_X0));
+    rcpp_result_gen = Rcpp::wrap(linear_interpolate_vec(mat_X, mat_Y, num_X0));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _HydroGallery_linear_interpolate_vec2(SEXP mat_XSEXP, SEXP mat_YSEXP, SEXP num_X0SEXP) {
+RcppExport SEXP _HydroGallery_linear_interpolate_vec(SEXP mat_XSEXP, SEXP mat_YSEXP, SEXP num_X0SEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_linear_interpolate_vec2_try(mat_XSEXP, mat_YSEXP, num_X0SEXP));
+        rcpp_result_gen = PROTECT(_HydroGallery_linear_interpolate_vec_try(mat_XSEXP, mat_YSEXP, num_X0SEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -3804,7 +3804,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("LogicalVector(*subset_get_logical)(LogicalVector,IntegerVector)");
         signatures.insert("void(*subset_put)(NumericVector&,IntegerVector,NumericVector)");
         signatures.insert("void(*subset_add)(NumericVector&,IntegerVector,NumericVector)");
-        signatures.insert("NumericVector(*linear_interpolate_vec2)(const NumericMatrix&,const NumericMatrix&,const NumericVector&)");
+        signatures.insert("NumericVector(*linear_interpolate_vec)(const NumericMatrix&,const NumericMatrix&,const NumericVector&)");
         signatures.insert("NumericVector(*atmosSnow_ThresholdT)(NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*atmosSnow_UBC)(NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*baseflow_GR4J)(NumericVector,NumericVector)");
@@ -3913,7 +3913,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_subset_get_logical", (DL_FUNC)_HydroGallery_subset_get_logical_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_subset_put", (DL_FUNC)_HydroGallery_subset_put_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_subset_add", (DL_FUNC)_HydroGallery_subset_add_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_linear_interpolate_vec2", (DL_FUNC)_HydroGallery_linear_interpolate_vec2_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_linear_interpolate_vec", (DL_FUNC)_HydroGallery_linear_interpolate_vec_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_atmosSnow_ThresholdT", (DL_FUNC)_HydroGallery_atmosSnow_ThresholdT_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_atmosSnow_UBC", (DL_FUNC)_HydroGallery_atmosSnow_UBC_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_baseflow_GR4J", (DL_FUNC)_HydroGallery_baseflow_GR4J_try);
@@ -4021,7 +4021,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_subset_get_logical", (DL_FUNC) &_HydroGallery_subset_get_logical, 2},
     {"_HydroGallery_subset_put", (DL_FUNC) &_HydroGallery_subset_put, 3},
     {"_HydroGallery_subset_add", (DL_FUNC) &_HydroGallery_subset_add, 3},
-    {"_HydroGallery_linear_interpolate_vec2", (DL_FUNC) &_HydroGallery_linear_interpolate_vec2, 3},
+    {"_HydroGallery_linear_interpolate_vec", (DL_FUNC) &_HydroGallery_linear_interpolate_vec, 3},
     {"_HydroGallery_atmosSnow_ThresholdT", (DL_FUNC) &_HydroGallery_atmosSnow_ThresholdT, 3},
     {"_HydroGallery_atmosSnow_UBC", (DL_FUNC) &_HydroGallery_atmosSnow_UBC, 3},
     {"_HydroGallery_baseflow_GR4J", (DL_FUNC) &_HydroGallery_baseflow_GR4J, 2},

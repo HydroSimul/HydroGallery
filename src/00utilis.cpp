@@ -143,7 +143,7 @@ IntegerVector find_locations(IntegerVector x, int x0) {
 //' @param num_X0 (vector of num) data
 //' @export
 // [[Rcpp::export]]
-NumericVector linear_interpolate_vec2(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0) {
+NumericVector linear_interpolate_vec(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0) {
   int n_Vec = mat_X.ncol();  // Now vectors are along columns
   int n_Interpolat = mat_X.nrow(); // Interpolation points along rows
   NumericVector num_Y0(n_Vec);

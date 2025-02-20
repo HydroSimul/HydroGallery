@@ -106,17 +106,17 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline NumericVector linear_interpolate_vec2(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0) {
-        typedef SEXP(*Ptr_linear_interpolate_vec2)(SEXP,SEXP,SEXP);
-        static Ptr_linear_interpolate_vec2 p_linear_interpolate_vec2 = NULL;
-        if (p_linear_interpolate_vec2 == NULL) {
-            validateSignature("NumericVector(*linear_interpolate_vec2)(const NumericMatrix&,const NumericMatrix&,const NumericVector&)");
-            p_linear_interpolate_vec2 = (Ptr_linear_interpolate_vec2)R_GetCCallable("HydroGallery", "_HydroGallery_linear_interpolate_vec2");
+    inline NumericVector linear_interpolate_vec(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0) {
+        typedef SEXP(*Ptr_linear_interpolate_vec)(SEXP,SEXP,SEXP);
+        static Ptr_linear_interpolate_vec p_linear_interpolate_vec = NULL;
+        if (p_linear_interpolate_vec == NULL) {
+            validateSignature("NumericVector(*linear_interpolate_vec)(const NumericMatrix&,const NumericMatrix&,const NumericVector&)");
+            p_linear_interpolate_vec = (Ptr_linear_interpolate_vec)R_GetCCallable("HydroGallery", "_HydroGallery_linear_interpolate_vec");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_linear_interpolate_vec2(Shield<SEXP>(Rcpp::wrap(mat_X)), Shield<SEXP>(Rcpp::wrap(mat_Y)), Shield<SEXP>(Rcpp::wrap(num_X0)));
+            rcpp_result_gen = p_linear_interpolate_vec(Shield<SEXP>(Rcpp::wrap(mat_X)), Shield<SEXP>(Rcpp::wrap(mat_Y)), Shield<SEXP>(Rcpp::wrap(num_X0)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

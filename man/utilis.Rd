@@ -6,7 +6,7 @@
 \alias{subset_get_logical}
 \alias{subset_put}
 \alias{subset_add}
-\alias{linear_interpolate_vec2}
+\alias{linear_interpolate_vec}
 \title{**utilize functions**}
 \usage{
 subset_get(vec_Data, int_Index)
@@ -17,7 +17,7 @@ subset_put(vec_Data, int_Index, vec_DataPut)
 
 subset_add(vec_Data, int_Index, vec_DataAdd)
 
-linear_interpolate_vec2(mat_X, mat_Y, num_X0)
+linear_interpolate_vec(mat_X, mat_Y, num_X0)
 }
 \arguments{
 \item{vec_Data}{(vector of num / int) data}
