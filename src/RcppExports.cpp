@@ -1299,6 +1299,43 @@ RcppExport SEXP _HydroGallery_evatransPotential_FAO56(SEXP ATMOS_temperature_Cel
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// evatransPotential_PriestleyTaylor
+NumericVector evatransPotential_PriestleyTaylor(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_netRadiat_MJ, NumericVector LAND_elevation_m, NumericVector param_EVATRANS_prt_alpha);
+static SEXP _HydroGallery_evatransPotential_PriestleyTaylor_try(SEXP ATMOS_temperature_CelSEXP, SEXP ATMOS_netRadiat_MJSEXP, SEXP LAND_elevation_mSEXP, SEXP param_EVATRANS_prt_alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type ATMOS_temperature_Cel(ATMOS_temperature_CelSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type ATMOS_netRadiat_MJ(ATMOS_netRadiat_MJSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type LAND_elevation_m(LAND_elevation_mSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type param_EVATRANS_prt_alpha(param_EVATRANS_prt_alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(evatransPotential_PriestleyTaylor(ATMOS_temperature_Cel, ATMOS_netRadiat_MJ, LAND_elevation_m, param_EVATRANS_prt_alpha));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_evatransPotential_PriestleyTaylor(SEXP ATMOS_temperature_CelSEXP, SEXP ATMOS_netRadiat_MJSEXP, SEXP LAND_elevation_mSEXP, SEXP param_EVATRANS_prt_alphaSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_evatransPotential_PriestleyTaylor_try(ATMOS_temperature_CelSEXP, ATMOS_netRadiat_MJSEXP, LAND_elevation_mSEXP, param_EVATRANS_prt_alphaSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // evatransActual_SupplyRatio
 NumericVector evatransActual_SupplyRatio(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_sur_k);
 static SEXP _HydroGallery_evatransActual_SupplyRatio_try(SEXP ATMOS_potentialEvatrans_mmSEXP, SEXP water_mmSEXP, SEXP capacity_mmSEXP, SEXP param_EVATRANS_sur_kSEXP) {
@@ -3036,6 +3073,41 @@ RcppExport SEXP _HydroGallery_meteo_wetBulbTemperature(SEXP ATMOS_vaporPress_kPa
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// read_nc_2d
+NumericMatrix read_nc_2d(const std::string& fileName, const std::string& varName);
+static SEXP _HydroGallery_read_nc_2d_try(SEXP fileNameSEXP, SEXP varNameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const std::string& >::type fileName(fileNameSEXP);
+    Rcpp::traits::input_parameter< const std::string& >::type varName(varNameSEXP);
+    rcpp_result_gen = Rcpp::wrap(read_nc_2d(fileName, varName));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_read_nc_2d(SEXP fileNameSEXP, SEXP varNameSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_read_nc_2d_try(fileNameSEXP, varNameSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // percola_GR4J
 NumericVector percola_GR4J(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm);
 static SEXP _HydroGallery_percola_GR4J_try(SEXP SOIL_water_mmSEXP, SEXP SOIL_capacity_mmSEXP) {
@@ -3835,6 +3907,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*evatransPotential_TurcWendling)(NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*evatransPotential_Linacre)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*evatransPotential_FAO56)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+        signatures.insert("NumericVector(*evatransPotential_PriestleyTaylor)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*evatransActual_SupplyRatio)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*evatransActual_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*evatransActual_VIC)(NumericVector,NumericVector,NumericVector,NumericVector)");
@@ -3882,6 +3955,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*meteo_airDensity)(NumericVector,NumericVector)");
         signatures.insert("NumericVector(*meteo_saturatDelta)(NumericVector)");
         signatures.insert("NumericVector(*meteo_wetBulbTemperature)(NumericVector,NumericVector)");
+        signatures.insert("NumericMatrix(*read_nc_2d)(const std::string&,const std::string&)");
         signatures.insert("NumericVector(*percola_GR4J)(NumericVector,NumericVector)");
         signatures.insert("NumericVector(*percola_GR4Jfix)(NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*percola_MaxPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
@@ -3944,6 +4018,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransPotential_TurcWendling", (DL_FUNC)_HydroGallery_evatransPotential_TurcWendling_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransPotential_Linacre", (DL_FUNC)_HydroGallery_evatransPotential_Linacre_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransPotential_FAO56", (DL_FUNC)_HydroGallery_evatransPotential_FAO56_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransPotential_PriestleyTaylor", (DL_FUNC)_HydroGallery_evatransPotential_PriestleyTaylor_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransActual_SupplyRatio", (DL_FUNC)_HydroGallery_evatransActual_SupplyRatio_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransActual_SupplyPow", (DL_FUNC)_HydroGallery_evatransActual_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransActual_VIC", (DL_FUNC)_HydroGallery_evatransActual_VIC_try);
@@ -3991,6 +4066,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_meteo_airDensity", (DL_FUNC)_HydroGallery_meteo_airDensity_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_meteo_saturatDelta", (DL_FUNC)_HydroGallery_meteo_saturatDelta_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_meteo_wetBulbTemperature", (DL_FUNC)_HydroGallery_meteo_wetBulbTemperature_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_read_nc_2d", (DL_FUNC)_HydroGallery_read_nc_2d_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_GR4J", (DL_FUNC)_HydroGallery_percola_GR4J_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_GR4Jfix", (DL_FUNC)_HydroGallery_percola_GR4Jfix_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_MaxPow", (DL_FUNC)_HydroGallery_percola_MaxPow_try);
@@ -4052,6 +4128,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_evatransPotential_TurcWendling", (DL_FUNC) &_HydroGallery_evatransPotential_TurcWendling, 3},
     {"_HydroGallery_evatransPotential_Linacre", (DL_FUNC) &_HydroGallery_evatransPotential_Linacre, 5},
     {"_HydroGallery_evatransPotential_FAO56", (DL_FUNC) &_HydroGallery_evatransPotential_FAO56, 6},
+    {"_HydroGallery_evatransPotential_PriestleyTaylor", (DL_FUNC) &_HydroGallery_evatransPotential_PriestleyTaylor, 4},
     {"_HydroGallery_evatransActual_SupplyRatio", (DL_FUNC) &_HydroGallery_evatransActual_SupplyRatio, 4},
     {"_HydroGallery_evatransActual_SupplyPow", (DL_FUNC) &_HydroGallery_evatransActual_SupplyPow, 5},
     {"_HydroGallery_evatransActual_VIC", (DL_FUNC) &_HydroGallery_evatransActual_VIC, 4},
@@ -4099,6 +4176,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_meteo_airDensity", (DL_FUNC) &_HydroGallery_meteo_airDensity, 2},
     {"_HydroGallery_meteo_saturatDelta", (DL_FUNC) &_HydroGallery_meteo_saturatDelta, 1},
     {"_HydroGallery_meteo_wetBulbTemperature", (DL_FUNC) &_HydroGallery_meteo_wetBulbTemperature, 2},
+    {"_HydroGallery_read_nc_2d", (DL_FUNC) &_HydroGallery_read_nc_2d, 2},
     {"_HydroGallery_percola_GR4J", (DL_FUNC) &_HydroGallery_percola_GR4J, 2},
     {"_HydroGallery_percola_GR4Jfix", (DL_FUNC) &_HydroGallery_percola_GR4Jfix, 3},
     {"_HydroGallery_percola_MaxPow", (DL_FUNC) &_HydroGallery_percola_MaxPow, 4},

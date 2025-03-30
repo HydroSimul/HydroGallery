@@ -630,6 +630,13 @@ evatransPotential_FAO56 <- function(ATMOS_temperature_Cel, ATMOS_vaporPress_hPa,
     .Call(`_HydroGallery_evatransPotential_FAO56`, ATMOS_temperature_Cel, ATMOS_vaporPress_hPa, ATMOS_saturatVaporPress_hPa, ATMOS_netRadiat_MJ, ATMOS_windSpeed2m_m_s, LAND_elevation_m)
 }
 
+#' @rdname evatransPotential
+#' @param param_EVATRANS_prt_alpha <1, 2> parameter for [evatransPotential_PriestleyTaylor()], higher value when closer to the tropical
+#' @export
+evatransPotential_PriestleyTaylor <- function(ATMOS_temperature_Cel, ATMOS_netRadiat_MJ, LAND_elevation_m, param_EVATRANS_prt_alpha) {
+    .Call(`_HydroGallery_evatransPotential_PriestleyTaylor`, ATMOS_temperature_Cel, ATMOS_netRadiat_MJ, LAND_elevation_m, param_EVATRANS_prt_alpha)
+}
+
 #' **actuall evapotranspiration**
 #' @name evatransActual
 #' @inheritParams all_vari
@@ -1392,6 +1399,16 @@ meteo_saturatDelta <- function(ATMOS_temperature_Cel) {
 
 meteo_wetBulbTemperature <- function(ATMOS_vaporPress_kPa, ATMOS_temperature_Cel) {
     .Call(`_HydroGallery_meteo_wetBulbTemperature`, ATMOS_vaporPress_kPa, ATMOS_temperature_Cel)
+}
+
+#' Evalute matrics
+#' @name nc
+#' @param fileName NC-File name.
+#' @param varName Variable Name.
+#' @return 2D-Matrix.
+#' @export
+read_nc_2d <- function(fileName, varName) {
+    .Call(`_HydroGallery_read_nc_2d`, fileName, varName)
 }
 
 #' **percolation**

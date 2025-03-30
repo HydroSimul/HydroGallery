@@ -757,6 +757,27 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline NumericVector evatransPotential_PriestleyTaylor(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_netRadiat_MJ, NumericVector LAND_elevation_m, NumericVector param_EVATRANS_prt_alpha) {
+        typedef SEXP(*Ptr_evatransPotential_PriestleyTaylor)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_evatransPotential_PriestleyTaylor p_evatransPotential_PriestleyTaylor = NULL;
+        if (p_evatransPotential_PriestleyTaylor == NULL) {
+            validateSignature("NumericVector(*evatransPotential_PriestleyTaylor)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            p_evatransPotential_PriestleyTaylor = (Ptr_evatransPotential_PriestleyTaylor)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_PriestleyTaylor");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_evatransPotential_PriestleyTaylor(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_netRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)), Shield<SEXP>(Rcpp::wrap(param_EVATRANS_prt_alpha)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
     inline NumericVector evatransActual_SupplyRatio(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_sur_k) {
         typedef SEXP(*Ptr_evatransActual_SupplyRatio)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_SupplyRatio p_evatransActual_SupplyRatio = NULL;
@@ -1742,6 +1763,27 @@ namespace HydroGallery {
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
+    inline NumericMatrix read_nc_2d(const std::string& fileName, const std::string& varName) {
+        typedef SEXP(*Ptr_read_nc_2d)(SEXP,SEXP);
+        static Ptr_read_nc_2d p_read_nc_2d = NULL;
+        if (p_read_nc_2d == NULL) {
+            validateSignature("NumericMatrix(*read_nc_2d)(const std::string&,const std::string&)");
+            p_read_nc_2d = (Ptr_read_nc_2d)R_GetCCallable("HydroGallery", "_HydroGallery_read_nc_2d");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_read_nc_2d(Shield<SEXP>(Rcpp::wrap(fileName)), Shield<SEXP>(Rcpp::wrap(varName)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericMatrix >(rcpp_result_gen);
     }
 
     inline NumericVector percola_GR4J(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm) {

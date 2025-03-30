@@ -6,6 +6,7 @@
 \alias{evatransPotential_TurcWendling}
 \alias{evatransPotential_Linacre}
 \alias{evatransPotential_FAO56}
+\alias{evatransPotential_PriestleyTaylor}
 \title{**potential evapotranspiration**}
 \usage{
 landLeafAreaIndex_WaterGAP3(
@@ -40,6 +41,13 @@ evatransPotential_FAO56(
   ATMOS_windSpeed2m_m_s,
   LAND_elevation_m
 )
+
+evatransPotential_PriestleyTaylor(
+  ATMOS_temperature_Cel,
+  ATMOS_netRadiat_MJ,
+  LAND_elevation_m,
+  param_EVATRANS_prt_alpha
+)
 }
 \arguments{
 \item{ATMOS_temperature_Cel}{(Cel) the average air temperature in the time phase}
@@ -69,6 +77,8 @@ evatransPotential_FAO56(
 \item{ATMOS_netRadiat_MJ}{(MJ/m2/TS) the balance between the energy absorbed, reflected and emitted by the earths surface or the difference between the incoming net shortwave (Rns) and the net outgoing longwave (Rnl) radiation}
 
 \item{ATMOS_windSpeed2m_m_s}{(m/s) wind speed at 2 m above ground surface}
+
+\item{param_EVATRANS_prt_alpha}{<1, 2> parameter for [evatransPotential_PriestleyTaylor()], higher value when closer to the tropical}
 }
 \value{
 potential evapotranspiration (mm/m2)
