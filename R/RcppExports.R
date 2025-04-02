@@ -1333,6 +1333,12 @@ meteo_solarRadiatClearSky_FAO56 <- function(Time_dayOfYear_, LAND_latitude_Degre
 
 #' @rdname meteo
 #' @export
+meteo_extraterreSolarRadiat_FAO56 <- function(Time_dayOfYear_, LAND_latitude_Degree) {
+    .Call(`_HydroGallery_meteo_extraterreSolarRadiat_FAO56`, Time_dayOfYear_, LAND_latitude_Degree)
+}
+
+#' @rdname meteo
+#' @export
 meteo_saturatVaporPress <- function(ATMOS_temperature_Cel) {
     .Call(`_HydroGallery_meteo_saturatVaporPress`, ATMOS_temperature_Cel)
 }
@@ -1375,6 +1381,18 @@ meteo_atmosEmissivity_UNKNOW <- function(Time_dayOfYear_, ATMOS_temperature_Cel,
 
 #' @rdname meteo
 #' @export
+meteo_atmosEmissivity_Idso <- function(ATMOS_temperature_Cel) {
+    .Call(`_HydroGallery_meteo_atmosEmissivity_Idso`, ATMOS_temperature_Cel)
+}
+
+#' @rdname meteo
+#' @export
+meteo_nettoRadiat_WaterGAP3 <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, LAND_albedo_1, LAND_latitude_Degree, LAND_elevation_m) {
+    .Call(`_HydroGallery_meteo_nettoRadiat_WaterGAP3`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, LAND_albedo_1, LAND_latitude_Degree, LAND_elevation_m)
+}
+
+#' @rdname meteo
+#' @export
 meteo_nettoRadiat_FAO56Simplify <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m) {
     .Call(`_HydroGallery_meteo_nettoRadiat_FAO56Simplify`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_relativeHumidity_1, ATMOS_solarRadiat_MJ, LAND_latitude_Degree, LAND_elevation_m)
 }
@@ -1399,16 +1417,6 @@ meteo_saturatDelta <- function(ATMOS_temperature_Cel) {
 
 meteo_wetBulbTemperature <- function(ATMOS_vaporPress_kPa, ATMOS_temperature_Cel) {
     .Call(`_HydroGallery_meteo_wetBulbTemperature`, ATMOS_vaporPress_kPa, ATMOS_temperature_Cel)
-}
-
-#' Evalute matrics
-#' @name nc
-#' @param fileName NC-File name.
-#' @param varName Variable Name.
-#' @return 2D-Matrix.
-#' @export
-read_nc_2d <- function(fileName, varName) {
-    .Call(`_HydroGallery_read_nc_2d`, fileName, varName)
 }
 
 #' **percolation**

@@ -3,6 +3,7 @@
 \name{meteo}
 \alias{meteo}
 \alias{meteo_solarRadiatClearSky_FAO56}
+\alias{meteo_extraterreSolarRadiat_FAO56}
 \alias{meteo_saturatVaporPress}
 \alias{meteo_saturatVaporPress_kPa}
 \alias{meteo_vaporPress}
@@ -10,6 +11,8 @@
 \alias{meteo_atmosEmissivity_FAO56}
 \alias{meteo_cloudFactor_UNKNOW}
 \alias{meteo_atmosEmissivity_UNKNOW}
+\alias{meteo_atmosEmissivity_Idso}
+\alias{meteo_nettoRadiat_WaterGAP3}
 \alias{meteo_nettoRadiat_FAO56Simplify}
 \alias{meteo_windSpeed2m}
 \alias{meteo_airDensity}
@@ -22,6 +25,8 @@ meteo_solarRadiatClearSky_FAO56(
   LAND_latitude_Degree,
   LAND_elevation_m
 )
+
+meteo_extraterreSolarRadiat_FAO56(Time_dayOfYear_, LAND_latitude_Degree)
 
 meteo_saturatVaporPress(ATMOS_temperature_Cel)
 
@@ -65,6 +70,17 @@ meteo_atmosEmissivity_UNKNOW(
   LAND_elevation_m
 )
 
+meteo_atmosEmissivity_Idso(ATMOS_temperature_Cel)
+
+meteo_nettoRadiat_WaterGAP3(
+  Time_dayOfYear_,
+  ATMOS_temperature_Cel,
+  ATMOS_solarRadiat_MJ,
+  LAND_albedo_1,
+  LAND_latitude_Degree,
+  LAND_elevation_m
+)
+
 meteo_nettoRadiat_FAO56Simplify(
   Time_dayOfYear_,
   ATMOS_temperature_Cel,
@@ -92,6 +108,8 @@ meteo_saturatDelta(ATMOS_temperature_Cel)
 \item{ATMOS_temperatureMin_Cel}{(Cel) the minimal air temperature in the time phase}
 
 \item{ATMOS_solarRadiat_MJ}{(MJ/m2/TS) the solar radiation that actually reaches the earths surface}
+
+\item{LAND_albedo_1}{<0, 1> albedo of the region}
 
 \item{ATMOS_windSpeed_m_s}{(m/s) measured wind speed at z m above ground surface}
 

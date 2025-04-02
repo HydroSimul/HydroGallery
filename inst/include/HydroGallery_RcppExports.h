@@ -1513,6 +1513,27 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline NumericVector meteo_extraterreSolarRadiat_FAO56(NumericVector Time_dayOfYear_, NumericVector LAND_latitude_Degree) {
+        typedef SEXP(*Ptr_meteo_extraterreSolarRadiat_FAO56)(SEXP,SEXP);
+        static Ptr_meteo_extraterreSolarRadiat_FAO56 p_meteo_extraterreSolarRadiat_FAO56 = NULL;
+        if (p_meteo_extraterreSolarRadiat_FAO56 == NULL) {
+            validateSignature("NumericVector(*meteo_extraterreSolarRadiat_FAO56)(NumericVector,NumericVector)");
+            p_meteo_extraterreSolarRadiat_FAO56 = (Ptr_meteo_extraterreSolarRadiat_FAO56)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_extraterreSolarRadiat_FAO56");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_meteo_extraterreSolarRadiat_FAO56(Shield<SEXP>(Rcpp::wrap(Time_dayOfYear_)), Shield<SEXP>(Rcpp::wrap(LAND_latitude_Degree)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
     inline NumericVector meteo_saturatVaporPress(NumericVector ATMOS_temperature_Cel) {
         typedef SEXP(*Ptr_meteo_saturatVaporPress)(SEXP);
         static Ptr_meteo_saturatVaporPress p_meteo_saturatVaporPress = NULL;
@@ -1660,6 +1681,48 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline NumericVector meteo_atmosEmissivity_Idso(NumericVector ATMOS_temperature_Cel) {
+        typedef SEXP(*Ptr_meteo_atmosEmissivity_Idso)(SEXP);
+        static Ptr_meteo_atmosEmissivity_Idso p_meteo_atmosEmissivity_Idso = NULL;
+        if (p_meteo_atmosEmissivity_Idso == NULL) {
+            validateSignature("NumericVector(*meteo_atmosEmissivity_Idso)(NumericVector)");
+            p_meteo_atmosEmissivity_Idso = (Ptr_meteo_atmosEmissivity_Idso)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_atmosEmissivity_Idso");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_meteo_atmosEmissivity_Idso(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
+    inline NumericVector meteo_nettoRadiat_WaterGAP3(NumericVector Time_dayOfYear_, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_solarRadiat_MJ, NumericVector LAND_albedo_1, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
+        typedef SEXP(*Ptr_meteo_nettoRadiat_WaterGAP3)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_meteo_nettoRadiat_WaterGAP3 p_meteo_nettoRadiat_WaterGAP3 = NULL;
+        if (p_meteo_nettoRadiat_WaterGAP3 == NULL) {
+            validateSignature("NumericVector(*meteo_nettoRadiat_WaterGAP3)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            p_meteo_nettoRadiat_WaterGAP3 = (Ptr_meteo_nettoRadiat_WaterGAP3)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_nettoRadiat_WaterGAP3");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_meteo_nettoRadiat_WaterGAP3(Shield<SEXP>(Rcpp::wrap(Time_dayOfYear_)), Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_solarRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(LAND_albedo_1)), Shield<SEXP>(Rcpp::wrap(LAND_latitude_Degree)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<NumericVector >(rcpp_result_gen);
+    }
+
     inline NumericVector meteo_nettoRadiat_FAO56Simplify(NumericVector Time_dayOfYear_, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_relativeHumidity_1, NumericVector ATMOS_solarRadiat_MJ, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_nettoRadiat_FAO56Simplify)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_meteo_nettoRadiat_FAO56Simplify p_meteo_nettoRadiat_FAO56Simplify = NULL;
@@ -1763,27 +1826,6 @@ namespace HydroGallery {
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<NumericVector >(rcpp_result_gen);
-    }
-
-    inline NumericMatrix read_nc_2d(const std::string& fileName, const std::string& varName) {
-        typedef SEXP(*Ptr_read_nc_2d)(SEXP,SEXP);
-        static Ptr_read_nc_2d p_read_nc_2d = NULL;
-        if (p_read_nc_2d == NULL) {
-            validateSignature("NumericMatrix(*read_nc_2d)(const std::string&,const std::string&)");
-            p_read_nc_2d = (Ptr_read_nc_2d)R_GetCCallable("HydroGallery", "_HydroGallery_read_nc_2d");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_read_nc_2d(Shield<SEXP>(Rcpp::wrap(fileName)), Shield<SEXP>(Rcpp::wrap(varName)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericMatrix >(rcpp_result_gen);
     }
 
     inline NumericVector percola_GR4J(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm) {
