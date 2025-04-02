@@ -12,15 +12,16 @@ NumericVector meteo_solarRadiatClearSky_FAO56(
    NumericVector Time_dayOfYear_,
    NumericVector LAND_latitude_Degree,
    NumericVector LAND_elevation_m) {
- 
- NumericVector phi_ = M_PI / 180 * LAND_latitude_Degree;
- NumericVector d_r = 1 + 0.033 * cos(2 * M_PI / 365 * Time_dayOfYear_);
- NumericVector delta_ = 0.409 * sin(2 * M_PI / 365 * Time_dayOfYear_ - 1.39);
- NumericVector omega_s = acos(-tan(phi_) * tan(delta_));
- NumericVector R_a = 37.58603 * d_r * (omega_s * sin(phi_) * sin(delta_) + cos(phi_) * cos(delta_) * sin(omega_s));
- NumericVector R_so = (0.75 + 2e-5 * LAND_elevation_m) * R_a; // eq37
- 
- return R_so;
+  
+  NumericVector phi_ = M_PI / 180 * LAND_latitude_Degree; //eq22
+  NumericVector d_r = 1 + 0.033 * cos(2 * M_PI / 365 * Time_dayOfYear_); // eq23
+  NumericVector delta_ = 0.409 * sin(2 * M_PI / 365 * Time_dayOfYear_ - 1.39); // 24
+  NumericVector omega_s_TEMP = pmin(pmax(-tan(phi_) * tan(delta_), -1), 1);
+  NumericVector omega_s = acos(omega_s_TEMP); //25
+  NumericVector R_a = 37.58603 * d_r * (omega_s * sin(phi_) * sin(delta_) + cos(phi_) * cos(delta_) * sin(omega_s)); //21
+  NumericVector R_so = (0.75 + 2e-5 * LAND_elevation_m) * R_a; // eq37
+  
+  return R_so;
 }
 
 //' @rdname meteo
@@ -184,17 +185,21 @@ NumericVector meteo_nettoRadiat_WaterGAP3(
    NumericVector LAND_albedo_1,
    NumericVector LAND_latitude_Degree,
    NumericVector LAND_elevation_m) {
- 
- const double sigma_ = 4.903e-09;
- 
- NumericVector R_so = meteo_solarRadiatClearSky_FAO56(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m);
- NumericVector R_ns = (1 - LAND_albedo_1) * ATMOS_solarRadiat_MJ;
- NumericVector epsilon_a = meteo_atmosEmissivity_Idso(ATMOS_temperature_Cel);
- NumericVector factor_Cloud = pmin(ATMOS_solarRadiat_MJ / R_so, 1);
- NumericVector R_nl = sigma_ * vec_const_pow(ATMOS_temperature_Cel + 273.16, 4.0) *
-   epsilon_a * (1.35 * factor_Cloud - 0.35); // 
- 
- return R_ns - R_nl;
+  
+  const double sigma_ = 4.903e-09;
+  
+  NumericVector R_so = meteo_solarRadiatClearSky_FAO56(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m);
+  NumericVector R_ns = (1 - LAND_albedo_1) * ATMOS_solarRadiat_MJ;
+  NumericVector epsilon_a = meteo_atmosEmissivity_Idso(ATMOS_temperature_Cel);
+  NumericVector factor_Cloud = ifelse(R_so > 0, ATMOS_solarRadiat_MJ / R_so, 1);
+  factor_Cloud = pmin(factor_Cloud, 1);  // Ensure max value is 1
+  NumericVector ATMOS_temperature_T = ATMOS_temperature_Cel + 273.16;
+  NumericVector factor_Cloud_Rnl = pmax(1.35 * factor_Cloud - 0.35, 0);
+  NumericVector R_nl = sigma_ * ATMOS_temperature_T * ATMOS_temperature_T * ATMOS_temperature_T * ATMOS_temperature_T *
+    epsilon_a * factor_Cloud_Rnl; // 
+  
+  return pmax(R_ns - R_nl, 0);
+  
 }
 
 //' @rdname meteo
@@ -214,10 +219,13 @@ NumericVector meteo_nettoRadiat_FAO56Simplify(
  NumericVector e_a = meteo_vaporPress(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1);
  NumericVector R_so = meteo_solarRadiatClearSky_FAO56(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m);
  NumericVector R_ns = (1 - alpha_) * ATMOS_solarRadiat_MJ;
+ NumericVector factor_Cloud = ifelse(R_so > 0, ATMOS_solarRadiat_MJ / R_so, 1);
+ factor_Cloud = pmin(factor_Cloud, 1);  // Ensure max value is 1
+ NumericVector factor_Cloud_Rnl = pmax(1.35 * factor_Cloud - 0.35, 0);
  NumericVector R_nl = sigma_ * vec_const_pow(ATMOS_temperature_Cel + 273.16, 4.0) *
-   (0.34 - 0.14 * sqrt(e_a)) * (1.35 * ATMOS_solarRadiat_MJ / R_so - 0.35); // eq39
+   (0.34 - 0.14 * sqrt(e_a)) * factor_Cloud_Rnl; // eq39
  
- return R_ns - R_nl;
+ return pmax(R_ns - R_nl, 0);
 }
 
 
