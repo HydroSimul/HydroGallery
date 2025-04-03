@@ -142,8 +142,9 @@ NumericVector evatransPotential_PriestleyTaylor(
     NumericVector param_EVATRANS_prt_alpha
 )
 {
-  NumericVector Delta_, P_, gamma_, ET_o;
-  
+  NumericVector Delta_, P_, gamma_, ET_o, lat_heat;
+  lat_heat = 2.501 - 0.002361 * ATMOS_temperature_Cel;
+  lat_heat = ifelse(ATMOS_temperature_Cel > 0, lat_heat, 2.835);
   //// Delta_,
   Delta_ = 4098 * (0.6108 * exp(17.27 * ATMOS_temperature_Cel / (ATMOS_temperature_Cel + 237.3))) / ((ATMOS_temperature_Cel + 237.3) * (ATMOS_temperature_Cel + 237.3)); // Eq.13
   
@@ -152,12 +153,9 @@ NumericVector evatransPotential_PriestleyTaylor(
   P_ = 101.3 * pow(((293 - 0.0065 * LAND_elevation_m) / 293), 5.26); // Eq.7
   gamma_ = 0.665e-3 * P_; // Eq.8
   
-  //// u_2,
-  // u_2 = wind_measure_height_m * 4.87 / (log(67.8 * wind_speed_m_s - 5.42)); // Eq.47
-  // u_2 = wind_measure_height_m
   //// TE_o
-  ET_o = param_EVATRANS_prt_alpha * Delta_ * (ATMOS_netRadiat_MJ - 0.) / (Delta_ + gamma_);
-  return pmax(ET_o, 0);
+  ET_o = param_EVATRANS_prt_alpha * Delta_ * (ATMOS_netRadiat_MJ - 0.) / (Delta_ + gamma_); //MJ
+  return pmax(ET_o / lat_heat, 0);
 }
 
 
