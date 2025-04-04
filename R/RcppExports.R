@@ -1324,17 +1324,17 @@ lateral_Arno <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialLa
 #' **meteological variables**
 #' some functions to calculate the meteological variables
 #' @name meteo
+#' @export
+meteo_extraterreSolarRadiat_FAO56 <- function(Time_dayOfYear_, LAND_latitude_Degree) {
+    .Call(`_HydroGallery_meteo_extraterreSolarRadiat_FAO56`, Time_dayOfYear_, LAND_latitude_Degree)
+}
+
+#' @rdname meteo
 #' @inheritParams all_vari
 #' @return meteological variables
 #' @export
 meteo_solarRadiatClearSky_FAO56 <- function(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m) {
     .Call(`_HydroGallery_meteo_solarRadiatClearSky_FAO56`, Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m)
-}
-
-#' @rdname meteo
-#' @export
-meteo_extraterreSolarRadiat_FAO56 <- function(Time_dayOfYear_, LAND_latitude_Degree) {
-    .Call(`_HydroGallery_meteo_extraterreSolarRadiat_FAO56`, Time_dayOfYear_, LAND_latitude_Degree)
 }
 
 #' @rdname meteo
@@ -1387,8 +1387,8 @@ meteo_atmosEmissivity_Idso <- function(ATMOS_temperature_Cel) {
 
 #' @rdname meteo
 #' @export
-meteo_nettoRadiat_WaterGAP3 <- function(Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, LAND_albedo_1, LAND_latitude_Degree, LAND_elevation_m) {
-    .Call(`_HydroGallery_meteo_nettoRadiat_WaterGAP3`, Time_dayOfYear_, ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, LAND_albedo_1, LAND_latitude_Degree, LAND_elevation_m)
+meteo_nettoRadiat_WaterGAP3 <- function(ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, ATMOS_solarRadiatClearSky_MJ, LAND_albedo_1) {
+    .Call(`_HydroGallery_meteo_nettoRadiat_WaterGAP3`, ATMOS_temperature_Cel, ATMOS_solarRadiat_MJ, ATMOS_solarRadiatClearSky_MJ, LAND_albedo_1)
 }
 
 #' @rdname meteo

@@ -2,8 +2,8 @@
 % Please edit documentation in R/RcppExports.R
 \name{meteo}
 \alias{meteo}
-\alias{meteo_solarRadiatClearSky_FAO56}
 \alias{meteo_extraterreSolarRadiat_FAO56}
+\alias{meteo_solarRadiatClearSky_FAO56}
 \alias{meteo_saturatVaporPress}
 \alias{meteo_saturatVaporPress_kPa}
 \alias{meteo_vaporPress}
@@ -20,13 +20,13 @@
 \title{**meteological variables**
 some functions to calculate the meteological variables}
 \usage{
+meteo_extraterreSolarRadiat_FAO56(Time_dayOfYear_, LAND_latitude_Degree)
+
 meteo_solarRadiatClearSky_FAO56(
   Time_dayOfYear_,
   LAND_latitude_Degree,
   LAND_elevation_m
 )
-
-meteo_extraterreSolarRadiat_FAO56(Time_dayOfYear_, LAND_latitude_Degree)
 
 meteo_saturatVaporPress(ATMOS_temperature_Cel)
 
@@ -73,12 +73,10 @@ meteo_atmosEmissivity_UNKNOW(
 meteo_atmosEmissivity_Idso(ATMOS_temperature_Cel)
 
 meteo_nettoRadiat_WaterGAP3(
-  Time_dayOfYear_,
   ATMOS_temperature_Cel,
   ATMOS_solarRadiat_MJ,
-  LAND_albedo_1,
-  LAND_latitude_Degree,
-  LAND_elevation_m
+  ATMOS_solarRadiatClearSky_MJ,
+  LAND_albedo_1
 )
 
 meteo_nettoRadiat_FAO56Simplify(

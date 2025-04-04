@@ -4,27 +4,6 @@
 //' **meteological variables**
 //' some functions to calculate the meteological variables
 //' @name meteo
-//' @inheritParams all_vari
-//' @return meteological variables
-//' @export
-// [[Rcpp::export]]
-NumericVector meteo_solarRadiatClearSky_FAO56(
-   NumericVector Time_dayOfYear_,
-   NumericVector LAND_latitude_Degree,
-   NumericVector LAND_elevation_m) {
-  
-  NumericVector phi_ = M_PI / 180 * LAND_latitude_Degree; //eq22
-  NumericVector d_r = 1 + 0.033 * cos(2 * M_PI / 365 * Time_dayOfYear_); // eq23
-  NumericVector delta_ = 0.409 * sin(2 * M_PI / 365 * Time_dayOfYear_ - 1.39); // 24
-  NumericVector omega_s_TEMP = pmin(pmax(-tan(phi_) * tan(delta_), -1), 1);
-  NumericVector omega_s = acos(omega_s_TEMP); //25
-  NumericVector R_a = 37.58603 * d_r * (omega_s * sin(phi_) * sin(delta_) + cos(phi_) * cos(delta_) * sin(omega_s)); //21
-  NumericVector R_so = (0.75 + 2e-5 * LAND_elevation_m) * R_a; // eq37
-  
-  return R_so;
-}
-
-//' @rdname meteo
 //' @export
 // [[Rcpp::export]]
 NumericVector meteo_extraterreSolarRadiat_FAO56(
@@ -36,8 +15,26 @@ NumericVector meteo_extraterreSolarRadiat_FAO56(
  NumericVector delta_ = 0.409 * sin(2 * M_PI / 365 * Time_dayOfYear_ - 1.39);
  NumericVector omega_s = acos(-tan(phi_) * tan(delta_));
  NumericVector R_a = 37.58603 * d_r * (omega_s * sin(phi_) * sin(delta_) + cos(phi_) * cos(delta_) * sin(omega_s));
+ 
+ return pmax(R_a, 0);
+}
 
- return R_a;
+//' @rdname meteo
+//' @inheritParams all_vari
+//' @return meteological variables
+//' @export
+// [[Rcpp::export]]
+NumericVector meteo_solarRadiatClearSky_FAO56(
+   NumericVector Time_dayOfYear_,
+   NumericVector LAND_latitude_Degree,
+   NumericVector LAND_elevation_m) {
+ 
+ NumericVector R_a = meteo_extraterreSolarRadiat_FAO56(
+    Time_dayOfYear_,
+    LAND_latitude_Degree); //21
+ NumericVector R_so = (0.75 + 2e-5 * LAND_elevation_m) * R_a; // eq37
+ 
+ return R_so;
 }
 
 
@@ -179,19 +176,16 @@ NumericVector meteo_atmosEmissivity_Idso(
 //' @export
 // [[Rcpp::export]]
 NumericVector meteo_nettoRadiat_WaterGAP3(
-   NumericVector Time_dayOfYear_,
    NumericVector ATMOS_temperature_Cel,
    NumericVector ATMOS_solarRadiat_MJ,
-   NumericVector LAND_albedo_1,
-   NumericVector LAND_latitude_Degree,
-   NumericVector LAND_elevation_m) {
+   NumericVector ATMOS_solarRadiatClearSky_MJ,
+   NumericVector LAND_albedo_1) {
   
   const double sigma_ = 4.903e-09;
   
-  NumericVector R_so = meteo_solarRadiatClearSky_FAO56(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m);
   NumericVector R_ns = (1 - LAND_albedo_1) * ATMOS_solarRadiat_MJ;
   NumericVector epsilon_a = meteo_atmosEmissivity_Idso(ATMOS_temperature_Cel);
-  NumericVector factor_Cloud = ifelse(R_so > 0, ATMOS_solarRadiat_MJ / R_so, 1);
+  NumericVector factor_Cloud = ATMOS_solarRadiat_MJ / ATMOS_solarRadiatClearSky_MJ;
   factor_Cloud = pmin(factor_Cloud, 1);  // Ensure max value is 1
   NumericVector ATMOS_temperature_T = ATMOS_temperature_Cel + 273.16;
   NumericVector factor_Cloud_Rnl = pmax(1.35 * factor_Cloud - 0.35, 0);
