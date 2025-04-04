@@ -9,14 +9,15 @@
 NumericVector meteo_extraterreSolarRadiat_FAO56(
    NumericVector Time_dayOfYear_,
    NumericVector LAND_latitude_Degree) {
- 
- NumericVector phi_ = M_PI / 180 * LAND_latitude_Degree;
- NumericVector d_r = 1 + 0.033 * cos(2 * M_PI / 365 * Time_dayOfYear_);
- NumericVector delta_ = 0.409 * sin(2 * M_PI / 365 * Time_dayOfYear_ - 1.39);
- NumericVector omega_s = acos(-tan(phi_) * tan(delta_));
- NumericVector R_a = 37.58603 * d_r * (omega_s * sin(phi_) * sin(delta_) + cos(phi_) * cos(delta_) * sin(omega_s));
- 
- return pmax(R_a, 0);
+  
+  NumericVector phi_ = M_PI / 180 * LAND_latitude_Degree; //eq22
+  NumericVector d_r = 1 + 0.033 * cos(2 * M_PI / 365 * Time_dayOfYear_); // eq23
+  NumericVector delta_ = 0.409 * sin(2 * M_PI / 365 * Time_dayOfYear_ - 1.39); // 24
+  NumericVector omega_s_TEMP = pmin(pmax(-tan(phi_) * tan(delta_), -1), 1);
+  NumericVector omega_s = acos(omega_s_TEMP); //25
+  NumericVector R_a = 37.58603 * d_r * (omega_s * sin(phi_) * sin(delta_) + cos(phi_) * cos(delta_) * sin(omega_s)); //21
+  
+  return pmax(R_a, 0);
 }
 
 //' @rdname meteo
