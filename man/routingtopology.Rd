@@ -10,7 +10,7 @@
 \alias{get_cali_step}
 \alias{get_upstream_cali_cell}
 \alias{write_int_vector_list}
-\alias{read__int_vector_list}
+\alias{read_int_vector_list}
 \alias{write_int_matrix_list}
 \alias{read_int_matrix_list}
 \title{Get Inflow Cells}
@@ -33,7 +33,7 @@ get_upstream_cali_cell(lst_Inflow_Cell, int_CaliCell)
 
 write_int_vector_list(lst, file_path)
 
-read__int_vector_list(file_path)
+read_int_vector_list(file_path)
 
 write_int_matrix_list(mat_list, file_path)
 

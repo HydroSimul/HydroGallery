@@ -3897,21 +3897,21 @@ RcppExport SEXP _HydroGallery_write_int_vector_list(SEXP lstSEXP, SEXP file_path
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// read__int_vector_list
-List read__int_vector_list(std::string file_path);
-static SEXP _HydroGallery_read__int_vector_list_try(SEXP file_pathSEXP) {
+// read_int_vector_list
+List read_int_vector_list(std::string file_path);
+static SEXP _HydroGallery_read_int_vector_list_try(SEXP file_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< std::string >::type file_path(file_pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(read__int_vector_list(file_path));
+    rcpp_result_gen = Rcpp::wrap(read_int_vector_list(file_path));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _HydroGallery_read__int_vector_list(SEXP file_pathSEXP) {
+RcppExport SEXP _HydroGallery_read_int_vector_list(SEXP file_pathSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_read__int_vector_list_try(file_pathSEXP));
+        rcpp_result_gen = PROTECT(_HydroGallery_read_int_vector_list_try(file_pathSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -4185,7 +4185,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("List(*get_cali_step)(List,IntegerVector)");
         signatures.insert("List(*get_upstream_cali_cell)(List,IntegerVector)");
         signatures.insert("void(*write_int_vector_list)(List,std::string)");
-        signatures.insert("List(*read__int_vector_list)(std::string)");
+        signatures.insert("List(*read_int_vector_list)(std::string)");
         signatures.insert("void(*write_int_matrix_list)(List,std::string)");
         signatures.insert("List(*read_int_matrix_list)(std::string)");
         signatures.insert("NumericVector(*snowMelt_Kustas)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
@@ -4302,7 +4302,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_cali_step", (DL_FUNC)_HydroGallery_get_cali_step_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_upstream_cali_cell", (DL_FUNC)_HydroGallery_get_upstream_cali_cell_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_write_int_vector_list", (DL_FUNC)_HydroGallery_write_int_vector_list_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_read__int_vector_list", (DL_FUNC)_HydroGallery_read__int_vector_list_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_read_int_vector_list", (DL_FUNC)_HydroGallery_read_int_vector_list_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_write_int_matrix_list", (DL_FUNC)_HydroGallery_write_int_matrix_list_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_read_int_matrix_list", (DL_FUNC)_HydroGallery_read_int_matrix_list_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_snowMelt_Kustas", (DL_FUNC)_HydroGallery_snowMelt_Kustas_try);
@@ -4418,7 +4418,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_get_cali_step", (DL_FUNC) &_HydroGallery_get_cali_step, 2},
     {"_HydroGallery_get_upstream_cali_cell", (DL_FUNC) &_HydroGallery_get_upstream_cali_cell, 2},
     {"_HydroGallery_write_int_vector_list", (DL_FUNC) &_HydroGallery_write_int_vector_list, 2},
-    {"_HydroGallery_read__int_vector_list", (DL_FUNC) &_HydroGallery_read__int_vector_list, 1},
+    {"_HydroGallery_read_int_vector_list", (DL_FUNC) &_HydroGallery_read_int_vector_list, 1},
     {"_HydroGallery_write_int_matrix_list", (DL_FUNC) &_HydroGallery_write_int_matrix_list, 2},
     {"_HydroGallery_read_int_matrix_list", (DL_FUNC) &_HydroGallery_read_int_matrix_list, 1},
     {"_HydroGallery_snowMelt_Kustas", (DL_FUNC) &_HydroGallery_snowMelt_Kustas, 5},

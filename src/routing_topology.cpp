@@ -434,7 +434,7 @@ void write_int_vector_list(List lst, std::string file_path) {
 //' @rdname routingtopology
 //' @export
 // [[Rcpp::export]]
-List read__int_vector_list(std::string file_path) {
+List read_int_vector_list(std::string file_path) {
   std::ifstream fin(file_path, std::ios::binary);
   if (!fin) stop("Cannot open file for reading");
   

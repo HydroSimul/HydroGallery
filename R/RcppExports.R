@@ -1690,8 +1690,8 @@ write_int_vector_list <- function(lst, file_path) {
 
 #' @rdname routingtopology
 #' @export
-read__int_vector_list <- function(file_path) {
-    .Call(`_HydroGallery_read__int_vector_list`, file_path)
+read_int_vector_list <- function(file_path) {
+    .Call(`_HydroGallery_read_int_vector_list`, file_path)
 }
 
 #' @rdname routingtopology

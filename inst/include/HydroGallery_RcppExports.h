@@ -2247,17 +2247,17 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline List read__int_vector_list(std::string file_path) {
-        typedef SEXP(*Ptr_read__int_vector_list)(SEXP);
-        static Ptr_read__int_vector_list p_read__int_vector_list = NULL;
-        if (p_read__int_vector_list == NULL) {
-            validateSignature("List(*read__int_vector_list)(std::string)");
-            p_read__int_vector_list = (Ptr_read__int_vector_list)R_GetCCallable("HydroGallery", "_HydroGallery_read__int_vector_list");
+    inline List read_int_vector_list(std::string file_path) {
+        typedef SEXP(*Ptr_read_int_vector_list)(SEXP);
+        static Ptr_read_int_vector_list p_read_int_vector_list = NULL;
+        if (p_read_int_vector_list == NULL) {
+            validateSignature("List(*read_int_vector_list)(std::string)");
+            p_read_int_vector_list = (Ptr_read_int_vector_list)R_GetCCallable("HydroGallery", "_HydroGallery_read_int_vector_list");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_read__int_vector_list(Shield<SEXP>(Rcpp::wrap(file_path)));
+            rcpp_result_gen = p_read_int_vector_list(Shield<SEXP>(Rcpp::wrap(file_path)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
