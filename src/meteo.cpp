@@ -192,7 +192,8 @@ NumericVector meteo_nettoRadiat_WaterGAP3(
   NumericVector factor_Cloud_Rnl = pmax(1.35 * factor_Cloud - 0.35, 0);
   NumericVector R_nl = sigma_ * ATMOS_temperature_T * ATMOS_temperature_T * ATMOS_temperature_T * ATMOS_temperature_T *
     epsilon_a * factor_Cloud_Rnl; // 
-  
+  R_nl = ifelse(ATMOS_solarRadiatClearSky_MJ > 0, R_nl, 0);
+    
   return pmax(R_ns - R_nl, 0);
   
 }
