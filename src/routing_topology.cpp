@@ -1,4 +1,5 @@
 #include <Rcpp.h>
+#include <fstream>
 #include <unordered_map>
 #include <algorithm>
 #include <set>       // for std::set
@@ -406,3 +407,105 @@ List get_upstream_cali_cell(List lst_Inflow_Cell, IntegerVector int_CaliCell) {
 
   return lst_LastCaliCell;
 }
+
+
+
+
+// [[Rcpp::export]]
+void write_int_vector_list(List lst, std::string file_path) {
+  std::ofstream fout(file_path, std::ios::binary);
+  if (!fout) stop("Cannot open file for writing");
+  
+  int32_t num_vectors = lst.size();
+  fout.write(reinterpret_cast<char*>(&num_vectors), sizeof(int32_t));
+  
+  for (int i = 0; i < num_vectors; ++i) {
+    IntegerVector vec = lst[i];
+    int32_t len = vec.size();
+    fout.write(reinterpret_cast<char*>(&len), sizeof(int32_t));
+    fout.write(reinterpret_cast<char*>(vec.begin()), len * sizeof(int32_t));
+  }
+  
+  fout.close();
+}
+
+// [[Rcpp::export]]
+List read__int_vector_list(std::string file_path) {
+  std::ifstream fin(file_path, std::ios::binary);
+  if (!fin) stop("Cannot open file for reading");
+  
+  int32_t num_vectors;
+  fin.read(reinterpret_cast<char*>(&num_vectors), sizeof(int32_t));
+  if (fin.eof() || num_vectors < 0) stop("Invalid or corrupted file");
+  
+  List result(num_vectors);
+  
+  for (int i = 0; i < num_vectors; ++i) {
+    int32_t len;
+    fin.read(reinterpret_cast<char*>(&len), sizeof(int32_t));
+    if (fin.eof() || len < 0) stop("Invalid vector length");
+    
+    IntegerVector vec(len);
+    fin.read(reinterpret_cast<char*>(vec.begin()), len * sizeof(int32_t));
+    if (fin.eof()) stop("Unexpected end of file");
+    
+    result[i] = vec;
+  }
+  
+  fin.close();
+  return result;
+}
+
+#include <Rcpp.h>
+#include <fstream>
+
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+void write_int_matrix_list(List mat_list, std::string file_path) {
+  std::ofstream fout(file_path, std::ios::binary);
+  if (!fout) stop("Cannot open file for writing");
+  
+  int32_t num_matrices = mat_list.size();
+  fout.write(reinterpret_cast<char*>(&num_matrices), sizeof(int32_t));
+  
+  for (int i = 0; i < num_matrices; ++i) {
+    IntegerMatrix mat = mat_list[i];
+    
+    int32_t nrow = mat.nrow();
+    fout.write(reinterpret_cast<char*>(&nrow), sizeof(int32_t));
+    
+    fout.write(reinterpret_cast<char*>(mat.begin()), nrow * 9 * sizeof(int32_t));
+  }
+  
+  fout.close();
+}
+
+// [[Rcpp::export]]
+List read_int_matrix_list(std::string file_path) {
+  std::ifstream fin(file_path, std::ios::binary);
+  if (!fin) stop("Cannot open file for reading");
+  
+  int32_t num_matrices;
+  fin.read(reinterpret_cast<char*>(&num_matrices), sizeof(int32_t));
+  if (fin.eof() || num_matrices < 0) stop("Corrupted or empty file");
+  
+  List result(num_matrices);
+  
+  for (int i = 0; i < num_matrices; ++i) {
+    int32_t nrow;
+    fin.read(reinterpret_cast<char*>(&nrow), sizeof(int32_t));
+    if (fin.eof() || nrow < 0) stop("Corrupted file: invalid row count");
+    
+    IntegerMatrix mat(nrow, 9);
+    fin.read(reinterpret_cast<char*>(mat.begin()), nrow * 9 * sizeof(int32_t));
+    if (fin.eof()) stop("Unexpected end of file");
+    
+    result[i] = mat;
+  }
+  
+  fin.close();
+  return result;
+}
+
+
