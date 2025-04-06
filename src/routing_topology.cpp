@@ -411,6 +411,8 @@ List get_upstream_cali_cell(List lst_Inflow_Cell, IntegerVector int_CaliCell) {
 
 
 
+//' @rdname routingtopology
+//' @export
 // [[Rcpp::export]]
 void write_int_vector_list(List lst, std::string file_path) {
   std::ofstream fout(file_path, std::ios::binary);
@@ -429,6 +431,8 @@ void write_int_vector_list(List lst, std::string file_path) {
   fout.close();
 }
 
+//' @rdname routingtopology
+//' @export
 // [[Rcpp::export]]
 List read__int_vector_list(std::string file_path) {
   std::ifstream fin(file_path, std::ios::binary);
@@ -456,11 +460,9 @@ List read__int_vector_list(std::string file_path) {
   return result;
 }
 
-#include <Rcpp.h>
-#include <fstream>
 
-using namespace Rcpp;
-
+//' @rdname routingtopology
+//' @export
 // [[Rcpp::export]]
 void write_int_matrix_list(List mat_list, std::string file_path) {
   std::ofstream fout(file_path, std::ios::binary);
@@ -481,6 +483,8 @@ void write_int_matrix_list(List mat_list, std::string file_path) {
   fout.close();
 }
 
+//' @rdname routingtopology
+//' @export
 // [[Rcpp::export]]
 List read_int_matrix_list(std::string file_path) {
   std::ifstream fin(file_path, std::ios::binary);

@@ -9,6 +9,10 @@
 \alias{get_new_outflow}
 \alias{get_cali_step}
 \alias{get_upstream_cali_cell}
+\alias{write_int_vector_list}
+\alias{read__int_vector_list}
+\alias{write_int_matrix_list}
+\alias{read_int_matrix_list}
 \title{Get Inflow Cells}
 \usage{
 get_inflow_cells(int_Outflow)
@@ -26,6 +30,14 @@ get_new_outflow(int_Outflow_Ori, int_CellNew)
 get_cali_step(lst_Inflow_Cell, int_CaliCell)
 
 get_upstream_cali_cell(lst_Inflow_Cell, int_CaliCell)
+
+write_int_vector_list(lst, file_path)
+
+read__int_vector_list(file_path)
+
+write_int_matrix_list(mat_list, file_path)
+
+read_int_matrix_list(file_path)
 }
 \arguments{
 \item{int_Outflow}{(vector of int) The cell number of the next cell. The cell number must range from 1 to the length of the cells.

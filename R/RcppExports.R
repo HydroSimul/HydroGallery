@@ -1682,6 +1682,30 @@ get_upstream_cali_cell <- function(lst_Inflow_Cell, int_CaliCell) {
     .Call(`_HydroGallery_get_upstream_cali_cell`, lst_Inflow_Cell, int_CaliCell)
 }
 
+#' @rdname routingtopology
+#' @export
+write_int_vector_list <- function(lst, file_path) {
+    invisible(.Call(`_HydroGallery_write_int_vector_list`, lst, file_path))
+}
+
+#' @rdname routingtopology
+#' @export
+read__int_vector_list <- function(file_path) {
+    .Call(`_HydroGallery_read__int_vector_list`, file_path)
+}
+
+#' @rdname routingtopology
+#' @export
+write_int_matrix_list <- function(mat_list, file_path) {
+    invisible(.Call(`_HydroGallery_write_int_matrix_list`, mat_list, file_path))
+}
+
+#' @rdname routingtopology
+#' @export
+read_int_matrix_list <- function(file_path) {
+    .Call(`_HydroGallery_read_int_matrix_list`, file_path)
+}
+
 #' **snow**
 #' @name snowMelt
 #' @inheritParams all_vari
