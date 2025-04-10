@@ -1773,7 +1773,7 @@ snowMelt_Kustas <- function(SNOW_ice_mm, ATMOS_temperature_Cel, ATMOS_netRadiat_
 #'   - \mjseqn{T_b} is `param_SNOWMELT_fac_Tmelt`
 #' 
 #' @param param_SNOWMELT_fac_Tmelt <0, 3> (Cel) snow melt temperature parameter for [snowMelt_Factor()]
-#' @param param_SNOWMELT_fac_f <0.05, 2> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
+#' @param param_SNOWMELT_fac_f <0.5, 2> (mm/m2/day/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
 #' @export
 snowMelt_Factor <- function(SNOW_ice_mm, ATMOS_temperature_Cel, param_SNOWMELT_fac_f, param_SNOWMELT_fac_Tmelt) {
     .Call(`_HydroGallery_snowMelt_Factor`, SNOW_ice_mm, ATMOS_temperature_Cel, param_SNOWMELT_fac_f, param_SNOWMELT_fac_Tmelt)

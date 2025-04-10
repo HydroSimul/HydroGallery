@@ -32,7 +32,7 @@ snowMelt_Factor(
 
 \item{param_SNOWMELT_kus_fT}{<0.05, 1> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]}
 
-\item{param_SNOWMELT_fac_f}{<0.05, 2> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]}
+\item{param_SNOWMELT_fac_f}{<0.5, 2> (mm/m2/day/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]}
 
 \item{param_SNOWMELT_fac_Tmelt}{<0, 3> (Cel) snow melt temperature parameter for [snowMelt_Factor()]}
 }

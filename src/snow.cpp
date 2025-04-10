@@ -80,7 +80,7 @@ NumericVector snowMelt_Kustas(
 //'   - \mjseqn{T_b} is `param_SNOWMELT_fac_Tmelt`
 //' 
 //' @param param_SNOWMELT_fac_Tmelt <0, 3> (Cel) snow melt temperature parameter for [snowMelt_Factor()]
-//' @param param_SNOWMELT_fac_f <0.05, 2> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
+//' @param param_SNOWMELT_fac_f <0.5, 2> (mm/m2/day/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
 //' @export
 // [[Rcpp::export]]
 NumericVector snowMelt_Factor(
@@ -94,7 +94,7 @@ NumericVector snowMelt_Factor(
   diff_T = ATMOS_temperature_Cel - param_SNOWMELT_fac_Tmelt;
   diff_T = ifelse(diff_T > 0, diff_T, 0);
   
-  SNOW_melt_mm = param_SNOWMELT_fac_f * 24 * diff_T;
+  SNOW_melt_mm = param_SNOWMELT_fac_f * diff_T;
   // SNOW_melt_mm = param_SNOWMELT_fac_f * time_step_h * diff_T;
   return ifelse(SNOW_melt_mm > SNOW_ice_mm, SNOW_ice_mm, SNOW_melt_mm) ;
 }
