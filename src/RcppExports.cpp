@@ -1031,9 +1031,9 @@ RcppExport SEXP _HydroGallery_confluenIUH_Clark(SEXP CONFLUEN_responseTime_TSSEX
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// confluen_WaterGAP3
-NumericVector confluen_WaterGAP3(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int);
-static SEXP _HydroGallery_confluen_WaterGAP3_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP) {
+// confluen_WaterGAP3_H
+NumericVector confluen_WaterGAP3_H(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int);
+static SEXP _HydroGallery_confluen_WaterGAP3_H_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
@@ -1042,15 +1042,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type RIVER_outflow_m3(RIVER_outflow_m3SEXP);
     Rcpp::traits::input_parameter< List >::type CELL_cellNumberStep_int(CELL_cellNumberStep_intSEXP);
     Rcpp::traits::input_parameter< List >::type CELL_inflowCellNumberStep_int(CELL_inflowCellNumberStep_intSEXP);
-    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int));
+    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3_H(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _HydroGallery_confluen_WaterGAP3(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP) {
+RcppExport SEXP _HydroGallery_confluen_WaterGAP3_H(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_outflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP));
+        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_H_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_outflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -1094,6 +1094,98 @@ RcppExport SEXP _HydroGallery_confluen_WaterGAP3_L(SEXP RIVER_water_m3SEXP, SEXP
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
         rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_L_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_outflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP, Riverlak_cellNumber_intSEXP, Riverlak_water_m3SEXP, Riverlak_capacity_m3SEXP, param_Riverlak_lin_storeFactorSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// confluen_WaterGAP3_N
+NumericVector confluen_WaterGAP3_N(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor);
+static SEXP _HydroGallery_confluen_WaterGAP3_N_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type RIVER_length_km(RIVER_length_kmSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type RIVER_velocity_km(RIVER_velocity_kmSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type RIVER_outflow_m3(RIVER_outflow_m3SEXP);
+    Rcpp::traits::input_parameter< List >::type CELL_cellNumberStep_int(CELL_cellNumberStep_intSEXP);
+    Rcpp::traits::input_parameter< List >::type CELL_inflowCellNumberStep_int(CELL_inflowCellNumberStep_intSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type Riverlak_cellNumber_int(Riverlak_cellNumber_intSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Riverlak_capacity_m3(Riverlak_capacity_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type param_Riverlak_lin_storeFactor(param_Riverlak_lin_storeFactorSEXP);
+    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3_N(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_confluen_WaterGAP3_N(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_N_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_outflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP, Riverlak_cellNumber_intSEXP, Riverlak_capacity_m3SEXP, param_Riverlak_lin_storeFactorSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// confluen_WaterGAP3
+NumericVector confluen_WaterGAP3(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, IntegerVector Reservoi_cellNumber_int, NumericVector Reservoi_inflow_m3, NumericVector Reservoi_demand_m3, NumericVector Reservoi_capacity_m3, NumericVector Reservoi_meanInflow_m3, NumericVector Reservoi_meanDemand_m3, NumericVector Reservoi_releaseCoefficient_1, LogicalVector Reservoi_isIrrigate_01, NumericVector param_Riverlak_lin_storeFactor);
+static SEXP _HydroGallery_confluen_WaterGAP3_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP Reservoi_cellNumber_intSEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type RIVER_length_km(RIVER_length_kmSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type RIVER_velocity_km(RIVER_velocity_kmSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type RIVER_outflow_m3(RIVER_outflow_m3SEXP);
+    Rcpp::traits::input_parameter< List >::type CELL_cellNumberStep_int(CELL_cellNumberStep_intSEXP);
+    Rcpp::traits::input_parameter< List >::type CELL_inflowCellNumberStep_int(CELL_inflowCellNumberStep_intSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type Riverlak_cellNumber_int(Riverlak_cellNumber_intSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Riverlak_capacity_m3(Riverlak_capacity_m3SEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type Reservoi_cellNumber_int(Reservoi_cellNumber_intSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_inflow_m3(Reservoi_inflow_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_demand_m3(Reservoi_demand_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_capacity_m3(Reservoi_capacity_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_meanInflow_m3(Reservoi_meanInflow_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_meanDemand_m3(Reservoi_meanDemand_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_releaseCoefficient_1(Reservoi_releaseCoefficient_1SEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type Reservoi_isIrrigate_01(Reservoi_isIrrigate_01SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type param_Riverlak_lin_storeFactor(param_Riverlak_lin_storeFactorSEXP);
+    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_confluen_WaterGAP3(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP Reservoi_cellNumber_intSEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_outflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP, Riverlak_cellNumber_intSEXP, Riverlak_capacity_m3SEXP, Reservoi_cellNumber_intSEXP, Reservoi_inflow_m3SEXP, Reservoi_demand_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_meanInflow_m3SEXP, Reservoi_meanDemand_m3SEXP, Reservoi_releaseCoefficient_1SEXP, Reservoi_isIrrigate_01SEXP, param_Riverlak_lin_storeFactorSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -3510,6 +3602,85 @@ RcppExport SEXP _HydroGallery_percola_WaterGAP3(SEXP LAND_water_mmSEXP, SEXP SOI
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// reservoireleas_Hanasaki
+NumericVector reservoireleas_Hanasaki(NumericVector Reservoi_water_m3, NumericVector Reservoi_inflow_m3, NumericVector Reservoi_demand_m3, NumericVector Reservoi_capacity_m3, NumericVector Reservoi_meanInflow_m3, NumericVector Reservoi_meanDemand_m3, NumericVector Reservoi_releaseCoefficient_1, LogicalVector Reservoi_isIrrigate_01);
+static SEXP _HydroGallery_reservoireleas_Hanasaki_try(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_water_m3(Reservoi_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_inflow_m3(Reservoi_inflow_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_demand_m3(Reservoi_demand_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_capacity_m3(Reservoi_capacity_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_meanInflow_m3(Reservoi_meanInflow_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_meanDemand_m3(Reservoi_meanDemand_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_releaseCoefficient_1(Reservoi_releaseCoefficient_1SEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type Reservoi_isIrrigate_01(Reservoi_isIrrigate_01SEXP);
+    rcpp_result_gen = Rcpp::wrap(reservoireleas_Hanasaki(Reservoi_water_m3, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_reservoireleas_Hanasaki(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_reservoireleas_Hanasaki_try(Reservoi_water_m3SEXP, Reservoi_inflow_m3SEXP, Reservoi_demand_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_meanInflow_m3SEXP, Reservoi_meanDemand_m3SEXP, Reservoi_releaseCoefficient_1SEXP, Reservoi_isIrrigate_01SEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// reservoiReleasCoefficent_Hanasaki
+NumericVector reservoiReleasCoefficent_Hanasaki(NumericVector Reservoi_water_m3, NumericVector Reservoi_capacity_m3, NumericVector Reservoi_releaseCoefficient_1, LogicalVector Reservoi_isOperateStart_01, NumericVector param_Reservoi_han_alpha);
+static SEXP _HydroGallery_reservoiReleasCoefficent_Hanasaki_try(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isOperateStart_01SEXP, SEXP param_Reservoi_han_alphaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_water_m3(Reservoi_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_capacity_m3(Reservoi_capacity_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Reservoi_releaseCoefficient_1(Reservoi_releaseCoefficient_1SEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type Reservoi_isOperateStart_01(Reservoi_isOperateStart_01SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type param_Reservoi_han_alpha(param_Reservoi_han_alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(reservoiReleasCoefficent_Hanasaki(Reservoi_water_m3, Reservoi_capacity_m3, Reservoi_releaseCoefficient_1, Reservoi_isOperateStart_01, param_Reservoi_han_alpha));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_reservoiReleasCoefficent_Hanasaki(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isOperateStart_01SEXP, SEXP param_Reservoi_han_alphaSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_reservoiReleasCoefficent_Hanasaki_try(Reservoi_water_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_releaseCoefficient_1SEXP, Reservoi_isOperateStart_01SEXP, param_Reservoi_han_alphaSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // riverout_LinearResorvoir
 NumericVector riverout_LinearResorvoir(NumericVector RIVER_water_m3, NumericVector RIVER_inflow_m3, NumericVector RIVER_velocity_km, NumericVector RIVER_length_km);
 static SEXP _HydroGallery_riverout_LinearResorvoir_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_inflow_m3SEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_length_kmSEXP) {
@@ -4074,6 +4245,56 @@ RcppExport SEXP _HydroGallery_snowMelt_Factor(SEXP SNOW_ice_mmSEXP, SEXP ATMOS_t
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// withdraw_SingleCell
+void withdraw_SingleCell(NumericVector& CELL_withdrawal_m3, NumericVector& CELL_water_m3);
+RcppExport SEXP _HydroGallery_withdraw_SingleCell(SEXP CELL_withdrawal_m3SEXP, SEXP CELL_water_m3SEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type CELL_water_m3(CELL_water_m3SEXP);
+    withdraw_SingleCell(CELL_withdrawal_m3, CELL_water_m3);
+    return R_NilValue;
+END_RCPP
+}
+// withdrawSurface_AroundMax
+void withdrawSurface_AroundMax(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int);
+RcppExport SEXP _HydroGallery_withdrawSurface_AroundMax(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type Lake_water_m3(Lake_water_m3SEXP);
+    Rcpp::traits::input_parameter< IntegerMatrix >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
+    withdrawSurface_AroundMax(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int);
+    return R_NilValue;
+END_RCPP
+}
+// withdrawSurface_Around
+void withdrawSurface_Around(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int);
+RcppExport SEXP _HydroGallery_withdrawSurface_Around(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type Lake_water_m3(Lake_water_m3SEXP);
+    Rcpp::traits::input_parameter< IntegerMatrix >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
+    withdrawSurface_Around(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int);
+    return R_NilValue;
+END_RCPP
+}
+// withdrawSurface_WithdrawNet
+void withdrawSurface_WithdrawNet(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberWithdrawNet_int);
+RcppExport SEXP _HydroGallery_withdrawSurface_WithdrawNet(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberWithdrawNet_intSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector& >::type Lake_water_m3(Lake_water_m3SEXP);
+    Rcpp::traits::input_parameter< IntegerMatrix >::type CELL_cellNumberWithdrawNet_int(CELL_cellNumberWithdrawNet_intSEXP);
+    withdrawSurface_WithdrawNet(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberWithdrawNet_int);
+    return R_NilValue;
+END_RCPP
+}
 
 // validate (ensure exported C++ functions exist before calling them)
 static int _HydroGallery_RcppExport_validate(const char* sig) { 
@@ -4107,8 +4328,10 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*confluenIUH_Kelly)(double,double)");
         signatures.insert("NumericVector(*confluenIUH_Nash)(double,double)");
         signatures.insert("NumericVector(*confluenIUH_Clark)(double)");
-        signatures.insert("NumericVector(*confluen_WaterGAP3)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List)");
+        signatures.insert("NumericVector(*confluen_WaterGAP3_H)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List)");
         signatures.insert("NumericVector(*confluen_WaterGAP3_L)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector&,NumericVector,NumericVector)");
+        signatures.insert("NumericVector(*confluen_WaterGAP3_N)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,NumericVector)");
+        signatures.insert("NumericVector(*confluen_WaterGAP3)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,IntegerVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,LogicalVector,NumericVector)");
         signatures.insert("double(*evalute_NSE)(NumericVector,NumericVector)");
         signatures.insert("double(*evalute_KGE)(NumericVector,NumericVector,double,double,double)");
         signatures.insert("NumericVector(*evatransPotential_TurcWendling)(NumericVector,NumericVector,NumericVector)");
@@ -4174,6 +4397,8 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*percola_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*percola_SupplyRatio)(NumericVector,NumericVector)");
         signatures.insert("NumericVector(*percola_WaterGAP3)(NumericVector,NumericVector,LogicalVector,NumericVector,NumericVector)");
+        signatures.insert("NumericVector(*reservoireleas_Hanasaki)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,LogicalVector)");
+        signatures.insert("NumericVector(*reservoiReleasCoefficent_Hanasaki)(NumericVector,NumericVector,NumericVector,LogicalVector,NumericVector)");
         signatures.insert("NumericVector(*riverout_LinearResorvoir)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*riverlakout_LinearResorvoir)(NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("List(*get_inflow_cells)(IntegerVector)");
@@ -4224,8 +4449,10 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluenIUH_Kelly", (DL_FUNC)_HydroGallery_confluenIUH_Kelly_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluenIUH_Nash", (DL_FUNC)_HydroGallery_confluenIUH_Nash_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluenIUH_Clark", (DL_FUNC)_HydroGallery_confluenIUH_Clark_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_H", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_H_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_L", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_L_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_N", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_N_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evalute_NSE", (DL_FUNC)_HydroGallery_evalute_NSE_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evalute_KGE", (DL_FUNC)_HydroGallery_evalute_KGE_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransPotential_TurcWendling", (DL_FUNC)_HydroGallery_evatransPotential_TurcWendling_try);
@@ -4291,6 +4518,8 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_SupplyPow", (DL_FUNC)_HydroGallery_percola_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_SupplyRatio", (DL_FUNC)_HydroGallery_percola_SupplyRatio_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_WaterGAP3", (DL_FUNC)_HydroGallery_percola_WaterGAP3_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_reservoireleas_Hanasaki", (DL_FUNC)_HydroGallery_reservoireleas_Hanasaki_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_reservoiReleasCoefficent_Hanasaki", (DL_FUNC)_HydroGallery_reservoiReleasCoefficent_Hanasaki_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_riverout_LinearResorvoir", (DL_FUNC)_HydroGallery_riverout_LinearResorvoir_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_riverlakout_LinearResorvoir", (DL_FUNC)_HydroGallery_riverlakout_LinearResorvoir_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inflow_cells", (DL_FUNC)_HydroGallery_get_inflow_cells_try);
@@ -4340,8 +4569,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_confluenIUH_Kelly", (DL_FUNC) &_HydroGallery_confluenIUH_Kelly, 2},
     {"_HydroGallery_confluenIUH_Nash", (DL_FUNC) &_HydroGallery_confluenIUH_Nash, 2},
     {"_HydroGallery_confluenIUH_Clark", (DL_FUNC) &_HydroGallery_confluenIUH_Clark, 1},
-    {"_HydroGallery_confluen_WaterGAP3", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3, 6},
+    {"_HydroGallery_confluen_WaterGAP3_H", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_H, 6},
     {"_HydroGallery_confluen_WaterGAP3_L", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_L, 10},
+    {"_HydroGallery_confluen_WaterGAP3_N", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_N, 9},
+    {"_HydroGallery_confluen_WaterGAP3", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3, 17},
     {"_HydroGallery_evalute_NSE", (DL_FUNC) &_HydroGallery_evalute_NSE, 2},
     {"_HydroGallery_evalute_KGE", (DL_FUNC) &_HydroGallery_evalute_KGE, 5},
     {"_HydroGallery_evatransPotential_TurcWendling", (DL_FUNC) &_HydroGallery_evatransPotential_TurcWendling, 3},
@@ -4407,6 +4638,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_percola_SupplyPow", (DL_FUNC) &_HydroGallery_percola_SupplyPow, 4},
     {"_HydroGallery_percola_SupplyRatio", (DL_FUNC) &_HydroGallery_percola_SupplyRatio, 2},
     {"_HydroGallery_percola_WaterGAP3", (DL_FUNC) &_HydroGallery_percola_WaterGAP3, 5},
+    {"_HydroGallery_reservoireleas_Hanasaki", (DL_FUNC) &_HydroGallery_reservoireleas_Hanasaki, 8},
+    {"_HydroGallery_reservoiReleasCoefficent_Hanasaki", (DL_FUNC) &_HydroGallery_reservoiReleasCoefficent_Hanasaki, 5},
     {"_HydroGallery_riverout_LinearResorvoir", (DL_FUNC) &_HydroGallery_riverout_LinearResorvoir, 4},
     {"_HydroGallery_riverlakout_LinearResorvoir", (DL_FUNC) &_HydroGallery_riverlakout_LinearResorvoir, 4},
     {"_HydroGallery_get_inflow_cells", (DL_FUNC) &_HydroGallery_get_inflow_cells, 1},
@@ -4423,6 +4656,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_read_int_matrix_list", (DL_FUNC) &_HydroGallery_read_int_matrix_list, 1},
     {"_HydroGallery_snowMelt_Kustas", (DL_FUNC) &_HydroGallery_snowMelt_Kustas, 5},
     {"_HydroGallery_snowMelt_Factor", (DL_FUNC) &_HydroGallery_snowMelt_Factor, 4},
+    {"_HydroGallery_withdraw_SingleCell", (DL_FUNC) &_HydroGallery_withdraw_SingleCell, 2},
+    {"_HydroGallery_withdrawSurface_AroundMax", (DL_FUNC) &_HydroGallery_withdrawSurface_AroundMax, 4},
+    {"_HydroGallery_withdrawSurface_Around", (DL_FUNC) &_HydroGallery_withdrawSurface_Around, 4},
+    {"_HydroGallery_withdrawSurface_WithdrawNet", (DL_FUNC) &_HydroGallery_withdrawSurface_WithdrawNet, 4},
     {"_HydroGallery_RcppExport_registerCCallable", (DL_FUNC) &_HydroGallery_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}
 };

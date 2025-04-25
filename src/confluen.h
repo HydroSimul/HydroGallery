@@ -16,4 +16,14 @@ NumericVector riverlakout_LinearResorvoir(
     NumericVector Riverlak_capacity_m3,
     NumericVector param_Riverlak_lin_storeFactor
 );
+NumericVector reservoireleas_Hanasaki(
+    NumericVector Reservoi_water_m3,
+    NumericVector Reservoi_inflow_m3,
+    NumericVector Reservoi_demand_m3,
+    NumericVector Reservoi_capacity_m3,
+    NumericVector Reservoi_meanInflow_m3,
+    NumericVector Reservoi_meanDemand_m3,
+    NumericVector Reservoi_releaseCoefficient_1,
+    LogicalVector Reservoi_isIrrigate_01
+);
 #endif

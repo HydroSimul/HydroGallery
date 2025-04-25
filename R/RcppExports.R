@@ -537,14 +537,26 @@ confluenIUH_Clark <- function(CONFLUEN_responseTime_TS) {
 
 #' @rdname confluen
 #' @export
-confluen_WaterGAP3 <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int) {
-    .Call(`_HydroGallery_confluen_WaterGAP3`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int)
+confluen_WaterGAP3_H <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int) {
+    .Call(`_HydroGallery_confluen_WaterGAP3_H`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int)
 }
 
 #' @rdname confluen
 #' @export
 confluen_WaterGAP3_L <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_water_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor) {
     .Call(`_HydroGallery_confluen_WaterGAP3_L`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_water_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
+}
+
+#' @rdname confluen
+#' @export
+confluen_WaterGAP3_N <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor) {
+    .Call(`_HydroGallery_confluen_WaterGAP3_N`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
+}
+
+#' @rdname confluen
+#' @export
+confluen_WaterGAP3 <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor) {
+    .Call(`_HydroGallery_confluen_WaterGAP3`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor)
 }
 
 #' Evalute matrics
@@ -1588,6 +1600,26 @@ percola_WaterGAP3 <- function(LAND_water_mm, SOIL_potentialPercola_mm, param_PER
     .Call(`_HydroGallery_percola_WaterGAP3`, LAND_water_mm, SOIL_potentialPercola_mm, param_PERCOLA_wat_01, param_PERCOLA_wat_thresh, param_PERCOLA_wat_k)
 }
 
+#' **Reservoir releas**
+#' @name reservoi
+#' @inheritParams all_vari
+#' @description
+#'
+#' The concept of river estimates the waterbody outflow for waternet concentation
+#' @return outflow (m3)
+#' @export
+reservoireleas_Hanasaki <- function(Reservoi_water_m3, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01) {
+    .Call(`_HydroGallery_reservoireleas_Hanasaki`, Reservoi_water_m3, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01)
+}
+
+#' @rdname reservoi
+#' @param param_Reservoi_han_alpha <0,1> 0.85 parameter for [reservoireleasCoefficent_Hanasaki()],
+#' @return new Reservoi_releaseCoefficient_1
+#' @export
+reservoiReleasCoefficent_Hanasaki <- function(Reservoi_water_m3, Reservoi_capacity_m3, Reservoi_releaseCoefficient_1, Reservoi_isOperateStart_01, param_Reservoi_han_alpha) {
+    .Call(`_HydroGallery_reservoiReleasCoefficent_Hanasaki`, Reservoi_water_m3, Reservoi_capacity_m3, Reservoi_releaseCoefficient_1, Reservoi_isOperateStart_01, param_Reservoi_han_alpha)
+}
+
 #' **river outflow**
 #' @name river
 #' @inheritParams all_vari
@@ -1777,6 +1809,53 @@ snowMelt_Kustas <- function(SNOW_ice_mm, ATMOS_temperature_Cel, ATMOS_netRadiat_
 #' @export
 snowMelt_Factor <- function(SNOW_ice_mm, ATMOS_temperature_Cel, param_SNOWMELT_fac_f, param_SNOWMELT_fac_Tmelt) {
     .Call(`_HydroGallery_snowMelt_Factor`, SNOW_ice_mm, ATMOS_temperature_Cel, param_SNOWMELT_fac_f, param_SNOWMELT_fac_Tmelt)
+}
+
+#' Withdraw water
+#' @name withdraw
+#'
+#' @description
+#' [withdraw_SingleCell] This function handles water withdrawal from a single cell's water storage.
+#' It updates the withdrawal deficit and the remaining water volume.
+#'
+#' @param CELL_withdrawal_m3 Vector of withdrawal requirements in cubic meters.
+#'   This represents water demand and will be updated to reflect remaining deficit.
+#' @param CELL_water_m3 Vector of available water volumes in cubic meters.
+#'   This will be updated to reflect remaining water after withdrawal.
+#' @return None. Parameters are updated by reference.
+#' @export
+withdraw_SingleCell <- function(CELL_withdrawal_m3, CELL_water_m3) {
+    invisible(.Call(`_HydroGallery_withdraw_SingleCell`, CELL_withdrawal_m3, CELL_water_m3))
+}
+
+#' [withdrawSurface_AroundMax] This function identifies the surrounding cell with the maximum water availability
+#' and withdraws water from it to satisfy the demand.
+#' @rdname withdraw
+#' @param CELL_cellNumberAround_int Matrix of cell indices that define surrounding cells.
+#'   Each column corresponds to a cell, with rows containing indices of surrounding cells.
+#' @return None. Parameters are updated by reference.
+#' @export
+withdrawSurface_AroundMax <- function(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int) {
+    invisible(.Call(`_HydroGallery_withdrawSurface_AroundMax`, CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int))
+}
+
+#' [withdrawSurface_Around] This function withdraws water from all surrounding cells proportionally
+#' based on their water availability.
+#' @rdname withdraw
+#' @export
+withdrawSurface_Around <- function(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int) {
+    invisible(.Call(`_HydroGallery_withdrawSurface_Around`, CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int))
+}
+
+#' [withdrawSurface_WithdrawNet] This function withdraws water by following a predefined network of cells
+#' from which water can be withdrawn.
+#' @name withdraw
+#' @param CELL_cellNumberWithdrawNet_int Matrix defining the withdrawal network.
+#'   Each column corresponds to a cell, with rows containing indices of cells
+#'   from which water can be withdrawn in order of priority.
+#' @export
+withdrawSurface_WithdrawNet <- function(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberWithdrawNet_int) {
+    invisible(.Call(`_HydroGallery_withdrawSurface_WithdrawNet`, CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberWithdrawNet_int))
 }
 
 # Register entry points for exported C++ functions

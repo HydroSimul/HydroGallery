@@ -5,8 +5,10 @@
 \alias{confluen_IUH}
 \alias{confluen_IUH2S}
 \alias{confluen_IUH3S}
-\alias{confluen_WaterGAP3}
+\alias{confluen_WaterGAP3_H}
 \alias{confluen_WaterGAP3_L}
+\alias{confluen_WaterGAP3_N}
+\alias{confluen_WaterGAP3}
 \title{**confluence**}
 \usage{
 confluen_IUH(CONFLUEN_inputWater_mm, CONFLUEN_iuh_1)
@@ -27,7 +29,7 @@ confluen_IUH3S(
   CONFLUEN_iuhGround_1
 )
 
-confluen_WaterGAP3(
+confluen_WaterGAP3_H(
   RIVER_water_m3,
   RIVER_length_km,
   RIVER_velocity_km,
@@ -46,6 +48,38 @@ confluen_WaterGAP3_L(
   Riverlak_cellNumber_int,
   Riverlak_water_m3,
   Riverlak_capacity_m3,
+  param_Riverlak_lin_storeFactor
+)
+
+confluen_WaterGAP3_N(
+  RIVER_water_m3,
+  RIVER_length_km,
+  RIVER_velocity_km,
+  RIVER_outflow_m3,
+  CELL_cellNumberStep_int,
+  CELL_inflowCellNumberStep_int,
+  Riverlak_cellNumber_int,
+  Riverlak_capacity_m3,
+  param_Riverlak_lin_storeFactor
+)
+
+confluen_WaterGAP3(
+  RIVER_water_m3,
+  RIVER_length_km,
+  RIVER_velocity_km,
+  RIVER_outflow_m3,
+  CELL_cellNumberStep_int,
+  CELL_inflowCellNumberStep_int,
+  Riverlak_cellNumber_int,
+  Riverlak_capacity_m3,
+  Reservoi_cellNumber_int,
+  Reservoi_inflow_m3,
+  Reservoi_demand_m3,
+  Reservoi_capacity_m3,
+  Reservoi_meanInflow_m3,
+  Reservoi_meanDemand_m3,
+  Reservoi_releaseCoefficient_1,
+  Reservoi_isIrrigate_01,
   param_Riverlak_lin_storeFactor
 )
 }
@@ -73,6 +107,22 @@ confluen_WaterGAP3_L(
 \item{Riverlak_water_m3}{(m3) water volume in the river-lake system}
 
 \item{Riverlak_capacity_m3}{(m3) total capacity of the river-lake system}
+
+\item{Reservoi_cellNumber_int}{(int) reservoir cell number}
+
+\item{Reservoi_inflow_m3}{(m3/TS) inflow to the reservoir}
+
+\item{Reservoi_demand_m3}{(m3/TS) water demand from the reservoir}
+
+\item{Reservoi_capacity_m3}{(m3) reservoir capacity}
+
+\item{Reservoi_meanInflow_m3}{(m3/TS) annual mean inflow to the reservoir}
+
+\item{Reservoi_meanDemand_m3}{(m3/TS) annual mean water demand from the reservoir}
+
+\item{Reservoi_releaseCoefficient_1}{(-) capacity / mena inflow reference to annual mean water release from the reservoir}
+
+\item{Reservoi_isIrrigate_01}{(01) indicates if the reservoir is used for irrigation (0 or 1)}
 }
 \value{
 confluenced water (mm/m2)

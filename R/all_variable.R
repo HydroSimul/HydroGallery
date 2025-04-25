@@ -78,9 +78,9 @@
 #' @param Reservoi_demand_m3 (m3/TS) water demand from the reservoir
 #' @param Reservoi_potentialVolume_m3 (m3) potential capacity of the reservoir
 #' @param Reservoi_area_km2 (km2) surface area of the reservoir
-#' @param Reservoi_yearInflow_m3 (m3/TS) annual mean inflow to the reservoir
-#' @param Reservoi_yearDemand_m3 (m3/TS) annual mean water demand from the reservoir
-#' @param Reservoi_yearRelase_m3 (m3/TS) reference to annual mean water release from the reservoir
+#' @param Reservoi_meanInflow_m3 (m3/TS) annual mean inflow to the reservoir
+#' @param Reservoi_meanDemand_m3 (m3/TS) annual mean water demand from the reservoir
+#' @param Reservoi_releaseCoefficient_1 (-) capacity / mena inflow reference to annual mean water release from the reservoir
 #' @param Reservoi_isOperateStart_01 (01) indicates if reservoir operation has started (0 or 1)
 #' @param Reservoi_isIrrigate_01 (01) indicates if the reservoir is used for irrigation (0 or 1)
 #' @param CELL_landArea_km2 (km2) land area of the basin

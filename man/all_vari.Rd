@@ -154,11 +154,11 @@
 
 \item{Reservoi_area_km2}{(km2) surface area of the reservoir}
 
-\item{Reservoi_yearInflow_m3}{(m3/TS) annual mean inflow to the reservoir}
+\item{Reservoi_meanInflow_m3}{(m3/TS) annual mean inflow to the reservoir}
 
-\item{Reservoi_yearDemand_m3}{(m3/TS) annual mean water demand from the reservoir}
+\item{Reservoi_meanDemand_m3}{(m3/TS) annual mean water demand from the reservoir}
 
-\item{Reservoi_yearRelase_m3}{(m3/TS) reference to annual mean water release from the reservoir}
+\item{Reservoi_releaseCoefficient_1}{(-) capacity / mena inflow reference to annual mean water release from the reservoir}
 
 \item{Reservoi_isOperateStart_01}{(01) indicates if reservoir operation has started (0 or 1)}
 
