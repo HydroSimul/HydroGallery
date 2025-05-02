@@ -1114,11 +1114,11 @@ RcppExport SEXP _HydroGallery_confluen_WaterGAP3_L(SEXP RIVER_water_m3SEXP, SEXP
     return rcpp_result_gen;
 }
 // confluen_WaterGAP3_N
-NumericVector confluen_WaterGAP3_N(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor);
+NumericVector confluen_WaterGAP3_N(NumericVector RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor);
 static SEXP _HydroGallery_confluen_WaterGAP3_N_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_outflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type RIVER_water_m3(RIVER_water_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector >::type RIVER_length_km(RIVER_length_kmSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type RIVER_velocity_km(RIVER_velocity_kmSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type RIVER_outflow_m3(RIVER_outflow_m3SEXP);
@@ -4330,7 +4330,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*confluenIUH_Clark)(double)");
         signatures.insert("NumericVector(*confluen_WaterGAP3_H)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List)");
         signatures.insert("NumericVector(*confluen_WaterGAP3_L)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector&,NumericVector,NumericVector)");
-        signatures.insert("NumericVector(*confluen_WaterGAP3_N)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,NumericVector)");
+        signatures.insert("NumericVector(*confluen_WaterGAP3_N)(NumericVector,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*confluen_WaterGAP3)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,IntegerVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,LogicalVector,NumericVector)");
         signatures.insert("double(*evalute_NSE)(NumericVector,NumericVector)");
         signatures.insert("double(*evalute_KGE)(NumericVector,NumericVector,double,double,double)");

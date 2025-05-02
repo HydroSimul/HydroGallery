@@ -652,11 +652,11 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_WaterGAP3_N(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor) {
+    inline NumericVector confluen_WaterGAP3_N(NumericVector RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor) {
         typedef SEXP(*Ptr_confluen_WaterGAP3_N)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_WaterGAP3_N p_confluen_WaterGAP3_N = NULL;
         if (p_confluen_WaterGAP3_N == NULL) {
-            validateSignature("NumericVector(*confluen_WaterGAP3_N)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,NumericVector)");
+            validateSignature("NumericVector(*confluen_WaterGAP3_N)(NumericVector,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,NumericVector)");
             p_confluen_WaterGAP3_N = (Ptr_confluen_WaterGAP3_N)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_N");
         }
         RObject rcpp_result_gen;
