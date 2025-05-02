@@ -495,7 +495,7 @@ NumericVector confluen_WaterGAP3_N(
    NumericVector &RIVER_water_m3,
    NumericVector RIVER_length_km,
    NumericVector RIVER_velocity_km,
-   NumericVector RIVER_outflow_m3,
+   NumericVector RIVER_inflow_m3,
    List CELL_cellNumberStep_int,
    List CELL_inflowCellNumberStep_int,
    IntegerVector Riverlak_cellNumber_int,
@@ -505,7 +505,7 @@ NumericVector confluen_WaterGAP3_N(
 {
  
  NumericVector step_RiverOutflow_m3, step_RiverlakOutflow_m3, step_UpstreamInflow_m3;
-  NumericVector RIVER_water_m3_TEMP = RIVER_water_m3;
+  NumericVector RIVER_water_m3_TEMP = RIVER_water_m3, RIVER_outflow_m3(RIVER_inflow_m3.size());
  IntegerVector idx_Cell_Step,
  idx_Step_Upstream,
  idx_Riverlak_Step, idx_Step_Riverlak;
@@ -526,8 +526,9 @@ NumericVector confluen_WaterGAP3_N(
    
    
    // Inflow upstream
+   NumericVector RIVER_outflow_m3_TEMP = RIVER_inflow_m3 + RIVER_outflow_m3;
    step_UpstreamInflow_m3 = inflow_add(
-     RIVER_outflow_m3,
+     RIVER_outflow_m3_TEMP,
      CELL_inflowCellNumberStep_int[i_Step]
    );
    

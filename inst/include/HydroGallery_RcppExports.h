@@ -652,7 +652,7 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_WaterGAP3_N(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_outflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor) {
+    inline NumericVector confluen_WaterGAP3_N(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_inflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor) {
         typedef SEXP(*Ptr_confluen_WaterGAP3_N)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_WaterGAP3_N p_confluen_WaterGAP3_N = NULL;
         if (p_confluen_WaterGAP3_N == NULL) {
@@ -662,7 +662,7 @@ namespace HydroGallery {
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_confluen_WaterGAP3_N(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_outflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_capacity_m3)), Shield<SEXP>(Rcpp::wrap(param_Riverlak_lin_storeFactor)));
+            rcpp_result_gen = p_confluen_WaterGAP3_N(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_inflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_capacity_m3)), Shield<SEXP>(Rcpp::wrap(param_Riverlak_lin_storeFactor)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
