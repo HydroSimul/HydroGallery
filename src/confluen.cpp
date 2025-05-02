@@ -492,7 +492,7 @@ NumericVector confluen_WaterGAP3_L(
 //' @export
 // [[Rcpp::export]]
 NumericVector confluen_WaterGAP3_N(
-   NumericVector RIVER_water_m3,
+   NumericVector &RIVER_water_m3,
    NumericVector RIVER_length_km,
    NumericVector RIVER_velocity_km,
    NumericVector RIVER_outflow_m3,
@@ -505,18 +505,18 @@ NumericVector confluen_WaterGAP3_N(
 {
  
  NumericVector step_RiverOutflow_m3, step_RiverlakOutflow_m3, step_UpstreamInflow_m3;
- 
+  NumericVector RIVER_water_m3_TEMP = RIVER_water_m3;
  IntegerVector idx_Cell_Step,
  idx_Step_Upstream,
  idx_Riverlak_Step, idx_Step_Riverlak;
  int n_Step = CELL_cellNumberStep_int.size();
  
  // Riverlak
- NumericVector Riverlak_water_m3 = subset_get(RIVER_water_m3, Riverlak_cellNumber_int);
+ NumericVector Riverlak_water_m3 = subset_get(RIVER_water_m3_TEMP, Riverlak_cellNumber_int);
  // Overflow for Riverlak
  NumericVector Riverlak_overflow_m3 = pmax(Riverlak_water_m3 - Riverlak_capacity_m3, 0);
  Riverlak_water_m3 += -Riverlak_overflow_m3;
- subset_put(RIVER_water_m3, Riverlak_cellNumber_int,  Riverlak_overflow_m3);
+ subset_put(RIVER_water_m3_TEMP, Riverlak_cellNumber_int,  Riverlak_overflow_m3);
  
  // Step i later with Inflow
  for (int i_Step = 1; i_Step < n_Step; i_Step++)
@@ -533,7 +533,7 @@ NumericVector confluen_WaterGAP3_N(
    
    
    // river segment
-   NumericVector step_RiverWater = subset_get(RIVER_water_m3, idx_Cell_Step);
+   NumericVector step_RiverWater = subset_get(RIVER_water_m3_TEMP, idx_Cell_Step);
    
    step_RiverOutflow_m3 = riverout_LinearResorvoir(
      step_RiverWater,
@@ -564,12 +564,13 @@ NumericVector confluen_WaterGAP3_N(
    
    
    subset_put(RIVER_outflow_m3, idx_Cell_Step, step_RiverOutflow_m3);
-   subset_put(RIVER_water_m3, idx_Cell_Step,  step_RIVER_Water_New);
+   subset_put(RIVER_water_m3_TEMP, idx_Cell_Step,  step_RIVER_Water_New);
    
    
    
  }
  
+ RIVER_water_m3 = RIVER_water_m3_TEMP;
  subset_add(RIVER_outflow_m3, Riverlak_cellNumber_int, Riverlak_overflow_m3);
  return RIVER_outflow_m3;
  
