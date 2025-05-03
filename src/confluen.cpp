@@ -395,11 +395,12 @@ NumericVector confluen_WaterGAP3_H(
     
     
     // Inflow upstream
-    NumericVector RIVER_outflow_m3_TEMP = RIVER_inflow_m3 + RIVER_outflow_m3;
+    step_Riverinflow = subset_get(RIVER_inflow_m3, idx_Cell_Step);
     step_UpstreamInflow_m3 = inflow_add(
-      RIVER_outflow_m3_TEMP,
+      RIVER_outflow_m3,
       CELL_inflowCellNumberStep_int[i_Step]
     );
+    step_UpstreamInflow_m3 += step_Riverinflow;
     
     
     // river segment
@@ -512,12 +513,12 @@ NumericVector confluen_WaterGAP3_N(
     
     
     // Inflow upstream
-    NumericVector RIVER_outflow_m3_TEMP = RIVER_inflow_m3 + RIVER_outflow_m3;
+    step_Riverinflow = subset_get(RIVER_inflow_m3, idx_Cell_Step);
     step_UpstreamInflow_m3 = inflow_add(
-      RIVER_outflow_m3_TEMP,
+      RIVER_outflow_m3,
       CELL_inflowCellNumberStep_int[i_Step]
     );
-    
+    step_UpstreamInflow_m3 += step_Riverinflow;
     
     // river segment
     step_RiverWater = subset_get(RIVER_water_m3_TEMP, idx_Cell_Step);
