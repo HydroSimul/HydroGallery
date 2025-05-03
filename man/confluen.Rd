@@ -6,7 +6,6 @@
 \alias{confluen_IUH2S}
 \alias{confluen_IUH3S}
 \alias{confluen_WaterGAP3_H}
-\alias{confluen_WaterGAP3_L}
 \alias{confluen_WaterGAP3_N}
 \alias{confluen_WaterGAP3}
 \title{**confluence**}
@@ -33,22 +32,9 @@ confluen_WaterGAP3_H(
   RIVER_water_m3,
   RIVER_length_km,
   RIVER_velocity_km,
-  RIVER_outflow_m3,
+  RIVER_inflow_m3,
   CELL_cellNumberStep_int,
   CELL_inflowCellNumberStep_int
-)
-
-confluen_WaterGAP3_L(
-  RIVER_water_m3,
-  RIVER_length_km,
-  RIVER_velocity_km,
-  RIVER_outflow_m3,
-  CELL_cellNumberStep_int,
-  CELL_inflowCellNumberStep_int,
-  Riverlak_cellNumber_int,
-  Riverlak_water_m3,
-  Riverlak_capacity_m3,
-  param_Riverlak_lin_storeFactor
 )
 
 confluen_WaterGAP3_N(
@@ -96,7 +82,7 @@ confluen_WaterGAP3(
 
 \item{RIVER_velocity_km}{(km/TS) river velocity}
 
-\item{RIVER_outflow_m3}{(m3/TS) river outflow volume}
+\item{RIVER_inflow_m3}{(m3/TS) river inflow volume}
 
 \item{CELL_cellNumberStep_int}{(int) step number of basin cells}
 
@@ -104,11 +90,9 @@ confluen_WaterGAP3(
 
 \item{Riverlak_cellNumber_int}{(int) river-lake cell number}
 
-\item{Riverlak_water_m3}{(m3) water volume in the river-lake system}
-
 \item{Riverlak_capacity_m3}{(m3) total capacity of the river-lake system}
 
-\item{RIVER_inflow_m3}{(m3/TS) river inflow volume}
+\item{RIVER_outflow_m3}{(m3/TS) river outflow volume}
 
 \item{Reservoi_cellNumber_int}{(int) reservoir cell number}
 

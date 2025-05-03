@@ -537,14 +537,8 @@ confluenIUH_Clark <- function(CONFLUEN_responseTime_TS) {
 
 #' @rdname confluen
 #' @export
-confluen_WaterGAP3_H <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int) {
-    .Call(`_HydroGallery_confluen_WaterGAP3_H`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int)
-}
-
-#' @rdname confluen
-#' @export
-confluen_WaterGAP3_L <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_water_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor) {
-    .Call(`_HydroGallery_confluen_WaterGAP3_L`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_water_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
+confluen_WaterGAP3_H <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int) {
+    .Call(`_HydroGallery_confluen_WaterGAP3_H`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int)
 }
 
 #' @rdname confluen
