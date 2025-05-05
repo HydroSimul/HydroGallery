@@ -1,6 +1,7 @@
 #include <Rcpp.h>
 #include <algorithm> // for sort
 using namespace Rcpp;
+// [[Rcpp::interfaces(r, cpp)]]
 
 //' Withdraw water
 //' @name withdraw

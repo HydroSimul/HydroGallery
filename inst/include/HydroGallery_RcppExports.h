@@ -2414,6 +2414,86 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline void withdraw_SingleCell(NumericVector& CELL_withdrawal_m3, NumericVector& CELL_water_m3) {
+        typedef SEXP(*Ptr_withdraw_SingleCell)(SEXP,SEXP);
+        static Ptr_withdraw_SingleCell p_withdraw_SingleCell = NULL;
+        if (p_withdraw_SingleCell == NULL) {
+            validateSignature("void(*withdraw_SingleCell)(NumericVector&,NumericVector&)");
+            p_withdraw_SingleCell = (Ptr_withdraw_SingleCell)R_GetCCallable("HydroGallery", "_HydroGallery_withdraw_SingleCell");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_withdraw_SingleCell(Shield<SEXP>(Rcpp::wrap(CELL_withdrawal_m3)), Shield<SEXP>(Rcpp::wrap(CELL_water_m3)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
+    inline void withdrawSurface_AroundMax(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int) {
+        typedef SEXP(*Ptr_withdrawSurface_AroundMax)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_withdrawSurface_AroundMax p_withdrawSurface_AroundMax = NULL;
+        if (p_withdrawSurface_AroundMax == NULL) {
+            validateSignature("void(*withdrawSurface_AroundMax)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+            p_withdrawSurface_AroundMax = (Ptr_withdrawSurface_AroundMax)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_AroundMax");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_withdrawSurface_AroundMax(Shield<SEXP>(Rcpp::wrap(CELL_withdrawal_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(Lake_water_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberAround_int)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
+    inline void withdrawSurface_Around(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int) {
+        typedef SEXP(*Ptr_withdrawSurface_Around)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_withdrawSurface_Around p_withdrawSurface_Around = NULL;
+        if (p_withdrawSurface_Around == NULL) {
+            validateSignature("void(*withdrawSurface_Around)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+            p_withdrawSurface_Around = (Ptr_withdrawSurface_Around)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_Around");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_withdrawSurface_Around(Shield<SEXP>(Rcpp::wrap(CELL_withdrawal_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(Lake_water_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberAround_int)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
+    inline void withdrawSurface_WithdrawNet(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberWithdrawNet_int) {
+        typedef SEXP(*Ptr_withdrawSurface_WithdrawNet)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_withdrawSurface_WithdrawNet p_withdrawSurface_WithdrawNet = NULL;
+        if (p_withdrawSurface_WithdrawNet == NULL) {
+            validateSignature("void(*withdrawSurface_WithdrawNet)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+            p_withdrawSurface_WithdrawNet = (Ptr_withdrawSurface_WithdrawNet)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_WithdrawNet");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_withdrawSurface_WithdrawNet(Shield<SEXP>(Rcpp::wrap(CELL_withdrawal_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(Lake_water_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberWithdrawNet_int)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
 }
 
 #endif // RCPP_HydroGallery_RCPPEXPORTS_H_GEN_

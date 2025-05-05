@@ -4203,53 +4203,145 @@ RcppExport SEXP _HydroGallery_snowMelt_Factor(SEXP SNOW_ice_mmSEXP, SEXP ATMOS_t
 }
 // withdraw_SingleCell
 void withdraw_SingleCell(NumericVector& CELL_withdrawal_m3, NumericVector& CELL_water_m3);
-RcppExport SEXP _HydroGallery_withdraw_SingleCell(SEXP CELL_withdrawal_m3SEXP, SEXP CELL_water_m3SEXP) {
+static SEXP _HydroGallery_withdraw_SingleCell_try(SEXP CELL_withdrawal_m3SEXP, SEXP CELL_water_m3SEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type CELL_water_m3(CELL_water_m3SEXP);
     withdraw_SingleCell(CELL_withdrawal_m3, CELL_water_m3);
     return R_NilValue;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_withdraw_SingleCell(SEXP CELL_withdrawal_m3SEXP, SEXP CELL_water_m3SEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_withdraw_SingleCell_try(CELL_withdrawal_m3SEXP, CELL_water_m3SEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // withdrawSurface_AroundMax
 void withdrawSurface_AroundMax(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int);
-RcppExport SEXP _HydroGallery_withdrawSurface_AroundMax(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+static SEXP _HydroGallery_withdrawSurface_AroundMax_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type Lake_water_m3(Lake_water_m3SEXP);
     Rcpp::traits::input_parameter< IntegerMatrix >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
     withdrawSurface_AroundMax(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int);
     return R_NilValue;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_withdrawSurface_AroundMax(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_withdrawSurface_AroundMax_try(CELL_withdrawal_m3SEXP, RIVER_water_m3SEXP, Lake_water_m3SEXP, CELL_cellNumberAround_intSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // withdrawSurface_Around
 void withdrawSurface_Around(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int);
-RcppExport SEXP _HydroGallery_withdrawSurface_Around(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+static SEXP _HydroGallery_withdrawSurface_Around_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type Lake_water_m3(Lake_water_m3SEXP);
     Rcpp::traits::input_parameter< IntegerMatrix >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
     withdrawSurface_Around(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int);
     return R_NilValue;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_withdrawSurface_Around(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_withdrawSurface_Around_try(CELL_withdrawal_m3SEXP, RIVER_water_m3SEXP, Lake_water_m3SEXP, CELL_cellNumberAround_intSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 // withdrawSurface_WithdrawNet
 void withdrawSurface_WithdrawNet(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberWithdrawNet_int);
-RcppExport SEXP _HydroGallery_withdrawSurface_WithdrawNet(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberWithdrawNet_intSEXP) {
+static SEXP _HydroGallery_withdrawSurface_WithdrawNet_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberWithdrawNet_intSEXP) {
 BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type RIVER_water_m3(RIVER_water_m3SEXP);
     Rcpp::traits::input_parameter< NumericVector& >::type Lake_water_m3(Lake_water_m3SEXP);
     Rcpp::traits::input_parameter< IntegerMatrix >::type CELL_cellNumberWithdrawNet_int(CELL_cellNumberWithdrawNet_intSEXP);
     withdrawSurface_WithdrawNet(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberWithdrawNet_int);
     return R_NilValue;
-END_RCPP
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_withdrawSurface_WithdrawNet(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberWithdrawNet_intSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_withdrawSurface_WithdrawNet_try(CELL_withdrawal_m3SEXP, RIVER_water_m3SEXP, Lake_water_m3SEXP, CELL_cellNumberWithdrawNet_intSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
 }
 
 // validate (ensure exported C++ functions exist before calling them)
@@ -4370,6 +4462,10 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("List(*read_int_matrix_list)(std::string)");
         signatures.insert("NumericVector(*snowMelt_Kustas)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*snowMelt_Factor)(NumericVector,NumericVector,NumericVector,NumericVector)");
+        signatures.insert("void(*withdraw_SingleCell)(NumericVector&,NumericVector&)");
+        signatures.insert("void(*withdrawSurface_AroundMax)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+        signatures.insert("void(*withdrawSurface_Around)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+        signatures.insert("void(*withdrawSurface_WithdrawNet)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
     }
     return signatures.find(sig) != signatures.end();
 }
@@ -4490,6 +4586,10 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_read_int_matrix_list", (DL_FUNC)_HydroGallery_read_int_matrix_list_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_snowMelt_Kustas", (DL_FUNC)_HydroGallery_snowMelt_Kustas_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_snowMelt_Factor", (DL_FUNC)_HydroGallery_snowMelt_Factor_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_withdraw_SingleCell", (DL_FUNC)_HydroGallery_withdraw_SingleCell_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_withdrawSurface_AroundMax", (DL_FUNC)_HydroGallery_withdrawSurface_AroundMax_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_withdrawSurface_Around", (DL_FUNC)_HydroGallery_withdrawSurface_Around_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_withdrawSurface_WithdrawNet", (DL_FUNC)_HydroGallery_withdrawSurface_WithdrawNet_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_RcppExport_validate", (DL_FUNC)_HydroGallery_RcppExport_validate);
     return R_NilValue;
 }
