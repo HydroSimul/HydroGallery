@@ -53,13 +53,12 @@ confluen_WaterGAP3(
   RIVER_water_m3,
   RIVER_length_km,
   RIVER_velocity_km,
-  RIVER_outflow_m3,
+  RIVER_inflow_m3,
   CELL_cellNumberStep_int,
   CELL_inflowCellNumberStep_int,
   Riverlak_cellNumber_int,
   Riverlak_capacity_m3,
   Reservoi_cellNumber_int,
-  Reservoi_inflow_m3,
   Reservoi_demand_m3,
   Reservoi_capacity_m3,
   Reservoi_meanInflow_m3,
@@ -92,11 +91,7 @@ confluen_WaterGAP3(
 
 \item{Riverlak_capacity_m3}{(m3) total capacity of the river-lake system}
 
-\item{RIVER_outflow_m3}{(m3/TS) river outflow volume}
-
 \item{Reservoi_cellNumber_int}{(int) reservoir cell number}
-
-\item{Reservoi_inflow_m3}{(m3/TS) inflow to the reservoir}
 
 \item{Reservoi_demand_m3}{(m3/TS) water demand from the reservoir}
 

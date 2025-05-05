@@ -549,8 +549,8 @@ confluen_WaterGAP3_N <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity
 
 #' @rdname confluen
 #' @export
-confluen_WaterGAP3 <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor) {
-    .Call(`_HydroGallery_confluen_WaterGAP3`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_outflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor)
+confluen_WaterGAP3 <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor) {
+    .Call(`_HydroGallery_confluen_WaterGAP3`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor)
 }
 
 #' Evalute matrics
