@@ -553,6 +553,68 @@ confluen_WaterGAP3 <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_k
     .Call(`_HydroGallery_confluen_WaterGAP3`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor)
 }
 
+#' Save a matrix (Numeric, Integer, or Logical) to a binary file
+#'
+#' This function saves a matrix to a binary file with a header indicating
+#' the matrix type (1=numeric, 2=integer, 3=logical), dimensions, and data.
+#' All types are stored using 4 bytes per element.
+#' @name dataio
+#' @param matrix The matrix to be saved
+#' @param filename The name of the binary file
+#' @export
+save_matbin <- function(matrix, filename) {
+    invisible(.Call(`_HydroGallery_save_matbin`, matrix, filename))
+}
+
+#' Load a matrix from a binary file
+#'
+#' This function loads a matrix from a binary file that was saved
+#' using save_matbin(). It automatically detects the matrix type.
+#' @rdname dataio
+#' @param filename The binary file to load
+#' @return Either a NumericMatrix, IntegerMatrix, or LogicalMatrix
+#' @export
+load_matbin <- function(filename) {
+    .Call(`_HydroGallery_load_matbin`, filename)
+}
+
+#' Bind multiple binary matrix files into a single file
+#'
+#' This function combines several matrix files into one. All matrices
+#' must be of the same type and have matching column counts.
+#' @rdname dataio
+#' @param input_files Vector of input file paths
+#' @param output_file Path for the combined output file
+#' @export
+bind_matbin <- function(input_files, output_file) {
+    invisible(.Call(`_HydroGallery_bind_matbin`, input_files, output_file))
+}
+
+#' Save a vector (Numeric, Integer, or Logical) to a binary file
+#'
+#' This function saves a vector to a binary file with a header indicating
+#' the vector type (1=numeric, 2=integer, 3=logical) and length.
+#' All types are stored using 4 bytes per element.
+#' @name dataio
+#' @param vector The vector to be saved
+#' @param filename The name of the binary file
+#' @export
+save_vecbin <- function(vector, filename) {
+    invisible(.Call(`_HydroGallery_save_vecbin`, vector, filename))
+}
+
+#' Load a vector from a binary file
+#'
+#' This function loads a vector from a binary file that was saved
+#' using save_vecbin(). It automatically detects the vector type.
+#' @rdname dataio
+#' @param filename The binary file to load
+#' @return Either a NumericVector, IntegerVector, or LogicalVector
+#' @export
+load_vecbin <- function(filename) {
+    .Call(`_HydroGallery_load_vecbin`, filename)
+}
+
 #' Evalute matrics
 #' @name eva
 #' @param num_Sim A numeric vector of simulated values.

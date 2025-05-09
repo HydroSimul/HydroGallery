@@ -1161,6 +1161,176 @@ RcppExport SEXP _HydroGallery_confluen_WaterGAP3(SEXP RIVER_water_m3SEXP, SEXP R
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// save_matbin
+void save_matbin(SEXP matrix, const std::string& filename);
+static SEXP _HydroGallery_save_matbin_try(SEXP matrixSEXP, SEXP filenameSEXP) {
+BEGIN_RCPP
+    Rcpp::traits::input_parameter< SEXP >::type matrix(matrixSEXP);
+    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
+    save_matbin(matrix, filename);
+    return R_NilValue;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_save_matbin(SEXP matrixSEXP, SEXP filenameSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_save_matbin_try(matrixSEXP, filenameSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// load_matbin
+SEXP load_matbin(const std::string& filename);
+static SEXP _HydroGallery_load_matbin_try(SEXP filenameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
+    rcpp_result_gen = Rcpp::wrap(load_matbin(filename));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_load_matbin(SEXP filenameSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_load_matbin_try(filenameSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// bind_matbin
+void bind_matbin(const StringVector& input_files, const std::string& output_file);
+static SEXP _HydroGallery_bind_matbin_try(SEXP input_filesSEXP, SEXP output_fileSEXP) {
+BEGIN_RCPP
+    Rcpp::traits::input_parameter< const StringVector& >::type input_files(input_filesSEXP);
+    Rcpp::traits::input_parameter< const std::string& >::type output_file(output_fileSEXP);
+    bind_matbin(input_files, output_file);
+    return R_NilValue;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_bind_matbin(SEXP input_filesSEXP, SEXP output_fileSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_bind_matbin_try(input_filesSEXP, output_fileSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// save_vecbin
+void save_vecbin(SEXP vector, const std::string& filename);
+static SEXP _HydroGallery_save_vecbin_try(SEXP vectorSEXP, SEXP filenameSEXP) {
+BEGIN_RCPP
+    Rcpp::traits::input_parameter< SEXP >::type vector(vectorSEXP);
+    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
+    save_vecbin(vector, filename);
+    return R_NilValue;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_save_vecbin(SEXP vectorSEXP, SEXP filenameSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_save_vecbin_try(vectorSEXP, filenameSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// load_vecbin
+SEXP load_vecbin(const std::string& filename);
+static SEXP _HydroGallery_load_vecbin_try(SEXP filenameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
+    rcpp_result_gen = Rcpp::wrap(load_vecbin(filename));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_load_vecbin(SEXP filenameSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_load_vecbin_try(filenameSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // evalute_NSE
 double evalute_NSE(NumericVector num_Sim, NumericVector num_Obs);
 static SEXP _HydroGallery_evalute_NSE_try(SEXP num_SimSEXP, SEXP num_ObsSEXP) {
@@ -4379,6 +4549,11 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("NumericVector(*confluen_WaterGAP3_H)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List)");
         signatures.insert("NumericVector(*confluen_WaterGAP3_N)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,NumericVector)");
         signatures.insert("NumericVector(*confluen_WaterGAP3)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,IntegerVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,LogicalVector,NumericVector)");
+        signatures.insert("void(*save_matbin)(SEXP,const std::string&)");
+        signatures.insert("SEXP(*load_matbin)(const std::string&)");
+        signatures.insert("void(*bind_matbin)(const StringVector&,const std::string&)");
+        signatures.insert("void(*save_vecbin)(SEXP,const std::string&)");
+        signatures.insert("SEXP(*load_vecbin)(const std::string&)");
         signatures.insert("double(*evalute_NSE)(NumericVector,NumericVector)");
         signatures.insert("double(*evalute_KGE)(NumericVector,NumericVector,double,double,double)");
         signatures.insert("NumericVector(*evatransPotential_TurcWendling)(NumericVector,NumericVector,NumericVector)");
@@ -4503,6 +4678,11 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_H", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_H_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_N", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_N_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_save_matbin", (DL_FUNC)_HydroGallery_save_matbin_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_load_matbin", (DL_FUNC)_HydroGallery_load_matbin_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_bind_matbin", (DL_FUNC)_HydroGallery_bind_matbin_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_save_vecbin", (DL_FUNC)_HydroGallery_save_vecbin_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_load_vecbin", (DL_FUNC)_HydroGallery_load_vecbin_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evalute_NSE", (DL_FUNC)_HydroGallery_evalute_NSE_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evalute_KGE", (DL_FUNC)_HydroGallery_evalute_KGE_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransPotential_TurcWendling", (DL_FUNC)_HydroGallery_evatransPotential_TurcWendling_try);
@@ -4626,6 +4806,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_confluen_WaterGAP3_H", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_H, 6},
     {"_HydroGallery_confluen_WaterGAP3_N", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_N, 9},
     {"_HydroGallery_confluen_WaterGAP3", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3, 16},
+    {"_HydroGallery_save_matbin", (DL_FUNC) &_HydroGallery_save_matbin, 2},
+    {"_HydroGallery_load_matbin", (DL_FUNC) &_HydroGallery_load_matbin, 1},
+    {"_HydroGallery_bind_matbin", (DL_FUNC) &_HydroGallery_bind_matbin, 2},
+    {"_HydroGallery_save_vecbin", (DL_FUNC) &_HydroGallery_save_vecbin, 2},
+    {"_HydroGallery_load_vecbin", (DL_FUNC) &_HydroGallery_load_vecbin, 1},
     {"_HydroGallery_evalute_NSE", (DL_FUNC) &_HydroGallery_evalute_NSE, 2},
     {"_HydroGallery_evalute_KGE", (DL_FUNC) &_HydroGallery_evalute_KGE, 5},
     {"_HydroGallery_evatransPotential_TurcWendling", (DL_FUNC) &_HydroGallery_evatransPotential_TurcWendling, 3},

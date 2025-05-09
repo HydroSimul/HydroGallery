@@ -673,6 +673,108 @@ namespace HydroGallery {
         return Rcpp::as<NumericVector >(rcpp_result_gen);
     }
 
+    inline void save_matbin(SEXP matrix, const std::string& filename) {
+        typedef SEXP(*Ptr_save_matbin)(SEXP,SEXP);
+        static Ptr_save_matbin p_save_matbin = NULL;
+        if (p_save_matbin == NULL) {
+            validateSignature("void(*save_matbin)(SEXP,const std::string&)");
+            p_save_matbin = (Ptr_save_matbin)R_GetCCallable("HydroGallery", "_HydroGallery_save_matbin");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_save_matbin(Shield<SEXP>(Rcpp::wrap(matrix)), Shield<SEXP>(Rcpp::wrap(filename)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
+    inline SEXP load_matbin(const std::string& filename) {
+        typedef SEXP(*Ptr_load_matbin)(SEXP);
+        static Ptr_load_matbin p_load_matbin = NULL;
+        if (p_load_matbin == NULL) {
+            validateSignature("SEXP(*load_matbin)(const std::string&)");
+            p_load_matbin = (Ptr_load_matbin)R_GetCCallable("HydroGallery", "_HydroGallery_load_matbin");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_load_matbin(Shield<SEXP>(Rcpp::wrap(filename)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<SEXP >(rcpp_result_gen);
+    }
+
+    inline void bind_matbin(const StringVector& input_files, const std::string& output_file) {
+        typedef SEXP(*Ptr_bind_matbin)(SEXP,SEXP);
+        static Ptr_bind_matbin p_bind_matbin = NULL;
+        if (p_bind_matbin == NULL) {
+            validateSignature("void(*bind_matbin)(const StringVector&,const std::string&)");
+            p_bind_matbin = (Ptr_bind_matbin)R_GetCCallable("HydroGallery", "_HydroGallery_bind_matbin");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_bind_matbin(Shield<SEXP>(Rcpp::wrap(input_files)), Shield<SEXP>(Rcpp::wrap(output_file)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
+    inline void save_vecbin(SEXP vector, const std::string& filename) {
+        typedef SEXP(*Ptr_save_vecbin)(SEXP,SEXP);
+        static Ptr_save_vecbin p_save_vecbin = NULL;
+        if (p_save_vecbin == NULL) {
+            validateSignature("void(*save_vecbin)(SEXP,const std::string&)");
+            p_save_vecbin = (Ptr_save_vecbin)R_GetCCallable("HydroGallery", "_HydroGallery_save_vecbin");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_save_vecbin(Shield<SEXP>(Rcpp::wrap(vector)), Shield<SEXP>(Rcpp::wrap(filename)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
+    inline SEXP load_vecbin(const std::string& filename) {
+        typedef SEXP(*Ptr_load_vecbin)(SEXP);
+        static Ptr_load_vecbin p_load_vecbin = NULL;
+        if (p_load_vecbin == NULL) {
+            validateSignature("SEXP(*load_vecbin)(const std::string&)");
+            p_load_vecbin = (Ptr_load_vecbin)R_GetCCallable("HydroGallery", "_HydroGallery_load_vecbin");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_load_vecbin(Shield<SEXP>(Rcpp::wrap(filename)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<SEXP >(rcpp_result_gen);
+    }
+
     inline double evalute_NSE(NumericVector num_Sim, NumericVector num_Obs) {
         typedef SEXP(*Ptr_evalute_NSE)(SEXP,SEXP);
         static Ptr_evalute_NSE p_evalute_NSE = NULL;
