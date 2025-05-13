@@ -209,7 +209,11 @@ baseflow_Arno <- function(GROUND_water_mm, GROUND_capacity_mm, GROUND_potentialB
 
 #' **potential evapotranspiration**
 #' @name evatransPotential
-#' @description Leaf Area Index model from WaterGAP3
+#' @description 
+#' The concept 
+#'  
+#' @references
+#' \insertAllCited{}
 #' @inheritParams all_vari
 #' @export
 landLeafAreaIndex_WaterGAP3 <- function(ATMOS_temperature_Cel, ATMOS_precipitation_mm, CELL_latitude_deg, LAND_growUpDay_d, LAND_leafAreaIndexMin_, LAND_leafAreaIndexMax_, Time_dayOfYear_d) {
@@ -449,85 +453,11 @@ confluenIUH_Clark <- function(CONFLUEN_responseTime_TS) {
     .Call(`_HydroGallery_confluenIUH_Clark`, CONFLUEN_responseTime_TS)
 }
 
-#' confluen with sequential routing map
+#' confluenSequential
 #' @name confluenSequential
-#' @export
-confluen_WaterGAP3_H <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int) {
-    .Call(`_HydroGallery_confluen_WaterGAP3_H`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int)
-}
-
-#' @rdname confluenSequential
-#' @export
-confluen_WaterGAP3_N <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor) {
-    .Call(`_HydroGallery_confluen_WaterGAP3_N`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
-}
-
-#' @rdname confluenSequential
 #' @export
 confluen_WaterGAP3_U <- function(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor) {
     .Call(`_HydroGallery_confluen_WaterGAP3_U`, RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor)
-}
-
-#' Save a matrix (Numeric, Integer, or Logical) to a binary file
-#'
-#' This function saves a matrix to a binary file with a header indicating
-#' the matrix type (1=numeric, 2=integer, 3=logical), dimensions, and data.
-#' All types are stored using 4 bytes per element.
-#' @name dataio
-#' @param matrix The matrix to be saved
-#' @param filename The name of the binary file
-#' @export
-save_matbin <- function(matrix, filename) {
-    invisible(.Call(`_HydroGallery_save_matbin`, matrix, filename))
-}
-
-#' Load a matrix from a binary file
-#'
-#' This function loads a matrix from a binary file that was saved
-#' using save_matbin(). It automatically detects the matrix type.
-#' @rdname dataio
-#' @param filename The binary file to load
-#' @return Either a NumericMatrix, IntegerMatrix, or LogicalMatrix
-#' @export
-load_matbin <- function(filename) {
-    .Call(`_HydroGallery_load_matbin`, filename)
-}
-
-#' Bind multiple binary matrix files into a single file
-#'
-#' This function combines several matrix files into one. All matrices
-#' must be of the same type and have matching column counts.
-#' @rdname dataio
-#' @param input_files Vector of input file paths
-#' @param output_file Path for the combined output file
-#' @export
-bind_matbin <- function(input_files, output_file) {
-    invisible(.Call(`_HydroGallery_bind_matbin`, input_files, output_file))
-}
-
-#' Save a vector (Numeric, Integer, or Logical) to a binary file
-#'
-#' This function saves a vector to a binary file with a header indicating
-#' the vector type (1=numeric, 2=integer, 3=logical) and length.
-#' All types are stored using 4 bytes per element.
-#' @name dataio
-#' @param vector The vector to be saved
-#' @param filename The name of the binary file
-#' @export
-save_vecbin <- function(vector, filename) {
-    invisible(.Call(`_HydroGallery_save_vecbin`, vector, filename))
-}
-
-#' Load a vector from a binary file
-#'
-#' This function loads a vector from a binary file that was saved
-#' using save_vecbin(). It automatically detects the vector type.
-#' @rdname dataio
-#' @param filename The binary file to load
-#' @return Either a NumericVector, IntegerVector, or LogicalVector
-#' @export
-load_vecbin <- function(filename) {
-    .Call(`_HydroGallery_load_vecbin`, filename)
 }
 
 #' **actuall evapotranspiration**
@@ -1586,30 +1516,41 @@ riverlakout_LinearResorvoir <- function(Riverlak_water_m3, Riverlak_inflow_m3, R
     .Call(`_HydroGallery_riverlakout_LinearResorvoir`, Riverlak_water_m3, Riverlak_inflow_m3, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor)
 }
 
-#' @rdname routingtopology
-#' @name get_inflow_cells
+#'  routingtopology
+#' @name routingtopology
 #' @title Get Inflow Cells
 #' @description This function calculates inflow cells based on the outflow vector.
-#' @param int_Outflow (vector of int) The cell number of the next cell. The cell number must range from 1 to the length of the cells.
-#' If the cell has no outflow, the number should be set to itself.
-#' @return A list where each element is an IntegerVector containing the inflow cells for each cell.
+#' @param int_Outflow A vector of integers representing the cell number of the next cell. 1-based indexing.
+#' @return A field of uvecs containing the inflow cells for each cell.
 #' @export
 get_inflow_cells <- function(int_Outflow) {
     .Call(`_HydroGallery_get_inflow_cells`, int_Outflow)
 }
 
 #' @rdname routingtopology
-#' @name get_inflow_lastcell
 #' @title Get Inflow Last Cell Matrix
-#' @description This function creates a matrix of inflow cells for each cell based on the outflow vector.
-#' @return A NumericMatrix where each row corresponds to a cell, and each column represents an inflow cell.
+#' @description Creates a matrix of inflow cells for each cell.
 #' @export
 get_inflow_lastcell <- function(int_Outflow) {
     .Call(`_HydroGallery_get_inflow_lastcell`, int_Outflow)
 }
 
 #' @rdname routingtopology
-#' @param lst_Inflow_Cell A vector of arma::ivec, where each arma::ivec contains the cells that flow into the respective cell.
+#' @description Creates a list of inflow cells for each step.
+#' @export
+get_step_cells <- function(inflow_cells) {
+    .Call(`_HydroGallery_get_step_cells`, inflow_cells)
+}
+
+#' @rdname routingtopology
+#' @description Creates a field of last cells for each step.
+#' @export
+get_step_lastcell <- function(step_cells, inflow_lastcell) {
+    .Call(`_HydroGallery_get_step_lastcell`, step_cells, inflow_lastcell)
+}
+
+#' @rdname routingtopology
+#' @param lst_Inflow_Cell A list of integer vectors, where each vector contains the cells that flow into the respective cell.
 #' @param int_OutLet An integer representing the outlet cell (1-based index).
 #' @param int_TestCell An integer vector, cells to test.
 #' @return An integer vector of cells in the intersection of the station cells and the basin.
@@ -1646,43 +1587,10 @@ get_cali_step <- function(step_cells, int_Cali) {
 }
 
 #' @rdname routingtopology
-#' @title Get Step Parameters
-#' @description This function returns a list of step cells and the corresponding last cell matrices.
-#' @return A list containing the step cells and last cell matrices.
-#' @export
-get_routing_info <- function(int_Outflow) {
-    .Call(`_HydroGallery_get_routing_info`, int_Outflow)
-}
-
-#' @rdname routingtopology
 #' @return A list of integer vectors (`lst_Step_Cali`), where each element represents calibration cells at a specific step.
 #' @export
 get_upstream_cali_cell <- function(lst_Inflow_Cell, int_CaliCell) {
     .Call(`_HydroGallery_get_upstream_cali_cell`, lst_Inflow_Cell, int_CaliCell)
-}
-
-#' @rdname routingtopology
-#' @export
-write_int_vector_list <- function(vec_list, file_path) {
-    invisible(.Call(`_HydroGallery_write_int_vector_list`, vec_list, file_path))
-}
-
-#' @rdname routingtopology
-#' @export
-read_int_vector_list <- function(file_path) {
-    .Call(`_HydroGallery_read_int_vector_list`, file_path)
-}
-
-#' @rdname routingtopology
-#' @export
-write_int_matrix_list <- function(mat_list, file_path) {
-    invisible(.Call(`_HydroGallery_write_int_matrix_list`, mat_list, file_path))
-}
-
-#' @rdname routingtopology
-#' @export
-read_int_matrix_list <- function(file_path) {
-    .Call(`_HydroGallery_read_int_matrix_list`, file_path)
 }
 
 #' **snow**

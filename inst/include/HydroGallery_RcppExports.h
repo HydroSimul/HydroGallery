@@ -214,11 +214,11 @@ namespace HydroGallery {
         return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline arma::mat landLeafAreaIndex_WaterGAP3(const arma::mat& ATMOS_temperature_Cel, const arma::mat& ATMOS_precipitation_mm, const arma::vec& CELL_latitude_deg, const arma::ivec& LAND_growUpDay_d, const arma::vec& LAND_leafAreaIndexMin_, const arma::vec& LAND_leafAreaIndexMax_, const arma::ivec& Time_dayOfYear_d) {
+    inline arma::mat landLeafAreaIndex_WaterGAP3(const arma::mat& ATMOS_temperature_Cel, const arma::mat& ATMOS_precipitation_mm, const arma::vec& CELL_latitude_deg, const arma::uvec& LAND_growUpDay_d, const arma::vec& LAND_leafAreaIndexMin_, const arma::vec& LAND_leafAreaIndexMax_, const arma::uvec& Time_dayOfYear_d) {
         typedef SEXP(*Ptr_landLeafAreaIndex_WaterGAP3)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_landLeafAreaIndex_WaterGAP3 p_landLeafAreaIndex_WaterGAP3 = NULL;
         if (p_landLeafAreaIndex_WaterGAP3 == NULL) {
-            validateSignature("arma::mat(*landLeafAreaIndex_WaterGAP3)(const arma::mat&,const arma::mat&,const arma::vec&,const arma::ivec&,const arma::vec&,const arma::vec&,const arma::ivec&)");
+            validateSignature("arma::mat(*landLeafAreaIndex_WaterGAP3)(const arma::mat&,const arma::mat&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::uvec&)");
             p_landLeafAreaIndex_WaterGAP3 = (Ptr_landLeafAreaIndex_WaterGAP3)R_GetCCallable("HydroGallery", "_HydroGallery_landLeafAreaIndex_WaterGAP3");
         }
         RObject rcpp_result_gen;
@@ -487,53 +487,11 @@ namespace HydroGallery {
         return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline arma::vec confluen_WaterGAP3_H(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int) {
-        typedef SEXP(*Ptr_confluen_WaterGAP3_H)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_confluen_WaterGAP3_H p_confluen_WaterGAP3_H = NULL;
-        if (p_confluen_WaterGAP3_H == NULL) {
-            validateSignature("arma::vec(*confluen_WaterGAP3_H)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&)");
-            p_confluen_WaterGAP3_H = (Ptr_confluen_WaterGAP3_H)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_H");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_confluen_WaterGAP3_H(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_inflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::vec >(rcpp_result_gen);
-    }
-
-    inline arma::vec confluen_WaterGAP3_N(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::vec& param_Riverlak_lin_storeFactor) {
-        typedef SEXP(*Ptr_confluen_WaterGAP3_N)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_confluen_WaterGAP3_N p_confluen_WaterGAP3_N = NULL;
-        if (p_confluen_WaterGAP3_N == NULL) {
-            validateSignature("arma::vec(*confluen_WaterGAP3_N)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&,const arma::uvec&,const arma::vec&,const arma::vec&)");
-            p_confluen_WaterGAP3_N = (Ptr_confluen_WaterGAP3_N)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_N");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_confluen_WaterGAP3_N(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_inflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_capacity_m3)), Shield<SEXP>(Rcpp::wrap(param_Riverlak_lin_storeFactor)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::vec >(rcpp_result_gen);
-    }
-
-    inline arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor) {
+    inline arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::umat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor) {
         typedef SEXP(*Ptr_confluen_WaterGAP3_U)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_WaterGAP3_U p_confluen_WaterGAP3_U = NULL;
         if (p_confluen_WaterGAP3_U == NULL) {
-            validateSignature("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
+            validateSignature("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::umat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
             p_confluen_WaterGAP3_U = (Ptr_confluen_WaterGAP3_U)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_U");
         }
         RObject rcpp_result_gen;
@@ -548,108 +506,6 @@ namespace HydroGallery {
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
         return Rcpp::as<arma::vec >(rcpp_result_gen);
-    }
-
-    inline void save_matbin(SEXP matrix, const std::string& filename) {
-        typedef SEXP(*Ptr_save_matbin)(SEXP,SEXP);
-        static Ptr_save_matbin p_save_matbin = NULL;
-        if (p_save_matbin == NULL) {
-            validateSignature("void(*save_matbin)(SEXP,const std::string&)");
-            p_save_matbin = (Ptr_save_matbin)R_GetCCallable("HydroGallery", "_HydroGallery_save_matbin");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_save_matbin(Shield<SEXP>(Rcpp::wrap(matrix)), Shield<SEXP>(Rcpp::wrap(filename)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-    }
-
-    inline SEXP load_matbin(const std::string& filename) {
-        typedef SEXP(*Ptr_load_matbin)(SEXP);
-        static Ptr_load_matbin p_load_matbin = NULL;
-        if (p_load_matbin == NULL) {
-            validateSignature("SEXP(*load_matbin)(const std::string&)");
-            p_load_matbin = (Ptr_load_matbin)R_GetCCallable("HydroGallery", "_HydroGallery_load_matbin");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_load_matbin(Shield<SEXP>(Rcpp::wrap(filename)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<SEXP >(rcpp_result_gen);
-    }
-
-    inline void bind_matbin(const StringVector& input_files, const std::string& output_file) {
-        typedef SEXP(*Ptr_bind_matbin)(SEXP,SEXP);
-        static Ptr_bind_matbin p_bind_matbin = NULL;
-        if (p_bind_matbin == NULL) {
-            validateSignature("void(*bind_matbin)(const StringVector&,const std::string&)");
-            p_bind_matbin = (Ptr_bind_matbin)R_GetCCallable("HydroGallery", "_HydroGallery_bind_matbin");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_bind_matbin(Shield<SEXP>(Rcpp::wrap(input_files)), Shield<SEXP>(Rcpp::wrap(output_file)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-    }
-
-    inline void save_vecbin(SEXP vector, const std::string& filename) {
-        typedef SEXP(*Ptr_save_vecbin)(SEXP,SEXP);
-        static Ptr_save_vecbin p_save_vecbin = NULL;
-        if (p_save_vecbin == NULL) {
-            validateSignature("void(*save_vecbin)(SEXP,const std::string&)");
-            p_save_vecbin = (Ptr_save_vecbin)R_GetCCallable("HydroGallery", "_HydroGallery_save_vecbin");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_save_vecbin(Shield<SEXP>(Rcpp::wrap(vector)), Shield<SEXP>(Rcpp::wrap(filename)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-    }
-
-    inline SEXP load_vecbin(const std::string& filename) {
-        typedef SEXP(*Ptr_load_vecbin)(SEXP);
-        static Ptr_load_vecbin p_load_vecbin = NULL;
-        if (p_load_vecbin == NULL) {
-            validateSignature("SEXP(*load_vecbin)(const std::string&)");
-            p_load_vecbin = (Ptr_load_vecbin)R_GetCCallable("HydroGallery", "_HydroGallery_load_vecbin");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_load_vecbin(Shield<SEXP>(Rcpp::wrap(filename)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<SEXP >(rcpp_result_gen);
     }
 
     inline arma::vec evatransActual_SupplyRatio(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_sur_k) {
@@ -2059,11 +1915,11 @@ namespace HydroGallery {
         return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline std::vector<arma::ivec> get_inflow_cells(const arma::ivec& int_Outflow) {
+    inline arma::field<arma::uvec> get_inflow_cells(const arma::uvec& int_Outflow) {
         typedef SEXP(*Ptr_get_inflow_cells)(SEXP);
         static Ptr_get_inflow_cells p_get_inflow_cells = NULL;
         if (p_get_inflow_cells == NULL) {
-            validateSignature("std::vector<arma::ivec>(*get_inflow_cells)(const arma::ivec&)");
+            validateSignature("arma::field<arma::uvec>(*get_inflow_cells)(const arma::uvec&)");
             p_get_inflow_cells = (Ptr_get_inflow_cells)R_GetCCallable("HydroGallery", "_HydroGallery_get_inflow_cells");
         }
         RObject rcpp_result_gen;
@@ -2077,14 +1933,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<std::vector<arma::ivec> >(rcpp_result_gen);
+        return Rcpp::as<arma::field<arma::uvec> >(rcpp_result_gen);
     }
 
-    inline arma::mat get_inflow_lastcell(const arma::ivec& int_Outflow) {
+    inline arma::umat get_inflow_lastcell(const arma::uvec& int_Outflow) {
         typedef SEXP(*Ptr_get_inflow_lastcell)(SEXP);
         static Ptr_get_inflow_lastcell p_get_inflow_lastcell = NULL;
         if (p_get_inflow_lastcell == NULL) {
-            validateSignature("arma::mat(*get_inflow_lastcell)(const arma::ivec&)");
+            validateSignature("arma::umat(*get_inflow_lastcell)(const arma::uvec&)");
             p_get_inflow_lastcell = (Ptr_get_inflow_lastcell)R_GetCCallable("HydroGallery", "_HydroGallery_get_inflow_lastcell");
         }
         RObject rcpp_result_gen;
@@ -2098,14 +1954,56 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::mat >(rcpp_result_gen);
+        return Rcpp::as<arma::umat >(rcpp_result_gen);
     }
 
-    inline arma::ivec get_cell_in_basin(const std::vector<arma::ivec>& lst_Inflow_Cell, int int_OutLet, const arma::ivec& int_TestCell) {
+    inline arma::field<arma::uvec> get_step_cells(const arma::field<arma::uvec>& inflow_cells) {
+        typedef SEXP(*Ptr_get_step_cells)(SEXP);
+        static Ptr_get_step_cells p_get_step_cells = NULL;
+        if (p_get_step_cells == NULL) {
+            validateSignature("arma::field<arma::uvec>(*get_step_cells)(const arma::field<arma::uvec>&)");
+            p_get_step_cells = (Ptr_get_step_cells)R_GetCCallable("HydroGallery", "_HydroGallery_get_step_cells");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_step_cells(Shield<SEXP>(Rcpp::wrap(inflow_cells)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::field<arma::uvec> >(rcpp_result_gen);
+    }
+
+    inline arma::field<arma::umat> get_step_lastcell(const arma::field<arma::uvec>& step_cells, const arma::umat& inflow_lastcell) {
+        typedef SEXP(*Ptr_get_step_lastcell)(SEXP,SEXP);
+        static Ptr_get_step_lastcell p_get_step_lastcell = NULL;
+        if (p_get_step_lastcell == NULL) {
+            validateSignature("arma::field<arma::umat>(*get_step_lastcell)(const arma::field<arma::uvec>&,const arma::umat&)");
+            p_get_step_lastcell = (Ptr_get_step_lastcell)R_GetCCallable("HydroGallery", "_HydroGallery_get_step_lastcell");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_step_lastcell(Shield<SEXP>(Rcpp::wrap(step_cells)), Shield<SEXP>(Rcpp::wrap(inflow_lastcell)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::field<arma::umat> >(rcpp_result_gen);
+    }
+
+    inline arma::uvec get_cell_in_basin(const arma::field<arma::uvec>& lst_Inflow_Cell, int int_OutLet, const arma::uvec& int_TestCell) {
         typedef SEXP(*Ptr_get_cell_in_basin)(SEXP,SEXP,SEXP);
         static Ptr_get_cell_in_basin p_get_cell_in_basin = NULL;
         if (p_get_cell_in_basin == NULL) {
-            validateSignature("arma::ivec(*get_cell_in_basin)(const std::vector<arma::ivec>&,int,const arma::ivec&)");
+            validateSignature("arma::uvec(*get_cell_in_basin)(const arma::field<arma::uvec>&,int,const arma::uvec&)");
             p_get_cell_in_basin = (Ptr_get_cell_in_basin)R_GetCCallable("HydroGallery", "_HydroGallery_get_cell_in_basin");
         }
         RObject rcpp_result_gen;
@@ -2119,14 +2017,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::ivec >(rcpp_result_gen);
+        return Rcpp::as<arma::uvec >(rcpp_result_gen);
     }
 
-    inline arma::ivec get_inter_basin(const arma::ivec& int_Cell, const arma::ivec& int_Outflow) {
+    inline arma::uvec get_inter_basin(const arma::uvec& int_Cell, const arma::uvec& int_Outflow) {
         typedef SEXP(*Ptr_get_inter_basin)(SEXP,SEXP);
         static Ptr_get_inter_basin p_get_inter_basin = NULL;
         if (p_get_inter_basin == NULL) {
-            validateSignature("arma::ivec(*get_inter_basin)(const arma::ivec&,const arma::ivec&)");
+            validateSignature("arma::uvec(*get_inter_basin)(const arma::uvec&,const arma::uvec&)");
             p_get_inter_basin = (Ptr_get_inter_basin)R_GetCCallable("HydroGallery", "_HydroGallery_get_inter_basin");
         }
         RObject rcpp_result_gen;
@@ -2140,14 +2038,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::ivec >(rcpp_result_gen);
+        return Rcpp::as<arma::uvec >(rcpp_result_gen);
     }
 
-    inline arma::ivec get_new_outflow(const arma::ivec& int_Cell, const arma::ivec& int_Outflow) {
+    inline arma::uvec get_new_outflow(const arma::uvec& int_Cell, const arma::uvec& int_Outflow) {
         typedef SEXP(*Ptr_get_new_outflow)(SEXP,SEXP);
         static Ptr_get_new_outflow p_get_new_outflow = NULL;
         if (p_get_new_outflow == NULL) {
-            validateSignature("arma::ivec(*get_new_outflow)(const arma::ivec&,const arma::ivec&)");
+            validateSignature("arma::uvec(*get_new_outflow)(const arma::uvec&,const arma::uvec&)");
             p_get_new_outflow = (Ptr_get_new_outflow)R_GetCCallable("HydroGallery", "_HydroGallery_get_new_outflow");
         }
         RObject rcpp_result_gen;
@@ -2161,14 +2059,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::ivec >(rcpp_result_gen);
+        return Rcpp::as<arma::uvec >(rcpp_result_gen);
     }
 
-    inline arma::ivec get_cali_step(const std::vector<arma::ivec>& step_cells, const arma::ivec& int_Cali) {
+    inline arma::uvec get_cali_step(const arma::field<arma::uvec>& step_cells, const arma::uvec& int_Cali) {
         typedef SEXP(*Ptr_get_cali_step)(SEXP,SEXP);
         static Ptr_get_cali_step p_get_cali_step = NULL;
         if (p_get_cali_step == NULL) {
-            validateSignature("arma::ivec(*get_cali_step)(const std::vector<arma::ivec>&,const arma::ivec&)");
+            validateSignature("arma::uvec(*get_cali_step)(const arma::field<arma::uvec>&,const arma::uvec&)");
             p_get_cali_step = (Ptr_get_cali_step)R_GetCCallable("HydroGallery", "_HydroGallery_get_cali_step");
         }
         RObject rcpp_result_gen;
@@ -2182,35 +2080,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<arma::ivec >(rcpp_result_gen);
+        return Rcpp::as<arma::uvec >(rcpp_result_gen);
     }
 
-    inline Rcpp::List get_routing_info(const arma::ivec& int_Outflow) {
-        typedef SEXP(*Ptr_get_routing_info)(SEXP);
-        static Ptr_get_routing_info p_get_routing_info = NULL;
-        if (p_get_routing_info == NULL) {
-            validateSignature("Rcpp::List(*get_routing_info)(const arma::ivec&)");
-            p_get_routing_info = (Ptr_get_routing_info)R_GetCCallable("HydroGallery", "_HydroGallery_get_routing_info");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_get_routing_info(Shield<SEXP>(Rcpp::wrap(int_Outflow)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<Rcpp::List >(rcpp_result_gen);
-    }
-
-    inline std::vector<arma::ivec> get_upstream_cali_cell(const std::vector<arma::ivec>& lst_Inflow_Cell, const arma::ivec& int_CaliCell) {
+    inline arma::field<arma::uvec> get_upstream_cali_cell(const arma::field<arma::uvec>& lst_Inflow_Cell, const arma::uvec& int_CaliCell) {
         typedef SEXP(*Ptr_get_upstream_cali_cell)(SEXP,SEXP);
         static Ptr_get_upstream_cali_cell p_get_upstream_cali_cell = NULL;
         if (p_get_upstream_cali_cell == NULL) {
-            validateSignature("std::vector<arma::ivec>(*get_upstream_cali_cell)(const std::vector<arma::ivec>&,const arma::ivec&)");
+            validateSignature("arma::field<arma::uvec>(*get_upstream_cali_cell)(const arma::field<arma::uvec>&,const arma::uvec&)");
             p_get_upstream_cali_cell = (Ptr_get_upstream_cali_cell)R_GetCCallable("HydroGallery", "_HydroGallery_get_upstream_cali_cell");
         }
         RObject rcpp_result_gen;
@@ -2224,89 +2101,7 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<std::vector<arma::ivec> >(rcpp_result_gen);
-    }
-
-    inline void write_int_vector_list(const std::vector<arma::ivec>& vec_list, const std::string& file_path) {
-        typedef SEXP(*Ptr_write_int_vector_list)(SEXP,SEXP);
-        static Ptr_write_int_vector_list p_write_int_vector_list = NULL;
-        if (p_write_int_vector_list == NULL) {
-            validateSignature("void(*write_int_vector_list)(const std::vector<arma::ivec>&,const std::string&)");
-            p_write_int_vector_list = (Ptr_write_int_vector_list)R_GetCCallable("HydroGallery", "_HydroGallery_write_int_vector_list");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_write_int_vector_list(Shield<SEXP>(Rcpp::wrap(vec_list)), Shield<SEXP>(Rcpp::wrap(file_path)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-    }
-
-    inline std::vector<arma::ivec> read_int_vector_list(const std::string& file_path) {
-        typedef SEXP(*Ptr_read_int_vector_list)(SEXP);
-        static Ptr_read_int_vector_list p_read_int_vector_list = NULL;
-        if (p_read_int_vector_list == NULL) {
-            validateSignature("std::vector<arma::ivec>(*read_int_vector_list)(const std::string&)");
-            p_read_int_vector_list = (Ptr_read_int_vector_list)R_GetCCallable("HydroGallery", "_HydroGallery_read_int_vector_list");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_read_int_vector_list(Shield<SEXP>(Rcpp::wrap(file_path)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<std::vector<arma::ivec> >(rcpp_result_gen);
-    }
-
-    inline void write_int_matrix_list(const std::vector<arma::imat>& mat_list, const std::string& file_path) {
-        typedef SEXP(*Ptr_write_int_matrix_list)(SEXP,SEXP);
-        static Ptr_write_int_matrix_list p_write_int_matrix_list = NULL;
-        if (p_write_int_matrix_list == NULL) {
-            validateSignature("void(*write_int_matrix_list)(const std::vector<arma::imat>&,const std::string&)");
-            p_write_int_matrix_list = (Ptr_write_int_matrix_list)R_GetCCallable("HydroGallery", "_HydroGallery_write_int_matrix_list");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_write_int_matrix_list(Shield<SEXP>(Rcpp::wrap(mat_list)), Shield<SEXP>(Rcpp::wrap(file_path)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-    }
-
-    inline std::vector<arma::imat> read_int_matrix_list(const std::string& file_path) {
-        typedef SEXP(*Ptr_read_int_matrix_list)(SEXP);
-        static Ptr_read_int_matrix_list p_read_int_matrix_list = NULL;
-        if (p_read_int_matrix_list == NULL) {
-            validateSignature("std::vector<arma::imat>(*read_int_matrix_list)(const std::string&)");
-            p_read_int_matrix_list = (Ptr_read_int_matrix_list)R_GetCCallable("HydroGallery", "_HydroGallery_read_int_matrix_list");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_read_int_matrix_list(Shield<SEXP>(Rcpp::wrap(file_path)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<std::vector<arma::imat> >(rcpp_result_gen);
+        return Rcpp::as<arma::field<arma::uvec> >(rcpp_result_gen);
     }
 
     inline arma::vec snowMelt_Kustas(const arma::vec& SNOW_ice_mm, const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_netRadiat_MJ, const arma::vec& param_SNOWMELT_kus_fE, const arma::vec& param_SNOWMELT_kus_fT) {
@@ -2371,11 +2166,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberAround_int) {
+    inline void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int) {
         typedef SEXP(*Ptr_withdrawSurface_AroundMax)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_withdrawSurface_AroundMax p_withdrawSurface_AroundMax = NULL;
         if (p_withdrawSurface_AroundMax == NULL) {
-            validateSignature("void(*withdrawSurface_AroundMax)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
+            validateSignature("void(*withdrawSurface_AroundMax)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
             p_withdrawSurface_AroundMax = (Ptr_withdrawSurface_AroundMax)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_AroundMax");
         }
         RObject rcpp_result_gen;
@@ -2391,11 +2186,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberAround_int) {
+    inline void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int) {
         typedef SEXP(*Ptr_withdrawSurface_Around)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_withdrawSurface_Around p_withdrawSurface_Around = NULL;
         if (p_withdrawSurface_Around == NULL) {
-            validateSignature("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
+            validateSignature("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
             p_withdrawSurface_Around = (Ptr_withdrawSurface_Around)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_Around");
         }
         RObject rcpp_result_gen;
@@ -2411,11 +2206,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline void withdrawSurface_WithdrawNet(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberWithdrawNet_int) {
+    inline void withdrawSurface_WithdrawNet(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberWithdrawNet_int) {
         typedef SEXP(*Ptr_withdrawSurface_WithdrawNet)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_withdrawSurface_WithdrawNet p_withdrawSurface_WithdrawNet = NULL;
         if (p_withdrawSurface_WithdrawNet == NULL) {
-            validateSignature("void(*withdrawSurface_WithdrawNet)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
+            validateSignature("void(*withdrawSurface_WithdrawNet)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
             p_withdrawSurface_WithdrawNet = (Ptr_withdrawSurface_WithdrawNet)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_WithdrawNet");
         }
         RObject rcpp_result_gen;

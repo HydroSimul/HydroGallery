@@ -342,17 +342,17 @@ RcppExport SEXP _HydroGallery_baseflow_Arno(SEXP GROUND_water_mmSEXP, SEXP GROUN
     return rcpp_result_gen;
 }
 // landLeafAreaIndex_WaterGAP3
-arma::mat landLeafAreaIndex_WaterGAP3(const arma::mat& ATMOS_temperature_Cel, const arma::mat& ATMOS_precipitation_mm, const arma::vec& CELL_latitude_deg, const arma::ivec& LAND_growUpDay_d, const arma::vec& LAND_leafAreaIndexMin_, const arma::vec& LAND_leafAreaIndexMax_, const arma::ivec& Time_dayOfYear_d);
+arma::mat landLeafAreaIndex_WaterGAP3(const arma::mat& ATMOS_temperature_Cel, const arma::mat& ATMOS_precipitation_mm, const arma::vec& CELL_latitude_deg, const arma::uvec& LAND_growUpDay_d, const arma::vec& LAND_leafAreaIndexMin_, const arma::vec& LAND_leafAreaIndexMax_, const arma::uvec& Time_dayOfYear_d);
 static SEXP _HydroGallery_landLeafAreaIndex_WaterGAP3_try(SEXP ATMOS_temperature_CelSEXP, SEXP ATMOS_precipitation_mmSEXP, SEXP CELL_latitude_degSEXP, SEXP LAND_growUpDay_dSEXP, SEXP LAND_leafAreaIndexMin_SEXP, SEXP LAND_leafAreaIndexMax_SEXP, SEXP Time_dayOfYear_dSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< const arma::mat& >::type ATMOS_temperature_Cel(ATMOS_temperature_CelSEXP);
     Rcpp::traits::input_parameter< const arma::mat& >::type ATMOS_precipitation_mm(ATMOS_precipitation_mmSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type CELL_latitude_deg(CELL_latitude_degSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type LAND_growUpDay_d(LAND_growUpDay_dSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type LAND_growUpDay_d(LAND_growUpDay_dSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type LAND_leafAreaIndexMin_(LAND_leafAreaIndexMin_SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type LAND_leafAreaIndexMax_(LAND_leafAreaIndexMax_SEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type Time_dayOfYear_d(Time_dayOfYear_dSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type Time_dayOfYear_d(Time_dayOfYear_dSEXP);
     rcpp_result_gen = Rcpp::wrap(landLeafAreaIndex_WaterGAP3(ATMOS_temperature_Cel, ATMOS_precipitation_mm, CELL_latitude_deg, LAND_growUpDay_d, LAND_leafAreaIndexMin_, LAND_leafAreaIndexMax_, Time_dayOfYear_d));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -816,89 +816,8 @@ RcppExport SEXP _HydroGallery_confluenIUH_Clark(SEXP CONFLUEN_responseTime_TSSEX
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// confluen_WaterGAP3_H
-arma::vec confluen_WaterGAP3_H(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int);
-static SEXP _HydroGallery_confluen_WaterGAP3_H_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec& >::type RIVER_water_m3(RIVER_water_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_length_km(RIVER_length_kmSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_velocity_km(RIVER_velocity_kmSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_inflow_m3(RIVER_inflow_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type CELL_cellNumberStep_int(CELL_cellNumberStep_intSEXP);
-    Rcpp::traits::input_parameter< const arma::field<arma::imat>& >::type CELL_inflowCellNumberStep_int(CELL_inflowCellNumberStep_intSEXP);
-    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3_H(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_confluen_WaterGAP3_H(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_H_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_inflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// confluen_WaterGAP3_N
-arma::vec confluen_WaterGAP3_N(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::vec& param_Riverlak_lin_storeFactor);
-static SEXP _HydroGallery_confluen_WaterGAP3_N_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< arma::vec& >::type RIVER_water_m3(RIVER_water_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_length_km(RIVER_length_kmSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_velocity_km(RIVER_velocity_kmSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_inflow_m3(RIVER_inflow_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type CELL_cellNumberStep_int(CELL_cellNumberStep_intSEXP);
-    Rcpp::traits::input_parameter< const arma::field<arma::imat>& >::type CELL_inflowCellNumberStep_int(CELL_inflowCellNumberStep_intSEXP);
-    Rcpp::traits::input_parameter< const arma::uvec& >::type Riverlak_cellNumber_int(Riverlak_cellNumber_intSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type Riverlak_capacity_m3(Riverlak_capacity_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type param_Riverlak_lin_storeFactor(param_Riverlak_lin_storeFactorSEXP);
-    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3_N(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, param_Riverlak_lin_storeFactor));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_confluen_WaterGAP3_N(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_N_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_inflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP, Riverlak_cellNumber_intSEXP, Riverlak_capacity_m3SEXP, param_Riverlak_lin_storeFactorSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
 // confluen_WaterGAP3_U
-arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor);
+arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::umat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor);
 static SEXP _HydroGallery_confluen_WaterGAP3_U_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP Reservoi_cellNumber_intSEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -907,7 +826,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_velocity_km(RIVER_velocity_kmSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type RIVER_inflow_m3(RIVER_inflow_m3SEXP);
     Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type CELL_cellNumberStep_int(CELL_cellNumberStep_intSEXP);
-    Rcpp::traits::input_parameter< const arma::field<arma::imat>& >::type CELL_inflowCellNumberStep_int(CELL_inflowCellNumberStep_intSEXP);
+    Rcpp::traits::input_parameter< const arma::field<arma::umat>& >::type CELL_inflowCellNumberStep_int(CELL_inflowCellNumberStep_intSEXP);
     Rcpp::traits::input_parameter< const arma::uvec& >::type Riverlak_cellNumber_int(Riverlak_cellNumber_intSEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type Riverlak_capacity_m3(Riverlak_capacity_m3SEXP);
     Rcpp::traits::input_parameter< const arma::uvec& >::type Reservoi_cellNumber_int(Reservoi_cellNumber_intSEXP);
@@ -927,176 +846,6 @@ RcppExport SEXP _HydroGallery_confluen_WaterGAP3_U(SEXP RIVER_water_m3SEXP, SEXP
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
         rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_U_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_inflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP, Riverlak_cellNumber_intSEXP, Riverlak_capacity_m3SEXP, Reservoi_cellNumber_intSEXP, Reservoi_demand_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_meanInflow_m3SEXP, Reservoi_meanDemand_m3SEXP, Reservoi_releaseCoefficient_1SEXP, Reservoi_isIrrigate_01SEXP, param_Riverlak_lin_storeFactorSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// save_matbin
-void save_matbin(SEXP matrix, const std::string& filename);
-static SEXP _HydroGallery_save_matbin_try(SEXP matrixSEXP, SEXP filenameSEXP) {
-BEGIN_RCPP
-    Rcpp::traits::input_parameter< SEXP >::type matrix(matrixSEXP);
-    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
-    save_matbin(matrix, filename);
-    return R_NilValue;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_save_matbin(SEXP matrixSEXP, SEXP filenameSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_save_matbin_try(matrixSEXP, filenameSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// load_matbin
-SEXP load_matbin(const std::string& filename);
-static SEXP _HydroGallery_load_matbin_try(SEXP filenameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
-    rcpp_result_gen = Rcpp::wrap(load_matbin(filename));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_load_matbin(SEXP filenameSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_load_matbin_try(filenameSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// bind_matbin
-void bind_matbin(const StringVector& input_files, const std::string& output_file);
-static SEXP _HydroGallery_bind_matbin_try(SEXP input_filesSEXP, SEXP output_fileSEXP) {
-BEGIN_RCPP
-    Rcpp::traits::input_parameter< const StringVector& >::type input_files(input_filesSEXP);
-    Rcpp::traits::input_parameter< const std::string& >::type output_file(output_fileSEXP);
-    bind_matbin(input_files, output_file);
-    return R_NilValue;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_bind_matbin(SEXP input_filesSEXP, SEXP output_fileSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_bind_matbin_try(input_filesSEXP, output_fileSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// save_vecbin
-void save_vecbin(SEXP vector, const std::string& filename);
-static SEXP _HydroGallery_save_vecbin_try(SEXP vectorSEXP, SEXP filenameSEXP) {
-BEGIN_RCPP
-    Rcpp::traits::input_parameter< SEXP >::type vector(vectorSEXP);
-    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
-    save_vecbin(vector, filename);
-    return R_NilValue;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_save_vecbin(SEXP vectorSEXP, SEXP filenameSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_save_vecbin_try(vectorSEXP, filenameSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// load_vecbin
-SEXP load_vecbin(const std::string& filename);
-static SEXP _HydroGallery_load_vecbin_try(SEXP filenameSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const std::string& >::type filename(filenameSEXP);
-    rcpp_result_gen = Rcpp::wrap(load_vecbin(filename));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_load_vecbin(SEXP filenameSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_load_vecbin_try(filenameSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -3594,11 +3343,11 @@ RcppExport SEXP _HydroGallery_riverlakout_LinearResorvoir(SEXP Riverlak_water_m3
     return rcpp_result_gen;
 }
 // get_inflow_cells
-std::vector<arma::ivec> get_inflow_cells(const arma::ivec& int_Outflow);
+arma::field<arma::uvec> get_inflow_cells(const arma::uvec& int_Outflow);
 static SEXP _HydroGallery_get_inflow_cells_try(SEXP int_OutflowSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Outflow(int_OutflowSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Outflow(int_OutflowSEXP);
     rcpp_result_gen = Rcpp::wrap(get_inflow_cells(int_Outflow));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -3628,11 +3377,11 @@ RcppExport SEXP _HydroGallery_get_inflow_cells(SEXP int_OutflowSEXP) {
     return rcpp_result_gen;
 }
 // get_inflow_lastcell
-arma::mat get_inflow_lastcell(const arma::ivec& int_Outflow);
+arma::umat get_inflow_lastcell(const arma::uvec& int_Outflow);
 static SEXP _HydroGallery_get_inflow_lastcell_try(SEXP int_OutflowSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Outflow(int_OutflowSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Outflow(int_OutflowSEXP);
     rcpp_result_gen = Rcpp::wrap(get_inflow_lastcell(int_Outflow));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -3661,14 +3410,83 @@ RcppExport SEXP _HydroGallery_get_inflow_lastcell(SEXP int_OutflowSEXP) {
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// get_step_cells
+arma::field<arma::uvec> get_step_cells(const arma::field<arma::uvec>& inflow_cells);
+static SEXP _HydroGallery_get_step_cells_try(SEXP inflow_cellsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type inflow_cells(inflow_cellsSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_step_cells(inflow_cells));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_step_cells(SEXP inflow_cellsSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_step_cells_try(inflow_cellsSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_step_lastcell
+arma::field<arma::umat> get_step_lastcell(const arma::field<arma::uvec>& step_cells, const arma::umat& inflow_lastcell);
+static SEXP _HydroGallery_get_step_lastcell_try(SEXP step_cellsSEXP, SEXP inflow_lastcellSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type step_cells(step_cellsSEXP);
+    Rcpp::traits::input_parameter< const arma::umat& >::type inflow_lastcell(inflow_lastcellSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_step_lastcell(step_cells, inflow_lastcell));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_get_step_lastcell(SEXP step_cellsSEXP, SEXP inflow_lastcellSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_get_step_lastcell_try(step_cellsSEXP, inflow_lastcellSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // get_cell_in_basin
-arma::ivec get_cell_in_basin(const std::vector<arma::ivec>& lst_Inflow_Cell, int int_OutLet, const arma::ivec& int_TestCell);
+arma::uvec get_cell_in_basin(const arma::field<arma::uvec>& lst_Inflow_Cell, int int_OutLet, const arma::uvec& int_TestCell);
 static SEXP _HydroGallery_get_cell_in_basin_try(SEXP lst_Inflow_CellSEXP, SEXP int_OutLetSEXP, SEXP int_TestCellSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const std::vector<arma::ivec>& >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
+    Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
     Rcpp::traits::input_parameter< int >::type int_OutLet(int_OutLetSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_TestCell(int_TestCellSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_TestCell(int_TestCellSEXP);
     rcpp_result_gen = Rcpp::wrap(get_cell_in_basin(lst_Inflow_Cell, int_OutLet, int_TestCell));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -3698,12 +3516,12 @@ RcppExport SEXP _HydroGallery_get_cell_in_basin(SEXP lst_Inflow_CellSEXP, SEXP i
     return rcpp_result_gen;
 }
 // get_inter_basin
-arma::ivec get_inter_basin(const arma::ivec& int_Cell, const arma::ivec& int_Outflow);
+arma::uvec get_inter_basin(const arma::uvec& int_Cell, const arma::uvec& int_Outflow);
 static SEXP _HydroGallery_get_inter_basin_try(SEXP int_CellSEXP, SEXP int_OutflowSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Cell(int_CellSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Outflow(int_OutflowSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Cell(int_CellSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Outflow(int_OutflowSEXP);
     rcpp_result_gen = Rcpp::wrap(get_inter_basin(int_Cell, int_Outflow));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -3733,12 +3551,12 @@ RcppExport SEXP _HydroGallery_get_inter_basin(SEXP int_CellSEXP, SEXP int_Outflo
     return rcpp_result_gen;
 }
 // get_new_outflow
-arma::ivec get_new_outflow(const arma::ivec& int_Cell, const arma::ivec& int_Outflow);
+arma::uvec get_new_outflow(const arma::uvec& int_Cell, const arma::uvec& int_Outflow);
 static SEXP _HydroGallery_get_new_outflow_try(SEXP int_CellSEXP, SEXP int_OutflowSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Cell(int_CellSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Outflow(int_OutflowSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Cell(int_CellSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Outflow(int_OutflowSEXP);
     rcpp_result_gen = Rcpp::wrap(get_new_outflow(int_Cell, int_Outflow));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -3768,12 +3586,12 @@ RcppExport SEXP _HydroGallery_get_new_outflow(SEXP int_CellSEXP, SEXP int_Outflo
     return rcpp_result_gen;
 }
 // get_cali_step
-arma::ivec get_cali_step(const std::vector<arma::ivec>& step_cells, const arma::ivec& int_Cali);
+arma::uvec get_cali_step(const arma::field<arma::uvec>& step_cells, const arma::uvec& int_Cali);
 static SEXP _HydroGallery_get_cali_step_try(SEXP step_cellsSEXP, SEXP int_CaliSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const std::vector<arma::ivec>& >::type step_cells(step_cellsSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Cali(int_CaliSEXP);
+    Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type step_cells(step_cellsSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Cali(int_CaliSEXP);
     rcpp_result_gen = Rcpp::wrap(get_cali_step(step_cells, int_Cali));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -3802,47 +3620,13 @@ RcppExport SEXP _HydroGallery_get_cali_step(SEXP step_cellsSEXP, SEXP int_CaliSE
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// get_routing_info
-Rcpp::List get_routing_info(const arma::ivec& int_Outflow);
-static SEXP _HydroGallery_get_routing_info_try(SEXP int_OutflowSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_Outflow(int_OutflowSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_routing_info(int_Outflow));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_get_routing_info(SEXP int_OutflowSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_get_routing_info_try(int_OutflowSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
 // get_upstream_cali_cell
-std::vector<arma::ivec> get_upstream_cali_cell(const std::vector<arma::ivec>& lst_Inflow_Cell, const arma::ivec& int_CaliCell);
+arma::field<arma::uvec> get_upstream_cali_cell(const arma::field<arma::uvec>& lst_Inflow_Cell, const arma::uvec& int_CaliCell);
 static SEXP _HydroGallery_get_upstream_cali_cell_try(SEXP lst_Inflow_CellSEXP, SEXP int_CaliCellSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const std::vector<arma::ivec>& >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
-    Rcpp::traits::input_parameter< const arma::ivec& >::type int_CaliCell(int_CaliCellSEXP);
+    Rcpp::traits::input_parameter< const arma::field<arma::uvec>& >::type lst_Inflow_Cell(lst_Inflow_CellSEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_CaliCell(int_CaliCellSEXP);
     rcpp_result_gen = Rcpp::wrap(get_upstream_cali_cell(lst_Inflow_Cell, int_CaliCell));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
@@ -3852,142 +3636,6 @@ RcppExport SEXP _HydroGallery_get_upstream_cali_cell(SEXP lst_Inflow_CellSEXP, S
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
         rcpp_result_gen = PROTECT(_HydroGallery_get_upstream_cali_cell_try(lst_Inflow_CellSEXP, int_CaliCellSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// write_int_vector_list
-void write_int_vector_list(const std::vector<arma::ivec>& vec_list, const std::string& file_path);
-static SEXP _HydroGallery_write_int_vector_list_try(SEXP vec_listSEXP, SEXP file_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::traits::input_parameter< const std::vector<arma::ivec>& >::type vec_list(vec_listSEXP);
-    Rcpp::traits::input_parameter< const std::string& >::type file_path(file_pathSEXP);
-    write_int_vector_list(vec_list, file_path);
-    return R_NilValue;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_write_int_vector_list(SEXP vec_listSEXP, SEXP file_pathSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_write_int_vector_list_try(vec_listSEXP, file_pathSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// read_int_vector_list
-std::vector<arma::ivec> read_int_vector_list(const std::string& file_path);
-static SEXP _HydroGallery_read_int_vector_list_try(SEXP file_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const std::string& >::type file_path(file_pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(read_int_vector_list(file_path));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_read_int_vector_list(SEXP file_pathSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_read_int_vector_list_try(file_pathSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// write_int_matrix_list
-void write_int_matrix_list(const std::vector<arma::imat>& mat_list, const std::string& file_path);
-static SEXP _HydroGallery_write_int_matrix_list_try(SEXP mat_listSEXP, SEXP file_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::traits::input_parameter< const std::vector<arma::imat>& >::type mat_list(mat_listSEXP);
-    Rcpp::traits::input_parameter< const std::string& >::type file_path(file_pathSEXP);
-    write_int_matrix_list(mat_list, file_path);
-    return R_NilValue;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_write_int_matrix_list(SEXP mat_listSEXP, SEXP file_pathSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_write_int_matrix_list_try(mat_listSEXP, file_pathSEXP));
-    }
-    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
-    if (rcpp_isInterrupt_gen) {
-        UNPROTECT(1);
-        Rf_onintr();
-    }
-    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
-    if (rcpp_isLongjump_gen) {
-        Rcpp::internal::resumeJump(rcpp_result_gen);
-    }
-    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
-    if (rcpp_isError_gen) {
-        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
-        UNPROTECT(1);
-        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
-    }
-    UNPROTECT(1);
-    return rcpp_result_gen;
-}
-// read_int_matrix_list
-std::vector<arma::imat> read_int_matrix_list(const std::string& file_path);
-static SEXP _HydroGallery_read_int_matrix_list_try(SEXP file_pathSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const std::string& >::type file_path(file_pathSEXP);
-    rcpp_result_gen = Rcpp::wrap(read_int_matrix_list(file_path));
-    return rcpp_result_gen;
-END_RCPP_RETURN_ERROR
-}
-RcppExport SEXP _HydroGallery_read_int_matrix_list(SEXP file_pathSEXP) {
-    SEXP rcpp_result_gen;
-    {
-        Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_read_int_matrix_list_try(file_pathSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -4117,13 +3765,13 @@ RcppExport SEXP _HydroGallery_withdraw_SingleCell(SEXP CELL_withdrawal_m3SEXP, S
     return rcpp_result_gen;
 }
 // withdrawSurface_AroundMax
-void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberAround_int);
+void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int);
 static SEXP _HydroGallery_withdrawSurface_AroundMax_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
 BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type RIVER_water_m3(RIVER_water_m3SEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type Lake_water_m3(Lake_water_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::imat& >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
+    Rcpp::traits::input_parameter< const arma::umat& >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
     withdrawSurface_AroundMax(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int);
     return R_NilValue;
 END_RCPP_RETURN_ERROR
@@ -4153,13 +3801,13 @@ RcppExport SEXP _HydroGallery_withdrawSurface_AroundMax(SEXP CELL_withdrawal_m3S
     return rcpp_result_gen;
 }
 // withdrawSurface_Around
-void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberAround_int);
+void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int);
 static SEXP _HydroGallery_withdrawSurface_Around_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
 BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type RIVER_water_m3(RIVER_water_m3SEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type Lake_water_m3(Lake_water_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::imat& >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
+    Rcpp::traits::input_parameter< const arma::umat& >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
     withdrawSurface_Around(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int);
     return R_NilValue;
 END_RCPP_RETURN_ERROR
@@ -4189,13 +3837,13 @@ RcppExport SEXP _HydroGallery_withdrawSurface_Around(SEXP CELL_withdrawal_m3SEXP
     return rcpp_result_gen;
 }
 // withdrawSurface_WithdrawNet
-void withdrawSurface_WithdrawNet(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberWithdrawNet_int);
+void withdrawSurface_WithdrawNet(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberWithdrawNet_int);
 static SEXP _HydroGallery_withdrawSurface_WithdrawNet_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberWithdrawNet_intSEXP) {
 BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type RIVER_water_m3(RIVER_water_m3SEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type Lake_water_m3(Lake_water_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::imat& >::type CELL_cellNumberWithdrawNet_int(CELL_cellNumberWithdrawNet_intSEXP);
+    Rcpp::traits::input_parameter< const arma::umat& >::type CELL_cellNumberWithdrawNet_int(CELL_cellNumberWithdrawNet_intSEXP);
     withdrawSurface_WithdrawNet(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberWithdrawNet_int);
     return R_NilValue;
 END_RCPP_RETURN_ERROR
@@ -4238,7 +3886,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("arma::vec(*baseflow_MaxPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*baseflow_ThreshPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*baseflow_Arno)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
-        signatures.insert("arma::mat(*landLeafAreaIndex_WaterGAP3)(const arma::mat&,const arma::mat&,const arma::vec&,const arma::ivec&,const arma::vec&,const arma::vec&,const arma::ivec&)");
+        signatures.insert("arma::mat(*landLeafAreaIndex_WaterGAP3)(const arma::mat&,const arma::mat&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::uvec&)");
         signatures.insert("arma::vec(*capirise_HBV)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*capirise_HBVfix)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*capirise_AcceptRatio)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
@@ -4251,14 +3899,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("arma::vec(*confluenIUH_Kelly)(double,double)");
         signatures.insert("arma::vec(*confluenIUH_Nash)(double,double)");
         signatures.insert("arma::vec(*confluenIUH_Clark)(double)");
-        signatures.insert("arma::vec(*confluen_WaterGAP3_H)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&)");
-        signatures.insert("arma::vec(*confluen_WaterGAP3_N)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&,const arma::uvec&,const arma::vec&,const arma::vec&)");
-        signatures.insert("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
-        signatures.insert("void(*save_matbin)(SEXP,const std::string&)");
-        signatures.insert("SEXP(*load_matbin)(const std::string&)");
-        signatures.insert("void(*bind_matbin)(const StringVector&,const std::string&)");
-        signatures.insert("void(*save_vecbin)(SEXP,const std::string&)");
-        signatures.insert("SEXP(*load_vecbin)(const std::string&)");
+        signatures.insert("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::umat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
         signatures.insert("arma::vec(*evatransActual_SupplyRatio)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*evatransActual_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*evatransActual_VIC)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
@@ -4326,24 +3967,21 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("arma::vec(*reservoiReleasCoefficent_Hanasaki)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
         signatures.insert("arma::vec(*riverout_LinearResorvoir)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*riverlakout_LinearResorvoir)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
-        signatures.insert("std::vector<arma::ivec>(*get_inflow_cells)(const arma::ivec&)");
-        signatures.insert("arma::mat(*get_inflow_lastcell)(const arma::ivec&)");
-        signatures.insert("arma::ivec(*get_cell_in_basin)(const std::vector<arma::ivec>&,int,const arma::ivec&)");
-        signatures.insert("arma::ivec(*get_inter_basin)(const arma::ivec&,const arma::ivec&)");
-        signatures.insert("arma::ivec(*get_new_outflow)(const arma::ivec&,const arma::ivec&)");
-        signatures.insert("arma::ivec(*get_cali_step)(const std::vector<arma::ivec>&,const arma::ivec&)");
-        signatures.insert("Rcpp::List(*get_routing_info)(const arma::ivec&)");
-        signatures.insert("std::vector<arma::ivec>(*get_upstream_cali_cell)(const std::vector<arma::ivec>&,const arma::ivec&)");
-        signatures.insert("void(*write_int_vector_list)(const std::vector<arma::ivec>&,const std::string&)");
-        signatures.insert("std::vector<arma::ivec>(*read_int_vector_list)(const std::string&)");
-        signatures.insert("void(*write_int_matrix_list)(const std::vector<arma::imat>&,const std::string&)");
-        signatures.insert("std::vector<arma::imat>(*read_int_matrix_list)(const std::string&)");
+        signatures.insert("arma::field<arma::uvec>(*get_inflow_cells)(const arma::uvec&)");
+        signatures.insert("arma::umat(*get_inflow_lastcell)(const arma::uvec&)");
+        signatures.insert("arma::field<arma::uvec>(*get_step_cells)(const arma::field<arma::uvec>&)");
+        signatures.insert("arma::field<arma::umat>(*get_step_lastcell)(const arma::field<arma::uvec>&,const arma::umat&)");
+        signatures.insert("arma::uvec(*get_cell_in_basin)(const arma::field<arma::uvec>&,int,const arma::uvec&)");
+        signatures.insert("arma::uvec(*get_inter_basin)(const arma::uvec&,const arma::uvec&)");
+        signatures.insert("arma::uvec(*get_new_outflow)(const arma::uvec&,const arma::uvec&)");
+        signatures.insert("arma::uvec(*get_cali_step)(const arma::field<arma::uvec>&,const arma::uvec&)");
+        signatures.insert("arma::field<arma::uvec>(*get_upstream_cali_cell)(const arma::field<arma::uvec>&,const arma::uvec&)");
         signatures.insert("arma::vec(*snowMelt_Kustas)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*snowMelt_Factor)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("void(*withdraw_SingleCell)(arma::vec&,arma::vec&)");
-        signatures.insert("void(*withdrawSurface_AroundMax)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
-        signatures.insert("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
-        signatures.insert("void(*withdrawSurface_WithdrawNet)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
+        signatures.insert("void(*withdrawSurface_AroundMax)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
+        signatures.insert("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
+        signatures.insert("void(*withdrawSurface_WithdrawNet)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
     }
     return signatures.find(sig) != signatures.end();
 }
@@ -4372,14 +4010,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluenIUH_Kelly", (DL_FUNC)_HydroGallery_confluenIUH_Kelly_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluenIUH_Nash", (DL_FUNC)_HydroGallery_confluenIUH_Nash_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluenIUH_Clark", (DL_FUNC)_HydroGallery_confluenIUH_Clark_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_H", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_H_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_N", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_N_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_U", (DL_FUNC)_HydroGallery_confluen_WaterGAP3_U_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_save_matbin", (DL_FUNC)_HydroGallery_save_matbin_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_load_matbin", (DL_FUNC)_HydroGallery_load_matbin_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_bind_matbin", (DL_FUNC)_HydroGallery_bind_matbin_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_save_vecbin", (DL_FUNC)_HydroGallery_save_vecbin_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_load_vecbin", (DL_FUNC)_HydroGallery_load_vecbin_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransActual_SupplyRatio", (DL_FUNC)_HydroGallery_evatransActual_SupplyRatio_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransActual_SupplyPow", (DL_FUNC)_HydroGallery_evatransActual_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_evatransActual_VIC", (DL_FUNC)_HydroGallery_evatransActual_VIC_try);
@@ -4449,16 +4080,13 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_riverlakout_LinearResorvoir", (DL_FUNC)_HydroGallery_riverlakout_LinearResorvoir_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inflow_cells", (DL_FUNC)_HydroGallery_get_inflow_cells_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inflow_lastcell", (DL_FUNC)_HydroGallery_get_inflow_lastcell_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_step_cells", (DL_FUNC)_HydroGallery_get_step_cells_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_step_lastcell", (DL_FUNC)_HydroGallery_get_step_lastcell_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_cell_in_basin", (DL_FUNC)_HydroGallery_get_cell_in_basin_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inter_basin", (DL_FUNC)_HydroGallery_get_inter_basin_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_new_outflow", (DL_FUNC)_HydroGallery_get_new_outflow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_cali_step", (DL_FUNC)_HydroGallery_get_cali_step_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_get_routing_info", (DL_FUNC)_HydroGallery_get_routing_info_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_upstream_cali_cell", (DL_FUNC)_HydroGallery_get_upstream_cali_cell_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_write_int_vector_list", (DL_FUNC)_HydroGallery_write_int_vector_list_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_read_int_vector_list", (DL_FUNC)_HydroGallery_read_int_vector_list_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_write_int_matrix_list", (DL_FUNC)_HydroGallery_write_int_matrix_list_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_read_int_matrix_list", (DL_FUNC)_HydroGallery_read_int_matrix_list_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_snowMelt_Kustas", (DL_FUNC)_HydroGallery_snowMelt_Kustas_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_snowMelt_Factor", (DL_FUNC)_HydroGallery_snowMelt_Factor_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_withdraw_SingleCell", (DL_FUNC)_HydroGallery_withdraw_SingleCell_try);
@@ -4492,14 +4120,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_confluenIUH_Kelly", (DL_FUNC) &_HydroGallery_confluenIUH_Kelly, 2},
     {"_HydroGallery_confluenIUH_Nash", (DL_FUNC) &_HydroGallery_confluenIUH_Nash, 2},
     {"_HydroGallery_confluenIUH_Clark", (DL_FUNC) &_HydroGallery_confluenIUH_Clark, 1},
-    {"_HydroGallery_confluen_WaterGAP3_H", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_H, 6},
-    {"_HydroGallery_confluen_WaterGAP3_N", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_N, 9},
     {"_HydroGallery_confluen_WaterGAP3_U", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_U, 16},
-    {"_HydroGallery_save_matbin", (DL_FUNC) &_HydroGallery_save_matbin, 2},
-    {"_HydroGallery_load_matbin", (DL_FUNC) &_HydroGallery_load_matbin, 1},
-    {"_HydroGallery_bind_matbin", (DL_FUNC) &_HydroGallery_bind_matbin, 2},
-    {"_HydroGallery_save_vecbin", (DL_FUNC) &_HydroGallery_save_vecbin, 2},
-    {"_HydroGallery_load_vecbin", (DL_FUNC) &_HydroGallery_load_vecbin, 1},
     {"_HydroGallery_evatransActual_SupplyRatio", (DL_FUNC) &_HydroGallery_evatransActual_SupplyRatio, 4},
     {"_HydroGallery_evatransActual_SupplyPow", (DL_FUNC) &_HydroGallery_evatransActual_SupplyPow, 5},
     {"_HydroGallery_evatransActual_VIC", (DL_FUNC) &_HydroGallery_evatransActual_VIC, 4},
@@ -4569,16 +4190,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_riverlakout_LinearResorvoir", (DL_FUNC) &_HydroGallery_riverlakout_LinearResorvoir, 4},
     {"_HydroGallery_get_inflow_cells", (DL_FUNC) &_HydroGallery_get_inflow_cells, 1},
     {"_HydroGallery_get_inflow_lastcell", (DL_FUNC) &_HydroGallery_get_inflow_lastcell, 1},
+    {"_HydroGallery_get_step_cells", (DL_FUNC) &_HydroGallery_get_step_cells, 1},
+    {"_HydroGallery_get_step_lastcell", (DL_FUNC) &_HydroGallery_get_step_lastcell, 2},
     {"_HydroGallery_get_cell_in_basin", (DL_FUNC) &_HydroGallery_get_cell_in_basin, 3},
     {"_HydroGallery_get_inter_basin", (DL_FUNC) &_HydroGallery_get_inter_basin, 2},
     {"_HydroGallery_get_new_outflow", (DL_FUNC) &_HydroGallery_get_new_outflow, 2},
     {"_HydroGallery_get_cali_step", (DL_FUNC) &_HydroGallery_get_cali_step, 2},
-    {"_HydroGallery_get_routing_info", (DL_FUNC) &_HydroGallery_get_routing_info, 1},
     {"_HydroGallery_get_upstream_cali_cell", (DL_FUNC) &_HydroGallery_get_upstream_cali_cell, 2},
-    {"_HydroGallery_write_int_vector_list", (DL_FUNC) &_HydroGallery_write_int_vector_list, 2},
-    {"_HydroGallery_read_int_vector_list", (DL_FUNC) &_HydroGallery_read_int_vector_list, 1},
-    {"_HydroGallery_write_int_matrix_list", (DL_FUNC) &_HydroGallery_write_int_matrix_list, 2},
-    {"_HydroGallery_read_int_matrix_list", (DL_FUNC) &_HydroGallery_read_int_matrix_list, 1},
     {"_HydroGallery_snowMelt_Kustas", (DL_FUNC) &_HydroGallery_snowMelt_Kustas, 5},
     {"_HydroGallery_snowMelt_Factor", (DL_FUNC) &_HydroGallery_snowMelt_Factor, 4},
     {"_HydroGallery_withdraw_SingleCell", (DL_FUNC) &_HydroGallery_withdraw_SingleCell, 2},

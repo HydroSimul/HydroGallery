@@ -2,32 +2,9 @@
 % Please edit documentation in R/RcppExports.R
 \name{confluenSequential}
 \alias{confluenSequential}
-\alias{confluen_WaterGAP3_H}
-\alias{confluen_WaterGAP3_N}
 \alias{confluen_WaterGAP3_U}
-\title{confluen with sequential routing map}
+\title{confluenSequential}
 \usage{
-confluen_WaterGAP3_H(
-  RIVER_water_m3,
-  RIVER_length_km,
-  RIVER_velocity_km,
-  RIVER_inflow_m3,
-  CELL_cellNumberStep_int,
-  CELL_inflowCellNumberStep_int
-)
-
-confluen_WaterGAP3_N(
-  RIVER_water_m3,
-  RIVER_length_km,
-  RIVER_velocity_km,
-  RIVER_inflow_m3,
-  CELL_cellNumberStep_int,
-  CELL_inflowCellNumberStep_int,
-  Riverlak_cellNumber_int,
-  Riverlak_capacity_m3,
-  param_Riverlak_lin_storeFactor
-)
-
 confluen_WaterGAP3_U(
   RIVER_water_m3,
   RIVER_length_km,
@@ -48,5 +25,5 @@ confluen_WaterGAP3_U(
 )
 }
 \description{
-confluen with sequential routing map
+confluenSequential
 }

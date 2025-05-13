@@ -32,14 +32,14 @@ void withdraw_SingleCell(arma::vec& CELL_withdrawal_m3,
 void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3,
                                arma::vec& RIVER_water_m3,
                                arma::vec& Lake_water_m3,
-                               const arma::imat& CELL_cellNumberAround_int) {
+                               const arma::umat& CELL_cellNumberAround_int) {
 
   arma::uword n_Spat = CELL_withdrawal_m3.n_elem;
 
   for (arma::uword i_Spat = 0; i_Spat < n_Spat; i_Spat++) {
     if (CELL_withdrawal_m3[i_Spat] <= 0) continue;
 
-    arma::ivec idx_Around = CELL_cellNumberAround_int.col(i_Spat) - 1;
+    arma::uvec idx_Around = CELL_cellNumberAround_int.col(i_Spat) - 1;
     idx_Around = idx_Around(find(idx_Around >= 0));
     arma::uword n_Around = idx_Around.n_elem;
     if (n_Around == 0) continue;
@@ -80,19 +80,19 @@ void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3,
 void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3,
                             arma::vec& RIVER_water_m3,
                             arma::vec& Lake_water_m3,
-                            const arma::imat& CELL_cellNumberAround_int) {
+                            const arma::umat& CELL_cellNumberAround_int) {
 
   arma::uword n_Spat = CELL_withdrawal_m3.n_elem;
 
   for (arma::uword i_Spat = 0; i_Spat < n_Spat; i_Spat++) {
     if (CELL_withdrawal_m3[i_Spat] <= 0) continue;
 
-    arma::ivec idx_Around = CELL_cellNumberAround_int.col(i_Spat) - 1;
+    arma::uvec idx_Around = CELL_cellNumberAround_int.col(i_Spat) - 1;
     idx_Around = idx_Around(find(idx_Around >= 0));
     arma::uword n_Around = idx_Around.n_elem;
     if (n_Around == 0) continue;
 
-    arma::ivec valid_indices = idx_Around(find(idx_Around >= 0));
+    arma::uvec valid_indices = idx_Around(find(idx_Around >= 0));
     if (valid_indices.n_elem == 0) continue;
 
     double total_available = 0;
@@ -150,14 +150,14 @@ void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3,
 void withdrawSurface_WithdrawNet(arma::vec& CELL_withdrawal_m3,
                                  arma::vec& RIVER_water_m3,
                                  arma::vec& Lake_water_m3,
-                                 const arma::imat& CELL_cellNumberWithdrawNet_int) {
+                                 const arma::umat& CELL_cellNumberWithdrawNet_int) {
 
   arma::uword n_Spat = CELL_withdrawal_m3.n_elem;
 
   for (arma::uword i_Spat = 0; i_Spat < n_Spat; i_Spat++) {
     if (CELL_withdrawal_m3[i_Spat] <= 0) continue;
 
-    arma::ivec idx_WithdrawNet = CELL_cellNumberWithdrawNet_int.col(i_Spat) - 1;
+    arma::uvec idx_WithdrawNet = CELL_cellNumberWithdrawNet_int.col(i_Spat) - 1;
 
     arma::uword idx_WD = 0;
     while (CELL_withdrawal_m3[i_Spat] > 0 && idx_WD < static_cast<arma::uword>(idx_WithdrawNet.n_elem)) {
