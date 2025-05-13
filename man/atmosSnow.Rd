@@ -36,11 +36,9 @@ ATMOS_snow_mm (mm/m2/TS) snowfall volume
 Under the concept of the conceptual HM, the amount of snowfall is always calculated by the temperature \mjseqn{T} and the precipitation \mjseqn{P} availability. 
 The proportion of snowfall is always determined by the air temperature.
 
-
 So we can give the function from:
 
 \mjsdeqn{P_s = f_{atmosSnow}(D_{atms})}
-
 
 to:
 
@@ -53,12 +51,10 @@ where
 
 Then the different `atmosSnow` methods will estimate the portion \mjseqn{k^*}.
 
-
 The output density distribution from 2 methods:
 }
 \details{
 # **_ThresholdT**: 
-
 
 Only a temperature is as the threshold defined, so estimate the portion \mjseqn{k^*} as: 
 \mjsdeqn{k^{*}=1, \quad T \leq T_s}
@@ -66,7 +62,6 @@ where
   - \mjseqn{T_s} is `param_ATMOS_thr_Ts`
 
 # **_UBC** \insertCite{UBC_Quick_1977}{HydroGallery}: 
-
 
 estimate the portion \mjseqn{k^*}{} as:
 \mjsdeqn{k^* = 1- \frac{T}{T_0}}

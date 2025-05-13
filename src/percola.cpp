@@ -1,7 +1,7 @@
-#include "00utilis.h"
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+
 // [[Rcpp::interfaces(r, cpp)]]
-
-
 
 //' **percolation**
 //' @name percola
@@ -48,12 +48,11 @@
 //'   - \mjseqn{k^*} is estimated ratio
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_GR4J(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm
-) 
-{
-  return SOIL_water_mm * (1 - pow((1 + pow(4.0/9.0 * SOIL_water_mm / SOIL_capacity_mm, 4)), -0.25));
+arma::vec percola_GR4J(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& SOIL_capacity_mm
+) {
+    return SOIL_water_mm % (1 - arma::pow((1 + arma::pow(4.0 / 9.0 * SOIL_water_mm / SOIL_capacity_mm, 4)), -0.25));
 }
 
 //' @rdname percola
@@ -67,15 +66,13 @@ NumericVector percola_GR4J(
 //' @param param_PERCOLA_grf_k <0.01, 1> coefficient parameter for [percola_GR4Jfix()]
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_GR4Jfix(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector param_PERCOLA_grf_k
-) 
-{
-  return SOIL_water_mm * (1 - pow((1 + pow(param_PERCOLA_grf_k * SOIL_water_mm / SOIL_capacity_mm, 4)), -0.25));
+arma::vec percola_GR4Jfix(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& SOIL_capacity_mm,
+    const arma::vec& param_PERCOLA_grf_k
+) {
+    return SOIL_water_mm % (1 - arma::pow((1 + arma::pow(param_PERCOLA_grf_k % SOIL_water_mm / SOIL_capacity_mm, 4)), -0.25));
 }
-
 
 //' @rdname percola
 //' @details
@@ -89,18 +86,14 @@ NumericVector percola_GR4Jfix(
 //' @param param_PERCOLA_map_gamma <0.1, 5> exponential parameter for [percola_MaxPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_MaxPow(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_potentialPercola_mm,
-    NumericVector param_PERCOLA_map_gamma
-)
-{
-  NumericVector percola_;
-  
-  percola_ = SOIL_potentialPercola_mm * vecpow(SOIL_water_mm / SOIL_capacity_mm, param_PERCOLA_map_gamma);
-  
-  return ifelse(percola_ > SOIL_water_mm, SOIL_water_mm, percola_) ;
+arma::vec percola_MaxPow(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& SOIL_capacity_mm,
+    const arma::vec& SOIL_potentialPercola_mm,
+    const arma::vec& param_PERCOLA_map_gamma
+) {
+    arma::vec percola_ = SOIL_potentialPercola_mm % arma::pow(SOIL_water_mm / SOIL_capacity_mm, param_PERCOLA_map_gamma);
+    return arma::min(percola_, SOIL_water_mm);
 }
 
 //' @rdname percola
@@ -118,22 +111,18 @@ NumericVector percola_MaxPow(
 //' @param param_PERCOLA_thp_gamma <0.1, 5> exponential parameter for [percola_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_ThreshPow(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_potentialPercola_mm,
-    NumericVector param_PERCOLA_thp_thresh,
-    NumericVector param_PERCOLA_thp_gamma
-)
-{
-  NumericVector percola_, percola_temp;
-  percola_temp = (SOIL_water_mm / SOIL_capacity_mm - param_PERCOLA_thp_thresh);
-  percola_temp = ifelse(percola_temp < 0, 0, percola_temp);
-  percola_ = SOIL_potentialPercola_mm * vecpow(percola_temp / (1 - param_PERCOLA_thp_thresh), param_PERCOLA_thp_gamma);
-  percola_ = ifelse(percola_ > SOIL_potentialPercola_mm, SOIL_potentialPercola_mm, percola_);
-  return ifelse(percola_ > SOIL_water_mm, SOIL_water_mm, percola_) ;
+arma::vec percola_ThreshPow(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& SOIL_capacity_mm,
+    const arma::vec& SOIL_potentialPercola_mm,
+    const arma::vec& param_PERCOLA_thp_thresh,
+    const arma::vec& param_PERCOLA_thp_gamma
+) {
+    arma::vec percola_temp = arma::max(arma::zeros<arma::vec>(SOIL_water_mm.n_elem), SOIL_water_mm / SOIL_capacity_mm - param_PERCOLA_thp_thresh);
+    arma::vec percola_ = SOIL_potentialPercola_mm % arma::pow(percola_temp / (1 - param_PERCOLA_thp_thresh), param_PERCOLA_thp_gamma);
+    percola_ = arma::min(percola_, SOIL_potentialPercola_mm);
+    return arma::min(percola_, SOIL_water_mm);
 }
-
 
 //' @rdname percola
 //' @details
@@ -152,24 +141,42 @@ NumericVector percola_ThreshPow(
 //' @param param_PERCOLA_arn_k <0.1, 1> exponential parameter for [percola_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_Arno(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_potentialPercola_mm,
-    NumericVector param_PERCOLA_arn_thresh,
-    NumericVector param_PERCOLA_arn_k
-)
+arma::vec percola_Arno(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& SOIL_capacity_mm,
+    const arma::vec& SOIL_potentialPercola_mm,
+    const arma::vec& param_PERCOLA_arn_thresh,
+    const arma::vec& param_PERCOLA_arn_k)
 {
-  NumericVector percola_, percola_1, percola_2, Ws_Wc;
-  Ws_Wc = SOIL_capacity_mm * param_PERCOLA_arn_thresh;
-  percola_1 = param_PERCOLA_arn_k * SOIL_potentialPercola_mm / (SOIL_capacity_mm) * SOIL_water_mm;
-  percola_2 = param_PERCOLA_arn_k * SOIL_potentialPercola_mm / (SOIL_capacity_mm) * SOIL_water_mm + SOIL_potentialPercola_mm * (1 - param_PERCOLA_arn_k) * pow((SOIL_water_mm - Ws_Wc) / (SOIL_capacity_mm - Ws_Wc),2);
-  percola_ = ifelse(SOIL_water_mm < Ws_Wc, percola_1, percola_2);
-  percola_ = ifelse(SOIL_potentialPercola_mm > Ws_Wc, SOIL_water_mm, percola_);
-  percola_ = ifelse(percola_ > SOIL_potentialPercola_mm, SOIL_potentialPercola_mm, percola_);
-  return ifelse(percola_ > SOIL_water_mm, SOIL_water_mm, percola_) ;
+  // Calculate threshold water content
+  arma::vec Ws_Wc = SOIL_capacity_mm % param_PERCOLA_arn_thresh;
+  
+  // Calculate percolation components
+  arma::vec percola_1 = param_PERCOLA_arn_k % SOIL_potentialPercola_mm / 
+                       SOIL_capacity_mm % SOIL_water_mm;
+  
+  arma::vec percola_2 = percola_1 + SOIL_potentialPercola_mm % 
+                       (1.0 - param_PERCOLA_arn_k) % 
+                       arma::pow((SOIL_water_mm - Ws_Wc) / 
+                       (SOIL_capacity_mm - Ws_Wc), 2);
+  
+  // Combine components based on conditions
+  arma::vec percola_ = arma::zeros<arma::vec>(SOIL_water_mm.n_elem);
+  
+  // First condition: SOIL_water_mm < Ws_Wc
+  arma::uvec cond1 = arma::find(SOIL_water_mm < Ws_Wc);
+  percola_.elem(cond1) = percola_1.elem(cond1);
+  
+  // Second condition: SOIL_water_mm >= Ws_Wc
+  arma::uvec cond2 = arma::find(SOIL_water_mm >= Ws_Wc);
+  percola_.elem(cond2) = percola_2.elem(cond2);
+  
+  // Additional constraints
+  percola_.elem(arma::find(SOIL_potentialPercola_mm <= Ws_Wc)) = 
+    arma::min(arma::min(percola_, SOIL_potentialPercola_mm), SOIL_water_mm);
+  
+  return percola_;
 }
-
 
 //' @rdname percola
 //' @details
@@ -183,31 +190,28 @@ NumericVector percola_Arno(
 //'   - \mjseqn{\gamma} is `param_PERCOLA_sup_gamma`
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_BevenWood(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_fieldCapacityPerc_1,
-    NumericVector SOIL_potentialPercola_mm
+arma::vec percola_BevenWood(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& SOIL_capacity_mm,
+    const arma::vec& SOIL_fieldCapacityPerc_1,
+    const arma::vec& SOIL_potentialPercola_mm
 )
 {
-  NumericVector SOIL_percola_mm, SOIL_percolaAvilibale_mm, SOIL_diff_mm, k_;
-  SOIL_percolaAvilibale_mm = SOIL_water_mm - SOIL_capacity_mm * (1-SOIL_fieldCapacityPerc_1);
-  SOIL_percolaAvilibale_mm = ifelse(SOIL_percolaAvilibale_mm < 0, 0, SOIL_percolaAvilibale_mm);
-  SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  SOIL_diff_mm = ifelse(SOIL_diff_mm < SOIL_water_mm, SOIL_water_mm, SOIL_diff_mm);
-  k_ = SOIL_water_mm / SOIL_diff_mm;
-  SOIL_percola_mm = k_ * SOIL_potentialPercola_mm;
-  SOIL_percola_mm = ifelse(SOIL_water_mm > SOIL_percolaAvilibale_mm, SOIL_percola_mm, 0.0);
-  return ifelse(SOIL_percola_mm > SOIL_percolaAvilibale_mm, SOIL_percolaAvilibale_mm, SOIL_percola_mm) ;
+    arma::vec SOIL_percola_mm, SOIL_percolaAvilibale_mm, SOIL_diff_mm, k_;
+    SOIL_percolaAvilibale_mm = SOIL_water_mm - SOIL_capacity_mm % (1 - SOIL_fieldCapacityPerc_1);
+    SOIL_percolaAvilibale_mm = arma::clamp(SOIL_percolaAvilibale_mm, 0.0, arma::datum::inf);
+    SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
+    SOIL_diff_mm = arma::max(SOIL_diff_mm, SOIL_water_mm);
+    k_ = SOIL_water_mm / SOIL_diff_mm;
+    SOIL_percola_mm = k_ % SOIL_potentialPercola_mm;
+    SOIL_percola_mm = arma::min(SOIL_percola_mm, SOIL_percolaAvilibale_mm);
+    return SOIL_percola_mm;
 }
-
-
 
 //' @rdname percola
 //' @details
 //' # **_SupplyPow**: 
 //'
-//' 
 //' \mjsdeqn{k^* = k \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 //' where
 //'   - \mjseqn{k} is `param_PERCOLA_sup_k`
@@ -216,41 +220,36 @@ NumericVector percola_BevenWood(
 //' @param param_PERCOLA_sup_gamma <0, 7> parameter for [percola_SupplyPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_SupplyPow(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector param_PERCOLA_sup_k,
-    NumericVector param_PERCOLA_sup_gamma
+arma::vec percola_SupplyPow(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& SOIL_capacity_mm,
+    const arma::vec& param_PERCOLA_sup_k,
+    const arma::vec& param_PERCOLA_sup_gamma
 )
 {
-  NumericVector SOIL_percola_mm, k_;
-  
-  k_ = param_PERCOLA_sup_k * vecpow((SOIL_water_mm / SOIL_capacity_mm), param_PERCOLA_sup_gamma);
-  SOIL_percola_mm = k_ * SOIL_water_mm;
-  return ifelse(SOIL_percola_mm > SOIL_water_mm, SOIL_water_mm, SOIL_percola_mm) ;
+    arma::vec k_, SOIL_percola_mm;
+    k_ = param_PERCOLA_sup_k % arma::pow(SOIL_water_mm / SOIL_capacity_mm, param_PERCOLA_sup_gamma);
+    SOIL_percola_mm = k_ % SOIL_water_mm;
+    return arma::min(SOIL_percola_mm, SOIL_water_mm);
 }
 
 //' @rdname percola
 //' @details
 //' # **_SupplyRatio**: 
 //'
-//' 
 //' \mjsdeqn{k^* = k}
 //' where
 //'   - \mjseqn{k} is `param_PERCOLA_sur_k`
 //' @param param_PERCOLA_sur_k <0.01, 1> coefficient parameter for [percola_SupplyRatio()]
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_SupplyRatio(
-    NumericVector SOIL_water_mm,
-    NumericVector param_PERCOLA_sur_k
+arma::vec percola_SupplyRatio(
+    const arma::vec& SOIL_water_mm,
+    const arma::vec& param_PERCOLA_sur_k
 )
 {
-  
-  return param_PERCOLA_sur_k * SOIL_water_mm;
+    return param_PERCOLA_sur_k % SOIL_water_mm;
 }
-
-
 
 //' @rdname percola
 //' @param param_PERCOLA_wat_01 <0, 1> 0: percolation, 1: non percolation [percola_WaterGAP3()]
@@ -258,23 +257,24 @@ NumericVector percola_SupplyRatio(
 //' @param param_PERCOLA_wat_k <0.1, 1> exponential parameter for [percola_WaterGAP3()]
 //' @export
 // [[Rcpp::export]]
-NumericVector percola_WaterGAP3(
-   NumericVector LAND_water_mm,
-   NumericVector SOIL_potentialPercola_mm,
-   LogicalVector param_PERCOLA_wat_01,
-   NumericVector param_PERCOLA_wat_thresh,
-   NumericVector param_PERCOLA_wat_k
-)
+arma::vec percola_WaterGAP3(
+    const arma::vec& LAND_water_mm,
+    const arma::vec& SOIL_potentialPercola_mm,
+    const arma::uvec& param_PERCOLA_wat_01,
+    const arma::vec& param_PERCOLA_wat_thresh,
+    const arma::vec& param_PERCOLA_wat_k)
 {
- // Calculate potential percolation for all cells
- NumericVector potential_percola = pmin(SOIL_potentialPercola_mm,
-                                        param_PERCOLA_wat_k * LAND_water_mm);
- 
- // Logical mask for arid regions
- LogicalVector arid_mask = param_PERCOLA_wat_01 & (LAND_water_mm < param_PERCOLA_wat_thresh);
- 
- // Set percolation to 0 for arid regions
- potential_percola[arid_mask] = 0.0;
- 
- return ifelse(potential_percola > LAND_water_mm, LAND_water_mm, potential_percola);
+    // Calculate potential percolation for all cells
+    arma::vec potential_percola = arma::min(SOIL_potentialPercola_mm,
+                                          param_PERCOLA_wat_k % LAND_water_mm);
+    
+    // Logical mask for arid regions
+    arma::uvec arid_mask = arma::find(param_PERCOLA_wat_01 == 1 && 
+                                     LAND_water_mm < param_PERCOLA_wat_thresh);
+    
+    // Set percolation to 0 for arid regions
+    potential_percola.elem(arid_mask).zeros();
+    
+    // Apply final constraint
+    return arma::min(potential_percola, LAND_water_mm);
 }

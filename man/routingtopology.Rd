@@ -3,11 +3,11 @@
 \name{get_inflow_cells}
 \alias{get_inflow_cells}
 \alias{get_inflow_lastcell}
-\alias{get_routing_info}
 \alias{get_cell_in_basin}
 \alias{get_inter_basin}
 \alias{get_new_outflow}
 \alias{get_cali_step}
+\alias{get_routing_info}
 \alias{get_upstream_cali_cell}
 \alias{write_int_vector_list}
 \alias{read_int_vector_list}
@@ -19,19 +19,19 @@ get_inflow_cells(int_Outflow)
 
 get_inflow_lastcell(int_Outflow)
 
-get_routing_info(int_Outflow)
-
 get_cell_in_basin(lst_Inflow_Cell, int_OutLet, int_TestCell)
 
-get_inter_basin(lst_Inflow_Cell, int_OutLet, int_UpstreamCell)
+get_inter_basin(int_Cell, int_Outflow)
 
-get_new_outflow(int_Outflow_Ori, int_CellNew)
+get_new_outflow(int_Cell, int_Outflow)
 
-get_cali_step(lst_Inflow_Cell, int_CaliCell)
+get_cali_step(step_cells, int_Cali)
+
+get_routing_info(int_Outflow)
 
 get_upstream_cali_cell(lst_Inflow_Cell, int_CaliCell)
 
-write_int_vector_list(lst, file_path)
+write_int_vector_list(vec_list, file_path)
 
 read_int_vector_list(file_path)
 
@@ -43,26 +43,24 @@ read_int_matrix_list(file_path)
 \item{int_Outflow}{(vector of int) The cell number of the next cell. The cell number must range from 1 to the length of the cells.
 If the cell has no outflow, the number should be set to itself.}
 
-\item{lst_Inflow_Cell}{A list of integer vectors, where each vector contains the cells that flow into the respective cell.}
+\item{lst_Inflow_Cell}{A vector of arma::ivec, where each arma::ivec contains the cells that flow into the respective cell.}
 
 \item{int_OutLet}{An integer representing the outlet cell (1-based index).}
 
 \item{int_TestCell}{An integer vector, cells to test.}
+
+\item{int_CaliCell}{An integer vector of calibration cells.}
 
 \item{int_UpstreamCell}{An integer vector containing the upstream cells to find the upstream basin.}
 
 \item{int_Outflow_Ori}{An integer vector representing the original outflow indices (1-based).}
 
 \item{int_CellNew}{An integer vector representing the cells within the new basin.}
-
-\item{int_CaliCell}{An integer vector of calibration cells.}
 }
 \value{
 A list where each element is an IntegerVector containing the inflow cells for each cell.
 
 A NumericMatrix where each row corresponds to a cell, and each column represents an inflow cell.
-
-A list containing the step cells and last cell matrices.
 
 An integer vector of cells in the intersection of the station cells and the basin.
 
@@ -73,6 +71,8 @@ with the cells that flow into the outlet. It then computes the set difference be
 An integer vector of the new outflow indices adjusted for the sub-basin.
 
 A list of integer vectors (`lst_Step_Cali`), where each element represents calibration cells at a specific step.
+
+A list containing the step cells and last cell matrices.
 
 A list of integer vectors (`lst_Step_Cali`), where each element represents calibration cells at a specific step.
 }

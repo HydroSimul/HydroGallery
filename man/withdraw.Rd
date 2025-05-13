@@ -38,16 +38,11 @@ This represents water demand and will be updated to reflect remaining deficit.}
 \item{CELL_water_m3}{Vector of available water volumes in cubic meters.
 This will be updated to reflect remaining water after withdrawal.}
 
-\item{CELL_cellNumberAround_int}{Matrix of cell indices that define surrounding cells.
-Each column corresponds to a cell, with rows containing indices of surrounding cells.}
+\item{CELL_cellNumberAround_int}{Matrix of cell indices that define surrounding cells.}
 
-\item{CELL_cellNumberWithdrawNet_int}{Matrix defining the withdrawal network.
-Each column corresponds to a cell, with rows containing indices of cells
-from which water can be withdrawn in order of priority.}
+\item{CELL_cellNumberWithdrawNet_int}{Matrix defining the withdrawal network.}
 }
 \value{
-None. Parameters are updated by reference.
-
 None. Parameters are updated by reference.
 }
 \description{

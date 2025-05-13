@@ -1,7 +1,7 @@
-#include "00utilis.h"
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+
 // [[Rcpp::interfaces(r, cpp)]]
-
-
 
 //' **interflow**
 //' @name inteflow
@@ -49,16 +49,12 @@
 //' @param param_INTEFLOW_grf_gamma <2, 7> exponential parameter for [baseflow_GR4Jfix()]
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_GR4Jfix(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector param_INTEFLOW_grf_k,
-    NumericVector param_INTEFLOW_grf_gamma
-) 
-{
-  return SOIL_water_mm * (1 - vecpow((1 + vecpow(param_INTEFLOW_grf_k * SOIL_water_mm / SOIL_capacity_mm, param_INTEFLOW_grf_gamma)), -1.0 / param_INTEFLOW_grf_gamma));
+arma::vec inteflow_GR4Jfix(arma::vec SOIL_water_mm,
+                            arma::vec SOIL_capacity_mm,
+                            arma::vec param_INTEFLOW_grf_k,
+                            arma::vec param_INTEFLOW_grf_gamma) {
+  return SOIL_water_mm % (1 - pow(1 + pow(param_INTEFLOW_grf_k % SOIL_water_mm / SOIL_capacity_mm, param_INTEFLOW_grf_gamma), -1.0 / param_INTEFLOW_grf_gamma));
 }
-
 
 //' @rdname inteflow
 //' @details
@@ -72,18 +68,12 @@ NumericVector inteflow_GR4Jfix(
 //' @param param_INTEFLOW_map_gamma <0.1, 5> exponential parameter for [inteflow_MaxPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_MaxPow(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_potentialInteflow_mm,
-    NumericVector param_INTEFLOW_map_gamma
-)
-{
-  NumericVector inteflow_;
-  
-  inteflow_ = SOIL_potentialInteflow_mm * vecpow(SOIL_water_mm / SOIL_capacity_mm, param_INTEFLOW_map_gamma);
-  
-  return ifelse(inteflow_ > SOIL_water_mm, SOIL_water_mm, inteflow_) ;
+arma::vec inteflow_MaxPow(arma::vec SOIL_water_mm,
+                           arma::vec SOIL_capacity_mm,
+                           arma::vec SOIL_potentialInteflow_mm,
+                           arma::vec param_INTEFLOW_map_gamma) {
+  arma::vec inteflow_ = SOIL_potentialInteflow_mm % pow(SOIL_water_mm / SOIL_capacity_mm, param_INTEFLOW_map_gamma);
+  return arma::min(inteflow_, SOIL_water_mm);
 }
 
 //' @rdname inteflow
@@ -101,22 +91,17 @@ NumericVector inteflow_MaxPow(
 //' @param param_INTEFLOW_thp_gamma <0.1, 5> exponential parameter for [inteflow_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_ThreshPow(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_potentialInteflow_mm,
-    NumericVector param_INTEFLOW_thp_thresh,
-    NumericVector param_INTEFLOW_thp_gamma
-)
-{
-  NumericVector inteflow_, inteflow_temp;
-  inteflow_temp = (SOIL_water_mm / SOIL_capacity_mm - param_INTEFLOW_thp_thresh);
-  inteflow_temp = ifelse(inteflow_temp < 0, 0, inteflow_temp);
-  inteflow_ = SOIL_potentialInteflow_mm * vecpow(inteflow_temp / (1 - param_INTEFLOW_thp_thresh), param_INTEFLOW_thp_gamma);
-  inteflow_ = ifelse(inteflow_ > SOIL_potentialInteflow_mm, SOIL_potentialInteflow_mm, inteflow_);
-  return ifelse(inteflow_ > SOIL_water_mm, SOIL_water_mm, inteflow_) ;
+arma::vec inteflow_ThreshPow(arma::vec SOIL_water_mm,
+                              arma::vec SOIL_capacity_mm,
+                              arma::vec SOIL_potentialInteflow_mm,
+                              arma::vec param_INTEFLOW_thp_thresh,
+                              arma::vec param_INTEFLOW_thp_gamma) {
+  arma::vec inteflow_temp = (SOIL_water_mm / SOIL_capacity_mm - param_INTEFLOW_thp_thresh);
+  inteflow_temp = arma::clamp(inteflow_temp, 0, arma::datum::inf);
+  arma::vec inteflow_ = SOIL_potentialInteflow_mm % pow(inteflow_temp / (1 - param_INTEFLOW_thp_thresh), param_INTEFLOW_thp_gamma);
+  inteflow_ = arma::min(inteflow_, SOIL_potentialInteflow_mm);
+  return arma::min(inteflow_, SOIL_water_mm);
 }
-
 
 //' @rdname inteflow
 //' @details
@@ -135,24 +120,20 @@ NumericVector inteflow_ThreshPow(
 //' @param param_INTEFLOW_arn_k <0.1, 1> exponential parameter for [inteflow_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_Arno(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_potentialInteflow_mm,
-    NumericVector param_INTEFLOW_arn_thresh,
-    NumericVector param_INTEFLOW_arn_k
-)
-{
-  NumericVector inteflow_, inteflow_1, inteflow_2, Ws_Wc;
-  Ws_Wc = SOIL_capacity_mm * param_INTEFLOW_arn_thresh;
-  inteflow_1 = param_INTEFLOW_arn_k * SOIL_potentialInteflow_mm / (SOIL_capacity_mm) * SOIL_water_mm;
-  inteflow_2 = param_INTEFLOW_arn_k * SOIL_potentialInteflow_mm / (SOIL_capacity_mm) * SOIL_water_mm + SOIL_potentialInteflow_mm * (1 - param_INTEFLOW_arn_k) * pow((SOIL_water_mm - Ws_Wc) / (SOIL_capacity_mm - Ws_Wc),2);
-  inteflow_ = ifelse(SOIL_water_mm < Ws_Wc, inteflow_1, inteflow_2);
-  inteflow_ = ifelse(SOIL_potentialInteflow_mm > Ws_Wc, SOIL_water_mm, inteflow_);
-  inteflow_ = ifelse(inteflow_ > SOIL_potentialInteflow_mm, SOIL_potentialInteflow_mm, inteflow_);
-  return ifelse(inteflow_ > SOIL_water_mm, SOIL_water_mm, inteflow_) ;
+arma::vec inteflow_Arno(arma::vec SOIL_water_mm,
+                         arma::vec SOIL_capacity_mm,
+                         arma::vec SOIL_potentialInteflow_mm,
+                         arma::vec param_INTEFLOW_arn_thresh,
+                         arma::vec param_INTEFLOW_arn_k) {
+  arma::vec Ws_Wc = SOIL_capacity_mm % param_INTEFLOW_arn_thresh;
+  arma::vec inteflow_1 = param_INTEFLOW_arn_k % SOIL_potentialInteflow_mm % (SOIL_water_mm / SOIL_capacity_mm);
+  arma::vec inteflow_2 = param_INTEFLOW_arn_k % SOIL_potentialInteflow_mm % (SOIL_water_mm / SOIL_capacity_mm) +
+                         SOIL_potentialInteflow_mm % (1 - param_INTEFLOW_arn_k) % pow((SOIL_water_mm - Ws_Wc) / (SOIL_capacity_mm - Ws_Wc), 2);
+  arma::vec inteflow_ = arma::conv_to<arma::vec>::from(SOIL_water_mm < Ws_Wc) % inteflow_1 +
+                       arma::conv_to<arma::vec>::from(SOIL_water_mm >= Ws_Wc) % inteflow_2;
+  inteflow_ = arma::min(inteflow_, SOIL_potentialInteflow_mm);
+  return arma::min(inteflow_, SOIL_water_mm);
 }
-
 
 //' @rdname inteflow
 //' @details
@@ -166,22 +147,17 @@ NumericVector inteflow_Arno(
 //'   - \mjseqn{\gamma} is `param_INTEFLOW_sup_gamma`
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_BevenWood(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_fieldCapacityPerc_1,
-    NumericVector SOIL_potentialInteflow_mm
-)
-{
-  NumericVector SOIL_inteflow_mm, SOIL_inteflowAvilibale_mm, SOIL_diff_mm, k_;
-  SOIL_inteflowAvilibale_mm = SOIL_water_mm - SOIL_capacity_mm * (1-SOIL_fieldCapacityPerc_1);
-  SOIL_inteflowAvilibale_mm = ifelse(SOIL_inteflowAvilibale_mm < 0, 0, SOIL_inteflowAvilibale_mm);
-  SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  SOIL_diff_mm = ifelse(SOIL_diff_mm < SOIL_water_mm, SOIL_water_mm, SOIL_diff_mm);
-  k_ = SOIL_water_mm / SOIL_diff_mm;
-  SOIL_inteflow_mm = k_ * SOIL_potentialInteflow_mm;
-  SOIL_inteflow_mm = ifelse(SOIL_water_mm > SOIL_inteflowAvilibale_mm, SOIL_inteflow_mm, 0.0);
-  return ifelse(SOIL_inteflow_mm > SOIL_inteflowAvilibale_mm, SOIL_inteflowAvilibale_mm, SOIL_inteflow_mm) ;
+arma::vec inteflow_BevenWood(arma::vec SOIL_water_mm,
+                              arma::vec SOIL_capacity_mm,
+                              arma::vec SOIL_fieldCapacityPerc_1,
+                              arma::vec SOIL_potentialInteflow_mm) {
+  arma::vec SOIL_inteflowAvilibale_mm = SOIL_water_mm - SOIL_capacity_mm % (1 - SOIL_fieldCapacityPerc_1);
+  SOIL_inteflowAvilibale_mm = arma::clamp(SOIL_inteflowAvilibale_mm, 0, arma::datum::inf);
+  arma::vec SOIL_diff_mm = arma::clamp(SOIL_capacity_mm - SOIL_water_mm, 0, arma::datum::inf);
+  arma::vec k_ = SOIL_water_mm / SOIL_diff_mm;
+  arma::vec SOIL_inteflow_mm = k_ % SOIL_potentialInteflow_mm;
+  SOIL_inteflow_mm = arma::min(SOIL_inteflow_mm, SOIL_inteflowAvilibale_mm);
+  return arma::min(SOIL_inteflow_mm, SOIL_inteflowAvilibale_mm);
 }
 
 //' @rdname inteflow
@@ -197,19 +173,12 @@ NumericVector inteflow_BevenWood(
 //' @param param_INTEFLOW_sp0_gamma <0, 1> exponential parameter for [inteflow_SupplyPow0()]
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_SupplyPow0(
-    NumericVector SOIL_water_mm,
-    NumericVector param_INTEFLOW_sp0_k,
-    NumericVector param_INTEFLOW_sp0_gamma
-)
-{
-  NumericVector inteflow_;
-  
-  inteflow_ = param_INTEFLOW_sp0_k * vecpow(ceil(SOIL_water_mm), param_INTEFLOW_sp0_gamma);
-  
-  return ifelse(inteflow_ > SOIL_water_mm, SOIL_water_mm, inteflow_) ;
+arma::vec inteflow_SupplyPow0(arma::vec SOIL_water_mm,
+                               arma::vec param_INTEFLOW_sp0_k,
+                               arma::vec param_INTEFLOW_sp0_gamma) {
+  arma::vec inteflow_ = param_INTEFLOW_sp0_k % pow(ceil(SOIL_water_mm), param_INTEFLOW_sp0_gamma);
+  return arma::min(inteflow_, SOIL_water_mm);
 }
-
 
 //' @rdname inteflow
 //' @details
@@ -224,18 +193,13 @@ NumericVector inteflow_SupplyPow0(
 //' @param param_INTEFLOW_sup_gamma <0, 7> parameter for [inteflow_SupplyPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_SupplyPow(
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector param_INTEFLOW_sup_k,
-    NumericVector param_INTEFLOW_sup_gamma
-)
-{
-  NumericVector SOIL_inteflow_mm, k_;
-  
-  k_ = param_INTEFLOW_sup_k * vecpow((SOIL_water_mm / SOIL_capacity_mm), param_INTEFLOW_sup_gamma);
-  SOIL_inteflow_mm = k_ * SOIL_water_mm;
-  return ifelse(SOIL_inteflow_mm > SOIL_water_mm, SOIL_water_mm, SOIL_inteflow_mm) ;
+arma::vec inteflow_SupplyPow(arma::vec SOIL_water_mm,
+                              arma::vec SOIL_capacity_mm,
+                              arma::vec param_INTEFLOW_sup_k,
+                              arma::vec param_INTEFLOW_sup_gamma) {
+  arma::vec k_ = param_INTEFLOW_sup_k % pow(SOIL_water_mm / SOIL_capacity_mm, param_INTEFLOW_sup_gamma);
+  arma::vec SOIL_inteflow_mm = k_ % SOIL_water_mm;
+  return arma::min(SOIL_inteflow_mm, SOIL_water_mm);
 }
 
 //' @rdname inteflow
@@ -249,11 +213,7 @@ NumericVector inteflow_SupplyPow(
 //' @param param_INTEFLOW_sur_k <0.01, 1> coefficient parameter for [inteflow_SupplyRatio()]
 //' @export
 // [[Rcpp::export]]
-NumericVector inteflow_SupplyRatio(
-    NumericVector SOIL_water_mm,
-    NumericVector param_INTEFLOW_sur_k
-)
-{
-  
-  return param_INTEFLOW_sur_k * SOIL_water_mm;
+arma::vec inteflow_SupplyRatio(arma::vec SOIL_water_mm,
+                                arma::vec param_INTEFLOW_sur_k) {
+  return param_INTEFLOW_sur_k % SOIL_water_mm;
 }

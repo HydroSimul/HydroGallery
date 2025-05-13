@@ -4,7 +4,7 @@
 \alias{reservoi}
 \alias{reservoireleas_Hanasaki}
 \alias{reservoiReleasCoefficent_Hanasaki}
-\title{**Reservoir releas**}
+\title{**Reservoir release**}
 \usage{
 reservoireleas_Hanasaki(
   Reservoi_water_m3,
@@ -52,5 +52,5 @@ outflow (m3)
 new Reservoi_releaseCoefficient_1
 }
 \description{
-The concept of river estimates the waterbody outflow for waternet concentation
+The concept of river estimates the waterbody outflow for waternet concentration
 }

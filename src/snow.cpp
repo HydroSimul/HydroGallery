@@ -1,6 +1,7 @@
-#include "00utilis.h"
-// [[Rcpp::interfaces(r, cpp)]]
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
 
+// [[Rcpp::interfaces(r, cpp)]]
 
 //' **snow**
 //' @name snowMelt
@@ -55,18 +56,19 @@
 //' @param param_SNOWMELT_kus_fT <0.05, 1> (mm/m2/h/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
 //' @export
 // [[Rcpp::export]]
-NumericVector snowMelt_Kustas(
-    NumericVector SNOW_ice_mm,
-    NumericVector ATMOS_temperature_Cel,
-    NumericVector ATMOS_netRadiat_MJ,
-    NumericVector param_SNOWMELT_kus_fE,
-    NumericVector param_SNOWMELT_kus_fT
+arma::vec snowMelt_Kustas(
+    const arma::vec& SNOW_ice_mm,
+    const arma::vec& ATMOS_temperature_Cel,
+    const arma::vec& ATMOS_netRadiat_MJ,
+    const arma::vec& param_SNOWMELT_kus_fE,
+    const arma::vec& param_SNOWMELT_kus_fT
 )
 {
-  // NumericVector SNOW_melt_mm = ifelse(ATMOS_temperature_Cel < 0, 0, ATMOS_temperature_Cel) * param_SNOWMELT_kus_fT * time_step_h + param_SNOWMELT_kus_fE * ATMOS_netRadiat_MJ;
-  NumericVector SNOW_melt_mm = ifelse(ATMOS_temperature_Cel < 0, 0, ATMOS_temperature_Cel) * param_SNOWMELT_kus_fT * 24 + param_SNOWMELT_kus_fE * ATMOS_netRadiat_MJ;
-  return ifelse(SNOW_melt_mm > SNOW_ice_mm, SNOW_ice_mm, SNOW_melt_mm) ;
+  // Apply the formula for snow melt based on temperature and net radiation
+  arma::vec SNOW_melt_mm = arma::clamp(ATMOS_temperature_Cel, 0.0, arma::datum::inf) % param_SNOWMELT_kus_fT * 24 + param_SNOWMELT_kus_fE % ATMOS_netRadiat_MJ;
   
+  // Ensure that the snow melt does not exceed the available snow
+  return arma::min(SNOW_melt_mm, SNOW_ice_mm);
 }
 
 //' @rdname snowMelt
@@ -83,19 +85,21 @@ NumericVector snowMelt_Kustas(
 //' @param param_SNOWMELT_fac_f <0.5, 2> (mm/m2/day/Cel) potential melt volum per Cel per hour parameter for [snowMelt_Factor()]
 //' @export
 // [[Rcpp::export]]
-NumericVector snowMelt_Factor(
-    NumericVector SNOW_ice_mm,
-    NumericVector ATMOS_temperature_Cel,
-    NumericVector param_SNOWMELT_fac_f,
-    NumericVector param_SNOWMELT_fac_Tmelt
+arma::vec snowMelt_Factor(
+    const arma::vec& SNOW_ice_mm,
+    const arma::vec& ATMOS_temperature_Cel,
+    const arma::vec& param_SNOWMELT_fac_f,
+    const arma::vec& param_SNOWMELT_fac_Tmelt
 )
 {
-  NumericVector diff_T, SNOW_melt_mm;
-  diff_T = ATMOS_temperature_Cel - param_SNOWMELT_fac_Tmelt;
-  diff_T = ifelse(diff_T > 0, diff_T, 0);
+  arma::vec diff_T = ATMOS_temperature_Cel - param_SNOWMELT_fac_Tmelt;
   
-  SNOW_melt_mm = param_SNOWMELT_fac_f * diff_T;
-  // SNOW_melt_mm = param_SNOWMELT_fac_f * time_step_h * diff_T;
-  return ifelse(SNOW_melt_mm > SNOW_ice_mm, SNOW_ice_mm, SNOW_melt_mm) ;
+  // Apply condition that only temperatures above T_b are considered for melt
+  diff_T = arma::clamp(diff_T, 0.0, arma::datum::inf);
+  
+  // Calculate snow melt based on temperature difference
+  arma::vec SNOW_melt_mm = param_SNOWMELT_fac_f % diff_T;
+  
+  // Ensure that the snow melt does not exceed the available snow
+  return arma::min(SNOW_melt_mm, SNOW_ice_mm);
 }
-

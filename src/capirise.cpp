@@ -1,6 +1,6 @@
-#include "00utilis.h"
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::interfaces(r, cpp)]]
-
 
 
 //' **capilarise**
@@ -22,13 +22,11 @@
 //' 
 //' \mjsdeqn{F_{capi} = f_{capirise}(D_{grnd}, D_{soil})}
 //' 
-//' 
 //' to:
 //' 
 //' \mjsdeqn{F_{capi} = f_{capirise}(W_{grnd}, W_{soil}, C_{soil}, ...)}
 //' \mjsdeqn{F_{capi} \leq W_{grnd}}
 //' \mjsdeqn{F_{capi} \leq C_{soil} - W_{soil}}
-//' 
 //' 
 //' where
 //' - \mjseqn{F_{capi}} is `GROUND_capirise_mm`
@@ -44,7 +42,6 @@
 //' 
 //' @details
 //' # **_HBV** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
-//'
 //' 
 //' \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{C_{soil}} \right)}
 //' where
@@ -52,55 +49,47 @@
 //'   
 //' @export
 // [[Rcpp::export]]
-NumericVector capirise_HBV(
-    NumericVector GROUND_water_mm, 
-    NumericVector SOIL_water_mm ,
-    NumericVector SOIL_capacity_mm, 
-    NumericVector SOIL_potentialCapirise_mm
-)
+arma::vec capirise_HBV(
+   const arma::vec& GROUND_water_mm, 
+   const arma::vec& SOIL_water_mm,
+   const arma::vec& SOIL_capacity_mm, 
+   const arma::vec& SOIL_potentialCapirise_mm)
 {
-  NumericVector SOIL_diff_mm, capirise_mm, limit_mm;
-  SOIL_diff_mm = SOIL_capacity_mm  - SOIL_water_mm;
-  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
-  capirise_mm = SOIL_potentialCapirise_mm * (SOIL_diff_mm / SOIL_capacity_mm);
-  
-  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
-  return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
+  arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
+  SOIL_diff_mm.elem(arma::find(SOIL_diff_mm < 0)).zeros();
+
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, GROUND_water_mm);
+
+  return arma::min(SOIL_potentialCapirise_mm % (SOIL_diff_mm / SOIL_capacity_mm), limit_mm);
 }
-
-
 
 //' @rdname capirise
 //' @details
 //' # **_HBVfix** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
-//'
 //' 
 //' \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{k_{fc}C_{soil}} \right), \quad W_{soil} < k_{fc}C_{soil}}
 //' where
 //'   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
 //' @export
 // [[Rcpp::export]]
-NumericVector capirise_HBVfix(
-    NumericVector GROUND_water_mm, 
-    NumericVector SOIL_water_mm ,
-    NumericVector SOIL_capacity_mm, 
-    NumericVector SOIL_fieldCapacityPerc_1,
-    NumericVector SOIL_potentialCapirise_mm
-)
+arma::vec capirise_HBVfix(
+   const arma::vec& GROUND_water_mm, 
+   const arma::vec& SOIL_water_mm,
+   const arma::vec& SOIL_capacity_mm, 
+   const arma::vec& SOIL_fieldCapacityPerc_1,
+   const arma::vec& SOIL_potentialCapirise_mm)
 {
-  NumericVector SOIL_diff_mm, capirise_mm, limit_mm;
-  SOIL_diff_mm = SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
-  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
-  capirise_mm = SOIL_potentialCapirise_mm * (SOIL_diff_mm / SOIL_capacity_mm);
-  
-  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
-  return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
+  arma::vec SOIL_diff_mm = SOIL_capacity_mm % (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
+  SOIL_diff_mm.elem(arma::find(SOIL_diff_mm < 0)).zeros();
+
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, GROUND_water_mm);
+
+  return arma::min(SOIL_potentialCapirise_mm % (SOIL_diff_mm / SOIL_capacity_mm), limit_mm);
 }
 
 //' @rdname capirise
 //' @details
 //' # **_AcceptRatio**: 
-//'
 //' 
 //' \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right), \quad W_{soil} < k_{fc}C_{soil}}
 //' where
@@ -109,29 +98,24 @@ NumericVector capirise_HBVfix(
 //' @param param_CAPIRISE_acr_k <0.01, 1> coefficient parameter [capirise_AcceptRatio()]
 //' @export
 // [[Rcpp::export]]
-NumericVector capirise_AcceptRatio(
-    NumericVector GROUND_water_mm, 
-    NumericVector SOIL_water_mm ,
-    NumericVector SOIL_capacity_mm, 
-    NumericVector SOIL_fieldCapacityPerc_1,
-    NumericVector param_CAPIRISE_acr_k
-)
+arma::vec capirise_AcceptRatio(
+   const arma::vec& GROUND_water_mm, 
+   const arma::vec& SOIL_water_mm,
+   const arma::vec& SOIL_capacity_mm, 
+   const arma::vec& SOIL_fieldCapacityPerc_1,
+   const arma::vec& param_CAPIRISE_acr_k)
 {
-  NumericVector SOIL_diff_mm, capirise_mm, limit_mm;
-  SOIL_diff_mm = SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
-  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
-  capirise_mm = SOIL_diff_mm * param_CAPIRISE_acr_k;
-  
-  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
-  return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
+  arma::vec SOIL_diff_mm = SOIL_capacity_mm % (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
+  SOIL_diff_mm.elem(arma::find(SOIL_diff_mm < 0)).zeros();
+
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, GROUND_water_mm);
+
+  return arma::min(SOIL_diff_mm % param_CAPIRISE_acr_k, limit_mm);
 }
-
-
 
 //' @rdname capirise
 //' @details
-//' # **_AcceptRatio**: 
-//'
+//' # **_AcceptPow**: 
 //' 
 //' \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right)^\gamma, \quad W_{soil} < k_{fc}C_{soil}}
 //' where
@@ -142,26 +126,20 @@ NumericVector capirise_AcceptRatio(
 //' @param param_CAPIRISE_acp_gamma <0.01, 1> exponential parameter for [capirise_AcceptPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector capirise_AcceptPow(
-    NumericVector GROUND_water_mm, 
-    NumericVector SOIL_water_mm,
-    NumericVector SOIL_capacity_mm,
-    NumericVector SOIL_fieldCapacityPerc_1,
-    NumericVector param_CAPIRISE_acp_k,
-    NumericVector param_CAPIRISE_acp_gamma
-)
+arma::vec capirise_AcceptPow(
+   const arma::vec& GROUND_water_mm, 
+   const arma::vec& SOIL_water_mm,
+   const arma::vec& SOIL_capacity_mm,
+   const arma::vec& SOIL_fieldCapacityPerc_1,
+   const arma::vec& param_CAPIRISE_acp_k,
+   const arma::vec& param_CAPIRISE_acp_gamma)
 {
-  NumericVector capirise_mm, k_, SOIL_diff_mm, limit_mm;
-  SOIL_diff_mm = SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
-  SOIL_diff_mm = ifelse(SOIL_diff_mm < 0, 0, SOIL_diff_mm);
-  
-  k_ = param_CAPIRISE_acp_k * vecpow((SOIL_diff_mm / (SOIL_capacity_mm * (1 - SOIL_fieldCapacityPerc_1))), param_CAPIRISE_acp_gamma);
-  capirise_mm = k_ * SOIL_diff_mm;
-  capirise_mm = ifelse(capirise_mm < 0, 0, capirise_mm);
-  
-  limit_mm = ifelse(SOIL_diff_mm > GROUND_water_mm, GROUND_water_mm, SOIL_diff_mm) ;
-  return ifelse(capirise_mm > limit_mm, limit_mm, capirise_mm) ;
+  arma::vec SOIL_diff_mm = SOIL_capacity_mm % (1 - SOIL_fieldCapacityPerc_1) - SOIL_water_mm;
+  SOIL_diff_mm.elem(arma::find(SOIL_diff_mm < 0)).zeros();
+
+  arma::vec capirise_mm = (param_CAPIRISE_acp_k % pow(SOIL_diff_mm / (SOIL_capacity_mm % (1 - SOIL_fieldCapacityPerc_1)), param_CAPIRISE_acp_gamma)) % SOIL_diff_mm;
+  capirise_mm.elem(arma::find(capirise_mm < 0)).zeros();
+
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, GROUND_water_mm);
+  return arma::min(capirise_mm, limit_mm);
 }
-
-
-

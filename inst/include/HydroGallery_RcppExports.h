@@ -4,6 +4,7 @@
 #ifndef RCPP_HydroGallery_RCPPEXPORTS_H_GEN_
 #define RCPP_HydroGallery_RCPPEXPORTS_H_GEN_
 
+#include <RcppArmadillo.h>
 #include <Rcpp.h>
 
 namespace HydroGallery {
@@ -24,114 +25,11 @@ namespace HydroGallery {
         }
     }
 
-    inline NumericVector subset_get(NumericVector vec_Data, IntegerVector int_Index) {
-        typedef SEXP(*Ptr_subset_get)(SEXP,SEXP);
-        static Ptr_subset_get p_subset_get = NULL;
-        if (p_subset_get == NULL) {
-            validateSignature("NumericVector(*subset_get)(NumericVector,IntegerVector)");
-            p_subset_get = (Ptr_subset_get)R_GetCCallable("HydroGallery", "_HydroGallery_subset_get");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_subset_get(Shield<SEXP>(Rcpp::wrap(vec_Data)), Shield<SEXP>(Rcpp::wrap(int_Index)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
-    }
-
-    inline LogicalVector subset_get_logical(LogicalVector vec_Data, IntegerVector int_Index) {
-        typedef SEXP(*Ptr_subset_get_logical)(SEXP,SEXP);
-        static Ptr_subset_get_logical p_subset_get_logical = NULL;
-        if (p_subset_get_logical == NULL) {
-            validateSignature("LogicalVector(*subset_get_logical)(LogicalVector,IntegerVector)");
-            p_subset_get_logical = (Ptr_subset_get_logical)R_GetCCallable("HydroGallery", "_HydroGallery_subset_get_logical");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_subset_get_logical(Shield<SEXP>(Rcpp::wrap(vec_Data)), Shield<SEXP>(Rcpp::wrap(int_Index)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<LogicalVector >(rcpp_result_gen);
-    }
-
-    inline void subset_put(NumericVector& vec_Data, IntegerVector int_Index, NumericVector vec_DataPut) {
-        typedef SEXP(*Ptr_subset_put)(SEXP,SEXP,SEXP);
-        static Ptr_subset_put p_subset_put = NULL;
-        if (p_subset_put == NULL) {
-            validateSignature("void(*subset_put)(NumericVector&,IntegerVector,NumericVector)");
-            p_subset_put = (Ptr_subset_put)R_GetCCallable("HydroGallery", "_HydroGallery_subset_put");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_subset_put(Shield<SEXP>(Rcpp::wrap(vec_Data)), Shield<SEXP>(Rcpp::wrap(int_Index)), Shield<SEXP>(Rcpp::wrap(vec_DataPut)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-    }
-
-    inline void subset_add(NumericVector& vec_Data, IntegerVector int_Index, NumericVector vec_DataAdd) {
-        typedef SEXP(*Ptr_subset_add)(SEXP,SEXP,SEXP);
-        static Ptr_subset_add p_subset_add = NULL;
-        if (p_subset_add == NULL) {
-            validateSignature("void(*subset_add)(NumericVector&,IntegerVector,NumericVector)");
-            p_subset_add = (Ptr_subset_add)R_GetCCallable("HydroGallery", "_HydroGallery_subset_add");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_subset_add(Shield<SEXP>(Rcpp::wrap(vec_Data)), Shield<SEXP>(Rcpp::wrap(int_Index)), Shield<SEXP>(Rcpp::wrap(vec_DataAdd)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-    }
-
-    inline NumericVector linear_interpolate_vec(const NumericMatrix& mat_X, const NumericMatrix& mat_Y, const NumericVector& num_X0) {
-        typedef SEXP(*Ptr_linear_interpolate_vec)(SEXP,SEXP,SEXP);
-        static Ptr_linear_interpolate_vec p_linear_interpolate_vec = NULL;
-        if (p_linear_interpolate_vec == NULL) {
-            validateSignature("NumericVector(*linear_interpolate_vec)(const NumericMatrix&,const NumericMatrix&,const NumericVector&)");
-            p_linear_interpolate_vec = (Ptr_linear_interpolate_vec)R_GetCCallable("HydroGallery", "_HydroGallery_linear_interpolate_vec");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_linear_interpolate_vec(Shield<SEXP>(Rcpp::wrap(mat_X)), Shield<SEXP>(Rcpp::wrap(mat_Y)), Shield<SEXP>(Rcpp::wrap(num_X0)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
-    }
-
-    inline NumericVector atmosSnow_ThresholdT(NumericVector ATMOS_precipitation_mm, NumericVector ATMOS_temperature_Cel, NumericVector param_ATMOS_thr_Ts) {
+    inline arma::vec atmosSnow_ThresholdT(const arma::vec& ATMOS_precipitation_mm, const arma::vec& ATMOS_temperature_Cel, const arma::vec& param_ATMOS_thr_Ts) {
         typedef SEXP(*Ptr_atmosSnow_ThresholdT)(SEXP,SEXP,SEXP);
         static Ptr_atmosSnow_ThresholdT p_atmosSnow_ThresholdT = NULL;
         if (p_atmosSnow_ThresholdT == NULL) {
-            validateSignature("NumericVector(*atmosSnow_ThresholdT)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*atmosSnow_ThresholdT)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_atmosSnow_ThresholdT = (Ptr_atmosSnow_ThresholdT)R_GetCCallable("HydroGallery", "_HydroGallery_atmosSnow_ThresholdT");
         }
         RObject rcpp_result_gen;
@@ -145,14 +43,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector atmosSnow_UBC(NumericVector ATMOS_precipitation_mm, NumericVector ATMOS_temperature_Cel, NumericVector param_ATMOS_ubc_A0FORM) {
+    inline arma::vec atmosSnow_UBC(const arma::vec& ATMOS_precipitation_mm, const arma::vec& ATMOS_temperature_Cel, const arma::vec& param_ATMOS_ubc_A0FORM) {
         typedef SEXP(*Ptr_atmosSnow_UBC)(SEXP,SEXP,SEXP);
         static Ptr_atmosSnow_UBC p_atmosSnow_UBC = NULL;
         if (p_atmosSnow_UBC == NULL) {
-            validateSignature("NumericVector(*atmosSnow_UBC)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*atmosSnow_UBC)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_atmosSnow_UBC = (Ptr_atmosSnow_UBC)R_GetCCallable("HydroGallery", "_HydroGallery_atmosSnow_UBC");
         }
         RObject rcpp_result_gen;
@@ -166,14 +64,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector baseflow_GR4J(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm) {
+    inline arma::vec baseflow_GR4J(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm) {
         typedef SEXP(*Ptr_baseflow_GR4J)(SEXP,SEXP);
         static Ptr_baseflow_GR4J p_baseflow_GR4J = NULL;
         if (p_baseflow_GR4J == NULL) {
-            validateSignature("NumericVector(*baseflow_GR4J)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*baseflow_GR4J)(const arma::vec&,const arma::vec&)");
             p_baseflow_GR4J = (Ptr_baseflow_GR4J)R_GetCCallable("HydroGallery", "_HydroGallery_baseflow_GR4J");
         }
         RObject rcpp_result_gen;
@@ -187,14 +85,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector baseflow_GR4Jfix(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector param_BASEFLOW_grf_gamma) {
+    inline arma::vec baseflow_GR4Jfix(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& param_BASEFLOW_grf_gamma) {
         typedef SEXP(*Ptr_baseflow_GR4Jfix)(SEXP,SEXP,SEXP);
         static Ptr_baseflow_GR4Jfix p_baseflow_GR4Jfix = NULL;
         if (p_baseflow_GR4Jfix == NULL) {
-            validateSignature("NumericVector(*baseflow_GR4Jfix)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*baseflow_GR4Jfix)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_baseflow_GR4Jfix = (Ptr_baseflow_GR4Jfix)R_GetCCallable("HydroGallery", "_HydroGallery_baseflow_GR4Jfix");
         }
         RObject rcpp_result_gen;
@@ -208,14 +106,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector baseflow_SupplyRatio(NumericVector GROUND_water_mm, NumericVector param_BASEFLOW_sur_k) {
+    inline arma::vec baseflow_SupplyRatio(const arma::vec& GROUND_water_mm, const arma::vec& param_BASEFLOW_sur_k) {
         typedef SEXP(*Ptr_baseflow_SupplyRatio)(SEXP,SEXP);
         static Ptr_baseflow_SupplyRatio p_baseflow_SupplyRatio = NULL;
         if (p_baseflow_SupplyRatio == NULL) {
-            validateSignature("NumericVector(*baseflow_SupplyRatio)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*baseflow_SupplyRatio)(const arma::vec&,const arma::vec&)");
             p_baseflow_SupplyRatio = (Ptr_baseflow_SupplyRatio)R_GetCCallable("HydroGallery", "_HydroGallery_baseflow_SupplyRatio");
         }
         RObject rcpp_result_gen;
@@ -229,14 +127,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector baseflow_SupplyPow(NumericVector GROUND_water_mm, NumericVector param_BASEFLOW_sup_k, NumericVector param_BASEFLOW_sup_gamma) {
+    inline arma::vec baseflow_SupplyPow(const arma::vec& GROUND_water_mm, const arma::vec& param_BASEFLOW_sup_k, const arma::vec& param_BASEFLOW_sup_gamma) {
         typedef SEXP(*Ptr_baseflow_SupplyPow)(SEXP,SEXP,SEXP);
         static Ptr_baseflow_SupplyPow p_baseflow_SupplyPow = NULL;
         if (p_baseflow_SupplyPow == NULL) {
-            validateSignature("NumericVector(*baseflow_SupplyPow)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*baseflow_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_baseflow_SupplyPow = (Ptr_baseflow_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_baseflow_SupplyPow");
         }
         RObject rcpp_result_gen;
@@ -250,14 +148,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector baseflow_MaxPow(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector GROUND_potentialBaseflow_mm, NumericVector param_BASEFLOW_map_gamma) {
+    inline arma::vec baseflow_MaxPow(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& GROUND_potentialBaseflow_mm, const arma::vec& param_BASEFLOW_map_gamma) {
         typedef SEXP(*Ptr_baseflow_MaxPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_baseflow_MaxPow p_baseflow_MaxPow = NULL;
         if (p_baseflow_MaxPow == NULL) {
-            validateSignature("NumericVector(*baseflow_MaxPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*baseflow_MaxPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_baseflow_MaxPow = (Ptr_baseflow_MaxPow)R_GetCCallable("HydroGallery", "_HydroGallery_baseflow_MaxPow");
         }
         RObject rcpp_result_gen;
@@ -271,14 +169,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector baseflow_ThreshPow(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector GROUND_potentialBaseflow_mm, NumericVector param_BASEFLOW_thp_thresh, NumericVector param_BASEFLOW_thp_gamma) {
+    inline arma::vec baseflow_ThreshPow(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& GROUND_potentialBaseflow_mm, const arma::vec& param_BASEFLOW_thp_thresh, const arma::vec& param_BASEFLOW_thp_gamma) {
         typedef SEXP(*Ptr_baseflow_ThreshPow)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_baseflow_ThreshPow p_baseflow_ThreshPow = NULL;
         if (p_baseflow_ThreshPow == NULL) {
-            validateSignature("NumericVector(*baseflow_ThreshPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*baseflow_ThreshPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_baseflow_ThreshPow = (Ptr_baseflow_ThreshPow)R_GetCCallable("HydroGallery", "_HydroGallery_baseflow_ThreshPow");
         }
         RObject rcpp_result_gen;
@@ -292,14 +190,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector baseflow_Arno(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector GROUND_potentialBaseflow_mm, NumericVector param_BASEFLOW_arn_thresh, NumericVector param_BASEFLOW_arn_k) {
+    inline arma::vec baseflow_Arno(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& GROUND_potentialBaseflow_mm, const arma::vec& param_BASEFLOW_arn_thresh, const arma::vec& param_BASEFLOW_arn_k) {
         typedef SEXP(*Ptr_baseflow_Arno)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_baseflow_Arno p_baseflow_Arno = NULL;
         if (p_baseflow_Arno == NULL) {
-            validateSignature("NumericVector(*baseflow_Arno)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*baseflow_Arno)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_baseflow_Arno = (Ptr_baseflow_Arno)R_GetCCallable("HydroGallery", "_HydroGallery_baseflow_Arno");
         }
         RObject rcpp_result_gen;
@@ -313,35 +211,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline List cali_DDS(Function fitness, List lst_OtherData, NumericVector x_Min, NumericVector x_Max, Nullable<NumericVector> x_Init = R_NilValue, int max_iter = 100, double r = 0.2) {
-        typedef SEXP(*Ptr_cali_DDS)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_cali_DDS p_cali_DDS = NULL;
-        if (p_cali_DDS == NULL) {
-            validateSignature("List(*cali_DDS)(Function,List,NumericVector,NumericVector,Nullable<NumericVector>,int,double)");
-            p_cali_DDS = (Ptr_cali_DDS)R_GetCCallable("HydroGallery", "_HydroGallery_cali_DDS");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_cali_DDS(Shield<SEXP>(Rcpp::wrap(fitness)), Shield<SEXP>(Rcpp::wrap(lst_OtherData)), Shield<SEXP>(Rcpp::wrap(x_Min)), Shield<SEXP>(Rcpp::wrap(x_Max)), Shield<SEXP>(Rcpp::wrap(x_Init)), Shield<SEXP>(Rcpp::wrap(max_iter)), Shield<SEXP>(Rcpp::wrap(r)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
-    }
-
-    inline NumericMatrix landLeafAreaIndex_WaterGAP3(NumericMatrix ATMOS_temperature_Cel, NumericMatrix ATMOS_precipitation_mm, NumericVector CELL_latitude_deg, IntegerVector LAND_growUpDay_d, NumericVector LAND_leafAreaIndexMin_, NumericVector LAND_leafAreaIndexMax_, IntegerVector Time_dayOfYear_d) {
+    inline arma::mat landLeafAreaIndex_WaterGAP3(const arma::mat& ATMOS_temperature_Cel, const arma::mat& ATMOS_precipitation_mm, const arma::vec& CELL_latitude_deg, const arma::ivec& LAND_growUpDay_d, const arma::vec& LAND_leafAreaIndexMin_, const arma::vec& LAND_leafAreaIndexMax_, const arma::ivec& Time_dayOfYear_d) {
         typedef SEXP(*Ptr_landLeafAreaIndex_WaterGAP3)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_landLeafAreaIndex_WaterGAP3 p_landLeafAreaIndex_WaterGAP3 = NULL;
         if (p_landLeafAreaIndex_WaterGAP3 == NULL) {
-            validateSignature("NumericMatrix(*landLeafAreaIndex_WaterGAP3)(NumericMatrix,NumericMatrix,NumericVector,IntegerVector,NumericVector,NumericVector,IntegerVector)");
+            validateSignature("arma::mat(*landLeafAreaIndex_WaterGAP3)(const arma::mat&,const arma::mat&,const arma::vec&,const arma::ivec&,const arma::vec&,const arma::vec&,const arma::ivec&)");
             p_landLeafAreaIndex_WaterGAP3 = (Ptr_landLeafAreaIndex_WaterGAP3)R_GetCCallable("HydroGallery", "_HydroGallery_landLeafAreaIndex_WaterGAP3");
         }
         RObject rcpp_result_gen;
@@ -355,14 +232,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericMatrix >(rcpp_result_gen);
+        return Rcpp::as<arma::mat >(rcpp_result_gen);
     }
 
-    inline NumericVector capirise_HBV(NumericVector GROUND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_potentialCapirise_mm) {
+    inline arma::vec capirise_HBV(const arma::vec& GROUND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_potentialCapirise_mm) {
         typedef SEXP(*Ptr_capirise_HBV)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_capirise_HBV p_capirise_HBV = NULL;
         if (p_capirise_HBV == NULL) {
-            validateSignature("NumericVector(*capirise_HBV)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*capirise_HBV)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_capirise_HBV = (Ptr_capirise_HBV)R_GetCCallable("HydroGallery", "_HydroGallery_capirise_HBV");
         }
         RObject rcpp_result_gen;
@@ -376,14 +253,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector capirise_HBVfix(NumericVector GROUND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_fieldCapacityPerc_1, NumericVector SOIL_potentialCapirise_mm) {
+    inline arma::vec capirise_HBVfix(const arma::vec& GROUND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_fieldCapacityPerc_1, const arma::vec& SOIL_potentialCapirise_mm) {
         typedef SEXP(*Ptr_capirise_HBVfix)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_capirise_HBVfix p_capirise_HBVfix = NULL;
         if (p_capirise_HBVfix == NULL) {
-            validateSignature("NumericVector(*capirise_HBVfix)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*capirise_HBVfix)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_capirise_HBVfix = (Ptr_capirise_HBVfix)R_GetCCallable("HydroGallery", "_HydroGallery_capirise_HBVfix");
         }
         RObject rcpp_result_gen;
@@ -397,14 +274,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector capirise_AcceptRatio(NumericVector GROUND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_fieldCapacityPerc_1, NumericVector param_CAPIRISE_acr_k) {
+    inline arma::vec capirise_AcceptRatio(const arma::vec& GROUND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_fieldCapacityPerc_1, const arma::vec& param_CAPIRISE_acr_k) {
         typedef SEXP(*Ptr_capirise_AcceptRatio)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_capirise_AcceptRatio p_capirise_AcceptRatio = NULL;
         if (p_capirise_AcceptRatio == NULL) {
-            validateSignature("NumericVector(*capirise_AcceptRatio)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*capirise_AcceptRatio)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_capirise_AcceptRatio = (Ptr_capirise_AcceptRatio)R_GetCCallable("HydroGallery", "_HydroGallery_capirise_AcceptRatio");
         }
         RObject rcpp_result_gen;
@@ -418,14 +295,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector capirise_AcceptPow(NumericVector GROUND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_fieldCapacityPerc_1, NumericVector param_CAPIRISE_acp_k, NumericVector param_CAPIRISE_acp_gamma) {
+    inline arma::vec capirise_AcceptPow(const arma::vec& GROUND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_fieldCapacityPerc_1, const arma::vec& param_CAPIRISE_acp_k, const arma::vec& param_CAPIRISE_acp_gamma) {
         typedef SEXP(*Ptr_capirise_AcceptPow)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_capirise_AcceptPow p_capirise_AcceptPow = NULL;
         if (p_capirise_AcceptPow == NULL) {
-            validateSignature("NumericVector(*capirise_AcceptPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*capirise_AcceptPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_capirise_AcceptPow = (Ptr_capirise_AcceptPow)R_GetCCallable("HydroGallery", "_HydroGallery_capirise_AcceptPow");
         }
         RObject rcpp_result_gen;
@@ -439,14 +316,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_IUH(NumericVector CONFLUEN_inputWater_mm, NumericVector CONFLUEN_iuh_1) {
+    inline arma::vec confluen_IUH(const arma::vec& CONFLUEN_inputWater_mm, const arma::vec& CONFLUEN_iuh_1) {
         typedef SEXP(*Ptr_confluen_IUH)(SEXP,SEXP);
         static Ptr_confluen_IUH p_confluen_IUH = NULL;
         if (p_confluen_IUH == NULL) {
-            validateSignature("NumericVector(*confluen_IUH)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*confluen_IUH)(const arma::vec&,const arma::vec&)");
             p_confluen_IUH = (Ptr_confluen_IUH)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_IUH");
         }
         RObject rcpp_result_gen;
@@ -460,14 +337,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_IUH2S(NumericVector LAND_runoff_mm, NumericVector GROUND_baseflow_mm, NumericVector CONFLUEN_iuhLand_1, NumericVector CONFLUEN_iuhGround_1) {
+    inline arma::vec confluen_IUH2S(const arma::vec& LAND_runoff_mm, const arma::vec& GROUND_baseflow_mm, const arma::vec& CONFLUEN_iuhLand_1, const arma::vec& CONFLUEN_iuhGround_1) {
         typedef SEXP(*Ptr_confluen_IUH2S)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_IUH2S p_confluen_IUH2S = NULL;
         if (p_confluen_IUH2S == NULL) {
-            validateSignature("NumericVector(*confluen_IUH2S)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*confluen_IUH2S)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_confluen_IUH2S = (Ptr_confluen_IUH2S)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_IUH2S");
         }
         RObject rcpp_result_gen;
@@ -481,14 +358,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_IUH3S(NumericVector LAND_runoff_mm, NumericVector SOIL_interflow_mm, NumericVector GROUND_baseflow_mm, NumericVector CONFLUEN_iuhLand_1, NumericVector CONFLUEN_iuhSoil_1, NumericVector CONFLUEN_iuhGround_1) {
+    inline arma::vec confluen_IUH3S(const arma::vec& LAND_runoff_mm, const arma::vec& SOIL_interflow_mm, const arma::vec& GROUND_baseflow_mm, const arma::vec& CONFLUEN_iuhLand_1, const arma::vec& CONFLUEN_iuhSoil_1, const arma::vec& CONFLUEN_iuhGround_1) {
         typedef SEXP(*Ptr_confluen_IUH3S)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_IUH3S p_confluen_IUH3S = NULL;
         if (p_confluen_IUH3S == NULL) {
-            validateSignature("NumericVector(*confluen_IUH3S)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*confluen_IUH3S)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_confluen_IUH3S = (Ptr_confluen_IUH3S)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_IUH3S");
         }
         RObject rcpp_result_gen;
@@ -502,14 +379,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluenIUH_GR4J1(double CONFLUEN_responseTime_TS) {
+    inline arma::vec confluenIUH_GR4J1(double CONFLUEN_responseTime_TS) {
         typedef SEXP(*Ptr_confluenIUH_GR4J1)(SEXP);
         static Ptr_confluenIUH_GR4J1 p_confluenIUH_GR4J1 = NULL;
         if (p_confluenIUH_GR4J1 == NULL) {
-            validateSignature("NumericVector(*confluenIUH_GR4J1)(double)");
+            validateSignature("arma::vec(*confluenIUH_GR4J1)(double)");
             p_confluenIUH_GR4J1 = (Ptr_confluenIUH_GR4J1)R_GetCCallable("HydroGallery", "_HydroGallery_confluenIUH_GR4J1");
         }
         RObject rcpp_result_gen;
@@ -523,14 +400,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluenIUH_GR4J2(double CONFLUEN_responseTime_TS) {
+    inline arma::vec confluenIUH_GR4J2(double CONFLUEN_responseTime_TS) {
         typedef SEXP(*Ptr_confluenIUH_GR4J2)(SEXP);
         static Ptr_confluenIUH_GR4J2 p_confluenIUH_GR4J2 = NULL;
         if (p_confluenIUH_GR4J2 == NULL) {
-            validateSignature("NumericVector(*confluenIUH_GR4J2)(double)");
+            validateSignature("arma::vec(*confluenIUH_GR4J2)(double)");
             p_confluenIUH_GR4J2 = (Ptr_confluenIUH_GR4J2)R_GetCCallable("HydroGallery", "_HydroGallery_confluenIUH_GR4J2");
         }
         RObject rcpp_result_gen;
@@ -544,14 +421,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluenIUH_Kelly(double CONFLUEN_responseTime_TS, double param_CONFLUEN_kel_k) {
+    inline arma::vec confluenIUH_Kelly(double CONFLUEN_responseTime_TS, double param_CONFLUEN_kel_k) {
         typedef SEXP(*Ptr_confluenIUH_Kelly)(SEXP,SEXP);
         static Ptr_confluenIUH_Kelly p_confluenIUH_Kelly = NULL;
         if (p_confluenIUH_Kelly == NULL) {
-            validateSignature("NumericVector(*confluenIUH_Kelly)(double,double)");
+            validateSignature("arma::vec(*confluenIUH_Kelly)(double,double)");
             p_confluenIUH_Kelly = (Ptr_confluenIUH_Kelly)R_GetCCallable("HydroGallery", "_HydroGallery_confluenIUH_Kelly");
         }
         RObject rcpp_result_gen;
@@ -565,14 +442,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluenIUH_Nash(double CONFLUEN_responseTime_TS, double param_CONFLUEN_nas_n) {
+    inline arma::vec confluenIUH_Nash(double CONFLUEN_responseTime_TS, double param_CONFLUEN_nas_n) {
         typedef SEXP(*Ptr_confluenIUH_Nash)(SEXP,SEXP);
         static Ptr_confluenIUH_Nash p_confluenIUH_Nash = NULL;
         if (p_confluenIUH_Nash == NULL) {
-            validateSignature("NumericVector(*confluenIUH_Nash)(double,double)");
+            validateSignature("arma::vec(*confluenIUH_Nash)(double,double)");
             p_confluenIUH_Nash = (Ptr_confluenIUH_Nash)R_GetCCallable("HydroGallery", "_HydroGallery_confluenIUH_Nash");
         }
         RObject rcpp_result_gen;
@@ -586,14 +463,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluenIUH_Clark(double CONFLUEN_responseTime_TS) {
+    inline arma::vec confluenIUH_Clark(double CONFLUEN_responseTime_TS) {
         typedef SEXP(*Ptr_confluenIUH_Clark)(SEXP);
         static Ptr_confluenIUH_Clark p_confluenIUH_Clark = NULL;
         if (p_confluenIUH_Clark == NULL) {
-            validateSignature("NumericVector(*confluenIUH_Clark)(double)");
+            validateSignature("arma::vec(*confluenIUH_Clark)(double)");
             p_confluenIUH_Clark = (Ptr_confluenIUH_Clark)R_GetCCallable("HydroGallery", "_HydroGallery_confluenIUH_Clark");
         }
         RObject rcpp_result_gen;
@@ -607,14 +484,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_WaterGAP3_H(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_inflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int) {
+    inline arma::vec confluen_WaterGAP3_H(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int) {
         typedef SEXP(*Ptr_confluen_WaterGAP3_H)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_WaterGAP3_H p_confluen_WaterGAP3_H = NULL;
         if (p_confluen_WaterGAP3_H == NULL) {
-            validateSignature("NumericVector(*confluen_WaterGAP3_H)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List)");
+            validateSignature("arma::vec(*confluen_WaterGAP3_H)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&)");
             p_confluen_WaterGAP3_H = (Ptr_confluen_WaterGAP3_H)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_H");
         }
         RObject rcpp_result_gen;
@@ -628,14 +505,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_WaterGAP3_N(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_inflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor) {
+    inline arma::vec confluen_WaterGAP3_N(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::vec& param_Riverlak_lin_storeFactor) {
         typedef SEXP(*Ptr_confluen_WaterGAP3_N)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_WaterGAP3_N p_confluen_WaterGAP3_N = NULL;
         if (p_confluen_WaterGAP3_N == NULL) {
-            validateSignature("NumericVector(*confluen_WaterGAP3_N)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*confluen_WaterGAP3_N)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&,const arma::uvec&,const arma::vec&,const arma::vec&)");
             p_confluen_WaterGAP3_N = (Ptr_confluen_WaterGAP3_N)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_N");
         }
         RObject rcpp_result_gen;
@@ -649,20 +526,20 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector confluen_WaterGAP3(NumericVector& RIVER_water_m3, NumericVector RIVER_length_km, NumericVector RIVER_velocity_km, NumericVector RIVER_inflow_m3, List CELL_cellNumberStep_int, List CELL_inflowCellNumberStep_int, IntegerVector Riverlak_cellNumber_int, NumericVector Riverlak_capacity_m3, IntegerVector Reservoi_cellNumber_int, NumericVector Reservoi_demand_m3, NumericVector Reservoi_capacity_m3, NumericVector Reservoi_meanInflow_m3, NumericVector Reservoi_meanDemand_m3, NumericVector Reservoi_releaseCoefficient_1, LogicalVector Reservoi_isIrrigate_01, NumericVector param_Riverlak_lin_storeFactor) {
-        typedef SEXP(*Ptr_confluen_WaterGAP3)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_confluen_WaterGAP3 p_confluen_WaterGAP3 = NULL;
-        if (p_confluen_WaterGAP3 == NULL) {
-            validateSignature("NumericVector(*confluen_WaterGAP3)(NumericVector&,NumericVector,NumericVector,NumericVector,List,List,IntegerVector,NumericVector,IntegerVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,LogicalVector,NumericVector)");
-            p_confluen_WaterGAP3 = (Ptr_confluen_WaterGAP3)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3");
+    inline arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::imat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor) {
+        typedef SEXP(*Ptr_confluen_WaterGAP3_U)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_confluen_WaterGAP3_U p_confluen_WaterGAP3_U = NULL;
+        if (p_confluen_WaterGAP3_U == NULL) {
+            validateSignature("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::imat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
+            p_confluen_WaterGAP3_U = (Ptr_confluen_WaterGAP3_U)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_U");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_confluen_WaterGAP3(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_inflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Reservoi_demand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanInflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanDemand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_releaseCoefficient_1)), Shield<SEXP>(Rcpp::wrap(Reservoi_isIrrigate_01)), Shield<SEXP>(Rcpp::wrap(param_Riverlak_lin_storeFactor)));
+            rcpp_result_gen = p_confluen_WaterGAP3_U(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_inflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Reservoi_demand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanInflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanDemand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_releaseCoefficient_1)), Shield<SEXP>(Rcpp::wrap(Reservoi_isIrrigate_01)), Shield<SEXP>(Rcpp::wrap(param_Riverlak_lin_storeFactor)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -670,7 +547,7 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
     inline void save_matbin(SEXP matrix, const std::string& filename) {
@@ -775,137 +652,11 @@ namespace HydroGallery {
         return Rcpp::as<SEXP >(rcpp_result_gen);
     }
 
-    inline double evalute_NSE(NumericVector num_Sim, NumericVector num_Obs) {
-        typedef SEXP(*Ptr_evalute_NSE)(SEXP,SEXP);
-        static Ptr_evalute_NSE p_evalute_NSE = NULL;
-        if (p_evalute_NSE == NULL) {
-            validateSignature("double(*evalute_NSE)(NumericVector,NumericVector)");
-            p_evalute_NSE = (Ptr_evalute_NSE)R_GetCCallable("HydroGallery", "_HydroGallery_evalute_NSE");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_evalute_NSE(Shield<SEXP>(Rcpp::wrap(num_Sim)), Shield<SEXP>(Rcpp::wrap(num_Obs)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<double >(rcpp_result_gen);
-    }
-
-    inline double evalute_KGE(NumericVector num_Sim, NumericVector num_Obs, double factor_r = 1.0, double factor_alpha = 1.0, double factor_beta = 1.0) {
-        typedef SEXP(*Ptr_evalute_KGE)(SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_evalute_KGE p_evalute_KGE = NULL;
-        if (p_evalute_KGE == NULL) {
-            validateSignature("double(*evalute_KGE)(NumericVector,NumericVector,double,double,double)");
-            p_evalute_KGE = (Ptr_evalute_KGE)R_GetCCallable("HydroGallery", "_HydroGallery_evalute_KGE");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_evalute_KGE(Shield<SEXP>(Rcpp::wrap(num_Sim)), Shield<SEXP>(Rcpp::wrap(num_Obs)), Shield<SEXP>(Rcpp::wrap(factor_r)), Shield<SEXP>(Rcpp::wrap(factor_alpha)), Shield<SEXP>(Rcpp::wrap(factor_beta)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<double >(rcpp_result_gen);
-    }
-
-    inline NumericVector evatransPotential_TurcWendling(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_solarRadiat_MJ, NumericVector param_EVATRANS_tur_k) {
-        typedef SEXP(*Ptr_evatransPotential_TurcWendling)(SEXP,SEXP,SEXP);
-        static Ptr_evatransPotential_TurcWendling p_evatransPotential_TurcWendling = NULL;
-        if (p_evatransPotential_TurcWendling == NULL) {
-            validateSignature("NumericVector(*evatransPotential_TurcWendling)(NumericVector,NumericVector,NumericVector)");
-            p_evatransPotential_TurcWendling = (Ptr_evatransPotential_TurcWendling)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_TurcWendling");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_evatransPotential_TurcWendling(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_solarRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(param_EVATRANS_tur_k)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
-    }
-
-    inline NumericVector evatransPotential_Linacre(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_relativeHumidity_1, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m, NumericVector LAND_albedo_1) {
-        typedef SEXP(*Ptr_evatransPotential_Linacre)(SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_evatransPotential_Linacre p_evatransPotential_Linacre = NULL;
-        if (p_evatransPotential_Linacre == NULL) {
-            validateSignature("NumericVector(*evatransPotential_Linacre)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
-            p_evatransPotential_Linacre = (Ptr_evatransPotential_Linacre)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_Linacre");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_evatransPotential_Linacre(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_relativeHumidity_1)), Shield<SEXP>(Rcpp::wrap(LAND_latitude_Degree)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)), Shield<SEXP>(Rcpp::wrap(LAND_albedo_1)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
-    }
-
-    inline NumericVector evatransPotential_FAO56(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_vaporPress_hPa, NumericVector ATMOS_saturatVaporPress_hPa, NumericVector ATMOS_netRadiat_MJ, NumericVector ATMOS_windSpeed2m_m_s, NumericVector LAND_elevation_m) {
-        typedef SEXP(*Ptr_evatransPotential_FAO56)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_evatransPotential_FAO56 p_evatransPotential_FAO56 = NULL;
-        if (p_evatransPotential_FAO56 == NULL) {
-            validateSignature("NumericVector(*evatransPotential_FAO56)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
-            p_evatransPotential_FAO56 = (Ptr_evatransPotential_FAO56)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_FAO56");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_evatransPotential_FAO56(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_vaporPress_hPa)), Shield<SEXP>(Rcpp::wrap(ATMOS_saturatVaporPress_hPa)), Shield<SEXP>(Rcpp::wrap(ATMOS_netRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(ATMOS_windSpeed2m_m_s)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
-    }
-
-    inline NumericVector evatransPotential_PriestleyTaylor(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_netRadiat_MJ, NumericVector LAND_elevation_m, NumericVector param_EVATRANS_prt_alpha) {
-        typedef SEXP(*Ptr_evatransPotential_PriestleyTaylor)(SEXP,SEXP,SEXP,SEXP);
-        static Ptr_evatransPotential_PriestleyTaylor p_evatransPotential_PriestleyTaylor = NULL;
-        if (p_evatransPotential_PriestleyTaylor == NULL) {
-            validateSignature("NumericVector(*evatransPotential_PriestleyTaylor)(NumericVector,NumericVector,NumericVector,NumericVector)");
-            p_evatransPotential_PriestleyTaylor = (Ptr_evatransPotential_PriestleyTaylor)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_PriestleyTaylor");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_evatransPotential_PriestleyTaylor(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_netRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)), Shield<SEXP>(Rcpp::wrap(param_EVATRANS_prt_alpha)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
-    }
-
-    inline NumericVector evatransActual_SupplyRatio(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_sur_k) {
+    inline arma::vec evatransActual_SupplyRatio(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_sur_k) {
         typedef SEXP(*Ptr_evatransActual_SupplyRatio)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_SupplyRatio p_evatransActual_SupplyRatio = NULL;
         if (p_evatransActual_SupplyRatio == NULL) {
-            validateSignature("NumericVector(*evatransActual_SupplyRatio)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_SupplyRatio)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_SupplyRatio = (Ptr_evatransActual_SupplyRatio)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_SupplyRatio");
         }
         RObject rcpp_result_gen;
@@ -919,14 +670,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector evatransActual_SupplyPow(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_sup_k, NumericVector param_EVATRANS_sup_gamma) {
+    inline arma::vec evatransActual_SupplyPow(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_sup_k, const arma::vec& param_EVATRANS_sup_gamma) {
         typedef SEXP(*Ptr_evatransActual_SupplyPow)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_SupplyPow p_evatransActual_SupplyPow = NULL;
         if (p_evatransActual_SupplyPow == NULL) {
-            validateSignature("NumericVector(*evatransActual_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_SupplyPow = (Ptr_evatransActual_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_SupplyPow");
         }
         RObject rcpp_result_gen;
@@ -940,14 +691,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector evatransActual_VIC(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_vic_gamma) {
+    inline arma::vec evatransActual_VIC(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_vic_gamma) {
         typedef SEXP(*Ptr_evatransActual_VIC)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_VIC p_evatransActual_VIC = NULL;
         if (p_evatransActual_VIC == NULL) {
-            validateSignature("NumericVector(*evatransActual_VIC)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_VIC)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_VIC = (Ptr_evatransActual_VIC)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_VIC");
         }
         RObject rcpp_result_gen;
@@ -961,14 +712,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector evatransActual_GR4J(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm) {
+    inline arma::vec evatransActual_GR4J(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm) {
         typedef SEXP(*Ptr_evatransActual_GR4J)(SEXP,SEXP,SEXP);
         static Ptr_evatransActual_GR4J p_evatransActual_GR4J = NULL;
         if (p_evatransActual_GR4J == NULL) {
-            validateSignature("NumericVector(*evatransActual_GR4J)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_GR4J)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_GR4J = (Ptr_evatransActual_GR4J)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_GR4J");
         }
         RObject rcpp_result_gen;
@@ -982,14 +733,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector evatransActual_UBC(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_ubc_gamma) {
+    inline arma::vec evatransActual_UBC(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_ubc_gamma) {
         typedef SEXP(*Ptr_evatransActual_UBC)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_UBC p_evatransActual_UBC = NULL;
         if (p_evatransActual_UBC == NULL) {
-            validateSignature("NumericVector(*evatransActual_UBC)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_UBC)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_UBC = (Ptr_evatransActual_UBC)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_UBC");
         }
         RObject rcpp_result_gen;
@@ -1003,14 +754,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector evatransActual_LiangLand(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_lia_gamma) {
+    inline arma::vec evatransActual_LiangLand(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_lia_gamma) {
         typedef SEXP(*Ptr_evatransActual_LiangLand)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_LiangLand p_evatransActual_LiangLand = NULL;
         if (p_evatransActual_LiangLand == NULL) {
-            validateSignature("NumericVector(*evatransActual_LiangLand)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_LiangLand)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_LiangLand = (Ptr_evatransActual_LiangLand)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_LiangLand");
         }
         RObject rcpp_result_gen;
@@ -1024,14 +775,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector evatransActual_LiangSoil(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_lia_B) {
+    inline arma::vec evatransActual_LiangSoil(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_lia_B) {
         typedef SEXP(*Ptr_evatransActual_LiangSoil)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_LiangSoil p_evatransActual_LiangSoil = NULL;
         if (p_evatransActual_LiangSoil == NULL) {
-            validateSignature("NumericVector(*evatransActual_LiangSoil)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_LiangSoil)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_LiangSoil = (Ptr_evatransActual_LiangSoil)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_LiangSoil");
         }
         RObject rcpp_result_gen;
@@ -1045,14 +796,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector evatransActual_WaterGAP3(NumericVector ATMOS_potentialEvatrans_mm, NumericVector water_mm, NumericVector capacity_mm, NumericVector param_EVATRANS_wat_petmax) {
+    inline arma::vec evatransActual_WaterGAP3(const arma::vec& ATMOS_potentialEvatrans_mm, const arma::vec& water_mm, const arma::vec& capacity_mm, const arma::vec& param_EVATRANS_wat_petmax) {
         typedef SEXP(*Ptr_evatransActual_WaterGAP3)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_evatransActual_WaterGAP3 p_evatransActual_WaterGAP3 = NULL;
         if (p_evatransActual_WaterGAP3 == NULL) {
-            validateSignature("NumericVector(*evatransActual_WaterGAP3)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*evatransActual_WaterGAP3)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_evatransActual_WaterGAP3 = (Ptr_evatransActual_WaterGAP3)R_GetCCallable("HydroGallery", "_HydroGallery_evatransActual_WaterGAP3");
         }
         RObject rcpp_result_gen;
@@ -1066,14 +817,98 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_GR4J(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm) {
+    inline arma::vec evatransPotential_TurcWendling(const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& param_EVATRANS_tur_k) {
+        typedef SEXP(*Ptr_evatransPotential_TurcWendling)(SEXP,SEXP,SEXP);
+        static Ptr_evatransPotential_TurcWendling p_evatransPotential_TurcWendling = NULL;
+        if (p_evatransPotential_TurcWendling == NULL) {
+            validateSignature("arma::vec(*evatransPotential_TurcWendling)(const arma::vec&,const arma::vec&,const arma::vec&)");
+            p_evatransPotential_TurcWendling = (Ptr_evatransPotential_TurcWendling)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_TurcWendling");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_evatransPotential_TurcWendling(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_solarRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(param_EVATRANS_tur_k)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
+    }
+
+    inline arma::vec evatransPotential_Linacre(const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_relativeHumidity_1, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m, const arma::vec& LAND_albedo_1) {
+        typedef SEXP(*Ptr_evatransPotential_Linacre)(SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_evatransPotential_Linacre p_evatransPotential_Linacre = NULL;
+        if (p_evatransPotential_Linacre == NULL) {
+            validateSignature("arma::vec(*evatransPotential_Linacre)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
+            p_evatransPotential_Linacre = (Ptr_evatransPotential_Linacre)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_Linacre");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_evatransPotential_Linacre(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_relativeHumidity_1)), Shield<SEXP>(Rcpp::wrap(LAND_latitude_Degree)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)), Shield<SEXP>(Rcpp::wrap(LAND_albedo_1)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
+    }
+
+    inline arma::vec evatransPotential_FAO56(const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_vaporPress_hPa, const arma::vec& ATMOS_saturatVaporPress_hPa, const arma::vec& ATMOS_netRadiat_MJ, const arma::vec& ATMOS_windSpeed2m_m_s, const arma::vec& LAND_elevation_m) {
+        typedef SEXP(*Ptr_evatransPotential_FAO56)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_evatransPotential_FAO56 p_evatransPotential_FAO56 = NULL;
+        if (p_evatransPotential_FAO56 == NULL) {
+            validateSignature("arma::vec(*evatransPotential_FAO56)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
+            p_evatransPotential_FAO56 = (Ptr_evatransPotential_FAO56)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_FAO56");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_evatransPotential_FAO56(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_vaporPress_hPa)), Shield<SEXP>(Rcpp::wrap(ATMOS_saturatVaporPress_hPa)), Shield<SEXP>(Rcpp::wrap(ATMOS_netRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(ATMOS_windSpeed2m_m_s)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
+    }
+
+    inline arma::vec evatransPotential_PriestleyTaylor(const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_netRadiat_MJ, const arma::vec& LAND_elevation_m, const arma::vec& param_EVATRANS_prt_alpha) {
+        typedef SEXP(*Ptr_evatransPotential_PriestleyTaylor)(SEXP,SEXP,SEXP,SEXP);
+        static Ptr_evatransPotential_PriestleyTaylor p_evatransPotential_PriestleyTaylor = NULL;
+        if (p_evatransPotential_PriestleyTaylor == NULL) {
+            validateSignature("arma::vec(*evatransPotential_PriestleyTaylor)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
+            p_evatransPotential_PriestleyTaylor = (Ptr_evatransPotential_PriestleyTaylor)R_GetCCallable("HydroGallery", "_HydroGallery_evatransPotential_PriestleyTaylor");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_evatransPotential_PriestleyTaylor(Shield<SEXP>(Rcpp::wrap(ATMOS_temperature_Cel)), Shield<SEXP>(Rcpp::wrap(ATMOS_netRadiat_MJ)), Shield<SEXP>(Rcpp::wrap(LAND_elevation_m)), Shield<SEXP>(Rcpp::wrap(param_EVATRANS_prt_alpha)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
+    }
+
+    inline arma::vec infilt_GR4J(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm) {
         typedef SEXP(*Ptr_infilt_GR4J)(SEXP,SEXP,SEXP);
         static Ptr_infilt_GR4J p_infilt_GR4J = NULL;
         if (p_infilt_GR4J == NULL) {
-            validateSignature("NumericVector(*infilt_GR4J)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_GR4J)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_GR4J = (Ptr_infilt_GR4J)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_GR4J");
         }
         RObject rcpp_result_gen;
@@ -1087,14 +922,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_UBC(NumericVector LAND_water_mm, NumericVector LAND_impermeableFrac_1, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_ubc_P0AGEN) {
+    inline arma::vec infilt_UBC(const arma::vec& LAND_water_mm, const arma::vec& LAND_impermeableFrac_1, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_ubc_P0AGEN) {
         typedef SEXP(*Ptr_infilt_UBC)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_UBC p_infilt_UBC = NULL;
         if (p_infilt_UBC == NULL) {
-            validateSignature("NumericVector(*infilt_UBC)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_UBC)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_UBC = (Ptr_infilt_UBC)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_UBC");
         }
         RObject rcpp_result_gen;
@@ -1108,14 +943,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_SupplyRatio(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_sur_k) {
+    inline arma::vec infilt_SupplyRatio(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_sur_k) {
         typedef SEXP(*Ptr_infilt_SupplyRatio)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_SupplyRatio p_infilt_SupplyRatio = NULL;
         if (p_infilt_SupplyRatio == NULL) {
-            validateSignature("NumericVector(*infilt_SupplyRatio)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_SupplyRatio)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_SupplyRatio = (Ptr_infilt_SupplyRatio)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_SupplyRatio");
         }
         RObject rcpp_result_gen;
@@ -1129,14 +964,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_AcceptRatio(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_acr_k) {
+    inline arma::vec infilt_AcceptRatio(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_acr_k) {
         typedef SEXP(*Ptr_infilt_AcceptRatio)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_AcceptRatio p_infilt_AcceptRatio = NULL;
         if (p_infilt_AcceptRatio == NULL) {
-            validateSignature("NumericVector(*infilt_AcceptRatio)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_AcceptRatio)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_AcceptRatio = (Ptr_infilt_AcceptRatio)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_AcceptRatio");
         }
         RObject rcpp_result_gen;
@@ -1150,14 +985,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_SupplyPow(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_sup_k, NumericVector param_INFILT_sup_gamma) {
+    inline arma::vec infilt_SupplyPow(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_sup_k, const arma::vec& param_INFILT_sup_gamma) {
         typedef SEXP(*Ptr_infilt_SupplyPow)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_SupplyPow p_infilt_SupplyPow = NULL;
         if (p_infilt_SupplyPow == NULL) {
-            validateSignature("NumericVector(*infilt_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_SupplyPow = (Ptr_infilt_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_SupplyPow");
         }
         RObject rcpp_result_gen;
@@ -1171,14 +1006,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_AcceptPow(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_acp_k, NumericVector param_INFILT_acp_gamma) {
+    inline arma::vec infilt_AcceptPow(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_acp_k, const arma::vec& param_INFILT_acp_gamma) {
         typedef SEXP(*Ptr_infilt_AcceptPow)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_AcceptPow p_infilt_AcceptPow = NULL;
         if (p_infilt_AcceptPow == NULL) {
-            validateSignature("NumericVector(*infilt_AcceptPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_AcceptPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_AcceptPow = (Ptr_infilt_AcceptPow)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_AcceptPow");
         }
         RObject rcpp_result_gen;
@@ -1192,14 +1027,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_HBV(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_hbv_beta) {
+    inline arma::vec infilt_HBV(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_hbv_beta) {
         typedef SEXP(*Ptr_infilt_HBV)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_HBV p_infilt_HBV = NULL;
         if (p_infilt_HBV == NULL) {
-            validateSignature("NumericVector(*infilt_HBV)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_HBV)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_HBV = (Ptr_infilt_HBV)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_HBV");
         }
         RObject rcpp_result_gen;
@@ -1213,14 +1048,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_XAJ(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_xaj_B) {
+    inline arma::vec infilt_XAJ(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_xaj_B) {
         typedef SEXP(*Ptr_infilt_XAJ)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_XAJ p_infilt_XAJ = NULL;
         if (p_infilt_XAJ == NULL) {
-            validateSignature("NumericVector(*infilt_XAJ)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_XAJ)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_XAJ = (Ptr_infilt_XAJ)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_XAJ");
         }
         RObject rcpp_result_gen;
@@ -1234,14 +1069,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector infilt_VIC(NumericVector LAND_water_mm, NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INFILT_vic_B) {
+    inline arma::vec infilt_VIC(const arma::vec& LAND_water_mm, const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_INFILT_vic_B) {
         typedef SEXP(*Ptr_infilt_VIC)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_infilt_VIC p_infilt_VIC = NULL;
         if (p_infilt_VIC == NULL) {
-            validateSignature("NumericVector(*infilt_VIC)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*infilt_VIC)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_infilt_VIC = (Ptr_infilt_VIC)R_GetCCallable("HydroGallery", "_HydroGallery_infilt_VIC");
         }
         RObject rcpp_result_gen;
@@ -1255,14 +1090,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_GR4Jfix(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INTEFLOW_grf_k, NumericVector param_INTEFLOW_grf_gamma) {
+    inline arma::vec inteflow_GR4Jfix(arma::vec SOIL_water_mm, arma::vec SOIL_capacity_mm, arma::vec param_INTEFLOW_grf_k, arma::vec param_INTEFLOW_grf_gamma) {
         typedef SEXP(*Ptr_inteflow_GR4Jfix)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_inteflow_GR4Jfix p_inteflow_GR4Jfix = NULL;
         if (p_inteflow_GR4Jfix == NULL) {
-            validateSignature("NumericVector(*inteflow_GR4Jfix)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_GR4Jfix)(arma::vec,arma::vec,arma::vec,arma::vec)");
             p_inteflow_GR4Jfix = (Ptr_inteflow_GR4Jfix)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_GR4Jfix");
         }
         RObject rcpp_result_gen;
@@ -1276,14 +1111,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_MaxPow(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_potentialInteflow_mm, NumericVector param_INTEFLOW_map_gamma) {
+    inline arma::vec inteflow_MaxPow(arma::vec SOIL_water_mm, arma::vec SOIL_capacity_mm, arma::vec SOIL_potentialInteflow_mm, arma::vec param_INTEFLOW_map_gamma) {
         typedef SEXP(*Ptr_inteflow_MaxPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_inteflow_MaxPow p_inteflow_MaxPow = NULL;
         if (p_inteflow_MaxPow == NULL) {
-            validateSignature("NumericVector(*inteflow_MaxPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_MaxPow)(arma::vec,arma::vec,arma::vec,arma::vec)");
             p_inteflow_MaxPow = (Ptr_inteflow_MaxPow)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_MaxPow");
         }
         RObject rcpp_result_gen;
@@ -1297,14 +1132,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_ThreshPow(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_potentialInteflow_mm, NumericVector param_INTEFLOW_thp_thresh, NumericVector param_INTEFLOW_thp_gamma) {
+    inline arma::vec inteflow_ThreshPow(arma::vec SOIL_water_mm, arma::vec SOIL_capacity_mm, arma::vec SOIL_potentialInteflow_mm, arma::vec param_INTEFLOW_thp_thresh, arma::vec param_INTEFLOW_thp_gamma) {
         typedef SEXP(*Ptr_inteflow_ThreshPow)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_inteflow_ThreshPow p_inteflow_ThreshPow = NULL;
         if (p_inteflow_ThreshPow == NULL) {
-            validateSignature("NumericVector(*inteflow_ThreshPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_ThreshPow)(arma::vec,arma::vec,arma::vec,arma::vec,arma::vec)");
             p_inteflow_ThreshPow = (Ptr_inteflow_ThreshPow)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_ThreshPow");
         }
         RObject rcpp_result_gen;
@@ -1318,14 +1153,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_Arno(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_potentialInteflow_mm, NumericVector param_INTEFLOW_arn_thresh, NumericVector param_INTEFLOW_arn_k) {
+    inline arma::vec inteflow_Arno(arma::vec SOIL_water_mm, arma::vec SOIL_capacity_mm, arma::vec SOIL_potentialInteflow_mm, arma::vec param_INTEFLOW_arn_thresh, arma::vec param_INTEFLOW_arn_k) {
         typedef SEXP(*Ptr_inteflow_Arno)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_inteflow_Arno p_inteflow_Arno = NULL;
         if (p_inteflow_Arno == NULL) {
-            validateSignature("NumericVector(*inteflow_Arno)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_Arno)(arma::vec,arma::vec,arma::vec,arma::vec,arma::vec)");
             p_inteflow_Arno = (Ptr_inteflow_Arno)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_Arno");
         }
         RObject rcpp_result_gen;
@@ -1339,14 +1174,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_BevenWood(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_fieldCapacityPerc_1, NumericVector SOIL_potentialInteflow_mm) {
+    inline arma::vec inteflow_BevenWood(arma::vec SOIL_water_mm, arma::vec SOIL_capacity_mm, arma::vec SOIL_fieldCapacityPerc_1, arma::vec SOIL_potentialInteflow_mm) {
         typedef SEXP(*Ptr_inteflow_BevenWood)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_inteflow_BevenWood p_inteflow_BevenWood = NULL;
         if (p_inteflow_BevenWood == NULL) {
-            validateSignature("NumericVector(*inteflow_BevenWood)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_BevenWood)(arma::vec,arma::vec,arma::vec,arma::vec)");
             p_inteflow_BevenWood = (Ptr_inteflow_BevenWood)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_BevenWood");
         }
         RObject rcpp_result_gen;
@@ -1360,14 +1195,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_SupplyPow0(NumericVector SOIL_water_mm, NumericVector param_INTEFLOW_sp0_k, NumericVector param_INTEFLOW_sp0_gamma) {
+    inline arma::vec inteflow_SupplyPow0(arma::vec SOIL_water_mm, arma::vec param_INTEFLOW_sp0_k, arma::vec param_INTEFLOW_sp0_gamma) {
         typedef SEXP(*Ptr_inteflow_SupplyPow0)(SEXP,SEXP,SEXP);
         static Ptr_inteflow_SupplyPow0 p_inteflow_SupplyPow0 = NULL;
         if (p_inteflow_SupplyPow0 == NULL) {
-            validateSignature("NumericVector(*inteflow_SupplyPow0)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_SupplyPow0)(arma::vec,arma::vec,arma::vec)");
             p_inteflow_SupplyPow0 = (Ptr_inteflow_SupplyPow0)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_SupplyPow0");
         }
         RObject rcpp_result_gen;
@@ -1381,14 +1216,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_SupplyPow(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_INTEFLOW_sup_k, NumericVector param_INTEFLOW_sup_gamma) {
+    inline arma::vec inteflow_SupplyPow(arma::vec SOIL_water_mm, arma::vec SOIL_capacity_mm, arma::vec param_INTEFLOW_sup_k, arma::vec param_INTEFLOW_sup_gamma) {
         typedef SEXP(*Ptr_inteflow_SupplyPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_inteflow_SupplyPow p_inteflow_SupplyPow = NULL;
         if (p_inteflow_SupplyPow == NULL) {
-            validateSignature("NumericVector(*inteflow_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_SupplyPow)(arma::vec,arma::vec,arma::vec,arma::vec)");
             p_inteflow_SupplyPow = (Ptr_inteflow_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_SupplyPow");
         }
         RObject rcpp_result_gen;
@@ -1402,14 +1237,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector inteflow_SupplyRatio(NumericVector SOIL_water_mm, NumericVector param_INTEFLOW_sur_k) {
+    inline arma::vec inteflow_SupplyRatio(arma::vec SOIL_water_mm, arma::vec param_INTEFLOW_sur_k) {
         typedef SEXP(*Ptr_inteflow_SupplyRatio)(SEXP,SEXP);
         static Ptr_inteflow_SupplyRatio p_inteflow_SupplyRatio = NULL;
         if (p_inteflow_SupplyRatio == NULL) {
-            validateSignature("NumericVector(*inteflow_SupplyRatio)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*inteflow_SupplyRatio)(arma::vec,arma::vec)");
             p_inteflow_SupplyRatio = (Ptr_inteflow_SupplyRatio)R_GetCCallable("HydroGallery", "_HydroGallery_inteflow_SupplyRatio");
         }
         RObject rcpp_result_gen;
@@ -1423,14 +1258,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector intercep_Full(NumericVector ATMOS_precipitation_mm, NumericVector LAND_interceptWater_mm, NumericVector LAND_interceptCapacity_mm) {
+    inline arma::vec intercep_Full(const arma::vec& ATMOS_precipitation_mm, const arma::vec& LAND_interceptWater_mm, const arma::vec& LAND_interceptCapacity_mm) {
         typedef SEXP(*Ptr_intercep_Full)(SEXP,SEXP,SEXP);
         static Ptr_intercep_Full p_intercep_Full = NULL;
         if (p_intercep_Full == NULL) {
-            validateSignature("NumericVector(*intercep_Full)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*intercep_Full)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_intercep_Full = (Ptr_intercep_Full)R_GetCCallable("HydroGallery", "_HydroGallery_intercep_Full");
         }
         RObject rcpp_result_gen;
@@ -1444,14 +1279,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lakeout_SupplyPow(NumericVector Lake_water_m3, NumericVector Lake_capacity_m3, NumericVector param_Lakeout_sup_storeFactor, NumericVector param_Lakeout_sup_gamma) {
+    inline arma::vec lakeout_SupplyPow(const arma::vec& Lake_water_m3, const arma::vec& Lake_capacity_m3, const arma::vec& param_Lakeout_sup_storeFactor, const arma::vec& param_Lakeout_sup_gamma) {
         typedef SEXP(*Ptr_lakeout_SupplyPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_lakeout_SupplyPow p_lakeout_SupplyPow = NULL;
         if (p_lakeout_SupplyPow == NULL) {
-            validateSignature("NumericVector(*lakeout_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lakeout_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_lakeout_SupplyPow = (Ptr_lakeout_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_lakeout_SupplyPow");
         }
         RObject rcpp_result_gen;
@@ -1465,14 +1300,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lakeevap_Zhao(NumericVector ATMOS_solarRadiat_MJ, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_vaporPress_kPa, NumericVector ATMOS_windSpeed2m_m_s, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m, NumericVector& Lake_temperature_Cel, NumericVector Lake_depth_m, NumericVector Lake_area_km2, NumericVector Lake_fetchLength_m, NumericVector Time_dayOfYear) {
+    inline arma::vec lakeevap_Zhao(const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_vaporPress_kPa, const arma::vec& ATMOS_windSpeed2m_m_s, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m, arma::vec& Lake_temperature_Cel, arma::vec& Lake_depth_m, const arma::vec& Lake_area_km2, const arma::vec& Lake_fetchLength_m, const arma::vec& Time_dayOfYear) {
         typedef SEXP(*Ptr_lakeevap_Zhao)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_lakeevap_Zhao p_lakeevap_Zhao = NULL;
         if (p_lakeevap_Zhao == NULL) {
-            validateSignature("NumericVector(*lakeevap_Zhao)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector&,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lakeevap_Zhao)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,arma::vec&,arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_lakeevap_Zhao = (Ptr_lakeevap_Zhao)R_GetCCallable("HydroGallery", "_HydroGallery_lakeevap_Zhao");
         }
         RObject rcpp_result_gen;
@@ -1486,14 +1321,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lateral_SupplyPow(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector param_LATERAL_sup_k, NumericVector param_LATERAL_sup_gamma) {
+    inline arma::vec lateral_SupplyPow(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& param_LATERAL_sup_k, const arma::vec& param_LATERAL_sup_gamma) {
         typedef SEXP(*Ptr_lateral_SupplyPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_lateral_SupplyPow p_lateral_SupplyPow = NULL;
         if (p_lateral_SupplyPow == NULL) {
-            validateSignature("NumericVector(*lateral_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lateral_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_lateral_SupplyPow = (Ptr_lateral_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_lateral_SupplyPow");
         }
         RObject rcpp_result_gen;
@@ -1507,14 +1342,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lateral_SupplyRatio(NumericVector GROUND_water_mm, NumericVector param_LATERAL_sur_k) {
+    inline arma::vec lateral_SupplyRatio(const arma::vec& GROUND_water_mm, const arma::vec& param_LATERAL_sur_k) {
         typedef SEXP(*Ptr_lateral_SupplyRatio)(SEXP,SEXP);
         static Ptr_lateral_SupplyRatio p_lateral_SupplyRatio = NULL;
         if (p_lateral_SupplyRatio == NULL) {
-            validateSignature("NumericVector(*lateral_SupplyRatio)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lateral_SupplyRatio)(const arma::vec&,const arma::vec&)");
             p_lateral_SupplyRatio = (Ptr_lateral_SupplyRatio)R_GetCCallable("HydroGallery", "_HydroGallery_lateral_SupplyRatio");
         }
         RObject rcpp_result_gen;
@@ -1528,14 +1363,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lateral_GR4J(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector GROUND_potentialLateral_mm) {
+    inline arma::vec lateral_GR4J(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& GROUND_potentialLateral_mm) {
         typedef SEXP(*Ptr_lateral_GR4J)(SEXP,SEXP,SEXP);
         static Ptr_lateral_GR4J p_lateral_GR4J = NULL;
         if (p_lateral_GR4J == NULL) {
-            validateSignature("NumericVector(*lateral_GR4J)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lateral_GR4J)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_lateral_GR4J = (Ptr_lateral_GR4J)R_GetCCallable("HydroGallery", "_HydroGallery_lateral_GR4J");
         }
         RObject rcpp_result_gen;
@@ -1549,14 +1384,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lateral_GR4Jfix(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector GROUND_potentialLateral_mm, NumericVector param_LATERAL_grf_gamma) {
+    inline arma::vec lateral_GR4Jfix(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& GROUND_potentialLateral_mm, const arma::vec& param_LATERAL_grf_gamma) {
         typedef SEXP(*Ptr_lateral_GR4Jfix)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_lateral_GR4Jfix p_lateral_GR4Jfix = NULL;
         if (p_lateral_GR4Jfix == NULL) {
-            validateSignature("NumericVector(*lateral_GR4Jfix)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lateral_GR4Jfix)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_lateral_GR4Jfix = (Ptr_lateral_GR4Jfix)R_GetCCallable("HydroGallery", "_HydroGallery_lateral_GR4Jfix");
         }
         RObject rcpp_result_gen;
@@ -1570,14 +1405,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lateral_ThreshPow(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector GROUND_potentialLateral_mm, NumericVector param_LATERAL_thp_thresh, NumericVector param_LATERAL_thp_gamma) {
+    inline arma::vec lateral_ThreshPow(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& GROUND_potentialLateral_mm, const arma::vec& param_LATERAL_thp_thresh, const arma::vec& param_LATERAL_thp_gamma) {
         typedef SEXP(*Ptr_lateral_ThreshPow)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_lateral_ThreshPow p_lateral_ThreshPow = NULL;
         if (p_lateral_ThreshPow == NULL) {
-            validateSignature("NumericVector(*lateral_ThreshPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lateral_ThreshPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_lateral_ThreshPow = (Ptr_lateral_ThreshPow)R_GetCCallable("HydroGallery", "_HydroGallery_lateral_ThreshPow");
         }
         RObject rcpp_result_gen;
@@ -1591,14 +1426,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector lateral_Arno(NumericVector GROUND_water_mm, NumericVector GROUND_capacity_mm, NumericVector GROUND_potentialLateral_mm, NumericVector param_LATERAL_arn_thresh, NumericVector param_LATERAL_arn_k) {
+    inline arma::vec lateral_Arno(const arma::vec& GROUND_water_mm, const arma::vec& GROUND_capacity_mm, const arma::vec& GROUND_potentialLateral_mm, const arma::vec& param_LATERAL_arn_thresh, const arma::vec& param_LATERAL_arn_k) {
         typedef SEXP(*Ptr_lateral_Arno)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_lateral_Arno p_lateral_Arno = NULL;
         if (p_lateral_Arno == NULL) {
-            validateSignature("NumericVector(*lateral_Arno)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*lateral_Arno)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_lateral_Arno = (Ptr_lateral_Arno)R_GetCCallable("HydroGallery", "_HydroGallery_lateral_Arno");
         }
         RObject rcpp_result_gen;
@@ -1612,14 +1447,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_extraterreSolarRadiat_FAO56(NumericVector Time_dayOfYear_, NumericVector LAND_latitude_Degree) {
+    inline arma::vec meteo_extraterreSolarRadiat_FAO56(const arma::vec& Time_dayOfYear_, const arma::vec& LAND_latitude_Degree) {
         typedef SEXP(*Ptr_meteo_extraterreSolarRadiat_FAO56)(SEXP,SEXP);
         static Ptr_meteo_extraterreSolarRadiat_FAO56 p_meteo_extraterreSolarRadiat_FAO56 = NULL;
         if (p_meteo_extraterreSolarRadiat_FAO56 == NULL) {
-            validateSignature("NumericVector(*meteo_extraterreSolarRadiat_FAO56)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_extraterreSolarRadiat_FAO56)(const arma::vec&,const arma::vec&)");
             p_meteo_extraterreSolarRadiat_FAO56 = (Ptr_meteo_extraterreSolarRadiat_FAO56)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_extraterreSolarRadiat_FAO56");
         }
         RObject rcpp_result_gen;
@@ -1633,14 +1468,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_solarRadiatClearSky_FAO56(NumericVector Time_dayOfYear_, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
+    inline arma::vec meteo_solarRadiatClearSky_FAO56(const arma::vec& Time_dayOfYear_, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_solarRadiatClearSky_FAO56)(SEXP,SEXP,SEXP);
         static Ptr_meteo_solarRadiatClearSky_FAO56 p_meteo_solarRadiatClearSky_FAO56 = NULL;
         if (p_meteo_solarRadiatClearSky_FAO56 == NULL) {
-            validateSignature("NumericVector(*meteo_solarRadiatClearSky_FAO56)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_solarRadiatClearSky_FAO56)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_meteo_solarRadiatClearSky_FAO56 = (Ptr_meteo_solarRadiatClearSky_FAO56)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_solarRadiatClearSky_FAO56");
         }
         RObject rcpp_result_gen;
@@ -1654,14 +1489,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_saturatVaporPress(NumericVector ATMOS_temperature_Cel) {
+    inline arma::vec meteo_saturatVaporPress(const arma::vec& ATMOS_temperature_Cel) {
         typedef SEXP(*Ptr_meteo_saturatVaporPress)(SEXP);
         static Ptr_meteo_saturatVaporPress p_meteo_saturatVaporPress = NULL;
         if (p_meteo_saturatVaporPress == NULL) {
-            validateSignature("NumericVector(*meteo_saturatVaporPress)(NumericVector)");
+            validateSignature("arma::vec(*meteo_saturatVaporPress)(const arma::vec&)");
             p_meteo_saturatVaporPress = (Ptr_meteo_saturatVaporPress)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_saturatVaporPress");
         }
         RObject rcpp_result_gen;
@@ -1675,14 +1510,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_saturatVaporPress_kPa(NumericVector ATMOS_temperature_Cel) {
+    inline arma::vec meteo_saturatVaporPress_kPa(const arma::vec& ATMOS_temperature_Cel) {
         typedef SEXP(*Ptr_meteo_saturatVaporPress_kPa)(SEXP);
         static Ptr_meteo_saturatVaporPress_kPa p_meteo_saturatVaporPress_kPa = NULL;
         if (p_meteo_saturatVaporPress_kPa == NULL) {
-            validateSignature("NumericVector(*meteo_saturatVaporPress_kPa)(NumericVector)");
+            validateSignature("arma::vec(*meteo_saturatVaporPress_kPa)(const arma::vec&)");
             p_meteo_saturatVaporPress_kPa = (Ptr_meteo_saturatVaporPress_kPa)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_saturatVaporPress_kPa");
         }
         RObject rcpp_result_gen;
@@ -1696,14 +1531,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_vaporPress(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_relativeHumidity_1) {
+    inline arma::vec meteo_vaporPress(const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_relativeHumidity_1) {
         typedef SEXP(*Ptr_meteo_vaporPress)(SEXP,SEXP);
         static Ptr_meteo_vaporPress p_meteo_vaporPress = NULL;
         if (p_meteo_vaporPress == NULL) {
-            validateSignature("NumericVector(*meteo_vaporPress)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_vaporPress)(const arma::vec&,const arma::vec&)");
             p_meteo_vaporPress = (Ptr_meteo_vaporPress)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_vaporPress");
         }
         RObject rcpp_result_gen;
@@ -1717,14 +1552,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_nettoRadiat_FAO56(NumericVector Time_dayOfYear_, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_temperatureMax_Cel, NumericVector ATMOS_temperatureMin_Cel, NumericVector ATMOS_relativeHumidity_1, NumericVector ATMOS_solarRadiat_MJ, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
+    inline arma::vec meteo_nettoRadiat_FAO56(const arma::vec& Time_dayOfYear_, const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_temperatureMax_Cel, const arma::vec& ATMOS_temperatureMin_Cel, const arma::vec& ATMOS_relativeHumidity_1, const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_nettoRadiat_FAO56)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_meteo_nettoRadiat_FAO56 p_meteo_nettoRadiat_FAO56 = NULL;
         if (p_meteo_nettoRadiat_FAO56 == NULL) {
-            validateSignature("NumericVector(*meteo_nettoRadiat_FAO56)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_nettoRadiat_FAO56)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_meteo_nettoRadiat_FAO56 = (Ptr_meteo_nettoRadiat_FAO56)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_nettoRadiat_FAO56");
         }
         RObject rcpp_result_gen;
@@ -1738,14 +1573,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_atmosEmissivity_FAO56(NumericVector Time_dayOfYear_, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_relativeHumidity_1, NumericVector ATMOS_solarRadiat_MJ, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
+    inline arma::vec meteo_atmosEmissivity_FAO56(const arma::vec& Time_dayOfYear_, const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_relativeHumidity_1, const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_atmosEmissivity_FAO56)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_meteo_atmosEmissivity_FAO56 p_meteo_atmosEmissivity_FAO56 = NULL;
         if (p_meteo_atmosEmissivity_FAO56 == NULL) {
-            validateSignature("NumericVector(*meteo_atmosEmissivity_FAO56)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_atmosEmissivity_FAO56)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_meteo_atmosEmissivity_FAO56 = (Ptr_meteo_atmosEmissivity_FAO56)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_atmosEmissivity_FAO56");
         }
         RObject rcpp_result_gen;
@@ -1759,14 +1594,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_cloudFactor_UNKNOW(NumericVector ATMOS_solarRadiat_MJ, NumericVector Time_dayOfYear_, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
+    inline arma::vec meteo_cloudFactor_UNKNOW(const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& Time_dayOfYear_, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_cloudFactor_UNKNOW)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_meteo_cloudFactor_UNKNOW p_meteo_cloudFactor_UNKNOW = NULL;
         if (p_meteo_cloudFactor_UNKNOW == NULL) {
-            validateSignature("NumericVector(*meteo_cloudFactor_UNKNOW)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_cloudFactor_UNKNOW)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_meteo_cloudFactor_UNKNOW = (Ptr_meteo_cloudFactor_UNKNOW)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_cloudFactor_UNKNOW");
         }
         RObject rcpp_result_gen;
@@ -1780,14 +1615,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_atmosEmissivity_UNKNOW(NumericVector Time_dayOfYear_, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_vaporPress_kPa, NumericVector ATMOS_solarRadiat_MJ, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
+    inline arma::vec meteo_atmosEmissivity_UNKNOW(const arma::vec& Time_dayOfYear_, const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_vaporPress_kPa, const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_atmosEmissivity_UNKNOW)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_meteo_atmosEmissivity_UNKNOW p_meteo_atmosEmissivity_UNKNOW = NULL;
         if (p_meteo_atmosEmissivity_UNKNOW == NULL) {
-            validateSignature("NumericVector(*meteo_atmosEmissivity_UNKNOW)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_atmosEmissivity_UNKNOW)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_meteo_atmosEmissivity_UNKNOW = (Ptr_meteo_atmosEmissivity_UNKNOW)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_atmosEmissivity_UNKNOW");
         }
         RObject rcpp_result_gen;
@@ -1801,14 +1636,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_atmosEmissivity_Idso(NumericVector ATMOS_temperature_Cel) {
+    inline arma::vec meteo_atmosEmissivity_Idso(const arma::vec& ATMOS_temperature_Cel) {
         typedef SEXP(*Ptr_meteo_atmosEmissivity_Idso)(SEXP);
         static Ptr_meteo_atmosEmissivity_Idso p_meteo_atmosEmissivity_Idso = NULL;
         if (p_meteo_atmosEmissivity_Idso == NULL) {
-            validateSignature("NumericVector(*meteo_atmosEmissivity_Idso)(NumericVector)");
+            validateSignature("arma::vec(*meteo_atmosEmissivity_Idso)(const arma::vec&)");
             p_meteo_atmosEmissivity_Idso = (Ptr_meteo_atmosEmissivity_Idso)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_atmosEmissivity_Idso");
         }
         RObject rcpp_result_gen;
@@ -1822,14 +1657,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_nettoRadiat_WaterGAP3(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_solarRadiat_MJ, NumericVector ATMOS_solarRadiatClearSky_MJ, NumericVector LAND_albedo_1) {
+    inline arma::vec meteo_nettoRadiat_WaterGAP3(const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& ATMOS_solarRadiatClearSky_MJ, const arma::vec& LAND_albedo_1) {
         typedef SEXP(*Ptr_meteo_nettoRadiat_WaterGAP3)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_meteo_nettoRadiat_WaterGAP3 p_meteo_nettoRadiat_WaterGAP3 = NULL;
         if (p_meteo_nettoRadiat_WaterGAP3 == NULL) {
-            validateSignature("NumericVector(*meteo_nettoRadiat_WaterGAP3)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_nettoRadiat_WaterGAP3)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_meteo_nettoRadiat_WaterGAP3 = (Ptr_meteo_nettoRadiat_WaterGAP3)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_nettoRadiat_WaterGAP3");
         }
         RObject rcpp_result_gen;
@@ -1843,14 +1678,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_nettoRadiat_FAO56Simplify(NumericVector Time_dayOfYear_, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_relativeHumidity_1, NumericVector ATMOS_solarRadiat_MJ, NumericVector LAND_latitude_Degree, NumericVector LAND_elevation_m) {
+    inline arma::vec meteo_nettoRadiat_FAO56Simplify(const arma::vec& Time_dayOfYear_, const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_relativeHumidity_1, const arma::vec& ATMOS_solarRadiat_MJ, const arma::vec& LAND_latitude_Degree, const arma::vec& LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_nettoRadiat_FAO56Simplify)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_meteo_nettoRadiat_FAO56Simplify p_meteo_nettoRadiat_FAO56Simplify = NULL;
         if (p_meteo_nettoRadiat_FAO56Simplify == NULL) {
-            validateSignature("NumericVector(*meteo_nettoRadiat_FAO56Simplify)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_nettoRadiat_FAO56Simplify)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_meteo_nettoRadiat_FAO56Simplify = (Ptr_meteo_nettoRadiat_FAO56Simplify)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_nettoRadiat_FAO56Simplify");
         }
         RObject rcpp_result_gen;
@@ -1864,14 +1699,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_windSpeed2m(NumericVector ATMOS_windSpeed_m_s, NumericVector ATMOS_windMeasureHeight_m) {
+    inline arma::vec meteo_windSpeed2m(const arma::vec& ATMOS_windSpeed_m_s, const arma::vec& ATMOS_windMeasureHeight_m) {
         typedef SEXP(*Ptr_meteo_windSpeed2m)(SEXP,SEXP);
         static Ptr_meteo_windSpeed2m p_meteo_windSpeed2m = NULL;
         if (p_meteo_windSpeed2m == NULL) {
-            validateSignature("NumericVector(*meteo_windSpeed2m)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_windSpeed2m)(const arma::vec&,const arma::vec&)");
             p_meteo_windSpeed2m = (Ptr_meteo_windSpeed2m)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_windSpeed2m");
         }
         RObject rcpp_result_gen;
@@ -1885,14 +1720,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_airDensity(NumericVector ATMOS_temperature_Cel, NumericVector LAND_elevation_m) {
+    inline arma::vec meteo_airDensity(const arma::vec& ATMOS_temperature_Cel, const arma::vec& LAND_elevation_m) {
         typedef SEXP(*Ptr_meteo_airDensity)(SEXP,SEXP);
         static Ptr_meteo_airDensity p_meteo_airDensity = NULL;
         if (p_meteo_airDensity == NULL) {
-            validateSignature("NumericVector(*meteo_airDensity)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_airDensity)(const arma::vec&,const arma::vec&)");
             p_meteo_airDensity = (Ptr_meteo_airDensity)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_airDensity");
         }
         RObject rcpp_result_gen;
@@ -1906,14 +1741,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_saturatDelta(NumericVector ATMOS_temperature_Cel) {
+    inline arma::vec meteo_saturatDelta(const arma::vec& ATMOS_temperature_Cel) {
         typedef SEXP(*Ptr_meteo_saturatDelta)(SEXP);
         static Ptr_meteo_saturatDelta p_meteo_saturatDelta = NULL;
         if (p_meteo_saturatDelta == NULL) {
-            validateSignature("NumericVector(*meteo_saturatDelta)(NumericVector)");
+            validateSignature("arma::vec(*meteo_saturatDelta)(const arma::vec&)");
             p_meteo_saturatDelta = (Ptr_meteo_saturatDelta)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_saturatDelta");
         }
         RObject rcpp_result_gen;
@@ -1927,14 +1762,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector meteo_wetBulbTemperature(NumericVector ATMOS_vaporPress_kPa, NumericVector ATMOS_temperature_Cel) {
+    inline arma::vec meteo_wetBulbTemperature(const arma::vec& ATMOS_vaporPress_kPa, const arma::vec& ATMOS_temperature_Cel) {
         typedef SEXP(*Ptr_meteo_wetBulbTemperature)(SEXP,SEXP);
         static Ptr_meteo_wetBulbTemperature p_meteo_wetBulbTemperature = NULL;
         if (p_meteo_wetBulbTemperature == NULL) {
-            validateSignature("NumericVector(*meteo_wetBulbTemperature)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*meteo_wetBulbTemperature)(const arma::vec&,const arma::vec&)");
             p_meteo_wetBulbTemperature = (Ptr_meteo_wetBulbTemperature)R_GetCCallable("HydroGallery", "_HydroGallery_meteo_wetBulbTemperature");
         }
         RObject rcpp_result_gen;
@@ -1948,14 +1783,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_GR4J(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm) {
+    inline arma::vec percola_GR4J(const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm) {
         typedef SEXP(*Ptr_percola_GR4J)(SEXP,SEXP);
         static Ptr_percola_GR4J p_percola_GR4J = NULL;
         if (p_percola_GR4J == NULL) {
-            validateSignature("NumericVector(*percola_GR4J)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_GR4J)(const arma::vec&,const arma::vec&)");
             p_percola_GR4J = (Ptr_percola_GR4J)R_GetCCallable("HydroGallery", "_HydroGallery_percola_GR4J");
         }
         RObject rcpp_result_gen;
@@ -1969,14 +1804,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_GR4Jfix(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_PERCOLA_grf_k) {
+    inline arma::vec percola_GR4Jfix(const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_PERCOLA_grf_k) {
         typedef SEXP(*Ptr_percola_GR4Jfix)(SEXP,SEXP,SEXP);
         static Ptr_percola_GR4Jfix p_percola_GR4Jfix = NULL;
         if (p_percola_GR4Jfix == NULL) {
-            validateSignature("NumericVector(*percola_GR4Jfix)(NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_GR4Jfix)(const arma::vec&,const arma::vec&,const arma::vec&)");
             p_percola_GR4Jfix = (Ptr_percola_GR4Jfix)R_GetCCallable("HydroGallery", "_HydroGallery_percola_GR4Jfix");
         }
         RObject rcpp_result_gen;
@@ -1990,14 +1825,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_MaxPow(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_potentialPercola_mm, NumericVector param_PERCOLA_map_gamma) {
+    inline arma::vec percola_MaxPow(const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_potentialPercola_mm, const arma::vec& param_PERCOLA_map_gamma) {
         typedef SEXP(*Ptr_percola_MaxPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_percola_MaxPow p_percola_MaxPow = NULL;
         if (p_percola_MaxPow == NULL) {
-            validateSignature("NumericVector(*percola_MaxPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_MaxPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_percola_MaxPow = (Ptr_percola_MaxPow)R_GetCCallable("HydroGallery", "_HydroGallery_percola_MaxPow");
         }
         RObject rcpp_result_gen;
@@ -2011,14 +1846,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_ThreshPow(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_potentialPercola_mm, NumericVector param_PERCOLA_thp_thresh, NumericVector param_PERCOLA_thp_gamma) {
+    inline arma::vec percola_ThreshPow(const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_potentialPercola_mm, const arma::vec& param_PERCOLA_thp_thresh, const arma::vec& param_PERCOLA_thp_gamma) {
         typedef SEXP(*Ptr_percola_ThreshPow)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_percola_ThreshPow p_percola_ThreshPow = NULL;
         if (p_percola_ThreshPow == NULL) {
-            validateSignature("NumericVector(*percola_ThreshPow)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_ThreshPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_percola_ThreshPow = (Ptr_percola_ThreshPow)R_GetCCallable("HydroGallery", "_HydroGallery_percola_ThreshPow");
         }
         RObject rcpp_result_gen;
@@ -2032,14 +1867,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_Arno(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_potentialPercola_mm, NumericVector param_PERCOLA_arn_thresh, NumericVector param_PERCOLA_arn_k) {
+    inline arma::vec percola_Arno(const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_potentialPercola_mm, const arma::vec& param_PERCOLA_arn_thresh, const arma::vec& param_PERCOLA_arn_k) {
         typedef SEXP(*Ptr_percola_Arno)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_percola_Arno p_percola_Arno = NULL;
         if (p_percola_Arno == NULL) {
-            validateSignature("NumericVector(*percola_Arno)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_Arno)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_percola_Arno = (Ptr_percola_Arno)R_GetCCallable("HydroGallery", "_HydroGallery_percola_Arno");
         }
         RObject rcpp_result_gen;
@@ -2053,14 +1888,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_BevenWood(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector SOIL_fieldCapacityPerc_1, NumericVector SOIL_potentialPercola_mm) {
+    inline arma::vec percola_BevenWood(const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& SOIL_fieldCapacityPerc_1, const arma::vec& SOIL_potentialPercola_mm) {
         typedef SEXP(*Ptr_percola_BevenWood)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_percola_BevenWood p_percola_BevenWood = NULL;
         if (p_percola_BevenWood == NULL) {
-            validateSignature("NumericVector(*percola_BevenWood)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_BevenWood)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_percola_BevenWood = (Ptr_percola_BevenWood)R_GetCCallable("HydroGallery", "_HydroGallery_percola_BevenWood");
         }
         RObject rcpp_result_gen;
@@ -2074,14 +1909,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_SupplyPow(NumericVector SOIL_water_mm, NumericVector SOIL_capacity_mm, NumericVector param_PERCOLA_sup_k, NumericVector param_PERCOLA_sup_gamma) {
+    inline arma::vec percola_SupplyPow(const arma::vec& SOIL_water_mm, const arma::vec& SOIL_capacity_mm, const arma::vec& param_PERCOLA_sup_k, const arma::vec& param_PERCOLA_sup_gamma) {
         typedef SEXP(*Ptr_percola_SupplyPow)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_percola_SupplyPow p_percola_SupplyPow = NULL;
         if (p_percola_SupplyPow == NULL) {
-            validateSignature("NumericVector(*percola_SupplyPow)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_percola_SupplyPow = (Ptr_percola_SupplyPow)R_GetCCallable("HydroGallery", "_HydroGallery_percola_SupplyPow");
         }
         RObject rcpp_result_gen;
@@ -2095,14 +1930,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_SupplyRatio(NumericVector SOIL_water_mm, NumericVector param_PERCOLA_sur_k) {
+    inline arma::vec percola_SupplyRatio(const arma::vec& SOIL_water_mm, const arma::vec& param_PERCOLA_sur_k) {
         typedef SEXP(*Ptr_percola_SupplyRatio)(SEXP,SEXP);
         static Ptr_percola_SupplyRatio p_percola_SupplyRatio = NULL;
         if (p_percola_SupplyRatio == NULL) {
-            validateSignature("NumericVector(*percola_SupplyRatio)(NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_SupplyRatio)(const arma::vec&,const arma::vec&)");
             p_percola_SupplyRatio = (Ptr_percola_SupplyRatio)R_GetCCallable("HydroGallery", "_HydroGallery_percola_SupplyRatio");
         }
         RObject rcpp_result_gen;
@@ -2116,14 +1951,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector percola_WaterGAP3(NumericVector LAND_water_mm, NumericVector SOIL_potentialPercola_mm, LogicalVector param_PERCOLA_wat_01, NumericVector param_PERCOLA_wat_thresh, NumericVector param_PERCOLA_wat_k) {
+    inline arma::vec percola_WaterGAP3(const arma::vec& LAND_water_mm, const arma::vec& SOIL_potentialPercola_mm, const arma::uvec& param_PERCOLA_wat_01, const arma::vec& param_PERCOLA_wat_thresh, const arma::vec& param_PERCOLA_wat_k) {
         typedef SEXP(*Ptr_percola_WaterGAP3)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_percola_WaterGAP3 p_percola_WaterGAP3 = NULL;
         if (p_percola_WaterGAP3 == NULL) {
-            validateSignature("NumericVector(*percola_WaterGAP3)(NumericVector,NumericVector,LogicalVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*percola_WaterGAP3)(const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&)");
             p_percola_WaterGAP3 = (Ptr_percola_WaterGAP3)R_GetCCallable("HydroGallery", "_HydroGallery_percola_WaterGAP3");
         }
         RObject rcpp_result_gen;
@@ -2137,14 +1972,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector reservoireleas_Hanasaki(NumericVector Reservoi_water_m3, NumericVector Reservoi_inflow_m3, NumericVector Reservoi_demand_m3, NumericVector Reservoi_capacity_m3, NumericVector Reservoi_meanInflow_m3, NumericVector Reservoi_meanDemand_m3, NumericVector Reservoi_releaseCoefficient_1, LogicalVector Reservoi_isIrrigate_01) {
+    inline arma::vec reservoireleas_Hanasaki(arma::vec Reservoi_water_m3, const arma::vec& Reservoi_inflow_m3, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01) {
         typedef SEXP(*Ptr_reservoireleas_Hanasaki)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_reservoireleas_Hanasaki p_reservoireleas_Hanasaki = NULL;
         if (p_reservoireleas_Hanasaki == NULL) {
-            validateSignature("NumericVector(*reservoireleas_Hanasaki)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,NumericVector,LogicalVector)");
+            validateSignature("arma::vec(*reservoireleas_Hanasaki)(arma::vec,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&)");
             p_reservoireleas_Hanasaki = (Ptr_reservoireleas_Hanasaki)R_GetCCallable("HydroGallery", "_HydroGallery_reservoireleas_Hanasaki");
         }
         RObject rcpp_result_gen;
@@ -2158,14 +1993,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector reservoiReleasCoefficent_Hanasaki(NumericVector Reservoi_water_m3, NumericVector Reservoi_capacity_m3, NumericVector Reservoi_releaseCoefficient_1, LogicalVector Reservoi_isOperateStart_01, NumericVector param_Reservoi_han_alpha) {
+    inline arma::vec reservoiReleasCoefficent_Hanasaki(const arma::vec& Reservoi_water_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isOperateStart_01, const arma::vec& param_Reservoi_han_alpha) {
         typedef SEXP(*Ptr_reservoiReleasCoefficent_Hanasaki)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_reservoiReleasCoefficent_Hanasaki p_reservoiReleasCoefficent_Hanasaki = NULL;
         if (p_reservoiReleasCoefficent_Hanasaki == NULL) {
-            validateSignature("NumericVector(*reservoiReleasCoefficent_Hanasaki)(NumericVector,NumericVector,NumericVector,LogicalVector,NumericVector)");
+            validateSignature("arma::vec(*reservoiReleasCoefficent_Hanasaki)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
             p_reservoiReleasCoefficent_Hanasaki = (Ptr_reservoiReleasCoefficent_Hanasaki)R_GetCCallable("HydroGallery", "_HydroGallery_reservoiReleasCoefficent_Hanasaki");
         }
         RObject rcpp_result_gen;
@@ -2179,14 +2014,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector riverout_LinearResorvoir(NumericVector RIVER_water_m3, NumericVector RIVER_inflow_m3, NumericVector RIVER_velocity_km, NumericVector RIVER_length_km) {
+    inline arma::vec riverout_LinearResorvoir(const arma::vec& RIVER_water_m3, const arma::vec& RIVER_inflow_m3, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_length_km) {
         typedef SEXP(*Ptr_riverout_LinearResorvoir)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_riverout_LinearResorvoir p_riverout_LinearResorvoir = NULL;
         if (p_riverout_LinearResorvoir == NULL) {
-            validateSignature("NumericVector(*riverout_LinearResorvoir)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*riverout_LinearResorvoir)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_riverout_LinearResorvoir = (Ptr_riverout_LinearResorvoir)R_GetCCallable("HydroGallery", "_HydroGallery_riverout_LinearResorvoir");
         }
         RObject rcpp_result_gen;
@@ -2200,14 +2035,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector riverlakout_LinearResorvoir(NumericVector Riverlak_water_m3, NumericVector Riverlak_inflow_m3, NumericVector Riverlak_capacity_m3, NumericVector param_Riverlak_lin_storeFactor) {
+    inline arma::vec riverlakout_LinearResorvoir(const arma::vec& Riverlak_water_m3, const arma::vec& Riverlak_inflow_m3, const arma::vec& Riverlak_capacity_m3, const arma::vec& param_Riverlak_lin_storeFactor) {
         typedef SEXP(*Ptr_riverlakout_LinearResorvoir)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_riverlakout_LinearResorvoir p_riverlakout_LinearResorvoir = NULL;
         if (p_riverlakout_LinearResorvoir == NULL) {
-            validateSignature("NumericVector(*riverlakout_LinearResorvoir)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*riverlakout_LinearResorvoir)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_riverlakout_LinearResorvoir = (Ptr_riverlakout_LinearResorvoir)R_GetCCallable("HydroGallery", "_HydroGallery_riverlakout_LinearResorvoir");
         }
         RObject rcpp_result_gen;
@@ -2221,14 +2056,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline List get_inflow_cells(IntegerVector int_Outflow) {
+    inline std::vector<arma::ivec> get_inflow_cells(const arma::ivec& int_Outflow) {
         typedef SEXP(*Ptr_get_inflow_cells)(SEXP);
         static Ptr_get_inflow_cells p_get_inflow_cells = NULL;
         if (p_get_inflow_cells == NULL) {
-            validateSignature("List(*get_inflow_cells)(IntegerVector)");
+            validateSignature("std::vector<arma::ivec>(*get_inflow_cells)(const arma::ivec&)");
             p_get_inflow_cells = (Ptr_get_inflow_cells)R_GetCCallable("HydroGallery", "_HydroGallery_get_inflow_cells");
         }
         RObject rcpp_result_gen;
@@ -2242,14 +2077,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
+        return Rcpp::as<std::vector<arma::ivec> >(rcpp_result_gen);
     }
 
-    inline NumericMatrix get_inflow_lastcell(IntegerVector int_Outflow) {
+    inline arma::mat get_inflow_lastcell(const arma::ivec& int_Outflow) {
         typedef SEXP(*Ptr_get_inflow_lastcell)(SEXP);
         static Ptr_get_inflow_lastcell p_get_inflow_lastcell = NULL;
         if (p_get_inflow_lastcell == NULL) {
-            validateSignature("NumericMatrix(*get_inflow_lastcell)(IntegerVector)");
+            validateSignature("arma::mat(*get_inflow_lastcell)(const arma::ivec&)");
             p_get_inflow_lastcell = (Ptr_get_inflow_lastcell)R_GetCCallable("HydroGallery", "_HydroGallery_get_inflow_lastcell");
         }
         RObject rcpp_result_gen;
@@ -2263,35 +2098,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericMatrix >(rcpp_result_gen);
+        return Rcpp::as<arma::mat >(rcpp_result_gen);
     }
 
-    inline List get_routing_info(IntegerVector int_Outflow) {
-        typedef SEXP(*Ptr_get_routing_info)(SEXP);
-        static Ptr_get_routing_info p_get_routing_info = NULL;
-        if (p_get_routing_info == NULL) {
-            validateSignature("List(*get_routing_info)(IntegerVector)");
-            p_get_routing_info = (Ptr_get_routing_info)R_GetCCallable("HydroGallery", "_HydroGallery_get_routing_info");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_get_routing_info(Shield<SEXP>(Rcpp::wrap(int_Outflow)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
-    }
-
-    inline IntegerVector get_cell_in_basin(List lst_Inflow_Cell, int int_OutLet, IntegerVector int_TestCell) {
+    inline arma::ivec get_cell_in_basin(const std::vector<arma::ivec>& lst_Inflow_Cell, int int_OutLet, const arma::ivec& int_TestCell) {
         typedef SEXP(*Ptr_get_cell_in_basin)(SEXP,SEXP,SEXP);
         static Ptr_get_cell_in_basin p_get_cell_in_basin = NULL;
         if (p_get_cell_in_basin == NULL) {
-            validateSignature("IntegerVector(*get_cell_in_basin)(List,int,IntegerVector)");
+            validateSignature("arma::ivec(*get_cell_in_basin)(const std::vector<arma::ivec>&,int,const arma::ivec&)");
             p_get_cell_in_basin = (Ptr_get_cell_in_basin)R_GetCCallable("HydroGallery", "_HydroGallery_get_cell_in_basin");
         }
         RObject rcpp_result_gen;
@@ -2305,20 +2119,20 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<IntegerVector >(rcpp_result_gen);
+        return Rcpp::as<arma::ivec >(rcpp_result_gen);
     }
 
-    inline IntegerVector get_inter_basin(List lst_Inflow_Cell, int int_OutLet, IntegerVector int_UpstreamCell) {
-        typedef SEXP(*Ptr_get_inter_basin)(SEXP,SEXP,SEXP);
+    inline arma::ivec get_inter_basin(const arma::ivec& int_Cell, const arma::ivec& int_Outflow) {
+        typedef SEXP(*Ptr_get_inter_basin)(SEXP,SEXP);
         static Ptr_get_inter_basin p_get_inter_basin = NULL;
         if (p_get_inter_basin == NULL) {
-            validateSignature("IntegerVector(*get_inter_basin)(List,int,IntegerVector)");
+            validateSignature("arma::ivec(*get_inter_basin)(const arma::ivec&,const arma::ivec&)");
             p_get_inter_basin = (Ptr_get_inter_basin)R_GetCCallable("HydroGallery", "_HydroGallery_get_inter_basin");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_get_inter_basin(Shield<SEXP>(Rcpp::wrap(lst_Inflow_Cell)), Shield<SEXP>(Rcpp::wrap(int_OutLet)), Shield<SEXP>(Rcpp::wrap(int_UpstreamCell)));
+            rcpp_result_gen = p_get_inter_basin(Shield<SEXP>(Rcpp::wrap(int_Cell)), Shield<SEXP>(Rcpp::wrap(int_Outflow)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -2326,20 +2140,20 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<IntegerVector >(rcpp_result_gen);
+        return Rcpp::as<arma::ivec >(rcpp_result_gen);
     }
 
-    inline IntegerVector get_new_outflow(IntegerVector int_Outflow_Ori, IntegerVector int_CellNew) {
+    inline arma::ivec get_new_outflow(const arma::ivec& int_Cell, const arma::ivec& int_Outflow) {
         typedef SEXP(*Ptr_get_new_outflow)(SEXP,SEXP);
         static Ptr_get_new_outflow p_get_new_outflow = NULL;
         if (p_get_new_outflow == NULL) {
-            validateSignature("IntegerVector(*get_new_outflow)(IntegerVector,IntegerVector)");
+            validateSignature("arma::ivec(*get_new_outflow)(const arma::ivec&,const arma::ivec&)");
             p_get_new_outflow = (Ptr_get_new_outflow)R_GetCCallable("HydroGallery", "_HydroGallery_get_new_outflow");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_get_new_outflow(Shield<SEXP>(Rcpp::wrap(int_Outflow_Ori)), Shield<SEXP>(Rcpp::wrap(int_CellNew)));
+            rcpp_result_gen = p_get_new_outflow(Shield<SEXP>(Rcpp::wrap(int_Cell)), Shield<SEXP>(Rcpp::wrap(int_Outflow)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -2347,20 +2161,20 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<IntegerVector >(rcpp_result_gen);
+        return Rcpp::as<arma::ivec >(rcpp_result_gen);
     }
 
-    inline List get_cali_step(List lst_Inflow_Cell, IntegerVector int_CaliCell) {
+    inline arma::ivec get_cali_step(const std::vector<arma::ivec>& step_cells, const arma::ivec& int_Cali) {
         typedef SEXP(*Ptr_get_cali_step)(SEXP,SEXP);
         static Ptr_get_cali_step p_get_cali_step = NULL;
         if (p_get_cali_step == NULL) {
-            validateSignature("List(*get_cali_step)(List,IntegerVector)");
+            validateSignature("arma::ivec(*get_cali_step)(const std::vector<arma::ivec>&,const arma::ivec&)");
             p_get_cali_step = (Ptr_get_cali_step)R_GetCCallable("HydroGallery", "_HydroGallery_get_cali_step");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_get_cali_step(Shield<SEXP>(Rcpp::wrap(lst_Inflow_Cell)), Shield<SEXP>(Rcpp::wrap(int_CaliCell)));
+            rcpp_result_gen = p_get_cali_step(Shield<SEXP>(Rcpp::wrap(step_cells)), Shield<SEXP>(Rcpp::wrap(int_Cali)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -2368,14 +2182,35 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
+        return Rcpp::as<arma::ivec >(rcpp_result_gen);
     }
 
-    inline List get_upstream_cali_cell(List lst_Inflow_Cell, IntegerVector int_CaliCell) {
+    inline Rcpp::List get_routing_info(const arma::ivec& int_Outflow) {
+        typedef SEXP(*Ptr_get_routing_info)(SEXP);
+        static Ptr_get_routing_info p_get_routing_info = NULL;
+        if (p_get_routing_info == NULL) {
+            validateSignature("Rcpp::List(*get_routing_info)(const arma::ivec&)");
+            p_get_routing_info = (Ptr_get_routing_info)R_GetCCallable("HydroGallery", "_HydroGallery_get_routing_info");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_get_routing_info(Shield<SEXP>(Rcpp::wrap(int_Outflow)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<Rcpp::List >(rcpp_result_gen);
+    }
+
+    inline std::vector<arma::ivec> get_upstream_cali_cell(const std::vector<arma::ivec>& lst_Inflow_Cell, const arma::ivec& int_CaliCell) {
         typedef SEXP(*Ptr_get_upstream_cali_cell)(SEXP,SEXP);
         static Ptr_get_upstream_cali_cell p_get_upstream_cali_cell = NULL;
         if (p_get_upstream_cali_cell == NULL) {
-            validateSignature("List(*get_upstream_cali_cell)(List,IntegerVector)");
+            validateSignature("std::vector<arma::ivec>(*get_upstream_cali_cell)(const std::vector<arma::ivec>&,const arma::ivec&)");
             p_get_upstream_cali_cell = (Ptr_get_upstream_cali_cell)R_GetCCallable("HydroGallery", "_HydroGallery_get_upstream_cali_cell");
         }
         RObject rcpp_result_gen;
@@ -2389,20 +2224,20 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
+        return Rcpp::as<std::vector<arma::ivec> >(rcpp_result_gen);
     }
 
-    inline void write_int_vector_list(List lst, std::string file_path) {
+    inline void write_int_vector_list(const std::vector<arma::ivec>& vec_list, const std::string& file_path) {
         typedef SEXP(*Ptr_write_int_vector_list)(SEXP,SEXP);
         static Ptr_write_int_vector_list p_write_int_vector_list = NULL;
         if (p_write_int_vector_list == NULL) {
-            validateSignature("void(*write_int_vector_list)(List,std::string)");
+            validateSignature("void(*write_int_vector_list)(const std::vector<arma::ivec>&,const std::string&)");
             p_write_int_vector_list = (Ptr_write_int_vector_list)R_GetCCallable("HydroGallery", "_HydroGallery_write_int_vector_list");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_write_int_vector_list(Shield<SEXP>(Rcpp::wrap(lst)), Shield<SEXP>(Rcpp::wrap(file_path)));
+            rcpp_result_gen = p_write_int_vector_list(Shield<SEXP>(Rcpp::wrap(vec_list)), Shield<SEXP>(Rcpp::wrap(file_path)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -2412,11 +2247,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline List read_int_vector_list(std::string file_path) {
+    inline std::vector<arma::ivec> read_int_vector_list(const std::string& file_path) {
         typedef SEXP(*Ptr_read_int_vector_list)(SEXP);
         static Ptr_read_int_vector_list p_read_int_vector_list = NULL;
         if (p_read_int_vector_list == NULL) {
-            validateSignature("List(*read_int_vector_list)(std::string)");
+            validateSignature("std::vector<arma::ivec>(*read_int_vector_list)(const std::string&)");
             p_read_int_vector_list = (Ptr_read_int_vector_list)R_GetCCallable("HydroGallery", "_HydroGallery_read_int_vector_list");
         }
         RObject rcpp_result_gen;
@@ -2430,14 +2265,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
+        return Rcpp::as<std::vector<arma::ivec> >(rcpp_result_gen);
     }
 
-    inline void write_int_matrix_list(List mat_list, std::string file_path) {
+    inline void write_int_matrix_list(const std::vector<arma::imat>& mat_list, const std::string& file_path) {
         typedef SEXP(*Ptr_write_int_matrix_list)(SEXP,SEXP);
         static Ptr_write_int_matrix_list p_write_int_matrix_list = NULL;
         if (p_write_int_matrix_list == NULL) {
-            validateSignature("void(*write_int_matrix_list)(List,std::string)");
+            validateSignature("void(*write_int_matrix_list)(const std::vector<arma::imat>&,const std::string&)");
             p_write_int_matrix_list = (Ptr_write_int_matrix_list)R_GetCCallable("HydroGallery", "_HydroGallery_write_int_matrix_list");
         }
         RObject rcpp_result_gen;
@@ -2453,11 +2288,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline List read_int_matrix_list(std::string file_path) {
+    inline std::vector<arma::imat> read_int_matrix_list(const std::string& file_path) {
         typedef SEXP(*Ptr_read_int_matrix_list)(SEXP);
         static Ptr_read_int_matrix_list p_read_int_matrix_list = NULL;
         if (p_read_int_matrix_list == NULL) {
-            validateSignature("List(*read_int_matrix_list)(std::string)");
+            validateSignature("std::vector<arma::imat>(*read_int_matrix_list)(const std::string&)");
             p_read_int_matrix_list = (Ptr_read_int_matrix_list)R_GetCCallable("HydroGallery", "_HydroGallery_read_int_matrix_list");
         }
         RObject rcpp_result_gen;
@@ -2471,14 +2306,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
+        return Rcpp::as<std::vector<arma::imat> >(rcpp_result_gen);
     }
 
-    inline NumericVector snowMelt_Kustas(NumericVector SNOW_ice_mm, NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_netRadiat_MJ, NumericVector param_SNOWMELT_kus_fE, NumericVector param_SNOWMELT_kus_fT) {
+    inline arma::vec snowMelt_Kustas(const arma::vec& SNOW_ice_mm, const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_netRadiat_MJ, const arma::vec& param_SNOWMELT_kus_fE, const arma::vec& param_SNOWMELT_kus_fT) {
         typedef SEXP(*Ptr_snowMelt_Kustas)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_snowMelt_Kustas p_snowMelt_Kustas = NULL;
         if (p_snowMelt_Kustas == NULL) {
-            validateSignature("NumericVector(*snowMelt_Kustas)(NumericVector,NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*snowMelt_Kustas)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_snowMelt_Kustas = (Ptr_snowMelt_Kustas)R_GetCCallable("HydroGallery", "_HydroGallery_snowMelt_Kustas");
         }
         RObject rcpp_result_gen;
@@ -2492,14 +2327,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline NumericVector snowMelt_Factor(NumericVector SNOW_ice_mm, NumericVector ATMOS_temperature_Cel, NumericVector param_SNOWMELT_fac_f, NumericVector param_SNOWMELT_fac_Tmelt) {
+    inline arma::vec snowMelt_Factor(const arma::vec& SNOW_ice_mm, const arma::vec& ATMOS_temperature_Cel, const arma::vec& param_SNOWMELT_fac_f, const arma::vec& param_SNOWMELT_fac_Tmelt) {
         typedef SEXP(*Ptr_snowMelt_Factor)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_snowMelt_Factor p_snowMelt_Factor = NULL;
         if (p_snowMelt_Factor == NULL) {
-            validateSignature("NumericVector(*snowMelt_Factor)(NumericVector,NumericVector,NumericVector,NumericVector)");
+            validateSignature("arma::vec(*snowMelt_Factor)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
             p_snowMelt_Factor = (Ptr_snowMelt_Factor)R_GetCCallable("HydroGallery", "_HydroGallery_snowMelt_Factor");
         }
         RObject rcpp_result_gen;
@@ -2513,14 +2348,14 @@ namespace HydroGallery {
             throw Rcpp::LongjumpException(rcpp_result_gen);
         if (rcpp_result_gen.inherits("try-error"))
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<NumericVector >(rcpp_result_gen);
+        return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline void withdraw_SingleCell(NumericVector& CELL_withdrawal_m3, NumericVector& CELL_water_m3) {
+    inline void withdraw_SingleCell(arma::vec& CELL_withdrawal_m3, arma::vec& CELL_water_m3) {
         typedef SEXP(*Ptr_withdraw_SingleCell)(SEXP,SEXP);
         static Ptr_withdraw_SingleCell p_withdraw_SingleCell = NULL;
         if (p_withdraw_SingleCell == NULL) {
-            validateSignature("void(*withdraw_SingleCell)(NumericVector&,NumericVector&)");
+            validateSignature("void(*withdraw_SingleCell)(arma::vec&,arma::vec&)");
             p_withdraw_SingleCell = (Ptr_withdraw_SingleCell)R_GetCCallable("HydroGallery", "_HydroGallery_withdraw_SingleCell");
         }
         RObject rcpp_result_gen;
@@ -2536,11 +2371,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline void withdrawSurface_AroundMax(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int) {
+    inline void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberAround_int) {
         typedef SEXP(*Ptr_withdrawSurface_AroundMax)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_withdrawSurface_AroundMax p_withdrawSurface_AroundMax = NULL;
         if (p_withdrawSurface_AroundMax == NULL) {
-            validateSignature("void(*withdrawSurface_AroundMax)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+            validateSignature("void(*withdrawSurface_AroundMax)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
             p_withdrawSurface_AroundMax = (Ptr_withdrawSurface_AroundMax)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_AroundMax");
         }
         RObject rcpp_result_gen;
@@ -2556,11 +2391,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline void withdrawSurface_Around(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberAround_int) {
+    inline void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberAround_int) {
         typedef SEXP(*Ptr_withdrawSurface_Around)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_withdrawSurface_Around p_withdrawSurface_Around = NULL;
         if (p_withdrawSurface_Around == NULL) {
-            validateSignature("void(*withdrawSurface_Around)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+            validateSignature("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
             p_withdrawSurface_Around = (Ptr_withdrawSurface_Around)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_Around");
         }
         RObject rcpp_result_gen;
@@ -2576,11 +2411,11 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline void withdrawSurface_WithdrawNet(NumericVector& CELL_withdrawal_m3, NumericVector& RIVER_water_m3, NumericVector& Lake_water_m3, IntegerMatrix CELL_cellNumberWithdrawNet_int) {
+    inline void withdrawSurface_WithdrawNet(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::imat& CELL_cellNumberWithdrawNet_int) {
         typedef SEXP(*Ptr_withdrawSurface_WithdrawNet)(SEXP,SEXP,SEXP,SEXP);
         static Ptr_withdrawSurface_WithdrawNet p_withdrawSurface_WithdrawNet = NULL;
         if (p_withdrawSurface_WithdrawNet == NULL) {
-            validateSignature("void(*withdrawSurface_WithdrawNet)(NumericVector&,NumericVector&,NumericVector&,IntegerMatrix)");
+            validateSignature("void(*withdrawSurface_WithdrawNet)(arma::vec&,arma::vec&,arma::vec&,const arma::imat&)");
             p_withdrawSurface_WithdrawNet = (Ptr_withdrawSurface_WithdrawNet)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_WithdrawNet");
         }
         RObject rcpp_result_gen;

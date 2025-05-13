@@ -188,14 +188,12 @@ where
 
 # **_SupplyPow**: 
 
-
 \mjsdeqn{k^* = k \left(\frac{W_{soil}}{C_{soil}} \right)^\gamma}
 where
   - \mjseqn{k} is `param_PERCOLA_sup_k`
   - \mjseqn{\gamma} is `param_PERCOLA_sup_gamma`
 
 # **_SupplyRatio**: 
-
 
 \mjsdeqn{k^* = k}
 where

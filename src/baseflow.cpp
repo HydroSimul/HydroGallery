@@ -1,7 +1,6 @@
-#include "00utilis.h"
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::interfaces(r, cpp)]]
-
-
 
 //' **baseflow**
 //' @name baseflow
@@ -49,19 +48,14 @@
 //'   - \mjseqn{k^*} is estimated ratio
 //' @export
 // [[Rcpp::export]]
-NumericVector baseflow_GR4J(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm
-)
+arma::vec baseflow_GR4J(
+     const arma::vec& GROUND_water_mm,
+     const arma::vec& GROUND_capacity_mm)
 {
-  NumericVector baseflow_, k_;
-  
-  k_ = 1 - pow((1 + pow(GROUND_water_mm / GROUND_capacity_mm, 4)), -0.25);
-  baseflow_ = k_ * GROUND_water_mm;
-  
-  return ifelse(baseflow_ > GROUND_water_mm, GROUND_water_mm, baseflow_) ;
+   arma::vec baseflow = (1 - pow(1 + pow(GROUND_water_mm / GROUND_capacity_mm, 4), -0.25)) % GROUND_water_mm;
+   return arma::min(baseflow, GROUND_water_mm);
 }
-
+ 
 //' @rdname baseflow
 //' @details
 //' # **_GR4Jfix** \insertCite{GR4J_Perrin_2003}{HydroGallery}: 
@@ -75,20 +69,16 @@ NumericVector baseflow_GR4J(
 //' @param param_BASEFLOW_grf_gamma <2, 7> exponential parameter for [baseflow_GR4Jfix()]
 //' @export
 // [[Rcpp::export]]
-NumericVector baseflow_GR4Jfix(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector param_BASEFLOW_grf_gamma
-)
+arma::vec baseflow_GR4Jfix(
+     const arma::vec& GROUND_water_mm,
+     const arma::vec& GROUND_capacity_mm,
+     const arma::vec& param_BASEFLOW_grf_gamma)
 {
-  NumericVector baseflow_, k_;
-  
-  k_ = 1 - vecpow((1 + vecpow(GROUND_water_mm / GROUND_capacity_mm, param_BASEFLOW_grf_gamma)), -1.0 / param_BASEFLOW_grf_gamma);
-  baseflow_ = k_ * GROUND_water_mm;
-  
-  return ifelse(baseflow_ > GROUND_water_mm, GROUND_water_mm, baseflow_) ;
+   arma::vec baseflow = (1 - pow(1 + pow(GROUND_water_mm / GROUND_capacity_mm, param_BASEFLOW_grf_gamma), 
+                           -1.0 / param_BASEFLOW_grf_gamma)) % GROUND_water_mm;
+   return arma::min(baseflow, GROUND_water_mm);
 }
-
+ 
 //' @rdname baseflow
 //' @details
 //' # **_SupplyRatio**: 
@@ -100,17 +90,13 @@ NumericVector baseflow_GR4Jfix(
 //' @param param_BASEFLOW_sur_k <0.01, 1> coefficient parameter for [baseflow_SupplyRatio()]
 //' @export
 // [[Rcpp::export]]
-NumericVector baseflow_SupplyRatio(
-    NumericVector GROUND_water_mm,
-    NumericVector param_BASEFLOW_sur_k
-)
+arma::vec baseflow_SupplyRatio(
+     const arma::vec& GROUND_water_mm,
+     const arma::vec& param_BASEFLOW_sur_k)
 {
-  
-  return param_BASEFLOW_sur_k * GROUND_water_mm;
-  
+   return param_BASEFLOW_sur_k % GROUND_water_mm;
 }
-
-
+ 
 //' @rdname baseflow
 //' @details
 //' # **_SupplyPow**: 
@@ -124,20 +110,15 @@ NumericVector baseflow_SupplyRatio(
 //' @param param_BASEFLOW_sup_gamma <0, 1> exponential parameter for [baseflow_SupplyPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector baseflow_SupplyPow(
-    NumericVector GROUND_water_mm,
-    NumericVector param_BASEFLOW_sup_k,
-    NumericVector param_BASEFLOW_sup_gamma
-)
+arma::vec baseflow_SupplyPow(
+     const arma::vec& GROUND_water_mm,
+     const arma::vec& param_BASEFLOW_sup_k,
+     const arma::vec& param_BASEFLOW_sup_gamma)
 {
-  NumericVector baseflow_;
-  
-  baseflow_ = param_BASEFLOW_sup_k * vecpow(ceil(GROUND_water_mm), param_BASEFLOW_sup_gamma);
-
-  return ifelse(baseflow_ > GROUND_water_mm, GROUND_water_mm, baseflow_) ;
+   arma::vec baseflow = param_BASEFLOW_sup_k % pow(ceil(GROUND_water_mm), param_BASEFLOW_sup_gamma);
+   return arma::min(baseflow, GROUND_water_mm);
 }
-
-
+ 
 //' @rdname baseflow
 //' @details
 //' # **_MaxPow**: 
@@ -150,20 +131,17 @@ NumericVector baseflow_SupplyPow(
 //' @param param_BASEFLOW_map_gamma <0.1, 5> exponential parameter for [baseflow_MaxPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector baseflow_MaxPow(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector GROUND_potentialBaseflow_mm,
-    NumericVector param_BASEFLOW_map_gamma
-)
+arma::vec baseflow_MaxPow(
+     const arma::vec& GROUND_water_mm,
+     const arma::vec& GROUND_capacity_mm,
+     const arma::vec& GROUND_potentialBaseflow_mm,
+     const arma::vec& param_BASEFLOW_map_gamma)
 {
-  NumericVector baseflow_;
-  
-  baseflow_ = GROUND_potentialBaseflow_mm * vecpow(GROUND_water_mm / GROUND_capacity_mm, param_BASEFLOW_map_gamma);
-  
-  return ifelse(baseflow_ > GROUND_water_mm, GROUND_water_mm, baseflow_) ;
+   arma::vec baseflow = GROUND_potentialBaseflow_mm % 
+     pow(GROUND_water_mm / GROUND_capacity_mm, param_BASEFLOW_map_gamma);
+   return arma::min(baseflow, GROUND_water_mm);
 }
-
+ 
 //' @rdname baseflow
 //' @details
 //' # **_ThreshPow** 
@@ -179,25 +157,24 @@ NumericVector baseflow_MaxPow(
 //' @param param_BASEFLOW_thp_gamma <0.1, 5> exponential parameter for [baseflow_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector baseflow_ThreshPow(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector GROUND_potentialBaseflow_mm,
-    NumericVector param_BASEFLOW_thp_thresh,
-    NumericVector param_BASEFLOW_thp_gamma
-)
+arma::vec baseflow_ThreshPow(
+     const arma::vec& GROUND_water_mm,
+     const arma::vec& GROUND_capacity_mm,
+     const arma::vec& GROUND_potentialBaseflow_mm,
+     const arma::vec& param_BASEFLOW_thp_thresh,
+     const arma::vec& param_BASEFLOW_thp_gamma)
 {
-  NumericVector baseflow_, baseflow_temp;
-  baseflow_temp = (GROUND_water_mm / GROUND_capacity_mm - param_BASEFLOW_thp_thresh);
-  baseflow_temp = ifelse(baseflow_temp < 0, 0, baseflow_temp);
-  
-  baseflow_ = GROUND_potentialBaseflow_mm * vecpow(baseflow_temp / (1 - param_BASEFLOW_thp_thresh), param_BASEFLOW_thp_gamma);
-  baseflow_ = ifelse(baseflow_ > GROUND_potentialBaseflow_mm, GROUND_potentialBaseflow_mm, baseflow_);
-  
-  return ifelse(baseflow_ > GROUND_water_mm, GROUND_water_mm, baseflow_) ;
+   arma::vec ratio = GROUND_water_mm / GROUND_capacity_mm;
+   arma::vec baseflow_temp = ratio - param_BASEFLOW_thp_thresh;
+   baseflow_temp.elem(arma::find(baseflow_temp < 0)).zeros();
+   
+   arma::vec baseflow = GROUND_potentialBaseflow_mm % 
+     pow(baseflow_temp / (1 - param_BASEFLOW_thp_thresh), param_BASEFLOW_thp_gamma);
+   
+   baseflow = arma::min(baseflow, GROUND_potentialBaseflow_mm);
+   return arma::min(baseflow, GROUND_water_mm);
 }
-
-
+ 
 //' @rdname baseflow
 //' @details
 //' # **_Arno** \insertCite{baseflow_Arno_1991,VIC2_Liang_1994}{HydroGallery}:
@@ -214,20 +191,23 @@ NumericVector baseflow_ThreshPow(
 //' @param param_BASEFLOW_arn_k <0.1, 1> exponential parameter for [baseflow_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector baseflow_Arno(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector GROUND_potentialBaseflow_mm,
-    NumericVector param_BASEFLOW_arn_thresh,
-    NumericVector param_BASEFLOW_arn_k
-)
+arma::vec baseflow_Arno(
+     const arma::vec& GROUND_water_mm,
+     const arma::vec& GROUND_capacity_mm,
+     const arma::vec& GROUND_potentialBaseflow_mm,
+     const arma::vec& param_BASEFLOW_arn_thresh,
+     const arma::vec& param_BASEFLOW_arn_k)
 {
-  NumericVector baseflow_, baseflow_1, baseflow_2, Ws_Wc;
-  Ws_Wc = GROUND_capacity_mm * param_BASEFLOW_arn_thresh;
-  baseflow_1 = param_BASEFLOW_arn_k * GROUND_potentialBaseflow_mm / (GROUND_capacity_mm) * GROUND_water_mm;
-  baseflow_2 = param_BASEFLOW_arn_k * GROUND_potentialBaseflow_mm / (GROUND_capacity_mm) * GROUND_water_mm + GROUND_potentialBaseflow_mm * (1 - param_BASEFLOW_arn_k) * pow((GROUND_water_mm - Ws_Wc) / (GROUND_capacity_mm - Ws_Wc),2);
-  baseflow_ = ifelse(GROUND_water_mm < Ws_Wc, baseflow_1, baseflow_2);
-  baseflow_ = ifelse(GROUND_potentialBaseflow_mm > Ws_Wc, GROUND_water_mm, baseflow_);
-  baseflow_ = ifelse(baseflow_ > GROUND_potentialBaseflow_mm, GROUND_potentialBaseflow_mm, baseflow_);
-  return ifelse(baseflow_ > GROUND_water_mm, GROUND_water_mm, baseflow_) ;
+   arma::vec Ws_Wc = GROUND_capacity_mm % param_BASEFLOW_arn_thresh;
+   arma::vec baseflow_1 = param_BASEFLOW_arn_k % GROUND_potentialBaseflow_mm / GROUND_capacity_mm % GROUND_water_mm;
+   
+   arma::vec baseflow_2 = baseflow_1 + GROUND_potentialBaseflow_mm % (1 - param_BASEFLOW_arn_k) % 
+     pow((GROUND_water_mm - Ws_Wc) / (GROUND_capacity_mm - Ws_Wc), 2);
+   
+   arma::vec baseflow = arma::zeros<arma::vec>(GROUND_water_mm.n_elem);
+   baseflow.elem(arma::find(GROUND_water_mm < Ws_Wc)) = baseflow_1.elem(arma::find(GROUND_water_mm < Ws_Wc));
+   baseflow.elem(arma::find(GROUND_water_mm >= Ws_Wc)) = baseflow_2.elem(arma::find(GROUND_water_mm >= Ws_Wc));
+   
+   baseflow = arma::min(baseflow, GROUND_potentialBaseflow_mm);
+   return arma::min(baseflow, GROUND_water_mm);
 }

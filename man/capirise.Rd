@@ -75,13 +75,11 @@ So we can give the function from:
 
 \mjsdeqn{F_{capi} = f_{capirise}(D_{grnd}, D_{soil})}
 
-
 to:
 
 \mjsdeqn{F_{capi} = f_{capirise}(W_{grnd}, W_{soil}, C_{soil}, ...)}
 \mjsdeqn{F_{capi} \leq W_{grnd}}
 \mjsdeqn{F_{capi} \leq C_{soil} - W_{soil}}
-
 
 where
 - \mjseqn{F_{capi}} is `GROUND_capirise_mm`
@@ -94,13 +92,11 @@ The output density distribution from 4 methods:
 \details{
 # **_HBV** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
 
-
 \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{C_{soil}} \right)}
 where
   - \mjseqn{M_{capi}} is `SOIL_potentialCapirise_mm`
 
 # **_HBVfix** \insertCite{HBV_Lindstrom_1997}{HydroGallery}: 
-
 
 \mjsdeqn{F_{capi} = M_{capi} \left( 1 - \frac{W_{soil}}{k_{fc}C_{soil}} \right), \quad W_{soil} < k_{fc}C_{soil}}
 where
@@ -108,14 +104,12 @@ where
 
 # **_AcceptRatio**: 
 
-
 \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right), \quad W_{soil} < k_{fc}C_{soil}}
 where
   - \mjseqn{k} is `param_CAPIRISE_acr_k`
   - \mjseqn{k_{fc}} is `SOIL_fieldCapacityPerc_1`
 
-# **_AcceptRatio**: 
-
+# **_AcceptPow**: 
 
 \mjsdeqn{F_{capi} = k \left( W_{soil} - k_{fc}C_{soil} \right)^\gamma, \quad W_{soil} < k_{fc}C_{soil}}
 where

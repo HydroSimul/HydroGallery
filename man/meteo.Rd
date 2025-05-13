@@ -17,6 +17,7 @@
 \alias{meteo_windSpeed2m}
 \alias{meteo_airDensity}
 \alias{meteo_saturatDelta}
+\alias{meteo_wetBulbTemperature}
 \title{**meteological variables**
 some functions to calculate the meteological variables}
 \usage{
@@ -93,6 +94,8 @@ meteo_windSpeed2m(ATMOS_windSpeed_m_s, ATMOS_windMeasureHeight_m)
 meteo_airDensity(ATMOS_temperature_Cel, LAND_elevation_m)
 
 meteo_saturatDelta(ATMOS_temperature_Cel)
+
+meteo_wetBulbTemperature(ATMOS_vaporPress_kPa, ATMOS_temperature_Cel)
 }
 \arguments{
 \item{LAND_elevation_m}{(m) average elevation}

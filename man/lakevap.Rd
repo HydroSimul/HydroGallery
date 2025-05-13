@@ -31,8 +31,8 @@ lakeevap_Zhao(
 \item{Lake_area_km2}{(km2) area of the lake}
 }
 \value{
-evaporation o flake area (mm / day)
+evaporation of lake area (mm / day)
 }
 \description{
-The concept of lake estimates the waterbody outflow for waternet concentation
+The concept of lake estimates the waterbody outflow for waternet concentration
 }

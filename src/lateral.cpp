@@ -1,7 +1,7 @@
-#include "00utilis.h"
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+
 // [[Rcpp::interfaces(r, cpp)]]
-
-
 
 //' **lateral flux**
 //' @name lateral
@@ -50,20 +50,20 @@
 //' @param param_LATERAL_sup_gamma <0.01, 5> parameters for [lateral_SupplyPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector lateral_SupplyPow(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector param_LATERAL_sup_k,
-    NumericVector param_LATERAL_sup_gamma
+arma::vec lateral_SupplyPow(
+    const arma::vec& GROUND_water_mm,
+    const arma::vec& GROUND_capacity_mm,
+    const arma::vec& param_LATERAL_sup_k,
+    const arma::vec& param_LATERAL_sup_gamma
 )
 {
-  NumericVector GROUND_lateral_mm, k_;
-  NumericVector GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
+  arma::vec GROUND_lateral_mm, k_;
+  arma::vec GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
   
-  k_ = param_LATERAL_sup_k * vecpow((GROUND_water_mm / GROUND_capacity_mm), param_LATERAL_sup_gamma);
-  GROUND_lateral_mm = k_ * GROUND_water_mm;
-  GROUND_lateral_mm = ifelse(GROUND_lateral_mm > GROUND_diff_mm, GROUND_diff_mm, GROUND_lateral_mm) ;
-  return ifelse(GROUND_lateral_mm > - GROUND_water_mm, GROUND_lateral_mm, - GROUND_water_mm) ;
+  k_ = param_LATERAL_sup_k % arma::pow((GROUND_water_mm / GROUND_capacity_mm), param_LATERAL_sup_gamma);
+  GROUND_lateral_mm = k_ % GROUND_water_mm;
+  GROUND_lateral_mm = arma::min(GROUND_lateral_mm, GROUND_diff_mm);
+  return arma::min(GROUND_lateral_mm, -GROUND_water_mm);
 }
 
 //' @rdname lateral
@@ -77,14 +77,13 @@ NumericVector lateral_SupplyPow(
 //' @param param_LATERAL_sur_k <-2, 1> coefficient parameter for [lateral_SupplyRatio()]
 //' @export
 // [[Rcpp::export]]
-NumericVector lateral_SupplyRatio(
-    NumericVector GROUND_water_mm,
-    NumericVector param_LATERAL_sur_k
+arma::vec lateral_SupplyRatio(
+    const arma::vec& GROUND_water_mm,
+    const arma::vec& param_LATERAL_sur_k
 )
 {
-  
-  NumericVector GROUND_lateral_mm =  param_LATERAL_sur_k * GROUND_water_mm;
-  return ifelse(GROUND_lateral_mm > - GROUND_water_mm, GROUND_lateral_mm, - GROUND_water_mm) ;
+  arma::vec GROUND_lateral_mm = param_LATERAL_sur_k % GROUND_water_mm;
+  return arma::min(GROUND_lateral_mm, -GROUND_water_mm);
 }
 
 //' @rdname lateral
@@ -97,19 +96,18 @@ NumericVector lateral_SupplyRatio(
 //'   - \mjseqn{M_{ltrl}} is `GROUND_potentialLateral_mm`
 //' @export
 // [[Rcpp::export]]
-NumericVector lateral_GR4J(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector GROUND_potentialLateral_mm
+arma::vec lateral_GR4J(
+    const arma::vec& GROUND_water_mm,
+    const arma::vec& GROUND_capacity_mm,
+    const arma::vec& GROUND_potentialLateral_mm
 ) 
 {
-  NumericVector GROUND_lateral_mm;
-  NumericVector GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
-  GROUND_lateral_mm = GROUND_potentialLateral_mm * pow((GROUND_water_mm / GROUND_capacity_mm), 3.5);
-  GROUND_lateral_mm = ifelse(GROUND_lateral_mm > GROUND_diff_mm, GROUND_diff_mm, GROUND_lateral_mm) ;
-  return ifelse(GROUND_lateral_mm > - GROUND_water_mm, GROUND_lateral_mm, - GROUND_water_mm) ;
+  arma::vec GROUND_lateral_mm;
+  arma::vec GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
+  GROUND_lateral_mm = GROUND_potentialLateral_mm % arma::pow((GROUND_water_mm / GROUND_capacity_mm), 3.5);
+  GROUND_lateral_mm = arma::min(GROUND_lateral_mm, GROUND_diff_mm);
+  return arma::min(GROUND_lateral_mm, -GROUND_water_mm);
 }
-
 
 //' @rdname lateral
 //' @details
@@ -123,20 +121,19 @@ NumericVector lateral_GR4J(
 //' @param param_LATERAL_grf_gamma <0.01, 5> parameter for [lateral_GR4Jfix()]
 //' @export
 // [[Rcpp::export]]
-NumericVector lateral_GR4Jfix(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector GROUND_potentialLateral_mm,
-    NumericVector param_LATERAL_grf_gamma
+arma::vec lateral_GR4Jfix(
+    const arma::vec& GROUND_water_mm,
+    const arma::vec& GROUND_capacity_mm,
+    const arma::vec& GROUND_potentialLateral_mm,
+    const arma::vec& param_LATERAL_grf_gamma
 ) 
 {
-  NumericVector GROUND_lateral_mm;
-  NumericVector GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
-  GROUND_lateral_mm = GROUND_potentialLateral_mm * vecpow((GROUND_water_mm / GROUND_capacity_mm), param_LATERAL_grf_gamma);
-  GROUND_lateral_mm = ifelse(GROUND_lateral_mm > GROUND_diff_mm, GROUND_diff_mm, GROUND_lateral_mm) ;
-  return ifelse(GROUND_lateral_mm > - GROUND_water_mm, GROUND_lateral_mm, - GROUND_water_mm) ;
+  arma::vec GROUND_lateral_mm;
+  arma::vec GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
+  GROUND_lateral_mm = GROUND_potentialLateral_mm % arma::pow((GROUND_water_mm / GROUND_capacity_mm), param_LATERAL_grf_gamma);
+  GROUND_lateral_mm = arma::min(GROUND_lateral_mm, GROUND_diff_mm);
+  return arma::min(GROUND_lateral_mm, -GROUND_water_mm);
 }
-
 
 //' @rdname lateral
 //' @details
@@ -153,25 +150,23 @@ NumericVector lateral_GR4Jfix(
 //' @param param_LATERAL_thp_gamma <0.1, 5> exponential parameter for [lateral_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector lateral_ThreshPow(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector GROUND_potentialLateral_mm,
-    NumericVector param_LATERAL_thp_thresh,
-    NumericVector param_LATERAL_thp_gamma
+arma::vec lateral_ThreshPow(
+    const arma::vec& GROUND_water_mm,
+    const arma::vec& GROUND_capacity_mm,
+    const arma::vec& GROUND_potentialLateral_mm,
+    const arma::vec& param_LATERAL_thp_thresh,
+    const arma::vec& param_LATERAL_thp_gamma
 )
 {
-  NumericVector GROUND_lateral_mm, lateral_temp;
-  NumericVector GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
+  arma::vec GROUND_lateral_mm, lateral_temp;
+  arma::vec GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
   lateral_temp = (GROUND_water_mm / GROUND_capacity_mm - param_LATERAL_thp_thresh);
-  lateral_temp = ifelse(lateral_temp < 0, 0, lateral_temp);
+  lateral_temp = arma::clamp(lateral_temp, 0.0, arma::datum::inf);
   
-  GROUND_lateral_mm = GROUND_potentialLateral_mm * vecpow(lateral_temp / (1 - param_LATERAL_thp_thresh), param_LATERAL_thp_gamma);
-
-  GROUND_lateral_mm = ifelse(GROUND_lateral_mm > GROUND_diff_mm, GROUND_diff_mm, GROUND_lateral_mm) ;
-  return ifelse(GROUND_lateral_mm > - GROUND_water_mm, GROUND_lateral_mm, - GROUND_water_mm) ;
+  GROUND_lateral_mm = GROUND_potentialLateral_mm % arma::pow(lateral_temp / (1 - param_LATERAL_thp_thresh), param_LATERAL_thp_gamma);
+  GROUND_lateral_mm = arma::min(GROUND_lateral_mm, GROUND_diff_mm);
+  return arma::min(GROUND_lateral_mm, -GROUND_water_mm);
 }
-
 
 //' @rdname lateral
 //' @details
@@ -189,27 +184,48 @@ NumericVector lateral_ThreshPow(
 //' @param param_LATERAL_arn_k <0.1, 1> exponential parameter for [lateral_ThreshPow()]
 //' @export
 // [[Rcpp::export]]
-NumericVector lateral_Arno(
-    NumericVector GROUND_water_mm,
-    NumericVector GROUND_capacity_mm,
-    NumericVector GROUND_potentialLateral_mm,
-    NumericVector param_LATERAL_arn_thresh,
-    NumericVector param_LATERAL_arn_k
+arma::vec lateral_Arno(
+    const arma::vec& GROUND_water_mm,
+    const arma::vec& GROUND_capacity_mm,
+    const arma::vec& GROUND_potentialLateral_mm,
+    const arma::vec& param_LATERAL_arn_thresh,
+    const arma::vec& param_LATERAL_arn_k
 )
 {
-  NumericVector GROUND_lateral_mm, lateral_1, lateral_2, Ws_Wc;
-  NumericVector GROUND_diff_mm = (GROUND_capacity_mm - GROUND_water_mm);
-  Ws_Wc = GROUND_capacity_mm * param_LATERAL_arn_thresh;
+  arma::vec GROUND_lateral_mm, lateral_1, lateral_2, Ws_Wc;
+  arma::vec GROUND_diff_mm = GROUND_capacity_mm - GROUND_water_mm;
+
+  // Threshold water level
+  Ws_Wc = GROUND_capacity_mm % param_LATERAL_arn_thresh;
+
+  // Case 1: Below threshold
+  lateral_1 = param_LATERAL_arn_k % GROUND_potentialLateral_mm / GROUND_capacity_mm % GROUND_water_mm;
+
+  // Case 2: Above threshold
+  arma::vec ratio = (GROUND_water_mm - Ws_Wc) / (GROUND_capacity_mm - Ws_Wc);
+  lateral_2 = lateral_1 + GROUND_potentialLateral_mm % (1.0 - param_LATERAL_arn_k) % arma::square(ratio);
+
+  // Combine cases
+  GROUND_lateral_mm = arma::vec(GROUND_water_mm.n_elem);
+  GROUND_lateral_mm.elem(arma::find(GROUND_water_mm < Ws_Wc)) = lateral_1.elem(arma::find(GROUND_water_mm < Ws_Wc));
+  GROUND_lateral_mm.elem(arma::find(GROUND_water_mm >= Ws_Wc)) = lateral_2.elem(arma::find(GROUND_water_mm >= Ws_Wc));
+
+  // Cap to water content if potential is greater than available
+  arma::uvec idx = arma::find(GROUND_potentialLateral_mm > Ws_Wc);
+  GROUND_lateral_mm.elem(idx) = GROUND_water_mm.elem(idx);
+
+  // Bounds enforcement for positive potential lateral flow
+  arma::uvec idx_pos = arma::find((GROUND_lateral_mm > GROUND_potentialLateral_mm) % (GROUND_potentialLateral_mm > 0));
+  GROUND_lateral_mm.elem(idx_pos) = GROUND_potentialLateral_mm.elem(idx_pos);
+
+  // Bounds enforcement for negative potential lateral flow
+  arma::uvec idx_neg = arma::find((GROUND_lateral_mm < GROUND_potentialLateral_mm) % (GROUND_potentialLateral_mm < 0));
+  GROUND_lateral_mm.elem(idx_neg) = GROUND_potentialLateral_mm.elem(idx_neg);
+
+  // Ensure it doesn't exceed drainable water
+  // Ensure lateral flow does not exceed available water or go below -GROUND_water_mm
+  GROUND_lateral_mm = arma::min(GROUND_lateral_mm, GROUND_diff_mm);
+  GROUND_lateral_mm = arma::max(GROUND_lateral_mm, -GROUND_water_mm);
   
-  
-  lateral_1 = param_LATERAL_arn_k * GROUND_potentialLateral_mm / (GROUND_capacity_mm) * GROUND_water_mm;
-  lateral_2 = param_LATERAL_arn_k * GROUND_potentialLateral_mm / (GROUND_capacity_mm) * GROUND_water_mm + GROUND_potentialLateral_mm * (1 - param_LATERAL_arn_k) * pow((GROUND_water_mm - Ws_Wc) / (GROUND_capacity_mm - Ws_Wc),2);
-  GROUND_lateral_mm = ifelse(GROUND_water_mm < Ws_Wc, lateral_1, lateral_2);
-  GROUND_lateral_mm = ifelse(GROUND_potentialLateral_mm > Ws_Wc, GROUND_water_mm, GROUND_lateral_mm);
-  
-  GROUND_lateral_mm = ifelse((GROUND_lateral_mm < GROUND_potentialLateral_mm) & (GROUND_potentialLateral_mm < 0.), GROUND_potentialLateral_mm, GROUND_lateral_mm);
-  GROUND_lateral_mm = ifelse((GROUND_lateral_mm > GROUND_potentialLateral_mm) & (GROUND_potentialLateral_mm > 0.), GROUND_potentialLateral_mm, GROUND_lateral_mm);
-  
-  GROUND_lateral_mm = ifelse(GROUND_lateral_mm > GROUND_diff_mm, GROUND_diff_mm, GROUND_lateral_mm) ;
-  return ifelse(GROUND_lateral_mm > - GROUND_water_mm, GROUND_lateral_mm, - GROUND_water_mm) ;
+  return GROUND_lateral_mm;
 }

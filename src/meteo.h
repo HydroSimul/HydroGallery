@@ -1,57 +1,67 @@
-// Defines a header file containing function of METEO/
 #ifndef METEO
 #define METEO
 
-#include "00utilis.h"
+#include <RcppArmadillo.h>
 
-NumericVector meteo_solarRadiatClearSky_FAO56(
-    NumericVector Time_dayOfYear_,
-    NumericVector LAND_latitude_Degree,
-    NumericVector LAND_elevation_m);
-NumericVector meteo_saturatVaporPress(NumericVector ATMOS_temperature_Cel);
-NumericVector meteo_saturatVaporPress_kPa(NumericVector ATMOS_temperature_Cel);
-NumericVector meteo_vaporPress(NumericVector ATMOS_temperature_Cel, NumericVector ATMOS_relativeHumidity_1);
-NumericVector meteo_nettoRadiat_FAO56(
-    NumericVector Time_dayOfYear_,
-    NumericVector ATMOS_temperature_Cel,
-    NumericVector ATMOS_temperatureMax_Cel,
-    NumericVector ATMOS_temperatureMin_Cel,
-    NumericVector ATMOS_relativeHumidity_1,
-    NumericVector ATMOS_solarRadiat_MJ,
-    NumericVector LAND_latitude_Degree,
-    NumericVector LAND_elevation_m);
-NumericVector meteo_atmosEmissivity_FAO56(
-    NumericVector Time_dayOfYear_,
-    NumericVector ATMOS_temperature_Cel,
-    NumericVector ATMOS_relativeHumidity_1,
-    NumericVector ATMOS_solarRadiat_MJ,
-    NumericVector LAND_latitude_Degree,
-    NumericVector LAND_elevation_m);
-NumericVector meteo_cloudFactor_UNKNOW(NumericVector ATMOS_solarRadiat_MJ,
-                                       NumericVector Time_dayOfYear_,
-                                       NumericVector LAND_latitude_Degree,
-                                       NumericVector LAND_elevation_m);
-NumericVector meteo_atmosEmissivity_UNKNOW(
-    NumericVector Time_dayOfYear_,
-    NumericVector ATMOS_temperature_Cel,
-    NumericVector ATMOS_vaporPress_kPa,
-    NumericVector ATMOS_solarRadiat_MJ,
-    NumericVector LAND_latitude_Degree,
-    NumericVector LAND_elevation_m);
-NumericVector meteo_nettoRadiat_FAO56Simplify(
-    NumericVector Time_dayOfYear_,
-    NumericVector ATMOS_temperature_Cel,
-    NumericVector ATMOS_relativeHumidity_1,
-    NumericVector ATMOS_solarRadiat_MJ,
-    NumericVector LAND_latitude_Degree,
-    NumericVector LAND_elevation_m);
-NumericVector meteo_windSpeed2m(NumericVector ATMOS_windSpeed_m_s, NumericVector ATMOS_windMeasureHeight_m);
-NumericVector meteo_airDensity(NumericVector ATMOS_temperature_Cel,
-                               NumericVector LAND_elevation_m);
-NumericVector meteo_saturatDelta(NumericVector ATMOS_temperature_Cel);
-NumericVector meteo_wetBulbTemperature(NumericVector ATMOS_vaporPress_kPa, 
-                                       NumericVector ATMOS_temperature_Cel);
+arma::vec meteo_solarRadiatClearSky_FAO56(
+    const arma::vec& Time_dayOfYear_,
+    const arma::vec& LAND_latitude_Degree,
+    const arma::vec& LAND_elevation_m);
 
+arma::vec meteo_saturatVaporPress(const arma::vec& ATMOS_temperature_Cel);
 
+arma::vec meteo_saturatVaporPress_kPa(const arma::vec& ATMOS_temperature_Cel);
+
+arma::vec meteo_vaporPress(const arma::vec& ATMOS_temperature_Cel, const arma::vec& ATMOS_relativeHumidity_1);
+
+arma::vec meteo_nettoRadiat_FAO56(
+    const arma::vec& Time_dayOfYear_,
+    const arma::vec& ATMOS_temperature_Cel,
+    const arma::vec& ATMOS_temperatureMax_Cel,
+    const arma::vec& ATMOS_temperatureMin_Cel,
+    const arma::vec& ATMOS_relativeHumidity_1,
+    const arma::vec& ATMOS_solarRadiat_MJ,
+    const arma::vec& LAND_latitude_Degree,
+    const arma::vec& LAND_elevation_m);
+
+arma::vec meteo_atmosEmissivity_FAO56(
+    const arma::vec& Time_dayOfYear_,
+    const arma::vec& ATMOS_temperature_Cel,
+    const arma::vec& ATMOS_relativeHumidity_1,
+    const arma::vec& ATMOS_solarRadiat_MJ,
+    const arma::vec& LAND_latitude_Degree,
+    const arma::vec& LAND_elevation_m);
+
+arma::vec meteo_cloudFactor_UNKNOW(
+    const arma::vec& ATMOS_solarRadiat_MJ,
+    const arma::vec& Time_dayOfYear_,
+    const arma::vec& LAND_latitude_Degree,
+    const arma::vec& LAND_elevation_m);
+
+arma::vec meteo_atmosEmissivity_UNKNOW(
+    const arma::vec& Time_dayOfYear_,
+    const arma::vec& ATMOS_temperature_Cel,
+    const arma::vec& ATMOS_vaporPress_kPa,
+    const arma::vec& ATMOS_solarRadiat_MJ,
+    const arma::vec& LAND_latitude_Degree,
+    const arma::vec& LAND_elevation_m);
+
+arma::vec meteo_nettoRadiat_FAO56Simplify(
+    const arma::vec& Time_dayOfYear_,
+    const arma::vec& ATMOS_temperature_Cel,
+    const arma::vec& ATMOS_relativeHumidity_1,
+    const arma::vec& ATMOS_solarRadiat_MJ,
+    const arma::vec& LAND_latitude_Degree,
+    const arma::vec& LAND_elevation_m);
+
+arma::vec meteo_windSpeed2m(const arma::vec& ATMOS_windSpeed_m_s, const arma::vec& ATMOS_windMeasureHeight_m);
+
+arma::vec meteo_airDensity(const arma::vec& ATMOS_temperature_Cel, const arma::vec& LAND_elevation_m);
+
+arma::vec meteo_saturatDelta(const arma::vec& ATMOS_temperature_Cel);
+
+arma::vec meteo_wetBulbTemperature(
+    const arma::vec& ATMOS_vaporPress_kPa, 
+    const arma::vec& ATMOS_temperature_Cel);
 
 #endif

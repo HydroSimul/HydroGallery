@@ -35,11 +35,11 @@ riverlakout_LinearResorvoir(
 
 \item{Riverlak_capacity_m3}{(m3) total capacity of the river-lake system}
 
-\item{param_Riverlak_lin_storeFactor}{<uknow> parameter for [riverlak_LinearResorvoir()],}
+\item{param_Riverlak_lin_storeFactor}{<unknown> parameter for [riverlak_LinearResorvoir()]}
 }
 \value{
 outflow (m3)
 }
 \description{
-The concept of river estimates the waterbody outflow for waternet concentation
+The concept of river estimates the waterbody outflow for waternet concentration
 }

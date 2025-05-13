@@ -17,13 +17,13 @@ lakeout_SupplyPow(
 
 \item{Lake_capacity_m3}{(m3) capacity of the lake}
 
-\item{param_Lakeout_sup_storeFactor}{<uknow> parameter for [lakeout_SupplyPow()],}
+\item{param_Lakeout_sup_storeFactor}{<unknown> parameter for [lakeout_SupplyPow()],}
 
-\item{param_Lakeout_sup_gamma}{<uknow> parameter for [lakeout_SupplyPow()],}
+\item{param_Lakeout_sup_gamma}{<unknown> parameter for [lakeout_SupplyPow()],}
 }
 \value{
 outflow (m3)
 }
 \description{
-The concept of lake estimates the waterbody outflow for waternet concentation
+The concept of lake estimates the waterbody outflow for waternet concentration
 }

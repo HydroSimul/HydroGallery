@@ -7,9 +7,9 @@ Author: Kan Lei
 Maintainer: Kan Lei <kan.lei@rub.de>
 Description: HydroGallery is an Rcpp-based package designed to provide a versatile and efficient suite of functions for hydrological modeling and analysis. 
 License: GPL (>= 2)
-Imports: Rcpp (>= 1.0.7),
+Imports: Rcpp (>= 1.0.7), 
   mathjaxr, Rdpack,
-LinkingTo: Rcpp
+LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 RdMacros: mathjaxr, Rdpack

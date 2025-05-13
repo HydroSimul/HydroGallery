@@ -84,7 +84,7 @@ evatransPotential_PriestleyTaylor(
 potential evapotranspiration (mm/m2)
 }
 \description{
-The concept
+Leaf Area Index model from WaterGAP3
 
 The concept of potential evapotranspiration (ET) estimates the ability of water lost from the soil and vegetation in an area due to evaporation and transpiration. 
 It assumes that there is always enough water in the ET area to meet the demand for evapotranspiration.
@@ -115,7 +115,7 @@ where
   - \mjseqn{T_d} is dewpoint temperature,
   - \mjseqn{H_R} is relative humidity, `ATMOS_relativeHumidity_1`
 
-- **_FAO56** \insertCite{ET_FAO56_1998}{HydroGallery}: consider not only radiation and temperature but also other variable like wind speed
+- **_FAO56** \insertCite{ET_FAO56_1998}{HydroGallery}: consider not only radiation and temperature but also other variables like wind speed
 as the main factors. 
 \mjsdeqn{E_p =\frac{0.408 \Delta\left(R_n - G\right)+\gamma \frac{900}{T+273} {u}_{2}\left({e}_{{s}}-{e}_{{a}}\right)}{\Delta+\gamma\left(1+0.34 {u}_{2}\right)}}
 where
@@ -128,7 +128,5 @@ where
   - \mjseqn{\gamma} is psychrometric constant
 }
 \references{
-\insertAllCited{}
-
 \insertAllCited{}
 }

@@ -3,7 +3,7 @@
 \name{intercep}
 \alias{intercep}
 \alias{intercep_Full}
-\title{**interception** water from land go into the soil.}
+\title{**interception** water from land goes into the soil.}
 \usage{
 intercep_Full(
   ATMOS_precipitation_mm,
@@ -26,15 +26,13 @@ intercept_water_mm (mm/m2) intercepted water in this timestep
 
 In hydrological modeling, interception refers to the process by which water from precipitation is temporarily retained on the surfaces of vegetation, such as leaves and branches, before being returned to the atmosphere through evaporation or drip.
 
-Under the concept of the conceptional HM, the interception will simply be calculated with the maximal interception of the land.
+Under the concept of the conceptual HM, the interception will simply be calculated with the maximal interception of the land.
 And the interception water will also not go to the land, but will be evaporated.
 The maximal Interception of the canopy is maybe difficult to estimate 
-but the process is really simple and there is also not so many method to describe it.
+but the process is really simple and there are also not so many methods to describe it.
 }
 \details{
 # **_Full** : 
-
-
 
 consider only the radiation and temperature as the main factors. 
 \mjsdeqn{F_{itcp} = C_{icpt} - W_{icpt}}

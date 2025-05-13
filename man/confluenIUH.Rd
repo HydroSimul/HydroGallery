@@ -40,15 +40,12 @@ So we can give the function:
 
 \mjsdeqn{u = f_{confluenIUH}(t_r, ...)}
 
-
-
 where
 - \mjseqn{u} is series of portions
 - \mjseqn{t_r} is  `CONFLUEN_responseTime_TS`
 }
 \details{
 # **_GR4J1** \insertCite{GR4J_Perrin_2003}{HydroGallery}: 
-
 
 \mjsdeqn{u(i) = S(i) - S(i-1)}
 \mjsdeqn{S(i) = \left( \frac{i}{t_r} \right)^{2.5}, \quad 0 \leq i \leq t_r}
@@ -57,7 +54,6 @@ where
   - \mjseqn{i} is index
 
 # **_GR4J2** \insertCite{GR4J_Perrin_2003}{HydroGallery}: 
-
 
 \mjsdeqn{u(i) = S(i) - S(i-1)}
 \mjsdeqn{S(i) = 0.5\left( \frac{i}{t_r} \right)^{2.5}, \quad 0 \leq i \leq t_r}
@@ -69,7 +65,6 @@ where
 
 # **_Kelly** \insertCite{iuh_Kelly_1955}{HydroGallery}: 
 
-
 \mjsdeqn{u(i) = \frac{4}{t_r^2} \left( i + k \left( e^{-i/k} \right) \right), \quad i \leq t_r / 2 }
 \mjsdeqn{u(i) = - \frac{4}{t_r^2}(i - k - t_r) + \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)}), \quad t_r / 2 < i \leq t_r }
 \mjsdeqn{u(i) =  \frac{4ke^{-i/k}}{t_r^2} (1 - 2 e^{t_r/(2k)} +  e^{t_r/k}), \quad i > t_r }
@@ -78,13 +73,11 @@ where
 
 # **_Nash** \insertCite{iuh_Nash_1957}{HydroGallery}: 
 
-
 \mjsdeqn{u(i) = \frac{1}{t_r\Gamma(n)} \left(\frac{4}{t_r^2}\right)^{n -1}e^{-i/t_r}}
 where
   - \mjseqn{n} is `param_CONFLUEN_nas_n`
 
 # **_Clark** \insertCite{iuh_Clark_1945}{HydroGallery}: 
-
 
 \mjsdeqn{u(i) = \frac{1}{t_r} e^{-i/t_r} }
 where
