@@ -38,7 +38,10 @@ arma::vec evatransPotential_TurcWendling(
     const arma::vec& param_EVATRANS_tur_k 
 )
 {
-  return arma::max((ATMOS_solarRadiat_MJ * 100 + 3.875 * 24 * param_EVATRANS_tur_k) % (ATMOS_temperature_Cel + 22) / 150 / (ATMOS_temperature_Cel + 123), 0.0);
+  arma::vec PET = (ATMOS_solarRadiat_MJ * 100 + 3.875 * 24 * param_EVATRANS_tur_k) % 
+    (ATMOS_temperature_Cel + 22) / 150 / (ATMOS_temperature_Cel + 123);
+  PET.transform([](double val) { return std::max(val, 0.0); });
+  return PET;
 }
 
 //' @rdname evatransPotential
@@ -60,8 +63,14 @@ arma::vec evatransPotential_Linacre(
     const arma::vec& LAND_elevation_m,
     const arma::vec& LAND_albedo_1
 )
-{
-  return arma::max(((0.75 - LAND_albedo_1) * 100 * (ATMOS_temperature_Cel + 0.006 * LAND_elevation_m) / (100 - LAND_latitude_Degree) + 3 * 100 * (1 - ATMOS_relativeHumidity_1)) / (80 - ATMOS_temperature_Cel), 0.0);
+{// Compute the full expression
+  arma::vec PET = ((0.75 - LAND_albedo_1) * 100 * (ATMOS_temperature_Cel + 0.006 * LAND_elevation_m) / 
+    (100 - LAND_latitude_Degree) + 3 * 100 * (1 - ATMOS_relativeHumidity_1)) / 
+    (80 - ATMOS_temperature_Cel);
+  
+  // Efficiently clamp negatives to 0 (no temporary copies)
+  PET.transform([](double val) { return std::max(val, 0.0); });
+  return PET;
 }
 
 //' @rdname evatransPotential
@@ -100,7 +109,8 @@ arma::vec evatransPotential_FAO56(
   gamma_ = 0.665e-3 * 101.3 * pow(((293 - 0.0065 * LAND_elevation_m) / 293), 5.26);
 
   ET_o = (0.408 * Delta_ % (R_n - 0.) + gamma_ * 90 * u_2 % (e_s - e_a) / (ATMOS_temperature_Cel + 273)) / (Delta_ + gamma_ % (1 + 0.34 * u_2));
-  return arma::max(ET_o, 0.0);
+  ET_o.transform([](double val) { return std::max(val, 0.0); });
+  return ET_o;
 }
 
 //' @rdname evatransPotential
@@ -125,5 +135,7 @@ arma::vec evatransPotential_PriestleyTaylor(
   gamma_ = 0.665e-3 * P_;
 
   ET_o = param_EVATRANS_prt_alpha % Delta_ % (ATMOS_netRadiat_MJ - 0.) / (Delta_ + gamma_);
-  return arma::max(ET_o / lat_heat, 0.0);
+  ET_o /= lat_heat;  // Element-wise division (if lat_heat is scalar or same-sized)
+  ET_o.transform([](double val) { return std::max(val, 0.0); });
+  return ET_o;
 }

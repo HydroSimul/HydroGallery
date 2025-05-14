@@ -118,8 +118,9 @@ arma::vec percola_ThreshPow(
     const arma::vec& param_PERCOLA_thp_thresh,
     const arma::vec& param_PERCOLA_thp_gamma
 ) {
-    arma::vec percola_temp = arma::max(arma::zeros<arma::vec>(SOIL_water_mm.n_elem), SOIL_water_mm / SOIL_capacity_mm - param_PERCOLA_thp_thresh);
-    arma::vec percola_ = SOIL_potentialPercola_mm % arma::pow(percola_temp / (1 - param_PERCOLA_thp_thresh), param_PERCOLA_thp_gamma);
+  arma::vec percola_temp = SOIL_water_mm / SOIL_capacity_mm - param_PERCOLA_thp_thresh;
+  percola_temp.transform([](double val) { return std::max(val, 0.0); });
+  arma::vec percola_ = SOIL_potentialPercola_mm % arma::pow(percola_temp / (1 - param_PERCOLA_thp_thresh), param_PERCOLA_thp_gamma);
     percola_ = arma::min(percola_, SOIL_potentialPercola_mm);
     return arma::min(percola_, SOIL_water_mm);
 }

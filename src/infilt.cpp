@@ -55,7 +55,7 @@ arma::vec infilt_GR4J(
 ) 
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
   
   arma::vec tanh_pn_x1 = arma::tanh(LAND_water_mm / SOIL_capacity_mm);
   arma::vec s_x1 = SOIL_water_mm / SOIL_capacity_mm;
@@ -86,7 +86,7 @@ arma::vec infilt_UBC(
 )
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
   
   arma::vec k_ = 1 - LAND_impermeableFrac_1 % arma::exp(-SOIL_diff_mm / (SOIL_capacity_mm % param_INFILT_ubc_P0AGEN) * std::log(10.0));
   arma::vec infilt_water_mm = LAND_water_mm % k_;
@@ -115,7 +115,7 @@ arma::vec infilt_SupplyRatio(
 )
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
   
   arma::vec infilt_water_mm = param_INFILT_sur_k % LAND_water_mm;
   
@@ -141,7 +141,8 @@ arma::vec infilt_AcceptRatio(
 )
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
+  limit_mm.transform([](double val) { return std::min(val, 1.0); });
   
   arma::vec infilt_water_mm = SOIL_diff_mm % param_INFILT_acr_k;
   
@@ -171,7 +172,8 @@ arma::vec infilt_SupplyPow(
 )
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
+  
   
   arma::vec infilt_water_mm = param_INFILT_sup_k % pow(arma::ceil(LAND_water_mm), param_INFILT_sup_gamma);
   infilt_water_mm = arma::min(infilt_water_mm, LAND_water_mm);
@@ -201,7 +203,7 @@ arma::vec infilt_AcceptPow(
 )
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
   
   arma::vec k_ = param_INFILT_acp_k % pow(SOIL_diff_mm / SOIL_capacity_mm, param_INFILT_acp_gamma);
   arma::vec infilt_water_mm = k_ % SOIL_diff_mm;
@@ -229,7 +231,7 @@ arma::vec infilt_HBV(
 )
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
   
   arma::vec k_ = (1 - pow(SOIL_water_mm / SOIL_capacity_mm, param_INFILT_hbv_beta));
   arma::vec infilt_water_mm = LAND_water_mm % k_;
@@ -261,7 +263,7 @@ arma::vec infilt_XAJ(
 )
 {
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
-  arma::vec limit_mm = arma::min(arma::join_cols(SOIL_diff_mm, LAND_water_mm), 1);
+  arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
   
   arma::vec MM_ = SOIL_capacity_mm * (param_INFILT_xaj_B + 1);
   arma::vec B_p_1 = (param_INFILT_xaj_B + 1);
@@ -271,7 +273,7 @@ arma::vec infilt_XAJ(
   arma::vec AU_ = MM_ % (1 - pow(1 - SOIL_water_mm * B_p_1 / MM_, B_1));
   
   arma::vec AU_L_MM = (MM_ - AU_ - LAND_water_mm) / MM_;
-  AU_L_MM = arma::max(AU_L_MM, arma::zeros<arma::vec>(AU_L_MM.n_elem));
+  AU_L_MM.transform([](double val) { return std::max(val, 0.0); });
   
   arma::vec MM_AU = (MM_ - AU_) / MM_;
   

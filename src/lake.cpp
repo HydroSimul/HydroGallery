@@ -58,9 +58,11 @@ arma::vec lakeevap_Zhao(const arma::vec& ATMOS_solarRadiat_MJ,
   const double const_waterEmissivity = 0.97;
 
   // Ensure minimum values for wind speed and vapor pressure
-  arma::vec ATMOS_windSpeed2m_m_s_modified = arma::max(ATMOS_windSpeed2m_m_s, 0.01);
-  arma::vec ATMOS_vaporPress_kPa_modified = arma::max(ATMOS_vaporPress_kPa, 0.0001);
-
+  arma::vec ATMOS_windSpeed2m_m_s_modified = ATMOS_windSpeed2m_m_s;
+  arma::vec ATMOS_vaporPress_kPa_modified = ATMOS_vaporPress_kPa;
+  ATMOS_windSpeed2m_m_s_modified.transform([](double val) { return std::max(val, 0.01); });
+  ATMOS_vaporPress_kPa_modified.transform([](double val) { return std::max(val, 0.0001); });
+  
   // Vapor pressure calculations
   arma::vec num_SaturatVaporPress = meteo_saturatVaporPress_kPa(ATMOS_temperature_Cel);
   arma::vec ATMOS_vaporPress_kPa_mod = arma::min(ATMOS_vaporPress_kPa_modified, num_SaturatVaporPress * 0.99);
@@ -112,8 +114,8 @@ arma::vec lakeevap_Zhao(const arma::vec& ATMOS_solarRadiat_MJ,
       num_Factor_Wind % (num_Delta_TwetBulb + num_Gamma));
 
   arma::vec Lake_newTemperature_Cel = num_T_Equilibrium + (Lake_temperature_Cel - num_T_Equilibrium) % arma::exp(-1.0 / num_Lake_Heat_LagTime);
-  Lake_newTemperature_Cel = arma::max(Lake_newTemperature_Cel, 0.0);
-
+  Lake_newTemperature_Cel.transform([](double val) { return std::max(val, 0.0); });
+  
   // Heat storage change
   arma::vec num_HeatChange_Lake = const_waterDensity * const_waterHeatCapacity *
     Lake_depth_m % (Lake_newTemperature_Cel - Lake_temperature_Cel);
@@ -125,5 +127,7 @@ arma::vec lakeevap_Zhao(const arma::vec& ATMOS_solarRadiat_MJ,
   arma::vec num_Latent_Heat = (num_Delta_Tair % (num_Net_Radiat - num_HeatChange_Lake) + num_Gamma % num_Factor_Wind % (num_SaturatVaporPress - ATMOS_vaporPress_kPa_mod)) /
     (num_Delta_Tair + num_Gamma);
 
-  return arma::max(num_Latent_Heat / num_Lambda_Air, 0.0);
+  arma::vec result = num_Latent_Heat / num_Lambda_Air;
+  result.transform([](double val) { return std::max(val, 0.0); });
+  return result;
 }

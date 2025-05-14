@@ -20,7 +20,8 @@ arma::vec meteo_extraterreSolarRadiat_FAO56(
   arma::vec omega_s = acos(omega_s_TEMP); //25
   arma::vec R_a = 37.58603 * d_r % (omega_s % sin(phi_) % sin(delta_) + cos(phi_) % cos(delta_) % sin(omega_s)); //21
   
-  return arma::max(R_a, 0);
+  R_a.elem(arma::find(R_a < 0)).zeros();  // Sets negative values to 0
+  return R_a;
 }
 
 //' @rdname meteo
@@ -188,15 +189,19 @@ arma::vec meteo_nettoRadiat_WaterGAP3(
  arma::vec R_ns = (1 - LAND_albedo_1) % ATMOS_solarRadiat_MJ;
  arma::vec epsilon_a = meteo_atmosEmissivity_Idso(ATMOS_temperature_Cel);
  arma::vec factor_Cloud = ATMOS_solarRadiat_MJ / ATMOS_solarRadiatClearSky_MJ;
- factor_Cloud = arma::min(factor_Cloud, 1.0);  // Ensure max value is 1
- 
+ factor_Cloud.transform([](double val) { return std::min(val, 1.0); });
+
  arma::vec ATMOS_temperature_T = ATMOS_temperature_Cel + 273.16;
- arma::vec factor_Cloud_Rnl = arma::max(1.35 * factor_Cloud - 0.35, 0.0);
+ arma::vec factor_Cloud_Rnl = 1.35 * factor_Cloud - 0.35;
+ factor_Cloud_Rnl.transform([](double val) { return std::max(val, 0.0); });
+ 
  
  arma::vec R_nl = sigma_ * arma::pow(ATMOS_temperature_T, 4) % epsilon_a % factor_Cloud_Rnl;
  R_nl = arma::clamp(R_nl, 0.0, arma::datum::inf); // R_nl > 0 if condition
  
- return arma::max(R_ns - R_nl, 0.0);  // Ensure R_ns - R_nl doesn't go below 0
+ arma::vec diff = R_ns - R_nl;
+ diff.transform([](double val) { return std::max(val, 0.0); });
+ return diff;
 }
 
 //' @rdname meteo
@@ -216,14 +221,18 @@ arma::vec meteo_nettoRadiat_FAO56Simplify(
  arma::vec e_a = meteo_vaporPress(ATMOS_temperature_Cel, ATMOS_relativeHumidity_1);
  arma::vec R_so = meteo_solarRadiatClearSky_FAO56(Time_dayOfYear_, LAND_latitude_Degree, LAND_elevation_m);
  arma::vec R_ns = (1 - alpha_) * ATMOS_solarRadiat_MJ;
- arma::vec factor_Cloud = arma::max(ATMOS_solarRadiat_MJ / R_so, 1.0);
- factor_Cloud = arma::min(factor_Cloud, 1.0);  // Ensure max value is 1
+ arma::vec factor_Cloud = ATMOS_solarRadiat_MJ / R_so;                      // Division
+ factor_Cloud.elem(arma::find(R_so <= 0)).fill(1.0);                       // Set factor_Cloud to 1 where R_so <= 0
+ factor_Cloud.transform([](double val) { return std::min(val, 1.0); });    // Clamp max to 1
  
- arma::vec factor_Cloud_Rnl = arma::max(1.35 * factor_Cloud - 0.35, 0.0);
+ arma::vec factor_Cloud_Rnl = 1.35 * factor_Cloud - 0.35;
+ factor_Cloud_Rnl.transform([](double val) { return std::max(val, 0.0); });
  arma::vec R_nl = sigma_ * arma::pow(ATMOS_temperature_Cel + 273.16, 4.0) %
    (0.34 - 0.14 * arma::sqrt(e_a)) % factor_Cloud_Rnl;  // eq39
  
- return arma::max(R_ns - R_nl, 0.0);  // Ensure R_ns - R_nl doesn't go below 0
+ arma::vec diff = R_ns - R_nl;
+ diff.transform([](double val) { return std::max(val, 0.0); });
+ return diff;
 }
 
 //' @rdname meteo
