@@ -1550,6 +1550,17 @@ get_step_lastcell <- function(step_cells, inflow_lastcell) {
 }
 
 #' @rdname routingtopology
+#' @param int_Outflow An integer vector of outflow cell indices.
+#' @param filepath_step_cells Path to save the step_cells field.
+#' @param filepath_step_lastcell Path to save the step_lastcell field.
+#'
+#' @return NULL (invisible)
+#' @export
+generate_step_cell <- function(int_Outflow, filepath_step_cells, filepath_step_lastcell) {
+    invisible(.Call(`_HydroGallery_generate_step_cell`, int_Outflow, filepath_step_cells, filepath_step_lastcell))
+}
+
+#' @rdname routingtopology
 #' @param lst_Inflow_Cell A list of integer vectors, where each vector contains the cells that flow into the respective cell.
 #' @param int_OutLet An integer representing the outlet cell (1-based index).
 #' @param int_TestCell An integer vector, cells to test.

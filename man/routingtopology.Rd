@@ -6,6 +6,7 @@
 \alias{get_inflow_lastcell}
 \alias{get_step_cells}
 \alias{get_step_lastcell}
+\alias{generate_step_cell}
 \alias{get_cell_in_basin}
 \alias{get_inter_basin}
 \alias{get_new_outflow}
@@ -21,6 +22,8 @@ get_step_cells(inflow_cells)
 
 get_step_lastcell(step_cells, inflow_lastcell)
 
+generate_step_cell(int_Outflow, filepath_step_cells, filepath_step_lastcell)
+
 get_cell_in_basin(lst_Inflow_Cell, int_OutLet, int_TestCell)
 
 get_inter_basin(int_Cell, int_Outflow)
@@ -32,7 +35,11 @@ get_cali_step(step_cells, int_Cali)
 get_upstream_cali_cell(lst_Inflow_Cell, int_CaliCell)
 }
 \arguments{
-\item{int_Outflow}{A vector of integers representing the cell number of the next cell. 1-based indexing.}
+\item{int_Outflow}{An integer vector of outflow cell indices.}
+
+\item{filepath_step_cells}{Path to save the step_cells field.}
+
+\item{filepath_step_lastcell}{Path to save the step_lastcell field.}
 
 \item{lst_Inflow_Cell}{A list of integer vectors, where each vector contains the cells that flow into the respective cell.}
 
@@ -50,6 +57,8 @@ get_upstream_cali_cell(lst_Inflow_Cell, int_CaliCell)
 }
 \value{
 A field of uvecs containing the inflow cells for each cell.
+
+NULL (invisible)
 
 An integer vector of cells in the intersection of the station cells and the basin.
 

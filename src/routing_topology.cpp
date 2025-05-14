@@ -112,6 +112,32 @@ arma::field<arma::umat> get_step_lastcell(const arma::field<arma::uvec>& step_ce
   return result;
 }
 
+
+
+//' @rdname routingtopology
+//' @param int_Outflow An integer vector of outflow cell indices.
+//' @param filepath_step_cells Path to save the step_cells field.
+//' @param filepath_step_lastcell Path to save the step_lastcell field.
+//'
+//' @return NULL (invisible)
+//' @export
+// [[Rcpp::export]]
+void generate_step_cell(const arma::uvec& int_Outflow,
+                                     const std::string& filepath_step_cells,
+                                     const std::string& filepath_step_lastcell) {
+  // Generate topology components
+  arma::field<arma::uvec> inflow_cells = get_inflow_cells(int_Outflow);
+  arma::umat inflow_lastcell = get_inflow_lastcell(int_Outflow);
+  arma::field<arma::uvec> step_cells = get_step_cells(inflow_cells);
+  arma::field<arma::umat> step_lastcell = get_step_lastcell(step_cells, inflow_lastcell);
+
+  // Save to files
+  step_cells.save(filepath_step_cells, arma::arma_binary);
+  step_lastcell.save(filepath_step_lastcell, arma::arma_binary);
+}
+
+
+
 //' @rdname routingtopology
 //' @param lst_Inflow_Cell A list of integer vectors, where each vector contains the cells that flow into the respective cell.
 //' @param int_OutLet An integer representing the outlet cell (1-based index).

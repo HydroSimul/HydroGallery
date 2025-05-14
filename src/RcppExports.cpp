@@ -3479,6 +3479,41 @@ RcppExport SEXP _HydroGallery_get_step_lastcell(SEXP step_cellsSEXP, SEXP inflow
     UNPROTECT(1);
     return rcpp_result_gen;
 }
+// generate_step_cell
+void generate_step_cell(const arma::uvec& int_Outflow, const std::string& filepath_step_cells, const std::string& filepath_step_lastcell);
+static SEXP _HydroGallery_generate_step_cell_try(SEXP int_OutflowSEXP, SEXP filepath_step_cellsSEXP, SEXP filepath_step_lastcellSEXP) {
+BEGIN_RCPP
+    Rcpp::traits::input_parameter< const arma::uvec& >::type int_Outflow(int_OutflowSEXP);
+    Rcpp::traits::input_parameter< const std::string& >::type filepath_step_cells(filepath_step_cellsSEXP);
+    Rcpp::traits::input_parameter< const std::string& >::type filepath_step_lastcell(filepath_step_lastcellSEXP);
+    generate_step_cell(int_Outflow, filepath_step_cells, filepath_step_lastcell);
+    return R_NilValue;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _HydroGallery_generate_step_cell(SEXP int_OutflowSEXP, SEXP filepath_step_cellsSEXP, SEXP filepath_step_lastcellSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_HydroGallery_generate_step_cell_try(int_OutflowSEXP, filepath_step_cellsSEXP, filepath_step_lastcellSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error("%s", CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
 // get_cell_in_basin
 arma::uvec get_cell_in_basin(const arma::field<arma::uvec>& lst_Inflow_Cell, int int_OutLet, const arma::uvec& int_TestCell);
 static SEXP _HydroGallery_get_cell_in_basin_try(SEXP lst_Inflow_CellSEXP, SEXP int_OutLetSEXP, SEXP int_TestCellSEXP) {
@@ -3971,6 +4006,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("arma::umat(*get_inflow_lastcell)(const arma::uvec&)");
         signatures.insert("arma::field<arma::uvec>(*get_step_cells)(const arma::field<arma::uvec>&)");
         signatures.insert("arma::field<arma::umat>(*get_step_lastcell)(const arma::field<arma::uvec>&,const arma::umat&)");
+        signatures.insert("void(*generate_step_cell)(const arma::uvec&,const std::string&,const std::string&)");
         signatures.insert("arma::uvec(*get_cell_in_basin)(const arma::field<arma::uvec>&,int,const arma::uvec&)");
         signatures.insert("arma::uvec(*get_inter_basin)(const arma::uvec&,const arma::uvec&)");
         signatures.insert("arma::uvec(*get_new_outflow)(const arma::uvec&,const arma::uvec&)");
@@ -4082,6 +4118,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inflow_lastcell", (DL_FUNC)_HydroGallery_get_inflow_lastcell_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_step_cells", (DL_FUNC)_HydroGallery_get_step_cells_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_step_lastcell", (DL_FUNC)_HydroGallery_get_step_lastcell_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_generate_step_cell", (DL_FUNC)_HydroGallery_generate_step_cell_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_cell_in_basin", (DL_FUNC)_HydroGallery_get_cell_in_basin_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_inter_basin", (DL_FUNC)_HydroGallery_get_inter_basin_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_get_new_outflow", (DL_FUNC)_HydroGallery_get_new_outflow_try);
@@ -4192,6 +4229,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_get_inflow_lastcell", (DL_FUNC) &_HydroGallery_get_inflow_lastcell, 1},
     {"_HydroGallery_get_step_cells", (DL_FUNC) &_HydroGallery_get_step_cells, 1},
     {"_HydroGallery_get_step_lastcell", (DL_FUNC) &_HydroGallery_get_step_lastcell, 2},
+    {"_HydroGallery_generate_step_cell", (DL_FUNC) &_HydroGallery_generate_step_cell, 3},
     {"_HydroGallery_get_cell_in_basin", (DL_FUNC) &_HydroGallery_get_cell_in_basin, 3},
     {"_HydroGallery_get_inter_basin", (DL_FUNC) &_HydroGallery_get_inter_basin, 2},
     {"_HydroGallery_get_new_outflow", (DL_FUNC) &_HydroGallery_get_new_outflow, 2},

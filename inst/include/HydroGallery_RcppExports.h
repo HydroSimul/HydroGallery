@@ -1999,6 +1999,26 @@ namespace HydroGallery {
         return Rcpp::as<arma::field<arma::umat> >(rcpp_result_gen);
     }
 
+    inline void generate_step_cell(const arma::uvec& int_Outflow, const std::string& filepath_step_cells, const std::string& filepath_step_lastcell) {
+        typedef SEXP(*Ptr_generate_step_cell)(SEXP,SEXP,SEXP);
+        static Ptr_generate_step_cell p_generate_step_cell = NULL;
+        if (p_generate_step_cell == NULL) {
+            validateSignature("void(*generate_step_cell)(const arma::uvec&,const std::string&,const std::string&)");
+            p_generate_step_cell = (Ptr_generate_step_cell)R_GetCCallable("HydroGallery", "_HydroGallery_generate_step_cell");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_generate_step_cell(Shield<SEXP>(Rcpp::wrap(int_Outflow)), Shield<SEXP>(Rcpp::wrap(filepath_step_cells)), Shield<SEXP>(Rcpp::wrap(filepath_step_lastcell)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+    }
+
     inline arma::uvec get_cell_in_basin(const arma::field<arma::uvec>& lst_Inflow_Cell, int int_OutLet, const arma::uvec& int_TestCell) {
         typedef SEXP(*Ptr_get_cell_in_basin)(SEXP,SEXP,SEXP);
         static Ptr_get_cell_in_basin p_get_cell_in_basin = NULL;
