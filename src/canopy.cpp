@@ -85,7 +85,8 @@ arma::mat landLeafAreaIndex_WaterGAP3(const arma::mat& ATMOS_temperature_Cel,
     }
     
     // Assign final leaf area index
-    LAND_leafAreaIndex_.row(g) = LAND_leafAreaIndexMin_(g) + LAND_leafAreaRatio_.t() * range_LAI(g);
+    LAND_leafAreaIndex_.row(g) = (LAND_leafAreaIndexMin_(g) +  range_LAI(g) * LAND_leafAreaRatio_).t();
+    
   }
   
   return LAND_leafAreaIndex_;
