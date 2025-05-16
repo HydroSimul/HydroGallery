@@ -1,4 +1,3 @@
-#include <RcppArmadillo.h>
 #include "confluen.h"
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::interfaces(r, cpp)]]

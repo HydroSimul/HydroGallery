@@ -1,7 +1,5 @@
-#include <RcppArmadillo.h>
+#include "utils.h"
 // [[Rcpp::depends(RcppArmadillo)]]
-using namespace arma;
-
 // [[Rcpp::interfaces(r, cpp)]]
 
 //' **interception** water from land goes into the soil.

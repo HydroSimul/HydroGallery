@@ -1,10 +1,7 @@
-#include <RcppArmadillo.h>
+#include "meteo.h"
 // [[Rcpp::depends(RcppArmadillo)]]
-using namespace arma;
-
 // [[Rcpp::interfaces(r, cpp)]]
 
-#include "meteo.h"
 
 //' **lake outflow**
 //' @name lakeout

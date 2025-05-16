@@ -1,7 +1,7 @@
 #ifndef CONFLUEN
 #define CONFLUEN
 
-#include <RcppArmadillo.h>
+#include "utils.h"
 
 arma::vec riverout_LinearResorvoir(
     const arma::vec& RIVER_water_m3,

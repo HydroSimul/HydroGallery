@@ -1,6 +1,5 @@
-#include <RcppArmadillo.h>
+#include "utils.h"
 // [[Rcpp::depends(RcppArmadillo)]]
-
 // [[Rcpp::interfaces(r, cpp)]]
 
 //' **river outflow**

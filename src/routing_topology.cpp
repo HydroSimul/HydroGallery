@@ -1,8 +1,6 @@
-#include <RcppArmadillo.h>
+#include "utils.h"
 #include <unordered_map>
 #include <unordered_set>
-#include <set>
-#include <algorithm>
 
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::interfaces(r, cpp)]]

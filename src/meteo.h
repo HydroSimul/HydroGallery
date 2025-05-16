@@ -1,7 +1,7 @@
 #ifndef METEO
 #define METEO
 
-#include <RcppArmadillo.h>
+#include "utils.h"
 
 arma::vec meteo_solarRadiatClearSky_FAO56(
     const arma::vec& Time_dayOfYear_,
