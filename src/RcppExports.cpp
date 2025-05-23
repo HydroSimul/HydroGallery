@@ -817,8 +817,8 @@ RcppExport SEXP _HydroGallery_confluenIUH_Clark(SEXP CONFLUEN_responseTime_TSSEX
     return rcpp_result_gen;
 }
 // confluen_WaterGAP3_U
-arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::umat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor);
-static SEXP _HydroGallery_confluen_WaterGAP3_U_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP Reservoi_cellNumber_intSEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
+arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::umat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor);
+static SEXP _HydroGallery_confluen_WaterGAP3_U_try(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP Reservoi_cellNumber_intSEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_isIrrigate_01SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< arma::vec& >::type RIVER_water_m3(RIVER_water_m3SEXP);
@@ -834,18 +834,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_capacity_m3(Reservoi_capacity_m3SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_meanInflow_m3(Reservoi_meanInflow_m3SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_meanDemand_m3(Reservoi_meanDemand_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_releaseCoefficient_1(Reservoi_releaseCoefficient_1SEXP);
     Rcpp::traits::input_parameter< const arma::uvec& >::type Reservoi_isIrrigate_01(Reservoi_isIrrigate_01SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type param_Riverlak_lin_storeFactor(param_Riverlak_lin_storeFactorSEXP);
-    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3_U(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor));
+    rcpp_result_gen = Rcpp::wrap(confluen_WaterGAP3_U(RIVER_water_m3, RIVER_length_km, RIVER_velocity_km, RIVER_inflow_m3, CELL_cellNumberStep_int, CELL_inflowCellNumberStep_int, Riverlak_cellNumber_int, Riverlak_capacity_m3, Reservoi_cellNumber_int, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_isIrrigate_01, param_Riverlak_lin_storeFactor));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _HydroGallery_confluen_WaterGAP3_U(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP Reservoi_cellNumber_intSEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
+RcppExport SEXP _HydroGallery_confluen_WaterGAP3_U(SEXP RIVER_water_m3SEXP, SEXP RIVER_length_kmSEXP, SEXP RIVER_velocity_kmSEXP, SEXP RIVER_inflow_m3SEXP, SEXP CELL_cellNumberStep_intSEXP, SEXP CELL_inflowCellNumberStep_intSEXP, SEXP Riverlak_cellNumber_intSEXP, SEXP Riverlak_capacity_m3SEXP, SEXP Reservoi_cellNumber_intSEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_isIrrigate_01SEXP, SEXP param_Riverlak_lin_storeFactorSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_U_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_inflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP, Riverlak_cellNumber_intSEXP, Riverlak_capacity_m3SEXP, Reservoi_cellNumber_intSEXP, Reservoi_demand_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_meanInflow_m3SEXP, Reservoi_meanDemand_m3SEXP, Reservoi_releaseCoefficient_1SEXP, Reservoi_isIrrigate_01SEXP, param_Riverlak_lin_storeFactorSEXP));
+        rcpp_result_gen = PROTECT(_HydroGallery_confluen_WaterGAP3_U_try(RIVER_water_m3SEXP, RIVER_length_kmSEXP, RIVER_velocity_kmSEXP, RIVER_inflow_m3SEXP, CELL_cellNumberStep_intSEXP, CELL_inflowCellNumberStep_intSEXP, Riverlak_cellNumber_intSEXP, Riverlak_capacity_m3SEXP, Reservoi_cellNumber_intSEXP, Reservoi_demand_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_meanInflow_m3SEXP, Reservoi_meanDemand_m3SEXP, Reservoi_isIrrigate_01SEXP, param_Riverlak_lin_storeFactorSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -3189,9 +3188,9 @@ RcppExport SEXP _HydroGallery_percola_WaterGAP3(SEXP LAND_water_mmSEXP, SEXP SOI
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// reservoireleas_Hanasaki
-arma::vec reservoireleas_Hanasaki(arma::vec Reservoi_water_m3, const arma::vec& Reservoi_inflow_m3, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01);
-static SEXP _HydroGallery_reservoireleas_Hanasaki_try(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP) {
+// reservoiReleas_Hanasaki
+arma::vec reservoiReleas_Hanasaki(arma::vec Reservoi_water_m3, const arma::vec& Reservoi_inflow_m3, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::uvec& Reservoi_isIrrigate_01);
+static SEXP _HydroGallery_reservoiReleas_Hanasaki_try(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_isIrrigate_01SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< arma::vec >::type Reservoi_water_m3(Reservoi_water_m3SEXP);
@@ -3200,17 +3199,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_capacity_m3(Reservoi_capacity_m3SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_meanInflow_m3(Reservoi_meanInflow_m3SEXP);
     Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_meanDemand_m3(Reservoi_meanDemand_m3SEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type Reservoi_releaseCoefficient_1(Reservoi_releaseCoefficient_1SEXP);
     Rcpp::traits::input_parameter< const arma::uvec& >::type Reservoi_isIrrigate_01(Reservoi_isIrrigate_01SEXP);
-    rcpp_result_gen = Rcpp::wrap(reservoireleas_Hanasaki(Reservoi_water_m3, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_releaseCoefficient_1, Reservoi_isIrrigate_01));
+    rcpp_result_gen = Rcpp::wrap(reservoiReleas_Hanasaki(Reservoi_water_m3, Reservoi_inflow_m3, Reservoi_demand_m3, Reservoi_capacity_m3, Reservoi_meanInflow_m3, Reservoi_meanDemand_m3, Reservoi_isIrrigate_01));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _HydroGallery_reservoireleas_Hanasaki(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_releaseCoefficient_1SEXP, SEXP Reservoi_isIrrigate_01SEXP) {
+RcppExport SEXP _HydroGallery_reservoiReleas_Hanasaki(SEXP Reservoi_water_m3SEXP, SEXP Reservoi_inflow_m3SEXP, SEXP Reservoi_demand_m3SEXP, SEXP Reservoi_capacity_m3SEXP, SEXP Reservoi_meanInflow_m3SEXP, SEXP Reservoi_meanDemand_m3SEXP, SEXP Reservoi_isIrrigate_01SEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_reservoireleas_Hanasaki_try(Reservoi_water_m3SEXP, Reservoi_inflow_m3SEXP, Reservoi_demand_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_meanInflow_m3SEXP, Reservoi_meanDemand_m3SEXP, Reservoi_releaseCoefficient_1SEXP, Reservoi_isIrrigate_01SEXP));
+        rcpp_result_gen = PROTECT(_HydroGallery_reservoiReleas_Hanasaki_try(Reservoi_water_m3SEXP, Reservoi_inflow_m3SEXP, Reservoi_demand_m3SEXP, Reservoi_capacity_m3SEXP, Reservoi_meanInflow_m3SEXP, Reservoi_meanDemand_m3SEXP, Reservoi_isIrrigate_01SEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -3934,7 +3932,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("arma::vec(*confluenIUH_Kelly)(double,double)");
         signatures.insert("arma::vec(*confluenIUH_Nash)(double,double)");
         signatures.insert("arma::vec(*confluenIUH_Clark)(double)");
-        signatures.insert("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::umat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
+        signatures.insert("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::umat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
         signatures.insert("arma::vec(*evatransActual_SupplyRatio)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*evatransActual_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*evatransActual_VIC)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
@@ -3998,7 +3996,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("arma::vec(*percola_SupplyPow)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*percola_SupplyRatio)(const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*percola_WaterGAP3)(const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&)");
-        signatures.insert("arma::vec(*reservoireleas_Hanasaki)(arma::vec,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&)");
+        signatures.insert("arma::vec(*reservoiReleas_Hanasaki)(arma::vec,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&)");
         signatures.insert("arma::vec(*reservoiReleasCoefficent_Hanasaki)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
         signatures.insert("arma::vec(*riverout_LinearResorvoir)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("arma::vec(*riverlakout_LinearResorvoir)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
@@ -4110,7 +4108,7 @@ RcppExport SEXP _HydroGallery_RcppExport_registerCCallable() {
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_SupplyPow", (DL_FUNC)_HydroGallery_percola_SupplyPow_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_SupplyRatio", (DL_FUNC)_HydroGallery_percola_SupplyRatio_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_percola_WaterGAP3", (DL_FUNC)_HydroGallery_percola_WaterGAP3_try);
-    R_RegisterCCallable("HydroGallery", "_HydroGallery_reservoireleas_Hanasaki", (DL_FUNC)_HydroGallery_reservoireleas_Hanasaki_try);
+    R_RegisterCCallable("HydroGallery", "_HydroGallery_reservoiReleas_Hanasaki", (DL_FUNC)_HydroGallery_reservoiReleas_Hanasaki_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_reservoiReleasCoefficent_Hanasaki", (DL_FUNC)_HydroGallery_reservoiReleasCoefficent_Hanasaki_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_riverout_LinearResorvoir", (DL_FUNC)_HydroGallery_riverout_LinearResorvoir_try);
     R_RegisterCCallable("HydroGallery", "_HydroGallery_riverlakout_LinearResorvoir", (DL_FUNC)_HydroGallery_riverlakout_LinearResorvoir_try);
@@ -4157,7 +4155,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_confluenIUH_Kelly", (DL_FUNC) &_HydroGallery_confluenIUH_Kelly, 2},
     {"_HydroGallery_confluenIUH_Nash", (DL_FUNC) &_HydroGallery_confluenIUH_Nash, 2},
     {"_HydroGallery_confluenIUH_Clark", (DL_FUNC) &_HydroGallery_confluenIUH_Clark, 1},
-    {"_HydroGallery_confluen_WaterGAP3_U", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_U, 16},
+    {"_HydroGallery_confluen_WaterGAP3_U", (DL_FUNC) &_HydroGallery_confluen_WaterGAP3_U, 15},
     {"_HydroGallery_evatransActual_SupplyRatio", (DL_FUNC) &_HydroGallery_evatransActual_SupplyRatio, 4},
     {"_HydroGallery_evatransActual_SupplyPow", (DL_FUNC) &_HydroGallery_evatransActual_SupplyPow, 5},
     {"_HydroGallery_evatransActual_VIC", (DL_FUNC) &_HydroGallery_evatransActual_VIC, 4},
@@ -4221,7 +4219,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_percola_SupplyPow", (DL_FUNC) &_HydroGallery_percola_SupplyPow, 4},
     {"_HydroGallery_percola_SupplyRatio", (DL_FUNC) &_HydroGallery_percola_SupplyRatio, 2},
     {"_HydroGallery_percola_WaterGAP3", (DL_FUNC) &_HydroGallery_percola_WaterGAP3, 5},
-    {"_HydroGallery_reservoireleas_Hanasaki", (DL_FUNC) &_HydroGallery_reservoireleas_Hanasaki, 8},
+    {"_HydroGallery_reservoiReleas_Hanasaki", (DL_FUNC) &_HydroGallery_reservoiReleas_Hanasaki, 7},
     {"_HydroGallery_reservoiReleasCoefficent_Hanasaki", (DL_FUNC) &_HydroGallery_reservoiReleasCoefficent_Hanasaki, 5},
     {"_HydroGallery_riverout_LinearResorvoir", (DL_FUNC) &_HydroGallery_riverout_LinearResorvoir, 4},
     {"_HydroGallery_riverlakout_LinearResorvoir", (DL_FUNC) &_HydroGallery_riverlakout_LinearResorvoir, 4},

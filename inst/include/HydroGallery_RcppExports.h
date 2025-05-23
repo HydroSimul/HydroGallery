@@ -487,17 +487,17 @@ namespace HydroGallery {
         return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::umat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor) {
-        typedef SEXP(*Ptr_confluen_WaterGAP3_U)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+    inline arma::vec confluen_WaterGAP3_U(arma::vec& RIVER_water_m3, const arma::vec& RIVER_length_km, const arma::vec& RIVER_velocity_km, const arma::vec& RIVER_inflow_m3, const arma::field<arma::uvec>& CELL_cellNumberStep_int, const arma::field<arma::umat>& CELL_inflowCellNumberStep_int, const arma::uvec& Riverlak_cellNumber_int, const arma::vec& Riverlak_capacity_m3, const arma::uvec& Reservoi_cellNumber_int, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::uvec& Reservoi_isIrrigate_01, const arma::vec& param_Riverlak_lin_storeFactor) {
+        typedef SEXP(*Ptr_confluen_WaterGAP3_U)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_confluen_WaterGAP3_U p_confluen_WaterGAP3_U = NULL;
         if (p_confluen_WaterGAP3_U == NULL) {
-            validateSignature("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::umat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
+            validateSignature("arma::vec(*confluen_WaterGAP3_U)(arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::field<arma::uvec>&,const arma::field<arma::umat>&,const arma::uvec&,const arma::vec&,const arma::uvec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&,const arma::vec&)");
             p_confluen_WaterGAP3_U = (Ptr_confluen_WaterGAP3_U)R_GetCCallable("HydroGallery", "_HydroGallery_confluen_WaterGAP3_U");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_confluen_WaterGAP3_U(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_inflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Reservoi_demand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanInflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanDemand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_releaseCoefficient_1)), Shield<SEXP>(Rcpp::wrap(Reservoi_isIrrigate_01)), Shield<SEXP>(Rcpp::wrap(param_Riverlak_lin_storeFactor)));
+            rcpp_result_gen = p_confluen_WaterGAP3_U(Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_length_km)), Shield<SEXP>(Rcpp::wrap(RIVER_velocity_km)), Shield<SEXP>(Rcpp::wrap(RIVER_inflow_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(CELL_inflowCellNumberStep_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Riverlak_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Reservoi_demand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanInflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanDemand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_isIrrigate_01)), Shield<SEXP>(Rcpp::wrap(param_Riverlak_lin_storeFactor)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -1831,17 +1831,17 @@ namespace HydroGallery {
         return Rcpp::as<arma::vec >(rcpp_result_gen);
     }
 
-    inline arma::vec reservoireleas_Hanasaki(arma::vec Reservoi_water_m3, const arma::vec& Reservoi_inflow_m3, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::vec& Reservoi_releaseCoefficient_1, const arma::uvec& Reservoi_isIrrigate_01) {
-        typedef SEXP(*Ptr_reservoireleas_Hanasaki)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
-        static Ptr_reservoireleas_Hanasaki p_reservoireleas_Hanasaki = NULL;
-        if (p_reservoireleas_Hanasaki == NULL) {
-            validateSignature("arma::vec(*reservoireleas_Hanasaki)(arma::vec,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&)");
-            p_reservoireleas_Hanasaki = (Ptr_reservoireleas_Hanasaki)R_GetCCallable("HydroGallery", "_HydroGallery_reservoireleas_Hanasaki");
+    inline arma::vec reservoiReleas_Hanasaki(arma::vec Reservoi_water_m3, const arma::vec& Reservoi_inflow_m3, const arma::vec& Reservoi_demand_m3, const arma::vec& Reservoi_capacity_m3, const arma::vec& Reservoi_meanInflow_m3, const arma::vec& Reservoi_meanDemand_m3, const arma::uvec& Reservoi_isIrrigate_01) {
+        typedef SEXP(*Ptr_reservoiReleas_Hanasaki)(SEXP,SEXP,SEXP,SEXP,SEXP,SEXP,SEXP);
+        static Ptr_reservoiReleas_Hanasaki p_reservoiReleas_Hanasaki = NULL;
+        if (p_reservoiReleas_Hanasaki == NULL) {
+            validateSignature("arma::vec(*reservoiReleas_Hanasaki)(arma::vec,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&,const arma::uvec&)");
+            p_reservoiReleas_Hanasaki = (Ptr_reservoiReleas_Hanasaki)R_GetCCallable("HydroGallery", "_HydroGallery_reservoiReleas_Hanasaki");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_reservoireleas_Hanasaki(Shield<SEXP>(Rcpp::wrap(Reservoi_water_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_inflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_demand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanInflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanDemand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_releaseCoefficient_1)), Shield<SEXP>(Rcpp::wrap(Reservoi_isIrrigate_01)));
+            rcpp_result_gen = p_reservoiReleas_Hanasaki(Shield<SEXP>(Rcpp::wrap(Reservoi_water_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_inflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_demand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_capacity_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanInflow_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_meanDemand_m3)), Shield<SEXP>(Rcpp::wrap(Reservoi_isIrrigate_01)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

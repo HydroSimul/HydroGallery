@@ -47,7 +47,6 @@ arma::vec confluen_WaterGAP3_U(
     const arma::vec& Reservoi_capacity_m3,
     const arma::vec& Reservoi_meanInflow_m3,
     const arma::vec& Reservoi_meanDemand_m3,
-    const arma::vec& Reservoi_releaseCoefficient_1,
     const arma::uvec& Reservoi_isIrrigate_01,
     const arma::vec& param_Riverlak_lin_storeFactor)
 {
@@ -94,14 +93,13 @@ arma::vec confluen_WaterGAP3_U(
   if (!idx_Reservoi_Step.is_empty()) {
     arma::uvec idx_Step_Reservoi = find_in(idx_Cell_Step + 1, Reservoi_cellNumber_int);
 
-    arma::vec step_ReservoiOutflow_m3 = reservoireleas_Hanasaki(
+    arma::vec step_ReservoiOutflow_m3 = reservoiReleas_Hanasaki(
       Reservoi_water_m3.elem(idx_Reservoi_Step),
       RIVER_inflow_m3.elem(idx_Cell_Step.elem(idx_Step_Reservoi)),
       Reservoi_demand_m3.elem(idx_Reservoi_Step),
       Reservoi_capacity_m3.elem(idx_Reservoi_Step),
       Reservoi_meanInflow_m3.elem(idx_Reservoi_Step),
       Reservoi_meanDemand_m3.elem(idx_Reservoi_Step),
-      Reservoi_releaseCoefficient_1.elem(idx_Reservoi_Step),
       Reservoi_isIrrigate_01.elem(idx_Reservoi_Step)
     );
 
@@ -157,14 +155,13 @@ arma::vec confluen_WaterGAP3_U(
     if (!idx_Reservoi_Step.is_empty()) {
       arma::uvec idx_Step_Reservoi = find_in(idx_Cell_Step + 1, Reservoi_cellNumber_int);
 
-      arma::vec step_ReservoiOutflow_m3 = reservoireleas_Hanasaki(
+      arma::vec step_ReservoiOutflow_m3 = reservoiReleas_Hanasaki(
         Reservoi_water_m3.elem(idx_Reservoi_Step),
         step_UpstreamInflow_m3.elem(idx_Step_Reservoi),
         Reservoi_demand_m3.elem(idx_Reservoi_Step),
         Reservoi_capacity_m3.elem(idx_Reservoi_Step),
         Reservoi_meanInflow_m3.elem(idx_Reservoi_Step),
         Reservoi_meanDemand_m3.elem(idx_Reservoi_Step),
-        Reservoi_releaseCoefficient_1.elem(idx_Reservoi_Step),
         Reservoi_isIrrigate_01.elem(idx_Reservoi_Step)
       );
 

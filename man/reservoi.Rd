@@ -2,18 +2,17 @@
 % Please edit documentation in R/RcppExports.R
 \name{reservoi}
 \alias{reservoi}
-\alias{reservoireleas_Hanasaki}
+\alias{reservoiReleas_Hanasaki}
 \alias{reservoiReleasCoefficent_Hanasaki}
 \title{**Reservoir release**}
 \usage{
-reservoireleas_Hanasaki(
+reservoiReleas_Hanasaki(
   Reservoi_water_m3,
   Reservoi_inflow_m3,
   Reservoi_demand_m3,
   Reservoi_capacity_m3,
   Reservoi_meanInflow_m3,
   Reservoi_meanDemand_m3,
-  Reservoi_releaseCoefficient_1,
   Reservoi_isIrrigate_01
 )
 
@@ -38,9 +37,9 @@ reservoiReleasCoefficent_Hanasaki(
 
 \item{Reservoi_meanDemand_m3}{(m3/TS) annual mean water demand from the reservoir}
 
-\item{Reservoi_releaseCoefficient_1}{(-) capacity / mena inflow reference to annual mean water release from the reservoir}
-
 \item{Reservoi_isIrrigate_01}{(01) indicates if the reservoir is used for irrigation (0 or 1)}
+
+\item{Reservoi_releaseCoefficient_1}{(-) capacity / mena inflow reference to annual mean water release from the reservoir}
 
 \item{Reservoi_isOperateStart_01}{(01) indicates if reservoir operation has started (0 or 1)}
 

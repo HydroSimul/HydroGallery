@@ -19,7 +19,6 @@ confluen_WaterGAP3_U(
   Reservoi_capacity_m3,
   Reservoi_meanInflow_m3,
   Reservoi_meanDemand_m3,
-  Reservoi_releaseCoefficient_1,
   Reservoi_isIrrigate_01,
   param_Riverlak_lin_storeFactor
 )
