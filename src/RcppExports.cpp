@@ -3834,22 +3834,23 @@ RcppExport SEXP _HydroGallery_withdrawSurface_AroundMax(SEXP CELL_withdrawal_m3S
     return rcpp_result_gen;
 }
 // withdrawSurface_Around
-void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int);
-static SEXP _HydroGallery_withdrawSurface_Around_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, const arma::uvec& Lake_cellNumber_int, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int);
+static SEXP _HydroGallery_withdrawSurface_Around_try(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_cellNumber_intSEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
 BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec& >::type CELL_withdrawal_m3(CELL_withdrawal_m3SEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type RIVER_water_m3(RIVER_water_m3SEXP);
+    Rcpp::traits::input_parameter< const arma::uvec& >::type Lake_cellNumber_int(Lake_cellNumber_intSEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type Lake_water_m3(Lake_water_m3SEXP);
     Rcpp::traits::input_parameter< const arma::umat& >::type CELL_cellNumberAround_int(CELL_cellNumberAround_intSEXP);
-    withdrawSurface_Around(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int);
+    withdrawSurface_Around(CELL_withdrawal_m3, RIVER_water_m3, Lake_cellNumber_int, Lake_water_m3, CELL_cellNumberAround_int);
     return R_NilValue;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _HydroGallery_withdrawSurface_Around(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
+RcppExport SEXP _HydroGallery_withdrawSurface_Around(SEXP CELL_withdrawal_m3SEXP, SEXP RIVER_water_m3SEXP, SEXP Lake_cellNumber_intSEXP, SEXP Lake_water_m3SEXP, SEXP CELL_cellNumberAround_intSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_HydroGallery_withdrawSurface_Around_try(CELL_withdrawal_m3SEXP, RIVER_water_m3SEXP, Lake_water_m3SEXP, CELL_cellNumberAround_intSEXP));
+        rcpp_result_gen = PROTECT(_HydroGallery_withdrawSurface_Around_try(CELL_withdrawal_m3SEXP, RIVER_water_m3SEXP, Lake_cellNumber_intSEXP, Lake_water_m3SEXP, CELL_cellNumberAround_intSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -4014,7 +4015,7 @@ static int _HydroGallery_RcppExport_validate(const char* sig) {
         signatures.insert("arma::vec(*snowMelt_Factor)(const arma::vec&,const arma::vec&,const arma::vec&,const arma::vec&)");
         signatures.insert("void(*withdraw_SingleCell)(arma::vec&,arma::vec&)");
         signatures.insert("void(*withdrawSurface_AroundMax)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
-        signatures.insert("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
+        signatures.insert("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,const arma::uvec&,arma::vec&,const arma::umat&)");
         signatures.insert("void(*withdrawSurface_WithdrawNet)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
     }
     return signatures.find(sig) != signatures.end();
@@ -4237,7 +4238,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HydroGallery_snowMelt_Factor", (DL_FUNC) &_HydroGallery_snowMelt_Factor, 4},
     {"_HydroGallery_withdraw_SingleCell", (DL_FUNC) &_HydroGallery_withdraw_SingleCell, 2},
     {"_HydroGallery_withdrawSurface_AroundMax", (DL_FUNC) &_HydroGallery_withdrawSurface_AroundMax, 4},
-    {"_HydroGallery_withdrawSurface_Around", (DL_FUNC) &_HydroGallery_withdrawSurface_Around, 4},
+    {"_HydroGallery_withdrawSurface_Around", (DL_FUNC) &_HydroGallery_withdrawSurface_Around, 5},
     {"_HydroGallery_withdrawSurface_WithdrawNet", (DL_FUNC) &_HydroGallery_withdrawSurface_WithdrawNet, 4},
     {"_HydroGallery_RcppExport_registerCCallable", (DL_FUNC) &_HydroGallery_RcppExport_registerCCallable, 0},
     {NULL, NULL, 0}

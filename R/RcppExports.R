@@ -1705,8 +1705,8 @@ withdrawSurface_AroundMax <- function(CELL_withdrawal_m3, RIVER_water_m3, Lake_w
 #' based on their water availability.
 #' @rdname withdraw
 #' @export
-withdrawSurface_Around <- function(CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int) {
-    invisible(.Call(`_HydroGallery_withdrawSurface_Around`, CELL_withdrawal_m3, RIVER_water_m3, Lake_water_m3, CELL_cellNumberAround_int))
+withdrawSurface_Around <- function(CELL_withdrawal_m3, RIVER_water_m3, Lake_cellNumber_int, Lake_water_m3, CELL_cellNumberAround_int) {
+    invisible(.Call(`_HydroGallery_withdrawSurface_Around`, CELL_withdrawal_m3, RIVER_water_m3, Lake_cellNumber_int, Lake_water_m3, CELL_cellNumberAround_int))
 }
 
 #' [withdrawSurface_WithdrawNet] This function withdraws water by following a predefined network of cells

@@ -39,8 +39,9 @@ void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3,
   for (arma::uword i_Spat = 0; i_Spat < n_Spat; i_Spat++) {
     if (CELL_withdrawal_m3[i_Spat] <= 0) continue;
 
-    arma::uvec idx_Around = CELL_cellNumberAround_int.col(i_Spat) - 1;
-    idx_Around = idx_Around(find(idx_Around >= 0));
+    arma::uvec idx_Around = CELL_cellNumberAround_int.row(i_Spat);
+    idx_Around = idx_Around(find(idx_Around > 0));
+    idx_Around -= 1;
     arma::uword n_Around = idx_Around.n_elem;
     if (n_Around == 0) continue;
 
@@ -79,58 +80,61 @@ void withdrawSurface_AroundMax(arma::vec& CELL_withdrawal_m3,
 // [[Rcpp::export]]
 void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3,
                             arma::vec& RIVER_water_m3,
+                            const arma::uvec& Lake_cellNumber_int,
                             arma::vec& Lake_water_m3,
                             const arma::umat& CELL_cellNumberAround_int) {
 
   arma::uword n_Spat = CELL_withdrawal_m3.n_elem;
-
+  
+  arma::vec LAKE_water_m3(n_Spat, arma::fill::zeros);  
+  LAKE_water_m3.elem(Lake_cellNumber_int) = Lake_water_m3;
+  
   for (arma::uword i_Spat = 0; i_Spat < n_Spat; i_Spat++) {
     if (CELL_withdrawal_m3[i_Spat] <= 0) continue;
 
-    arma::uvec idx_Around = CELL_cellNumberAround_int.col(i_Spat) - 1;
-    idx_Around = idx_Around(find(idx_Around >= 0));
+    arma::uvec idx_Around = CELL_cellNumberAround_int.row(i_Spat).t();
+    idx_Around = idx_Around(find(idx_Around > 0));
+    idx_Around -= 1;
     arma::uword n_Around = idx_Around.n_elem;
     if (n_Around == 0) continue;
 
-    arma::uvec valid_indices = idx_Around(find(idx_Around >= 0));
-    if (valid_indices.n_elem == 0) continue;
-
+ 
     double total_available = 0;
-    arma::vec totalWater_Around(valid_indices.n_elem);
+    arma::vec totalWater_Around(idx_Around.n_elem);
 
-    for (arma::uword j = 0; j < valid_indices.n_elem; j++) {
-      int idx = valid_indices[j];
-      double water = RIVER_water_m3[idx] + Lake_water_m3[idx];
+    for (arma::uword j = 0; j < idx_Around.n_elem; j++) {
+      int idx = idx_Around[j];
+      double water = RIVER_water_m3[idx] + LAKE_water_m3[idx];
       totalWater_Around[j] = water;
       total_available += water;
     }
 
     double withdrawal = CELL_withdrawal_m3[i_Spat];
 
-    if (withdrawal > total_available) {
-      for (arma::uword j = 0; j < valid_indices.n_elem; j++) {
-        int idx = valid_indices[j];
+    if (withdrawal >= total_available) {
+      for (arma::uword j = 0; j < idx_Around.n_elem; j++) {
+        int idx = idx_Around[j];
         RIVER_water_m3[idx] = 0;
-        Lake_water_m3[idx] = 0;
+        LAKE_water_m3[idx] = 0;
       }
       CELL_withdrawal_m3[i_Spat] -= total_available;
     } else {
       arma::vec weights = totalWater_Around / total_available;
 
-      for (arma::uword j = 0; j < valid_indices.n_elem; j++) {
-        int idx = valid_indices[j];
+      for (arma::uword j = 0; j < idx_Around.n_elem; j++) {
+        int idx = idx_Around[j];
         double cell_withdrawal = withdrawal * weights[j];
 
         double river = RIVER_water_m3[idx];
-        double lake = Lake_water_m3[idx];
+        double lake = LAKE_water_m3[idx];
         double total_cell_water = river + lake;
 
         if (cell_withdrawal >= total_cell_water) {
           RIVER_water_m3[idx] = 0;
-          Lake_water_m3[idx] = 0;
+          LAKE_water_m3[idx] = 0;
         } else if (cell_withdrawal > river) {
           RIVER_water_m3[idx] = 0;
-          Lake_water_m3[idx] = total_cell_water - cell_withdrawal;
+          LAKE_water_m3[idx] = total_cell_water - cell_withdrawal;
         } else {
           RIVER_water_m3[idx] -= cell_withdrawal;
         }
@@ -139,6 +143,8 @@ void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3,
       CELL_withdrawal_m3[i_Spat] = 0;
     }
   }
+  
+  Lake_water_m3 = LAKE_water_m3.elem(Lake_cellNumber_int);
 }
 
 //' [withdrawSurface_WithdrawNet] This function withdraws water by following a predefined network of cells

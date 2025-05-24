@@ -20,6 +20,7 @@ withdrawSurface_AroundMax(
 withdrawSurface_Around(
   CELL_withdrawal_m3,
   RIVER_water_m3,
+  Lake_cellNumber_int,
   Lake_water_m3,
   CELL_cellNumberAround_int
 )

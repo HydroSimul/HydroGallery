@@ -264,12 +264,12 @@ arma::vec infilt_XAJ(
   arma::vec SOIL_diff_mm = SOIL_capacity_mm - SOIL_water_mm;
   arma::vec limit_mm = arma::min(SOIL_diff_mm, LAND_water_mm);
   
-  arma::vec MM_ = SOIL_capacity_mm * (param_INFILT_xaj_B + 1);
+  arma::vec MM_ = SOIL_capacity_mm % (param_INFILT_xaj_B + 1);
   arma::vec B_p_1 = (param_INFILT_xaj_B + 1);
   arma::vec B_B_1 = param_INFILT_xaj_B / B_p_1;
   arma::vec B_1 = 1 / param_INFILT_xaj_B;
   
-  arma::vec AU_ = MM_ % (1 - pow(1 - SOIL_water_mm * B_p_1 / MM_, B_1));
+  arma::vec AU_ = MM_ % (1 - pow(1 - SOIL_water_mm % B_p_1 / MM_, B_1));
   
   arma::vec AU_L_MM = (MM_ - AU_ - LAND_water_mm) / MM_;
   AU_L_MM.transform([](double val) { return std::max(val, 0.0); });

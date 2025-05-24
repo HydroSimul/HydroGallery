@@ -63,7 +63,7 @@ arma::vec evatransPotential_Linacre(
     const arma::vec& LAND_albedo_1
 )
 {// Compute the full expression
-  arma::vec PET = ((0.75 - LAND_albedo_1) * 100 * (ATMOS_temperature_Cel + 0.006 * LAND_elevation_m) / 
+  arma::vec PET = ((0.75 - LAND_albedo_1) * 100 % (ATMOS_temperature_Cel + 0.006 * LAND_elevation_m) / 
     (100 - LAND_latitude_Degree) + 3 * 100 * (1 - ATMOS_relativeHumidity_1)) / 
     (80 - ATMOS_temperature_Cel);
   
@@ -103,11 +103,11 @@ arma::vec evatransPotential_FAO56(
   e_a = ATMOS_vaporPress_hPa;
   e_s = ATMOS_saturatVaporPress_hPa;
 
-  Delta_ = 4098 * (0.6108 * exp(17.27 * ATMOS_temperature_Cel / (ATMOS_temperature_Cel + 237.3))) / ((ATMOS_temperature_Cel + 237.3) * (ATMOS_temperature_Cel + 237.3));
+  Delta_ = 4098 * (0.6108 * exp(17.27 * ATMOS_temperature_Cel / (ATMOS_temperature_Cel + 237.3))) / ((ATMOS_temperature_Cel + 237.3) % (ATMOS_temperature_Cel + 237.3));
 
   gamma_ = 0.665e-3 * 101.3 * pow(((293 - 0.0065 * LAND_elevation_m) / 293), 5.26);
 
-  ET_o = (0.408 * Delta_ % (R_n - 0.) + gamma_ * 90 * u_2 % (e_s - e_a) / (ATMOS_temperature_Cel + 273)) / (Delta_ + gamma_ % (1 + 0.34 * u_2));
+  ET_o = (0.408 * Delta_ % (R_n - 0.) + gamma_ * 90 % u_2 % (e_s - e_a) / (ATMOS_temperature_Cel + 273)) / (Delta_ + gamma_ % (1 + 0.34 * u_2));
   ET_o.transform([](double val) { return std::max(val, 0.0); });
   return ET_o;
 }
@@ -128,7 +128,7 @@ arma::vec evatransPotential_PriestleyTaylor(
   lat_heat = 2.501 - 0.002361 * ATMOS_temperature_Cel;
   lat_heat = arma::clamp(lat_heat, 2.835, arma::datum::inf);
 
-  Delta_ = 4098 * (0.6108 * exp(17.27 * ATMOS_temperature_Cel / (ATMOS_temperature_Cel + 237.3))) / ((ATMOS_temperature_Cel + 237.3) * (ATMOS_temperature_Cel + 237.3));
+  Delta_ = 4098 * (0.6108 * exp(17.27 * ATMOS_temperature_Cel / (ATMOS_temperature_Cel + 237.3))) / ((ATMOS_temperature_Cel + 237.3) % (ATMOS_temperature_Cel + 237.3));
 
   P_ = 101.3 * pow(((293 - 0.0065 * LAND_elevation_m) / 293), 5.26);
   gamma_ = 0.665e-3 * P_;

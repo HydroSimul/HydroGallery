@@ -2206,17 +2206,17 @@ namespace HydroGallery {
             throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
     }
 
-    inline void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int) {
-        typedef SEXP(*Ptr_withdrawSurface_Around)(SEXP,SEXP,SEXP,SEXP);
+    inline void withdrawSurface_Around(arma::vec& CELL_withdrawal_m3, arma::vec& RIVER_water_m3, const arma::uvec& Lake_cellNumber_int, arma::vec& Lake_water_m3, const arma::umat& CELL_cellNumberAround_int) {
+        typedef SEXP(*Ptr_withdrawSurface_Around)(SEXP,SEXP,SEXP,SEXP,SEXP);
         static Ptr_withdrawSurface_Around p_withdrawSurface_Around = NULL;
         if (p_withdrawSurface_Around == NULL) {
-            validateSignature("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,arma::vec&,const arma::umat&)");
+            validateSignature("void(*withdrawSurface_Around)(arma::vec&,arma::vec&,const arma::uvec&,arma::vec&,const arma::umat&)");
             p_withdrawSurface_Around = (Ptr_withdrawSurface_Around)R_GetCCallable("HydroGallery", "_HydroGallery_withdrawSurface_Around");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_withdrawSurface_Around(Shield<SEXP>(Rcpp::wrap(CELL_withdrawal_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(Lake_water_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberAround_int)));
+            rcpp_result_gen = p_withdrawSurface_Around(Shield<SEXP>(Rcpp::wrap(CELL_withdrawal_m3)), Shield<SEXP>(Rcpp::wrap(RIVER_water_m3)), Shield<SEXP>(Rcpp::wrap(Lake_cellNumber_int)), Shield<SEXP>(Rcpp::wrap(Lake_water_m3)), Shield<SEXP>(Rcpp::wrap(CELL_cellNumberAround_int)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

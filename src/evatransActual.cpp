@@ -153,7 +153,7 @@ arma::vec evatransActual_UBC(
     const arma::vec& param_EVATRANS_ubc_gamma
 ) {
   arma::vec diff_mm = capacity_mm - water_mm;
-  arma::vec k_ = exp(-diff_mm / (param_EVATRANS_ubc_gamma(0) * capacity_mm) * std::log(10.0));
+  arma::vec k_ = exp(-diff_mm / (param_EVATRANS_ubc_gamma % capacity_mm) * std::log(10.0));
   arma::vec AET = ATMOS_potentialEvatrans_mm % k_;
   return arma::min(AET, water_mm);
 }
@@ -212,7 +212,7 @@ arma::vec evatransActual_LiangSoil(
     const arma::vec& param_EVATRANS_lia_B
 )
 {
-  arma::vec i_m = capacity_mm * (param_EVATRANS_lia_B + 1);
+  arma::vec i_m = capacity_mm % (param_EVATRANS_lia_B + 1);
   arma::vec i_0 = i_m % (1 - arma::pow(1 - water_mm / capacity_mm, 1 / (param_EVATRANS_lia_B + 1)));
   arma::vec A_s = 1 - arma::pow((1 - i_0 / i_m), param_EVATRANS_lia_B);
   arma::vec A_s_1 = 1 - A_s;
